@@ -1,0 +1,5 @@
+Date;Image;Label;Heading;Text
+1969-1986;;AI Winter of connectionism;Almost lead to the abondonment of connectionist AI;AI winter
+1986;1986;Backpropagation;;Backpropagation
+1847;1847;Gradient Descent;Cauchy discovered Gradient Descent motivated by the need to compute the orbit of heavenly bodies;Gradient Descent
+1989;1989;Universal Approximation Theorem;A multilayered network of neurons with a single hidden layer can be used to approximate any continuous function to any desired precision;UAT

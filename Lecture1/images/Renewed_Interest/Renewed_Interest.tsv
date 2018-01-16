@@ -1,0 +1,9 @@
+Date;Image;Label;Heading;Text
+2006;Renewed_Interest/2006_1;Unsupervised Pre-Training;Hinton and  Salakhutdinov described an effective way of initializing the weights that allows deep autoencoder networks to learn a low-dimensional representation of data.;Unsupervised Pre-Training
+2006-2009;Renewed_Interest/2009;Unsupervised Pre-Training;Further Investigations into the effectiveness of Unsupervised Pre-training; More insights (2007-2009)
+2009;Renewed_Interest/2009;Handwriting Recognition;Graves et. al. outperformed all entries in an international Arabic recognition competition ;Success in Handwriting Recognition
+2010;Renewed_Interest/2010_1;Speech Recognition;Dahl et. al. showed relative error reduction of 16.0% and 23.2% over a state of the art system;Success in Speech REcognition
+2010;Renewed_Interest/2010;New Record on MNIST;Ciresan et. al. set a new record on the MNIST dataset using good old backpropagation on GPUs (GPUs enter the scene); New record on MNIST 
+2011;Renewed_Interest/2011;Visual Pattern Recognition;D. C. Ciresan et. al. achieved 0.56% error rate in the IJCNN Traffic Sign Recognition Competition; First Superhuman Visual Pattern Recognition
+2012-2016;Renewed_Interest/2012_1;Success on ImageNet;AlexNet - 16% error rate compared to 26% (second best)2013 - ZFNet 		- 11.2\%	error rate (8 layers) 2014 - VGGNet 		- 7.3\% 	error rate (19 layers) 2014 - GoogLeNet	- 6.7\% 	error rate (22 layers) 2015 - Microsoft ResNet	- 3.6\%		error rate (152 layers!!);Winning more visual recognition challenges
+

@@ -1,0 +1,130 @@
+\PassOptionsToClass{}{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{chronosys}
+
+%\StartShownPreambleCommands
+\usepackage{amsmath,esint}
+\usepackage[british]{babel}
+\usetheme{Warsaw}
+\usecolortheme{rose}
+\usepackage{graphicx}
+
+%\usetheme{metropolis}
+%\usepackage{appendixnumberbeamer}
+
+%\StopShownPreambleCommands
+\usepackage{pgfplots}
+\usepackage{ mathrsfs }
+
+\usepackage{gensymb}
+\usepackage{color}
+
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage{tkz-fct}
+\usetikzlibrary{calc}
+\usepackage{physics}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{tikz}
+\usepackage{animate}
+\DeclareMathOperator*{\minimize}{minimize}
+ \pgfplotsset{compat=1.13}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\newcommand\myheading[1]{%
+  \par\bigskip
+  {\Large\bfseries#1}\par\smallskip}
+
+\begin{document}
+
+\begin{frame}
+\begin{minipage}[t][0.6\textheight][t]{\textwidth}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+\only<1>{Joseph von Gerlach proposed that the nervous system is a single network, not of separate cells...}
+\only<2>{Camillo Golgi discovered a chemical reaction that allowed him to examine nervous tissue in much greater detail than ever before\\....further popularized Reticular theory}
+\only<3>{ Santiago Ramón y Cajal discovered that the nervous system is made up of discrete individual cells formimg a network (as opposed to a continuous network)}
+\only<4>{The term neuron was coined by Heinrich Wilhelm Gottfried von Waldeyer-Hartz around 1891}
+\only<5>{Both Golgi (reticular theory) and Cajal (neuron doctrine) were jointly awarded the 1906 Nobel Prize for Physiology or Medicine, that resulted in a lasting conflicting ideas and controversies between the two scientists}
+\only<6>{In 1950s electron microscopy finally confirmed the neuron doctrine by unambiguously demonstrated that nerve cells were individual cells interconnected through synapses}
+\end{overlayarea}
+\column{0.5\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+\begin{figure}
+\centering
+\only<1>{\includegraphics[scale=0.5]{"Biological_Neuron/1871"}}
+\only<2>{\includegraphics[scale=0.5]{"Biological_Neuron/1873"}}
+\only<3>{\includegraphics[scale=0.3]{"Biological_Neuron/1899_1"}}
+\only<4>{\includegraphics[scale=0.3]{"Biological_Neuron/1891"}}
+\only<5>{\includegraphics[scale=0.5]{"Biological_Neuron/1906_1"}}
+\only<6>{\includegraphics[scale=0.5]{"Biological_Neuron/1906_1"}}
+\end{figure}
+\end{overlayarea}
+\end{columns}
+\end{minipage}
+\begin{minipage}[t][0.4\textheight][t]{\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+\begin{tikzpicture}[datemarker/.style={circle, draw=black,fill=white},textlabel/.style={anchor=center,text height=1.7ex,text depth=.25ex}] 
+\tikzset{every node/.style={font=\tiny, color=blue}}\draw[fill=gray](-0.2,0) rectangle (13.2,0.5) node[white, below]{}; 
+
+\onslide<1->{\draw[fill=yellow] (0,0) rectangle(0.329113924051, 0.5){};}
+%\onslide<1->{\node at (0.0, 0.25) [datemarker] {};}
+\onslide<1->{\draw [line width=1pt] (0.16, 0.5) to (0.16, 1.0);} 
+\onslide<1->{\draw (0.16, 1.2) node [textlabel] {1871-1873 };}
+\onslide<1->{\draw [fill=orange](0.16, -0.5) circle (2pt){};}
+\onslide<1->{\draw (0.16, -0.5) circle (4pt){};}
+\onslide<1->{\draw [line width=1pt] (0.16, 0) to (0.16, -0.3);}
+\onslide<1->{\draw (0.16,-0.9) node [textlabel] {Reticular theory};}
+%\onslide<2->{\node at (0.329113924051, 0.25) [datemarker] {};}
+%\onslide<2->{\draw [line width=1pt] (0.329113924051, 0.5) to (0.329113924051, 1.0);} 
+%\onslide<2->{\draw (0.329113924051, 1.1) node [textlabel] {1873 };}
+%\onslide<2->{\draw [fill=orange](0.329113924051, -0.5) circle (2pt){};}
+%\onslide<2->{\draw (0.329113924051, -0.5) circle (4pt){};}
+%\onslide<2->{\draw [line width=1pt] (0.329113924051, 0) to (0.329113924051, -0.3);}
+%\onslide<2->{\draw (0.329113924051,-0.9) node [textlabel] {Staining technique};}
+
+
+\onslide<3->{\draw[fill=yellow] (2.79746835443, 0) rectangle(3.29113924051, 0.5){};}
+%\onslide<3->{\node at (2.79746835443, 0.25) [datemarker] {};}
+
+\onslide<3->{\draw [line width=1pt] (3, 0.5) to (3, 1.0);} 
+\onslide<3->{\draw (3, 1.2) node [textlabel] {1888-1891 };}
+\onslide<3->{\draw [fill=orange](3, -0.5) circle (2pt){};}
+\onslide<3->{\draw (3, -0.5) circle (4pt){};}
+\onslide<3->{\draw [line width=1pt] (3, 0) to (3, -0.3);}
+\onslide<3->{\draw (3,-0.9) node [textlabel] {Neuron Doctrine};}
+
+%\onslide<4->{\node at (3.29113924051, 0.25) [datemarker] {};}
+%\onslide<4->{\draw [line width=1pt] (3.29113924051, 0.5) to (3.29113924051, 1.0);} 
+%\onslide<4->{\draw (3.29113924051, 1.1) node [textlabel] {1891 };}
+%\onslide<4->{\draw [fill=orange](3.29113924051, -0.5) circle (2pt){};}
+%\onslide<4->{\draw (3.29113924051, -0.5) circle (4pt){};}
+%\onslide<4->{\draw [line width=1pt] (3.29113924051, 0) to (3.29113924051, -0.3);}
+%\onslide<4->{\draw (3.29113924051,-0.9) node [textlabel] {Neuron Coined};}
+\onslide<5->{\node at (5.75949367089, 0.25) [datemarker] {};}
+\onslide<5->{\draw [line width=1pt] (5.75949367089, 0.5) to (5.75949367089, 1.0);} 
+\onslide<5->{\draw (5.75949367089, 1.2) node [textlabel] {1906 };}
+\onslide<5->{\draw [fill=orange](5.75949367089, -0.5) circle (2pt){};}
+\onslide<5->{\draw (5.75949367089, -0.5) circle (4pt){};}
+\onslide<5->{\draw [line width=1pt] (5.75949367089, 0) to (5.75949367089, -0.3);}
+\onslide<5->{\draw (5.75949367089,-0.9) node [textlabel] {Nobel Prize};}
+\onslide<6->{\node at (13.0, 0.25) [datemarker] {};}
+\onslide<6->{\draw [line width=1pt] (13.0, 0.5) to (13.0, 1.0);} 
+\onslide<6->{\draw (13.0, 1.2) node [textlabel] {1950 };}
+\onslide<6->{\draw [fill=orange](13.0, -0.5) circle (2pt){};}
+\onslide<6->{\draw (13.0, -0.5) circle (4pt){};}
+\onslide<6->{\draw [line width=1pt] (13.0, 0) to (13.0, -0.3);}
+\onslide<6->{\draw (13.0,-0.9) node [textlabel] {Synapse};}
+\end{tikzpicture}
+\end{overlayarea}
+\end{minipage}
+\end{frame}
+\end{document}

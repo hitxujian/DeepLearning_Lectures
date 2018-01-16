@@ -1,0 +1,10 @@
+Date;Image;Label;Text;Heading
+1990;;;\begin{itemize} \item Sequences are everywhere \item Time series, speech, music, text, video \item Each unit in the sequence interacts with other units \item Need models to capture this interaction \end{itemize};The Curious Case of Sequences
+1982;1982_1;Hopfield Network;Content-addressable memory systems for storing and retrieving patterns;Hopfield Network
+1949;1949;Hebbian Learning;Neurons that fire together, wire together;Hebbian Learning
+1986;1986;Jordan Network;The output state of each time step is fed to the next time step thereby allowing interactions between time steps in the sequence;Jordan Network
+1990;1990;Elman Network;The hidden state of each time step is fed to the next time step thereby allowing interactions between time steps in the sequence;Elman Network
+1991-1994;;RNN drawbacks;Hochreiter et. al. and Bengio et. al. showed the difficulty in training RNNs (the problem of exploding and vanishing gradients);Drawbacks of RNNs
+1997;1997;LSTMs;Showed that LSTMs can solve complex long time lag tasks that could never be solved before;Long Short Term Memory	
+2014;2014;Seq2Seq-Attention;Initial success in using RNNs/LSTMs for Sequence To Sequence Learning Problems (example, Machine Translation) - Introduction of Attention which inspired a lot of research over the next two years;Sequence To Sequence Learning\
+1991;;RL for attention, Schmidhuber & Huber RNNs that use reinforcement learning to decide where to look;RL for attention

@@ -1,0 +1,45 @@
+	\makeatother
+	%	\author{Mitesh M. Khapra}
+		\title{Module 9}
+		\subtitle{(Need for) Sanity}
+			\author{}
+			\institute{}
+		\date{}
+	%\institute{Department of Computer Science and Engineering\\ Indian Institute of Technology Madras}
+	%\titlegraphic{\includegraphics[height=1cm,width=2cm]{images/iitm_logo.png}}
+	%\titlegraphicii{\includegraphics[height=1cm,width=2cm]{logo2}}
+	\renewcommand{\thefootnote}{\roman{footnote}} 
+	\begin{frame}
+		\maketitle
+	\end{frame}
+	\begin{frame}
+	\begin{columns}
+	\column{0.55\textwidth}
+	\begin{overlayarea}{\textwidth}{\textheight}
+	\footnotesize{
+	\justify
+	\myheading{The Paradox of Deep Learning} 
+	Why does deep learning work so well despite 
+	\begin{itemize} 
+	\item<2-> {high capacity (susceptible to overfitting)}
+	\item<3-> {numerical instability (vanishing/exploding gradients)}
+	\item<4-> {sharp minima (leading to overfitting)}
+	\item<5-> {non-robustness (see figure)}
+	\end{itemize}
+	~\\
+	\only<6->{No clear answers yet but ...}
+	\begin{itemize} \justifying
+	\item<7->{Slowly but steadily there is increasing emphasis on explainability and theoretical justifications! \footnote[1]{https://arxiv.org/pdf/1710.05468.pdf}}
+	\item<8->{ Hopefully this will bring sanity to the proceedings !}
+	\end{itemize}}
+	\end{overlayarea}
+	\column{0.45\textwidth}
+	\begin{overlayarea}{\textwidth}{\textheight}
+	\begin{figure}
+	\centering
+	\vspace{0.2in}
+	\only<1->{\includegraphics[scale=0.4]{"images/adversarial_img_1"}}
+	\end{figure}
+	\end{overlayarea}
+	\end{columns}
+	\end{frame}

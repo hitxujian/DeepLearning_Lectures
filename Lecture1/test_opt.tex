@@ -1,0 +1,82 @@
+\justify
+\only<1>{Faster convergence, better accuracies}
+\only<2>{Faster convergence, better accuracies}
+\only<3>{Faster convergence, better accuracies}
+\only<4>{Faster convergence, better accuracies}
+\only<5>{Faster convergence, better accuracies}
+\only<6>{}
+\only<7>{}
+\end{overlayarea}
+\column{0.5\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+\begin{figure}
+\centering
+\only<1>{\includegraphics[scale=0.5]{}}
+\only<2>{\includegraphics[scale=0.5]{}}
+\only<3>{\includegraphics[scale=0.5]{}}
+\only<4>{\includegraphics[scale=0.5]{}}
+\only<5>{\includegraphics[scale=0.5]{}}
+\only<6>{\includegraphics[scale=0.5]{}}
+\only<7>{\includegraphics[scale=0.5]{}}
+\end{figure}
+\end{overlayarea}
+\end{columns}
+\end{minipage}
+\begin{minipage}[t][0.4\textheight][t]{\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+\begin{tikzpicture}[datemarker/.style={circle, draw=black,fill=white},textlabel/.style={anchor=center,text height=1.7ex,text depth=.25ex}]
+\tikzset{every node/.style={font=\tiny, color=blue}}\draw[fill=gray](-0.2,0) rectangle (13.2,0.5) node[white, below]{};
+\onslide<1->{\node at (0.0, 0.25) [datemarker] {};}
+\onslide<1->{\draw [line width=1pt] (0.0, 0.5) to (0.0, 1.0);}
+\onslide<1->{\draw (0.0, 1.2) node [textlabel]{1983};}
+\onslide<1->{\draw [fill=orange](0.0, -0.5) circle (2pt){};}
+\onslide<1->{\draw(0.0, -0.5) circle (4pt){};}
+\onslide<1->{\draw [line width=1pt] (0.0, 0) to (0.0, -0.3);}
+\onslide<1->{\draw (0.0,-0.9) node [textlabel] {Nesterov};}
+\onslide<2->{\node at (10.4, 0.25) [datemarker] {};}
+\onslide<2->{\draw [line width=1pt] (10.4, 0.5) to (10.4, 1.0);}
+\onslide<2->{\draw (10.4, 1.2) node [textlabel]{2011};}
+\onslide<2->{\draw [fill=orange](10.4, -0.5) circle (2pt){};}
+\onslide<2->{\draw(10.4, -0.5) circle (4pt){};}
+\onslide<2->{\draw [line width=1pt] (10.4, 0) to (10.4, -0.3);}
+\onslide<2->{\draw (10.4,-0.9) node [textlabel] {Adagrad};}
+\onslide<3->{\node at (10.7714285714, 0.25) [datemarker] {};}
+\onslide<3->{\draw [line width=1pt] (10.7714285714, 0.5) to (10.7714285714, 1.0);}
+\onslide<3->{\draw (10.7714285714, 1.2) node [textlabel]{2012};}
+\onslide<3->{\draw [fill=orange](10.7714285714, -0.5) circle (2pt){};}
+\onslide<3->{\draw(10.7714285714, -0.5) circle (4pt){};}
+\onslide<3->{\draw [line width=1pt] (10.7714285714, 0) to (10.7714285714, -0.3);}
+\onslide<3->{\draw (10.7714285714,-0.9) node [textlabel] {RMSProp};}
+\onslide<4->{\node at (11.8857142857, 0.25) [datemarker] {};}
+\onslide<4->{\draw [line width=1pt] (11.8857142857, 0.5) to (11.8857142857, 1.0);}
+\onslide<4->{\draw (11.8857142857, 1.2) node [textlabel]{2015};}
+\onslide<4->{\draw [fill=orange](11.8857142857, -0.5) circle (2pt){};}
+\onslide<4->{\draw(11.8857142857, -0.5) circle (4pt){};}
+\onslide<4->{\draw [line width=1pt] (11.8857142857, 0) to (11.8857142857, -0.3);}
+\onslide<4->{\draw (11.8857142857,-0.9) node [textlabel] {Adam};}
+\onslide<5->{\node at (12.2571428571, 0.25) [datemarker] {};}
+\onslide<5->{\draw [line width=1pt] (12.2571428571, 0.5) to (12.2571428571, 1.0);}
+\onslide<5->{\draw (12.2571428571, 1.2) node [textlabel]{2016};}
+\onslide<5->{\draw [fill=orange](12.2571428571, -0.5) circle (2pt){};}
+\onslide<5->{\draw(12.2571428571, -0.5) circle (4pt){};}
+\onslide<5->{\draw [line width=1pt] (12.2571428571, 0) to (12.2571428571, -0.3);}
+\onslide<5->{\draw (12.2571428571,-0.9) node [textlabel] {Eve};}
+\onslide<6->{\node at (13.0, 0.25) [datemarker] {};}
+\onslide<6->{\draw [line width=1pt] (13.0, 0.5) to (13.0, 1.0);}
+\onslide<6->{\draw (13.0, 1.2) node [textlabel]{2018};}
+\onslide<6->{\draw [fill=orange](13.0, -0.5) circle (2pt){};}
+\onslide<6->{\draw(13.0, -0.5) circle (4pt){};}
+\onslide<6->{\draw [line width=1pt] (13.0, 0) to (13.0, -0.3);}
+\onslide<6->{\draw (13.0,-0.9) node [textlabel] {Beyond Adam};}
+\onslide<7->{\node at (11.8857142857, 0.25) [datemarker] {};}
+\onslide<7->{\draw [line width=1pt] (11.8857142857, 0.5) to (11.8857142857, 1.0);}
+\onslide<7->{\draw (11.8857142857, 1.2) node [textlabel]{2015};}
+\onslide<7->{\draw [fill=orange](11.8857142857, -0.5) circle (2pt){};}
+\onslide<7->{\draw(11.8857142857, -0.5) circle (4pt){};}
+\onslide<7->{\draw [line width=1pt] (11.8857142857, 0) to (11.8857142857, -0.3);}
+\onslide<7->{\draw (11.8857142857,-0.9) node [textlabel] {BatchNorm};}
+\end{tikzpicture}
+\end{overlayarea}
+\end{minipage}
+\end{frame}
+\end{document}

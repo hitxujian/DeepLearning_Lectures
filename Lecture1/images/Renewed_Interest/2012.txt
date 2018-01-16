@@ -1,0 +1,4 @@
+ImageNet Large Scale Visual Recognition Challenge (1000 classes)
+
+AlexNet - 16% error rate compared to 26% (second best)
+

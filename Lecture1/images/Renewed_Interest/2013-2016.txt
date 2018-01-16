@@ -1,0 +1,4 @@
+2013 - ZFNet 		- 11.2\%	error rate (8 layers)
+2014 - VGGNet 		- 7.3\% 	error rate (19 layers)
+2014 - GoogLeNet	- 6.7\% 	error rate (22 layers)
+2015 - Microsoft ResNet	- 3.6\%		error rate (152 layers!!)
