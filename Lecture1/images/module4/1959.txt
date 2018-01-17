@@ -1,0 +1,1 @@
+each neuron has a receptive field - the region in the visual space within which visual stimuli will cause the neuron to fire

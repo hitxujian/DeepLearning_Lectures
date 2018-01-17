@@ -1,2 +1,0 @@
-Gradient-based learning applied to document recognition.
-(now famous) MNIST dataset
