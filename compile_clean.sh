@@ -1,6 +1,11 @@
 # complete compile the files
 # Lecture number is given as the argument
 # Compile all the modules separately
+# Usage : go to the respective lecture folder and type the following command
+# source ../compile_clean.sh #LectureNumber nonstopmode ref all-modules
+#	nonstopmode will not stop compiling at warnings
+#	ref will compile along with references
+#	all-modules will generate pdf for all the modules 
 
 if [[ "$2" == "nonstopmode" ]]; then
 	pdflatex -interaction=nonstopmode -halt-on-error Lecture$1.tex
