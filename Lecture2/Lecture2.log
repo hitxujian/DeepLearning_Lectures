@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.17)  17 JAN 2018 15:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.17)  18 JAN 2018 00:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1882,15 +1882,7 @@ Package gensymb Info: Using \Omega for \ohm on input line 110.
 
 Package gensymb Warning: Not defining \micro.
 
-(./Lecture2.nav
-! Undefined control sequence.
-l.1 \beamer@endinputifotherversion
-                                   {3.36pt}
-? 
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+(./Lecture2.nav)
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4> not available
 (Font)              size <5> substituted on input line 140.
@@ -1898,9 +1890,9 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4> not available
 [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-[2]
 LaTeX Font Info:    Try loading font information for U+msa on input line 195.
- (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 195.
@@ -1919,6 +1911,12 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 195.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
+Overfull \vbox (1.0pt too high) detected at line 195
+ []
+
+[2
+
+]
 Overfull \vbox (1.0pt too high) detected at line 195
  []
 
@@ -1942,13 +1940,7 @@ Overfull \vbox (1.0pt too high) detected at line 195
 
 [6
 
-]
-Overfull \vbox (1.0pt too high) detected at line 195
- []
-
-[7
-
-] <images/BioNeuron1.png, id=211, 415.3116pt x 416.2752pt>
+] <images/BioNeuron1.png, id=184, 415.3116pt x 416.2752pt>
 File: images/BioNeuron1.png Graphic file (type png)
 
 <use images/BioNeuron1.png>
@@ -1968,10 +1960,10 @@ Underfull \hbox (badness 1199) in paragraph at lines 228--228
 Overfull \vbox (1.0pt too high) detected at line 228
  []
 
-[8
+[7
 
  <./images/BioNeuron1.png>]
-<images/BioNeuron2.png, id=249, 422.5386pt x 416.2752pt>
+<images/BioNeuron2.png, id=222, 422.5386pt x 416.2752pt>
 File: images/BioNeuron2.png Graphic file (type png)
 
 <use images/BioNeuron2.png>
@@ -1991,10 +1983,10 @@ Underfull \hbox (badness 1199) in paragraph at lines 228--228
 Overfull \vbox (1.0pt too high) detected at line 228
  []
 
-[9
+[8
 
  <./images/BioNeuron2.png>]
-<images/BioNeuron3.png, id=278, 427.3566pt x 416.2752pt>
+<images/BioNeuron3.png, id=252, 427.3566pt x 416.2752pt>
 File: images/BioNeuron3.png Graphic file (type png)
 
 <use images/BioNeuron3.png>
@@ -2014,10 +2006,10 @@ Underfull \hbox (badness 1199) in paragraph at lines 228--228
 Overfull \vbox (1.0pt too high) detected at line 228
  []
 
-[10
+[9
 
  <./images/BioNeuron3.png>]
-<images/BioNeuron4.png, id=307, 427.3566pt x 416.2752pt>
+<images/BioNeuron4.png, id=281, 427.3566pt x 416.2752pt>
 File: images/BioNeuron4.png Graphic file (type png)
 
 <use images/BioNeuron4.png>
@@ -2037,10 +2029,10 @@ Underfull \hbox (badness 1199) in paragraph at lines 228--228
 Overfull \vbox (1.0pt too high) detected at line 228
  []
 
-[11
+[10
 
  <./images/BioNeuron4.png>]
-<images/BioNeuron5.png, id=335, 427.3566pt x 416.2752pt>
+<images/BioNeuron5.png, id=309, 427.3566pt x 416.2752pt>
 File: images/BioNeuron5.png Graphic file (type png)
 
 <use images/BioNeuron5.png>
@@ -2060,15 +2052,15 @@ Underfull \hbox (badness 1199) in paragraph at lines 228--228
 Overfull \vbox (1.0pt too high) detected at line 228
  []
 
-[12
+[11
 
  <./images/BioNeuron5.png>]
 Overfull \vbox (1.0pt too high) detected at line 258
  []
 
-[13
+[12
 
-] <images/SheldonExample2.png, id=393, 191.2746pt x 466.8642pt>
+] <images/SheldonExample2.png, id=366, 191.2746pt x 466.8642pt>
 File: images/SheldonExample2.png Graphic file (type png)
 
 <use images/SheldonExample2.png>
@@ -2082,10 +2074,10 @@ Overfull \vbox (2.04118pt too high) detected at line 258
 Overfull \vbox (1.0pt too high) detected at line 258
  []
 
-[14
+[13
 
  <./images/SheldonExample2.png>]
-<images/SheldonExample3.png, id=421, 191.2746pt x 466.8642pt>
+<images/SheldonExample3.png, id=395, 191.2746pt x 466.8642pt>
 File: images/SheldonExample3.png Graphic file (type png)
 
 <use images/SheldonExample3.png>
@@ -2099,10 +2091,10 @@ Overfull \vbox (2.04118pt too high) detected at line 258
 Overfull \vbox (1.0pt too high) detected at line 258
  []
 
-[15
+[14
 
  <./images/SheldonExample3.png>]
-<images/SheldonExample4.png, id=449, 191.2746pt x 466.8642pt>
+<images/SheldonExample4.png, id=422, 191.2746pt x 466.8642pt>
 File: images/SheldonExample4.png Graphic file (type png)
 
 <use images/SheldonExample4.png>
@@ -2116,10 +2108,10 @@ Overfull \vbox (2.04118pt too high) detected at line 258
 Overfull \vbox (1.0pt too high) detected at line 258
  []
 
-[16
+[15
 
  <./images/SheldonExample4.png>]
-<images/BigSheldonExample1.png, id=477, 367.1316pt x 531.9072pt>
+<images/BigSheldonExample1.png, id=449, 367.1316pt x 531.9072pt>
 File: images/BigSheldonExample1.png Graphic file (type png)
 
 <use images/BigSheldonExample1.png>
@@ -2129,7 +2121,7 @@ Package pdftex.def Info: images/BigSheldonExample1.png used on input line 289.
 Overfull \vbox (1.0pt too high) detected at line 289
  []
 
-[17
+[16
 
  <./images/BigSheldonExample1.png>]
 File: images/BigSheldonExample1.png Graphic file (type png)
@@ -2140,7 +2132,7 @@ Package pdftex.def Info: images/BigSheldonExample1.png used on input line 289.
 Overfull \vbox (1.0pt too high) detected at line 289
  []
 
-[18
+[17
 
 ]
 File: images/BigSheldonExample1.png Graphic file (type png)
@@ -2151,9 +2143,9 @@ Package pdftex.def Info: images/BigSheldonExample1.png used on input line 289.
 Overfull \vbox (1.0pt too high) detected at line 289
  []
 
-[19
+[18
 
-] <images/BigSheldonExample2.png, id=559, 367.1316pt x 531.9072pt>
+] <images/BigSheldonExample2.png, id=532, 367.1316pt x 531.9072pt>
 File: images/BigSheldonExample2.png Graphic file (type png)
 
 <use images/BigSheldonExample2.png>
@@ -2163,10 +2155,10 @@ Package pdftex.def Info: images/BigSheldonExample2.png used on input line 289.
 Overfull \vbox (1.0pt too high) detected at line 289
  []
 
-[20
+[19
 
  <./images/BigSheldonExample2.png>]
-<images/BigSheldonExample3.png, id=587, 367.1316pt x 531.9072pt>
+<images/BigSheldonExample3.png, id=561, 367.1316pt x 531.9072pt>
 File: images/BigSheldonExample3.png Graphic file (type png)
 
 <use images/BigSheldonExample3.png>
@@ -2176,10 +2168,10 @@ Package pdftex.def Info: images/BigSheldonExample3.png used on input line 289.
 Overfull \vbox (1.0pt too high) detected at line 289
  []
 
-[21
+[20
 
  <./images/BigSheldonExample3.png>]
-<images/BigSheldonExample4.png, id=614, 367.1316pt x 530.9436pt>
+<images/BigSheldonExample4.png, id=590, 367.1316pt x 530.9436pt>
 File: images/BigSheldonExample4.png Graphic file (type png)
 
 <use images/BigSheldonExample4.png>
@@ -2189,7 +2181,7 @@ Package pdftex.def Info: images/BigSheldonExample4.png used on input line 289.
 Overfull \vbox (1.0pt too high) detected at line 289
  []
 
-[22
+[21
 
  <./images/BigSheldonExample4.png>]
 File: images/BigSheldonExample4.png Graphic file (type png)
@@ -2198,6 +2190,17 @@ Package pdftex.def Info: images/BigSheldonExample4.png used on input line 289.
 (pdftex.def)             Requested size: 146.85002pt x 212.37367pt.
 
 Overfull \vbox (1.0pt too high) detected at line 289
+ []
+
+[22
+
+]
+File: images/BigSheldonExample4.png Graphic file (type png)
+ <use images/BigSheldonExample4.png>
+Package pdftex.def Info: images/BigSheldonExample4.png used on input line 320.
+(pdftex.def)             Requested size: 146.85002pt x 212.37367pt.
+
+Overfull \vbox (1.0pt too high) detected at line 320
  []
 
 [23
@@ -2213,18 +2216,7 @@ Overfull \vbox (1.0pt too high) detected at line 320
 
 [24
 
-]
-File: images/BigSheldonExample4.png Graphic file (type png)
- <use images/BigSheldonExample4.png>
-Package pdftex.def Info: images/BigSheldonExample4.png used on input line 320.
-(pdftex.def)             Requested size: 146.85002pt x 212.37367pt.
-
-Overfull \vbox (1.0pt too high) detected at line 320
- []
-
-[25
-
-] <images/DivOfWork1.png, id=724, 404.2302pt x 512.1534pt>
+] <images/DivOfWork1.png, id=697, 404.2302pt x 512.1534pt>
 File: images/DivOfWork1.png Graphic file (type png)
 
 <use images/DivOfWork1.png>
@@ -2239,10 +2231,10 @@ Overfull \hbox (2.35622pt too wide) in paragraph at lines 320--320
 Overfull \vbox (1.0pt too high) detected at line 320
  []
 
-[26
+[25
 
  <./images/DivOfWork1.png>]
-<images/DivOfWork2.png, id=752, 409.0482pt x 512.1534pt>
+<images/DivOfWork2.png, id=726, 409.0482pt x 512.1534pt>
 File: images/DivOfWork2.png Graphic file (type png)
 
 <use images/DivOfWork2.png>
@@ -2257,10 +2249,10 @@ Overfull \hbox (4.28339pt too wide) in paragraph at lines 320--320
 Overfull \vbox (1.0pt too high) detected at line 320
  []
 
-[27
+[26
 
  <./images/DivOfWork2.png>]
-<images/DivOfWork3.png, id=779, 409.0482pt x 512.1534pt>
+<images/DivOfWork3.png, id=754, 409.0482pt x 512.1534pt>
 File: images/DivOfWork3.png Graphic file (type png)
 
 <use images/DivOfWork3.png>
@@ -2275,10 +2267,10 @@ Overfull \hbox (4.28339pt too wide) in paragraph at lines 320--320
 Overfull \vbox (1.0pt too high) detected at line 320
  []
 
-[28
+[27
 
  <./images/DivOfWork3.png>]
-<images/DivOfWork4.png, id=807, 421.0932pt x 512.1534pt>
+<images/DivOfWork4.png, id=782, 421.0932pt x 512.1534pt>
 File: images/DivOfWork4.png Graphic file (type png)
 
 <use images/DivOfWork4.png>
@@ -2293,10 +2285,10 @@ Overfull \hbox (9.10129pt too wide) in paragraph at lines 320--320
 Overfull \vbox (1.0pt too high) detected at line 320
  []
 
-[29
+[28
 
  <./images/DivOfWork4.png>]
-<images/DivOfWork5.png, id=837, 421.0932pt x 522.2712pt>
+<images/DivOfWork5.png, id=810, 421.0932pt x 522.2712pt>
 File: images/DivOfWork5.png Graphic file (type png)
 
 <use images/DivOfWork5.png>
@@ -2315,15 +2307,15 @@ Overfull \vbox (4.51443pt too high) detected at line 320
 Overfull \vbox (1.0pt too high) detected at line 320
  []
 
-[30
+[29
 
  <./images/DivOfWork5.png>]
 Overfull \vbox (2.0pt too high) detected at line 350
  []
 
-[31
+[30
 
-] <images/VisualCortex.png, id=892, 432.46368pt x 303.534pt>
+] <images/VisualCortex.png, id=865, 432.46368pt x 303.534pt>
 File: images/VisualCortex.png Graphic file (type png)
 
 <use images/VisualCortex.png>
@@ -2338,9 +2330,25 @@ Overfull \hbox (17.06201pt too wide) in paragraph at lines 350--350
 Overfull \vbox (2.0pt too high) detected at line 350
  []
 
-[32
+[31
 
  <./images/VisualCortex.png>]
+File: images/VisualCortex.png Graphic file (type png)
+ <use images/VisualCortex.png>
+Package pdftex.def Info: images/VisualCortex.png used on input line 350.
+(pdftex.def)             Requested size: 216.23131pt x 151.76662pt.
+
+Overfull \hbox (17.06201pt too wide) in paragraph at lines 350--350
+ [] 
+ []
+
+
+Overfull \vbox (2.0pt too high) detected at line 350
+ []
+
+[32
+
+]
 File: images/VisualCortex.png Graphic file (type png)
  <use images/VisualCortex.png>
 Package pdftex.def Info: images/VisualCortex.png used on input line 350.
@@ -2359,22 +2367,6 @@ Overfull \vbox (2.0pt too high) detected at line 350
 ]
 File: images/VisualCortex.png Graphic file (type png)
  <use images/VisualCortex.png>
-Package pdftex.def Info: images/VisualCortex.png used on input line 350.
-(pdftex.def)             Requested size: 216.23131pt x 151.76662pt.
-
-Overfull \hbox (17.06201pt too wide) in paragraph at lines 350--350
- [] 
- []
-
-
-Overfull \vbox (2.0pt too high) detected at line 350
- []
-
-[34
-
-]
-File: images/VisualCortex.png Graphic file (type png)
- <use images/VisualCortex.png>
 Package pdftex.def Info: images/VisualCortex.png used on input line 395.
 (pdftex.def)             Requested size: 216.23131pt x 151.76662pt.
 
@@ -2382,21 +2374,21 @@ Overfull \hbox (17.06201pt too wide) in paragraph at lines 395--395
  [] 
  []
 
-<images/Layer1Rep.png, id=972, 515.0442pt x 118.041pt>
+<images/Layer1Rep.png, id=945, 515.0442pt x 118.041pt>
 File: images/Layer1Rep.png Graphic file (type png)
 
 <use images/Layer1Rep.png>
 Package pdftex.def Info: images/Layer1Rep.png used on input line 395.
 (pdftex.def)             Requested size: 154.51445pt x 35.41257pt.
 
-<images/Layer2Rep.png, id=973, 515.0442pt x 121.8954pt>
+<images/Layer2Rep.png, id=946, 515.0442pt x 121.8954pt>
 File: images/Layer2Rep.png Graphic file (type png)
 
 <use images/Layer2Rep.png>
 Package pdftex.def Info: images/Layer2Rep.png used on input line 395.
 (pdftex.def)             Requested size: 154.51445pt x 36.5689pt.
 
-<images/Layer3Rep.png, id=974, 515.0442pt x 127.677pt>
+<images/Layer3Rep.png, id=947, 515.0442pt x 127.677pt>
 File: images/Layer3Rep.png Graphic file (type png)
 
 <use images/Layer3Rep.png>
@@ -2408,14 +2400,10 @@ Overfull \hbox (187.79094pt too wide) in paragraph at lines 395--395
  []
 
 
-Overfull \vbox (2.69456pt too high) detected at line 395
- []
-
-
 Overfull \vbox (2.0pt too high) detected at line 395
  []
 
-[35
+[34
 
  <./images/Layer1Rep.png> <./images/Layer2Rep.png> <./images/Layer3Rep.png>]
 File: images/VisualCortex.png Graphic file (type png)
@@ -2446,14 +2434,10 @@ Overfull \hbox (187.79094pt too wide) in paragraph at lines 395--395
  []
 
 
-Overfull \vbox (2.69456pt too high) detected at line 395
- []
-
-
 Overfull \vbox (2.0pt too high) detected at line 395
  []
 
-[36
+[35
 
 ]
 File: images/VisualCortex.png Graphic file (type png)
@@ -2484,18 +2468,20 @@ Overfull \hbox (187.79094pt too wide) in paragraph at lines 395--395
  []
 
 
-Overfull \vbox (2.69456pt too high) detected at line 395
- []
-
-
 Overfull \vbox (2.0pt too high) detected at line 395
  []
 
-[37
+[36
+
+] [37
 
 ] [38
 
-] [39
+]
+Overfull \vbox (1.0pt too high) detected at line 474
+ []
+
+[39
 
 ]
 Overfull \vbox (1.0pt too high) detected at line 474
@@ -2587,13 +2573,13 @@ Overfull \vbox (1.0pt too high) detected at line 474
 
 [54
 
+] [55
+
 ]
-Overfull \vbox (1.0pt too high) detected at line 474
+Overfull \vbox (1.0pt too high) detected at line 651
  []
 
-[55
-
-] [56
+[56
 
 ]
 Overfull \vbox (1.0pt too high) detected at line 651
@@ -2620,6 +2606,11 @@ Overfull \vbox (1.0pt too high) detected at line 651
 [60
 
 ]
+Overfull \hbox (255.50778pt too wide) in paragraph at lines 651--651
+[]|[]  
+ []
+
+
 Overfull \vbox (1.0pt too high) detected at line 651
  []
 
@@ -2680,22 +2671,21 @@ Overfull \vbox (1.0pt too high) detected at line 651
 
 [66
 
-]
-Overfull \hbox (255.50778pt too wide) in paragraph at lines 651--651
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 651
- []
-
-[67
+] [67
 
 ] [68
 
-] [69
+]
+Overfull \vbox (1.0pt too high) detected at line 729
+ []
+
+[69
 
 ]
+Overfull \vbox (3.55707pt too high) detected at line 729
+ []
+
+
 Overfull \vbox (1.0pt too high) detected at line 729
  []
 
@@ -2752,16 +2742,16 @@ Overfull \vbox (1.0pt too high) detected at line 729
 [75
 
 ]
-Overfull \vbox (3.55707pt too high) detected at line 729
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 729
+Overfull \vbox (1.0pt too high) detected at line 841
  []
 
 [76
 
 ]
+Overfull \vbox (16.84576pt too high) detected at line 841
+ []
+
+
 Overfull \vbox (1.0pt too high) detected at line 841
  []
 
@@ -2818,16 +2808,21 @@ Overfull \vbox (1.0pt too high) detected at line 841
 [82
 
 ]
-Overfull \vbox (16.84576pt too high) detected at line 841
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 841
+Overfull \vbox (1.0pt too high) detected at line 938
  []
 
 [83
 
 ]
+Overfull \hbox (19.20132pt too wide) in paragraph at lines 938--938
+ [][] 
+ []
+
+
+Overfull \vbox (1.67155pt too high) detected at line 938
+ []
+
+
 Overfull \vbox (1.0pt too high) detected at line 938
  []
 
@@ -2878,20 +2873,7 @@ Overfull \vbox (1.0pt too high) detected at line 938
 
 [87
 
-]
-Overfull \hbox (19.20132pt too wide) in paragraph at lines 938--938
- [][] 
- []
-
-
-Overfull \vbox (1.67155pt too high) detected at line 938
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 938
- []
-
-[88
+] [88
 
 ] [89
 
@@ -2903,7 +2885,11 @@ Overfull \vbox (1.0pt too high) detected at line 938
 
 ] [93
 
-] [94
+]
+Overfull \vbox (1.0pt too high) detected at line 1022
+ []
+
+[94
 
 ]
 Overfull \vbox (1.0pt too high) detected at line 1022
@@ -2936,7 +2922,22 @@ Overfull \vbox (1.0pt too high) detected at line 1022
 [99
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1022
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1093--1093
+ [] 
+ []
+
+
+Overfull \hbox (9.48192pt too wide) in paragraph at lines 1093--1093
+[]  
+ []
+
+
+Overfull \hbox (9.48192pt too wide) in paragraph at lines 1093--1093
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1093
  []
 
 [100
@@ -3151,28 +3152,21 @@ Overfull \vbox (1.0pt too high) detected at line 1093
 
 [110
 
+] [111
+
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1093--1093
- [] 
+Overfull \vbox (1.19043pt too high) detected at line 1185
  []
 
 
-Overfull \hbox (9.48192pt too wide) in paragraph at lines 1093--1093
-[]  
+Overfull \vbox (11.5514pt too high) detected at line 1185
  []
 
 
-Overfull \hbox (9.48192pt too wide) in paragraph at lines 1093--1093
-[]|[]  
+Overfull \vbox (1.0pt too high) detected at line 1185
  []
 
-
-Overfull \vbox (1.0pt too high) detected at line 1093
- []
-
-[111
-
-] [112
+[112
 
 ]
 Overfull \vbox (1.19043pt too high) detected at line 1185
@@ -3249,10 +3243,6 @@ Overfull \vbox (1.19043pt too high) detected at line 1185
  []
 
 
-Overfull \vbox (11.5514pt too high) detected at line 1185
- []
-
-
 Overfull \vbox (1.0pt too high) detected at line 1185
  []
 
@@ -3288,17 +3278,22 @@ Overfull \vbox (1.0pt too high) detected at line 1185
 
 [121
 
+] [122
+
 ]
-Overfull \vbox (1.19043pt too high) detected at line 1185
+Overfull \vbox (4.62929pt too high) detected at line 1225
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1185
+Underfull \hbox (badness 1189) in paragraph at lines 1225--1225
+\OT1/cmr/m/n/10.95 and then see the per-ceptron learn-ing al-
  []
 
-[122
 
-] [123
+Overfull \vbox (1.0pt too high) detected at line 1225
+ []
+
+[123
 
 ]
 Overfull \vbox (4.62929pt too high) detected at line 1225
@@ -3391,16 +3386,12 @@ Overfull \vbox (1.0pt too high) detected at line 1225
 [129
 
 ]
-Overfull \vbox (4.62929pt too high) detected at line 1225
+Overfull \hbox (5.6265pt too wide) in paragraph at lines 1301--1301
+[][][] 
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 1225--1225
-\OT1/cmr/m/n/10.95 and then see the per-ceptron learn-ing al-
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1225
+Overfull \vbox (1.0pt too high) detected at line 1301
  []
 
 [130
@@ -3550,7 +3541,7 @@ Overfull \vbox (1.0pt too high) detected at line 1301
 
 ]
 Overfull \hbox (5.6265pt too wide) in paragraph at lines 1301--1301
-[][][] 
+[][][][] 
  []
 
 
@@ -3592,18 +3583,18 @@ Overfull \vbox (1.0pt too high) detected at line 1301
 
 [147
 
+] [148
+
 ]
-Overfull \hbox (5.6265pt too wide) in paragraph at lines 1301--1301
-[][][][] 
+Overfull \hbox (37.62556pt too wide) in paragraph at lines 1378--1378
+ [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1301
+Overfull \vbox (1.0pt too high) detected at line 1378
  []
 
-[148
-
-] [149
+[149
 
 ]
 Overfull \hbox (37.62556pt too wide) in paragraph at lines 1378--1378
@@ -3705,12 +3696,7 @@ Overfull \vbox (1.0pt too high) detected at line 1378
 [158
 
 ]
-Overfull \hbox (37.62556pt too wide) in paragraph at lines 1378--1378
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1378
+Overfull \vbox (1.0pt too high) detected at line 1403
  []
 
 [159
@@ -3727,13 +3713,7 @@ Overfull \vbox (1.0pt too high) detected at line 1403
 
 [161
 
-]
-Overfull \vbox (1.0pt too high) detected at line 1403
- []
-
-[162
-
-] <images/or_error_surface.png, id=4378, 462.528pt x 359.9046pt>
+] <images/or_error_surface.png, id=4351, 462.528pt x 359.9046pt>
 File: images/or_error_surface.png Graphic file (type png)
 
 <use images/or_error_surface.png>
@@ -3748,7 +3728,7 @@ Overfull \hbox (32.09413pt too wide) in paragraph at lines 1403--1403
 Overfull \vbox (1.0pt too high) detected at line 1403
  []
 
-[163
+[162
 
  <./images/or_error_surface.png>]
 File: images/or_error_surface.png Graphic file (type png)
@@ -3764,13 +3744,24 @@ Overfull \hbox (32.09413pt too wide) in paragraph at lines 1403--1403
 Overfull \vbox (1.0pt too high) detected at line 1403
  []
 
-[164
+[163
+
+] [164
 
 ] [165
 
 ] [166
 
-] [167
+]
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1487--1487
+ [][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1487
+ []
+
+[167
 
 ]
 Overfull \hbox (11.72939pt too wide) in paragraph at lines 1487--1487
@@ -3800,6 +3791,16 @@ Overfull \hbox (11.72939pt too wide) in paragraph at lines 1487--1487
  []
 
 
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1487--1487
+[]  
+ []
+
+
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1487--1487
+[]|[]  
+ []
+
+
 Overfull \vbox (1.0pt too high) detected at line 1487
  []
 
@@ -3807,7 +3808,7 @@ Overfull \vbox (1.0pt too high) detected at line 1487
 
 ]
 Overfull \hbox (11.72939pt too wide) in paragraph at lines 1487--1487
- [][] 
+ [][][] 
  []
 
 
@@ -3848,22 +3849,7 @@ Overfull \vbox (1.0pt too high) detected at line 1487
 [172
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1487--1487
- [][][] 
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1487--1487
-[]  
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1487--1487
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1487
+Overfull \vbox (1.0pt too high) detected at line 1528
  []
 
 [173
@@ -3941,7 +3927,7 @@ Overfull \vbox (1.0pt too high) detected at line 1528
 [185
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1528
+Overfull \vbox (1.0pt too high) detected at line 1567
  []
 
 [186
@@ -4001,7 +3987,12 @@ Overfull \vbox (1.0pt too high) detected at line 1567
 [195
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1567
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1631--1631
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1631
  []
 
 [196
@@ -4084,12 +4075,13 @@ Overfull \vbox (1.0pt too high) detected at line 1631
 [203
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1631--1631
- [] 
+Underfull \hbox (badness 1527) in paragraph at lines 1686--1686
+\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
+rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1631
+Overfull \vbox (1.0pt too high) detected at line 1686
  []
 
 [204
@@ -4215,13 +4207,11 @@ Overfull \vbox (1.0pt too high) detected at line 1686
 [214
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1686--1686
-\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
-rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
+Overfull \vbox (6.2124pt too high) detected at line 1741
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1686
+Overfull \vbox (1.0pt too high) detected at line 1741
  []
 
 [215
@@ -4326,17 +4316,18 @@ Overfull \vbox (1.0pt too high) detected at line 1741
 
 [225
 
+] [226
+
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1741
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1835--1835
+ [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1741
+Overfull \vbox (1.0pt too high) detected at line 1835
  []
 
-[226
-
-] [227
+[227
 
 ]
 Overfull \hbox (15.04674pt too wide) in paragraph at lines 1835--1835
@@ -4624,16 +4615,7 @@ Overfull \vbox (1.0pt too high) detected at line 1835
 
 [253
 
-]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1835--1835
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1835
- []
-
-[254
+] [254
 
 ] [255
 
@@ -4655,7 +4637,15 @@ Overfull \vbox (1.0pt too high) detected at line 1835
 
 ] [264
 
-] [265
+]
+Overfull \vbox (1.68578pt too high) detected at line 1899
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1899
+ []
+
+[265
 
 ]
 Overfull \vbox (1.68578pt too high) detected at line 1899
@@ -4788,11 +4778,21 @@ Overfull \vbox (1.0pt too high) detected at line 1899
 [278
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1899
+Overfull \vbox (4.20976pt too high) detected at line 1941
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1899
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1941--1941
+[] 
+ []
+
+
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1941--1941
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1941
  []
 
 [279
@@ -5138,21 +5138,17 @@ Overfull \vbox (1.0pt too high) detected at line 1941
 [296
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1941
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1966--1966
+[]  
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1941--1941
-[] 
- []
-
-
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1941--1941
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1966--1966
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1941
+Overfull \vbox (1.0pt too high) detected at line 1966
  []
 
 [297
@@ -5318,17 +5314,17 @@ Overfull \vbox (1.0pt too high) detected at line 1966
 [307
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1966--1966
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 1993--1993
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1966--1966
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 1993--1993
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1966
+Overfull \vbox (1.0pt too high) detected at line 1993
  []
 
 [308
@@ -5413,21 +5409,7 @@ Overfull \vbox (1.0pt too high) detected at line 1993
 
 [313
 
-]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 1993--1993
-[]  
- []
-
-
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 1993--1993
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1993
- []
-
-[314
+] [314
 
 ] [315
 
@@ -5441,7 +5423,11 @@ Overfull \vbox (1.0pt too high) detected at line 1993
 
 ] [320
 
-] [321
+]
+Overfull \vbox (1.0pt too high) detected at line 2093
+ []
+
+[321
 
 ]
 Overfull \vbox (1.0pt too high) detected at line 2093
@@ -5486,7 +5472,7 @@ Overfull \vbox (1.0pt too high) detected at line 2093
 [328
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2093
+Overfull \vbox (1.0pt too high) detected at line 2198
  []
 
 [329
@@ -5509,13 +5495,14 @@ Overfull \vbox (1.0pt too high) detected at line 2198
 
 [332
 
+] [333
+
 ]
-Overfull \vbox (1.0pt too high) detected at line 2198
+Overfull \hbox (53.10483pt too wide) in paragraph at lines 2232--2232
+ [] 
  []
 
-[333
-
-] [334
+[334
 
 ]
 Overfull \hbox (53.10483pt too wide) in paragraph at lines 2232--2232
@@ -5685,14 +5672,18 @@ Overfull \hbox (53.10483pt too wide) in paragraph at lines 2232--2232
 
 [358
 
+] [359
+
 ]
-Overfull \hbox (53.10483pt too wide) in paragraph at lines 2232--2232
- [] 
+Overfull \hbox (29.77925pt too wide) in paragraph at lines 2324--2324
+[][][] 
  []
 
-[359
 
-] [360
+Overfull \vbox (1.0pt too high) detected at line 2324
+ []
+
+[360
 
 ]
 Overfull \hbox (29.77925pt too wide) in paragraph at lines 2324--2324
@@ -5718,7 +5709,7 @@ Overfull \vbox (1.0pt too high) detected at line 2324
 
 ]
 Overfull \hbox (29.77925pt too wide) in paragraph at lines 2324--2324
-[][][] 
+[][][][] 
  []
 
 
@@ -5827,12 +5818,12 @@ Overfull \vbox (1.0pt too high) detected at line 2324
 [372
 
 ]
-Overfull \hbox (29.77925pt too wide) in paragraph at lines 2324--2324
-[][][][] 
+Overfull \hbox (29.77925pt too wide) in paragraph at lines 2414--2414
+[][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2324
+Overfull \vbox (1.0pt too high) detected at line 2414
  []
 
 [373
@@ -5904,12 +5895,12 @@ Overfull \vbox (1.0pt too high) detected at line 2414
 [379
 
 ]
-Overfull \hbox (29.77925pt too wide) in paragraph at lines 2414--2414
+Overfull \hbox (29.77925pt too wide) in paragraph at lines 2512--2512
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2414
+Overfull \vbox (1.0pt too high) detected at line 2512
  []
 
 [380
@@ -5963,6 +5954,14 @@ Overfull \hbox (29.77925pt too wide) in paragraph at lines 2512--2512
 [][] 
  []
 
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 2512
+.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2512.
+
 
 Overfull \vbox (1.0pt too high) detected at line 2512
  []
@@ -5973,14 +5972,6 @@ Overfull \vbox (1.0pt too high) detected at line 2512
 Overfull \hbox (29.77925pt too wide) in paragraph at lines 2512--2512
 [][] 
  []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 2512
-.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2512.
 
 
 Overfull \vbox (1.0pt too high) detected at line 2512
@@ -6022,12 +6013,17 @@ Overfull \vbox (1.0pt too high) detected at line 2512
 [389
 
 ]
-Overfull \hbox (29.77925pt too wide) in paragraph at lines 2512--2512
+Overfull \hbox (29.77925pt too wide) in paragraph at lines 2623--2623
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2512
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2623--2623
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2623
  []
 
 [390
@@ -6145,17 +6141,12 @@ Overfull \vbox (1.0pt too high) detected at line 2623
 [397
 
 ]
-Overfull \hbox (29.77925pt too wide) in paragraph at lines 2623--2623
+Overfull \hbox (29.77925pt too wide) in paragraph at lines 2714--2714
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2623--2623
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2623
+Overfull \vbox (1.0pt too high) detected at line 2714
  []
 
 [398
@@ -6182,16 +6173,7 @@ Overfull \vbox (1.0pt too high) detected at line 2714
 
 [400
 
-]
-Overfull \hbox (29.77925pt too wide) in paragraph at lines 2714--2714
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2714
- []
-
-[401
+] [401
 
 ] [402
 
@@ -6213,14 +6195,12 @@ Overfull \vbox (1.0pt too high) detected at line 2714
 
 ] [411
 
-] [412
-
 ]
-[413
+[412
+
+] [413
 
 ] [414
-
-] [415
 
 ]
 \tf@nav=\write6
@@ -6234,13 +6214,7 @@ Overfull \vbox (1.0pt too high) detected at line 2714
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2946.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 2946.
- (./Lecture2.aux
-*************************************************
-* pdfbase warning: "rerun"
-* 
-* Rerun to get internal references right!
-*************************************************
-)
+ (./Lecture2.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2946.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2946.
 
@@ -6257,49 +6231,38 @@ LaTeX Font Warning: Size substitutions with differences
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 47812 strings out of 492995
- 1087028 string characters out of 6132704
- 1391085 words of memory out of 5000000
- 49597 multiletter control sequences out of 15000+600000
+ 47799 strings out of 492995
+ 1086876 string characters out of 6132704
+ 1391028 words of memory out of 5000000
+ 49589 multiletter control sequences out of 15000+600000
  17875 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,22n,96p,10433b,8978s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Navigation417} has been referenced 
-but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Navigation416} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{Navigation420} has been referenced but does not exi
-st, replaced by a fixed one
-
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
-exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2017/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2017/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2017/texmf-dist/fonts
-/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2017/texmf-dist/f
-onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Lecture2.pdf (415 pages, 7885362 bytes).
+ 62i,22n,96p,10433b,8976s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.p
+fb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr
+/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local
+/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
+/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Lecture2.pdf (414 pages, 7869418 bytes).
 PDF statistics:
- 11326 PDF objects out of 12825 (max. 8388607)
- 10720 compressed objects within 108 object streams
- 834 named destinations out of 1000 (max. 500000)
+ 11287 PDF objects out of 12825 (max. 8388607)
+ 10685 compressed objects within 107 object streams
+ 829 named destinations out of 1000 (max. 500000)
  195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

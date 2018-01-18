@@ -137,6 +137,11 @@ o/.default=2pt
   %\draw[thin] (start) --(end); 
   }
 
+\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=1mm]
+\tikzstyle{hidden_neuron}=[circle,draw=blue!50,fill=blue!10,thick,minimum size=10mm]
+\tikzstyle{output_neuron}=[circle,draw=green!50,fill=green!20,thick,minimum size=4mm]
+
+\tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=.2mm]
   \maketitle
 
   \begin{frame}
@@ -210,7 +215,7 @@ o/.default=2pt
   \includegraphics<3>[scale= 0.3]{images/BioNeuron3.png}
   \includegraphics<4>[scale= 0.3]{images/BioNeuron4.png}
   \includegraphics<5>[scale= 0.3]{images/BioNeuron5.png}
-  \caption{Biological Neurons$^*$\footnotetext{$^*$Image adapted from \url{https://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225.jpg}}}
+  \caption{Biological Neurons$^*$~\\~\\\footnotetext{$^*$Image adapted from \url{https://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225.jpg}}}
   \end{figure}
   }
   \end{overlayarea}
@@ -388,7 +393,7 @@ o/.default=2pt
 }
 
 
-\onslide<1->{Sample illustration of hierarchical processing \\~ \footnote{Idea borrowed from Hugo Larochelle's lecture slides}}
+\onslide<1->{Sample illustration of hierarchical processing$^*$ \footnotetext{$^*$Idea borrowed from Hugo Larochelle's lecture slides}}
 
 \end{overlayarea}
 \end{columns}
@@ -529,7 +534,7 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 \draw [->] (s.90) -- (output);
 
 \end{tikzpicture}
-\captionof{figure}{$x_1$ AND $!x_2$ \footnote{circle at the end indicates inhibitory input: if any inhibitory input is 1 the output will be 0}}
+\captionof{figure}{$x_1$ AND $!x_2$$^*$ \footnotetext{$^*$circle at the end indicates inhibitory input: if any inhibitory input is 1 the output will be 0}}
 }
 \end{center}
 
@@ -1041,7 +1046,7 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 \node (input2) at (10,-0.1)  {$..$};
 \node (input3) at (11,-0.1)  {$..$};
 \node (input4) at (12,-0.1)  {$x_{n}$};
-\onslide<11->{\node (input5) at (7,-0.1)  {$\color{red}{x_{0}=1}$};}
+\onslide<10->{\node (input5) at (7,-0.1)  {$\color{red}{x_{0}=1}$};}
 
 \node [hidden_neuron] (neuron1) at (10,2)  {};
 
@@ -1053,7 +1058,7 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 \draw [->] (input2) -- (neuron1);
 \draw [->] (input3) -- (neuron1);
 \draw [->] (input4) -- (neuron1);
-\onslide<11->{\draw [->, red] (input5) -- (neuron1);}
+\onslide<10->{\draw [->, red] (input5) -- (neuron1);}
 
 \draw [->] (neuron1) -- (output0);
 

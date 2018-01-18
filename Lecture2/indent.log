@@ -1,8 +1,8 @@
 latexindent version 3.0.2, a script to indent .tex files
 	latexindent lives here: /usr/local/texlive/2017/texmf-dist/scripts/latexindent/
-	Wed Jan 17 19:59:50 2018
+	Thu Jan 18 00:54:04 2018
 Processing switches
-Directory for backup files and indent.log: ../../Lecture2
+Directory for backup files and indent.log: .
 YAML settings read
 	Reading defaultSettings.yaml from /usr/local/texlive/2017/texmf-dist/scripts/latexindent/defaultSettings.yaml
 	Home directory is /Users/prekshanema (didn't find either indentconfig.yaml or .indentconfig.yaml)
@@ -11,11 +11,11 @@ YAML settings read
 List of items: myitem|item (see itemNames)
 looking for VERBATIM commands (see verbatimCommands)
 looking for FILE CONTENTS environments (see fileContentsEnvironments)
-	looking for filecontents*:1 environments
 	looking for filecontents:1 environments
+	looking for filecontents*:1 environments
 	\begin{document} found in body (after searching for filecontents)-- assuming that a preamble exists
 	Custom replacement text routine for preamble preamble
-	preamble found: LatexIndent::Preamble=HASH(0x7f916a488d80)
+	preamble found: LatexIndent::Preamble=HASH(0x7fe8818be380)
 	replaced with ID: LTXIN-TK-preamble1-END
 	
 	
