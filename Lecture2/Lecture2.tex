@@ -106,7 +106,6 @@
 {\Large\bfseries#1}\par\smallskip}
 
 
-
 \begin{document}
 
 
@@ -144,6 +143,9 @@ o/.default=2pt
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=.2mm]
   \maketitle
 
+  \begin{frame}
+    \myheading{Module 2.1: Biological Neurons}
+  \end{frame}
   \begin{frame}
 
   \begin{columns}
@@ -215,7 +217,7 @@ o/.default=2pt
   \includegraphics<3>[scale= 0.3]{images/BioNeuron3.png}
   \includegraphics<4>[scale= 0.3]{images/BioNeuron4.png}
   \includegraphics<5>[scale= 0.3]{images/BioNeuron5.png}
-  \caption{Biological Neurons$^*$~\\~\\\footnotetext{$^*$Image adapted from \url{https://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225.jpg}}}
+  \caption{Biological Neurons$^*$\vspace{0.4in}\footnotetext{$^*$Image adapted from \url{https://cdn.vectorstock.com/i/composite/12,25/neuron-cell-vector-81225.jpg}}}
   \end{figure}
   }
   \end{overlayarea}
@@ -223,10 +225,10 @@ o/.default=2pt
   \column{0.5\textwidth}
   \begin{overlayarea}{\textwidth}{\textheight}
   \begin{itemize}\justifying
-  \item<2-> \textbf{dendrite:}  receives signals from other neurons
-  \item<3-> \textbf{synapse:}  point of connection to other neurons
-  \item<4-> \textbf{soma:}  processes the information
-  \item<5-> \textbf{axon:}  transmits the output of this neuron
+  \item<2-> \textbf{dendrite:} receives signals from other neurons
+  \item<3-> \textbf{synapse:} point of connection to other neurons
+  \item<4-> \textbf{soma:} processes the information
+  \item<5-> \textbf{axon:} transmits the output of this neuron
 \end{itemize}
 \end{overlayarea}
 \end{columns}
@@ -286,7 +288,7 @@ o/.default=2pt
 \item<3-> The sense organs relay information to the lowest layer of neurons
 \item<4-> Some of these neurons may fire (in red) in response to this information and in turn relay information to other neurons they are connected to
 \item<5-> These neurons may also fire (again, in red) and the process continues \onslide<6->{eventually resulting in a response (laughter in this case)}
-\item<7-> An average human brain has around $10^{11}$ (100 billion) neurons !
+\item<7-> An average human brain has around $10^{11}$ (100 billion) neurons!
 
 \end{itemize}
 \end{overlayarea}
@@ -393,7 +395,7 @@ o/.default=2pt
 }
 
 
-\onslide<1->{Sample illustration of hierarchical processing$^*$ \footnotetext{$^*$Idea borrowed from Hugo Larochelle's lecture slides}}
+\onslide<1->{Sample illustration of hierarchical processing$^*$ \footnotetext{\hspace{-0.3in}$^*$Idea borrowed from Hugo Larochelle's lecture slides}}
 
 \end{overlayarea}
 \end{columns}
@@ -402,16 +404,17 @@ o/.default=2pt
 \begin{frame}
 \begin{block}{Disclaimer}
 \begin{itemize}\justifying
-\item I understand very little about how the brain works !
-\item What you saw so far is an overly simplified explanation of how the brain works !
-\item But this explanation suffices for the purpose of this course !
+\item I understand very little about how the brain works!
+\item What you saw so far is an overly simplified explanation of how the brain works!
+\item But this explanation suffices for the purpose of this course!
 \end{itemize}
 \end{block}
 \end{frame}
 
-\begin{frame}
-From biological units to computational units ...
-\end{frame}
+  \begin{frame}
+    \myheading{Module 2.2: McCulloch Pitts Neuron}
+  \end{frame}
+
 
 \begin{frame}
 \begin{columns}
@@ -725,8 +728,8 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 \begin{overlayarea}{\textwidth}{\textheight}
 \begin{itemize}\justifying
 \item<4-> A single MP neuron splits the input points (4 points for 2 binary inputs) into two halves
-\item<5-> Points lying on or above the line $\sum_{i=1}^{n} x_i$ and points lying below this line
-\item<6-> In other words, all inputs which produce an output 0 will be on one side ($\sum_{i=1}^{n} x_i < \theta$) of the line and all inputs which produce a 1 will lie on the other side ($\sum_{i=1}^{n} x_i \geq \theta$) of this line 
+\item<5-> Points lying on or above the line $\sum_{i=1}^{n} x_i - \theta = 0$ and points lying below this line
+\item<6-> In other words, all inputs which produce an output 0 will be on one side ($\sum_{i=1}^{n} x_i < \theta$) of the line and all inputs which produce an  output 1 will lie on the other side ($\sum_{i=1}^{n} x_i \geq \theta$) of this line 
 \item<7-> Let us convince ourselves about this with a few more examples (if it is not already clear from the math) 
 \end{itemize}
 \end{overlayarea}
@@ -764,7 +767,7 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 }
 
 \only<2->{
-
+\vspace{-0.2in}
 \begin{tikzpicture}
 
 \draw[thick,->] (0,0) -- (3.5,0);
@@ -954,6 +957,10 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 \end{block}
 \end{frame}
 
+  \begin{frame}
+    \myheading{Module 2.3: Perceptron}
+  \end{frame}
+
 \begin{frame}
 \begin{block}{The story ahead ...}
 \onslide<1->{
@@ -1100,6 +1107,7 @@ Let us implement some boolean functions using this McCulloch Pitts (MP) neuron .
 \begin{frame}
 We will now try to answer the following questions:
 \begin{itemize}\justifying
+\item Why are we trying to implement boolean functions?
 \item Why do we need weights ?
 \item Why is $w_0 = -\theta$ called the bias ?
 \end{itemize}
@@ -1111,7 +1119,7 @@ We will now try to answer the following questions:
 \begin{frame}
 \begin{columns}
 
-\column{0.4\textwidth}
+\column{0.3\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
 \begin{center}
 \tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=1mm]
@@ -1126,7 +1134,7 @@ We will now try to answer the following questions:
 %\node (input1) at (9,-0.1)  {$x_{2}$};
 \node (input2) at (10.5,-0.1)  {$x_2$};
 %\node (input3) at (11,-0.1)  {$..$};
-\node (input4) at (12,-0.1)  {$x_3$};
+\node (input4) at (11.8,-0.1)  {$x_3$};
 
 \node [hidden_neuron] (neuron1) at (10,2)  {};
 
@@ -1147,14 +1155,14 @@ We will now try to answer the following questions:
 %\node (formula)[scale=.8] at (9.1,0.6) {$w_{2}$};
 \node (formula)[scale=.8] at (10.1,0.6) {$w_{2}$};
 %\node (formula)[scale=.8] at (10.4,0.6) {$..$};
-\node (formula)[scale=.8] at (11.1,0.6) {$w_{3}$};
+\node (formula)[scale=.8] at (10.9,0.6) {$w_{3}$};
 
 
 \end{tikzpicture}
 
 \end{center}
 
-\onslide<2->{
+\onslide<3->{
 \begin{align*}
 x_1 = isActorDamon \\
 x_2 = isGenreThriller \\
@@ -1164,16 +1172,15 @@ x_3 = isDirectorNolan \\
 
 \end{overlayarea}
 
-\column{0.6\textwidth}
+\column{0.7\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
 \only<1-6>{
 \begin{itemize}\justifying
-\item<1-> Why are we trying to implement boolean functions?
-\item<2-> Consider the task of predicting whether we would like a movie or not 
-\item<3-> Suppose, we base our decision on 3 inputs (binary, for simplicity)  
-\item<4-> Based on our past viewing experience (\textbf{data}), we may give a high weight to \textit{isDirectorNolan} as compared to the other inputs
-\item<5-> Specifically, even if the actor is not \textit{Matt Damon} and the genre is not \textit{thriller} we would still want to cross the threshold $\theta$ by assigning a high weight to \textit{isDirectorNolan}
-\item<6-> Given the following weight assignments $w_0=-2, w_1=1, w_2=1, w_3=2$, which input configurations will result in an output of 1 (watch movie) ? \onslide<6->{[001, 011, 101, 111, 110]}
+\item<1-> Consider the task of predicting whether we would like a movie or not 
+\item<2-> Suppose, we base our decision on 3 inputs (binary, for simplicity)  
+\item<3-> Based on our past viewing experience (\textbf{data}), we may give a high weight to \textit{isDirectorNolan} as compared to the other inputs
+\item<4-> Specifically, even if the actor is not \textit{Matt Damon} and the genre is not \textit{thriller} we would still want to cross the threshold $\theta$ by assigning a high weight to \textit{isDirectorNolan}
+\item<5-> Given the following weight assignments $w_0=-2, w_1=1, w_2=1, w_3=2$, which input configurations will result in an output of 1 (watch movie) ? \onslide<6->{[001, 011, 101, 111, 110]}
 \end{itemize}
 }
 
@@ -1222,7 +1229,7 @@ y &=1 \quad if \sum^{n}_{i=0} \color{red}{w_i} \color{black}{} * x_i \geq \theta
 \item<2-> From the equations it should be clear that even a perceptron separates the input space into two halves
 \item<3-> All inputs which produce a 1 lie on one side and all inputs which produce a 0 lie on the other side
 \item<4-> In other words, a single perceptron can only be used to implement linearly separable functions
-\item<5-> Then what is the difference ? \onslide<6->{The weights (including threshold) can be learned and the inputs can be real valued}
+\item<5-> Then what is the difference? \onslide<6->{The weights (including threshold) can be learned and the inputs can be real valued}
 \item<7-> We will first revisit some boolean functions and then see the perceptron learning algorithm (for learning weights) 
 \end{itemize}
 \end{overlayarea}
@@ -1305,9 +1312,9 @@ $0$ & $0$ & \onslide<2->{0} & \onslide<3->{$w_0 + \sum_{i=1}^{2} w_i x_i} \onsli
 \end{columns}
 \end{frame}
 
-\begin{frame}
-Let us inspect this a bit more carefully ... 
-\end{frame}
+  \begin{frame}
+    \myheading{Module 2.4: Errors and Error Surfaces}
+  \end{frame}
 
 
 \begin{frame}
@@ -1319,7 +1326,7 @@ Let us inspect this a bit more carefully ...
 \begin{itemize}\justifying
 \item<1-> Let us fix the threshold ($-w_0 = 1$) and try different values of $w_1, w_2$
 \item<2-> Say, $w_1=-1, w_2=-1$ 
-\item<3-> What is wrong with this line? \only<4->{We make an error on 1 out of the 4 inputs}
+\item<3-> What is wrong with this line? \onslide<4->{We make an error on 1 out of the 4 inputs}
 \item<5-> Lets try some more values of $w_1, w_2$ and note how many errors we make
 
 \onslide<6->{
@@ -1398,7 +1405,7 @@ $w_1$&$w_2$&errors \\
 \begin{itemize}\justifying
 \item<1-> For ease of analysis, we will keep $w_0$ fixed (-1) and plot the error for different values of $w_1, w_2$ 
 \item<2-> For a given  $w_0, w_1, w_2$ we will compute $-w_0 + w_1*x_1 + w_2*x_2$ for all computations of $(x_1, x_2)$ and note down how many errors we make
-\item<3-> For the OR function, an error occurs if $(x_1, x_2) = (0,0)$  but $-w_0 + w_1*x_1 + w_2*x_2 \geq 0$ or if $(x_1, x_2) != (0,0)$  but $-w_0 + w_1*x_1 + w_2*x_2 < 0$
+\item<3-> For the OR function, an error occurs if $(x_1, x_2) = (0,0)$  but $-w_0 + w_1*x_1 + w_2*x_2 \geq 0$ or if $(x_1, x_2) \neq (0,0)$  but $-w_0 + w_1*x_1 + w_2*x_2 < 0$
 
 
 \item<5-> We are interested in finding an algorithm which finds the values of $w_1, w_2$ which minimize this error
@@ -1408,9 +1415,13 @@ $w_1$&$w_2$&errors \\
 \end{frame}
 
 
+  \begin{frame}
+    \myheading{Module 2.5: Perceptron Learning Algorithm}
+  \end{frame}
+
 \begin{frame}
 \begin{itemize}\justifying
-\item<1-> We will soon see a more principled approach for learning these weights and threshold but before that let us answer this question...
+\item<1-> We will now see a more principled approach for learning these weights and threshold but before that let us answer this question...
 \item<2-> Apart from implementing boolean functions (which does not look very interesting) what can a perceptron be used for ?
 \item<3-> Our interest lies in the use of perceptron as a binary classifier. Let us see what this means...
 \end{itemize}
@@ -1581,8 +1592,8 @@ y &= 1 \quad if \quad \mathbf{w^Tx} \geq 0 \\
 \item<3-> What will be the angle between any such vector and $\mathbf{w}$ ? \only<4->{Obviously, less than 90$\degree$}
 \item<5-> What about points (vectors) which lie in the negative half space of this line (\textit{i.e.}, $\mathbf{w^Tx} < 0$)
 \item<6-> What will be the angle between any such vector and $\mathbf{w}$ ? \only<7->{Obviously, greater than 90$\degree$}
-\item<7-> Of course, this also follows from the formula ($cos \alpha = \frac{w^Tx}{||w||||x||}$)
-\item<8-> Keeping this picture in mind let us revisit the algorithm
+\item<8-> Of course, this also follows from the formula ($cos \alpha = \frac{w^Tx}{||w||||x||}$)
+\item<9-> Keeping this picture in mind let us revisit the algorithm
 
 \end{itemize}
 
@@ -1676,15 +1687,15 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \item<4-> What happens to the new angle ($\alpha_{new}$) when $\mathbf{w_{new}} = \mathbf{w} + \mathbf{x}$
 \onslide<5-> {
 \begin{align*}
-\onslide<6-> {cos (\alpha_{new}) &\propto \mathbf{w_{new}}^{T}\mathbf{x} \\} 
-\onslide<7-> { &\propto (\mathbf{w} + \mathbf{x})^T\mathbf{x} \\}
-\onslide<8-> { &\propto \mathbf{w}^T\mathbf{x} + \mathbf{x}^T\mathbf{x} \\}
-\onslide<9-> { &\propto cos \alpha + \mathbf{x}^T\mathbf{x} \\}
-\onslide<10-> {cos (\alpha_{new}) &> cos \alpha  }
+\onslide<5-> {cos (\alpha_{new}) &\propto \mathbf{w_{new}}^{T}\mathbf{x} \\} 
+\onslide<6-> { &\propto (\mathbf{w} + \mathbf{x})^T\mathbf{x} \\}
+\onslide<7-> { &\propto \mathbf{w}^T\mathbf{x} + \mathbf{x}^T\mathbf{x} \\}
+\onslide<8-> { &\propto cos \alpha + \mathbf{x}^T\mathbf{x} \\}
+\onslide<9-> {cos (\alpha_{new}) &> cos \alpha  }
 \end{align*}
 }
 \vspace{-0.35in}
-\item<11-> Thus $\alpha_{new}$ will be less than $\alpha$ and this is exactly what we want
+\item<10-> Thus $\alpha_{new}$ will be less than $\alpha$ and this is exactly what we want
 \end{itemize}
 \end{overlayarea}
 \end{columns}
@@ -1731,15 +1742,15 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \item<4-> What happens to the new angle ($\alpha_{new}$) when $\mathbf{w_{new}} = \mathbf{w} - \mathbf{x}$
 \onslide<5-> {
 \begin{align*}
-\onslide<6-> {cos (\alpha_{new}) &\propto \mathbf{w_{new}}^{T}\mathbf{x} \\} 
-\onslide<7-> { &\propto (\mathbf{w} - \mathbf{x})^T\mathbf{x} \\}
-\onslide<8-> { &\propto \mathbf{w}^T\mathbf{x} - \mathbf{x}^T\mathbf{x} \\}
-\onslide<9-> { &\propto cos \alpha - \mathbf{x}^T\mathbf{x} \\}
-\onslide<10-> {cos (\alpha_{new}) &< cos \alpha  }
+\onslide<5-> {cos (\alpha_{new}) &\propto \mathbf{w_{new}}^{T}\mathbf{x} \\} 
+\onslide<6-> { &\propto (\mathbf{w} - \mathbf{x})^T\mathbf{x} \\}
+\onslide<7-> { &\propto \mathbf{w}^T\mathbf{x} - \mathbf{x}^T\mathbf{x} \\}
+\onslide<8-> { &\propto cos \alpha - \mathbf{x}^T\mathbf{x} \\}
+\onslide<9-> {cos (\alpha_{new}) &< cos \alpha  }
 \end{align*}
 }
 \vspace{-0.35in}
-\item<11-> Thus $\alpha_{new}$ will be greater than $\alpha$ and this is exactly what we want
+\item<10-> Thus $\alpha_{new}$ will be greater than $\alpha$ and this is exactly what we want
 \end{itemize}
 \end{overlayarea}
 \end{columns}
@@ -1839,6 +1850,9 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \end{columns}
 \end{frame}
 
+  \begin{frame}
+    \myheading{Module 2.6: Proof of Convergence}
+  \end{frame}
 
 \begin{frame}
 \begin{itemize}\justifying
@@ -2010,6 +2024,10 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 }
 \end{block}
 \end{frame}
+
+  \begin{frame}
+    \myheading{Module 2.7: Linearly Separable Boolean Functions}
+  \end{frame}
 
 
 \begin{frame}
@@ -2236,6 +2254,10 @@ $1$ & $1$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$\\
 \end{itemize}
 \end{frame}
 
+  \begin{frame}
+    \myheading{Module 2.8: Representation Power of a Network of Perceptrons}
+  \end{frame}
+
 \begin{frame}
 \begin{itemize}\justifying
 \item<1-> We will now see how to implement \textbf{any} boolean function using a network of perceptrons ...
@@ -2257,7 +2279,7 @@ $1$ & $1$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$\\
 
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=10mm]
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
 \onslide<10->{\node [output_neuron] (out0) at (-3,12)  {} ;}
 
 \onslide<2->{\node (input0) at (-4,8)  {$x_1$};}
@@ -2343,7 +2365,7 @@ $1$ & $1$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$\\
 
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=10mm]
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
 \node [output_neuron] (out0) at (-3,12)  {} ;
 
 \node (input0) at (-4,8)  {$x_1$};
@@ -2433,7 +2455,7 @@ blue edge indicates $w$ = +1
 
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=10mm]
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
 \node [output_neuron] (out0) at (-3,12)  {} ;
 
 \node (input0) at (-4,8)  {$x_1$};
@@ -2531,7 +2553,7 @@ blue edge indicates $w$ = +1
 
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=10mm]
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
 \node [output_neuron] (out0) at (-3,12)  {} ;
 
 \node (input0) at (-4,8)  {$x_1$};
@@ -2644,7 +2666,7 @@ blue edge indicates $w$ = +1
 
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=10mm]
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
 \node [output_neuron] (out0) at (-3,12)  {} ;
 
 \node (input0) at (-4,8)  {$x_1$};
@@ -2737,7 +2759,7 @@ blue edge indicates $w$ = +1
 
 \tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=10mm]
 
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
 \node [output_neuron] (out0) at (0,12)  {} ;
 
 \node (input0) at (-0.75,7)  {$x_1$};
@@ -2822,6 +2844,8 @@ blue edge indicates $w$ = +1
 \end{frame}
 
 
+
+
 \begin{frame}
 \begin{itemize}\justifying
 \item<1-> What if we have $n$ inputs ?
@@ -2841,6 +2865,118 @@ Any boolean function of $n$ inputs can be represented exactly by a network of pe
 \end{frame}
 
 
+
+\begin{frame}
+\begin{columns}
+
+\column{0.4\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.4,every node/.style={transform shape}]
+\node [output_neuron] (out0) at (0,12)  {} ;
+
+\node (input0) at (-0.75,7)  {$x_1$};
+\node (input1) at (0.75,7) {$x_2$};
+\node (input2) at (2.25,7) {$x_3$};
+
+\node [hidden_neuron] (hi0) at (-4.5,10)  {  } ;
+\node [hidden_neuron] (hi1) at (-3,10)  {  } ;
+\node [hidden_neuron] (hi2) at (-1.5,10)  {  } ;
+\node [hidden_neuron] (hi3) at (0,10)  {  } ;
+\node [hidden_neuron] (hi4) at (1.5,10)  {  } ;
+\node [hidden_neuron] (hi5) at (3,10)  {  } ;
+\node [hidden_neuron] (hi6) at (4.5,10)  {  } ;
+\node [hidden_neuron] (hi7) at (6,10)  {  } ;
+
+
+
+\node (bias) at (-6,10)  {$bias=$-3} ;
+
+\node (output0) at (0,13)  {$y$} ;
+
+\node (w1) at (-2.8,11)  {$w_1$} ;
+\node (w2) at (-1.85,11)  {$w_2$} ;
+\node (w3) at (-1.0,11)  {$w_3$} ;
+\node (w3) at (-0.3,11)  {$w_4$} ;
+\node (w3) at (0.4,11)  {$w_5$} ;
+\node (w3) at (1.2,11)  {$w_6$} ;
+\node (w4) at (1.85,11)  {$w_7$} ;
+\node (w4) at (2.7,11)  {$w_8$} ;
+
+\draw [->,  red] (input0) -- (hi0);
+\draw [->,  red] (input1) -- (hi0);
+\draw [->,  red] (input2) -- (hi0);
+
+\draw [->,  red](input0) -- (hi1);
+\draw [->,  red](input1) -- (hi1);
+\draw [->,  blue] (input2) -- (hi1);
+
+\draw [->,  red] (input0) -- (hi2);
+\draw [->,  blue] (input1) -- (hi2);
+\draw [->,  red] (input2) -- (hi2);
+
+\draw [->,  red](input0) -- (hi3);
+\draw [->,  blue](input1) -- (hi3);
+\draw [->,  blue] (input2) -- (hi3);
+
+\draw [->,  blue](input0) -- (hi4);
+\draw [->,  red](input1) -- (hi4);
+\draw [->,  red] (input2) -- (hi4);
+
+\draw [->,  blue](input0) -- (hi5);
+\draw [->,  red](input1) -- (hi5);
+\draw [->,  blue] (input2) -- (hi5);
+
+\draw [->,  blue](input0) -- (hi6);
+\draw [->,  blue](input1) -- (hi6);
+\draw [->,  red] (input2) -- (hi6);
+
+\draw [->,  blue](input0) -- (hi7);
+\draw [->,  blue](input1) -- (hi7);
+\draw [->,  blue] (input2) -- (hi7);
+
+\draw [->] (hi0) -- (out0);
+\draw [->] (hi1) -- (out0);
+\draw [->] (hi2) -- (out0);
+\draw [->] (hi3) -- (out0);
+\draw [->] (hi4) -- (out0);
+\draw [->] (hi5) -- (out0);
+\draw [->] (hi6) -- (out0);
+\draw [->] (hi7) -- (out0);
+
+\draw [->] (out0) -- (output0);
+
+%\node at (-6,1) {red edge indicates $w$ = -1};
+%\node at (-6,0) {green edge indicates $w$ = +1};
+
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+\begin{array}{c} p_1 \\ p_2 \\ \vdots \\ n_1 \\ n_2 \\ \vdots\\ \end{array} & 
+\begin{bmatrix}
+    x_{11}       & x_{12} & \dots & x_{1n} & y_1=1 \\
+    x_{21}       & x_{22} & \dots & x_{2n} & y_2=1 \\
+    \vdots & \vdots &  \vdots & \vdots & \vdots \\
+    x_{k1}       & x_{k2} & \dots & x_{kn} & y_i=0 \\
+    x_{j1}       & x_{j2} & \dots & x_{jn} & y_j=0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots \\
+\end{bmatrix} 
+\end{align*}
+\end{overlayarea}
+\column{0.6\textwidth}
+\begin{overlayarea}{\textwidth}{\textheight}
+
+\begin{itemize}\justifying
+\item<1-> Given this data you want to model the relation between $x$ \& $y$ using a perceptron model
+\item<2-> The proof that we just saw tells us that it is possible to have a network of perceptrons and learn the weights in this network such that for any given $p_i$ or $n_j$ the output of the network will be the same as $y_i$ or $y_j$
+\end{itemize}
+\end{overlayarea}
+\end{columns}
+
+\end{frame}
+
+
 \begin{frame}
 \begin{block}{The story so far ...}
 \begin{itemize}\justifying
@@ -2852,102 +2988,8 @@ Any boolean function of $n$ inputs can be represented exactly by a network of pe
 \end{block}
 \end{frame}
 
-\begin{frame}
-\begin{block}{The story ahead ...}
-\begin{itemize}\justifying
-\item<1-> Enough about boolean functions!
-\item<2-> What about arbitrary functions of the form $y=f(x)$ where $x\in \mathbb{R}^n$ (instead of $\{0, 1\}^n$) and $y \in \mathbb{R}$ (instead of $\{0, 1\}$) ?
-\item<3-> Before answering the above question we will have to first graduate from \textit{perceptrons} to \textit{sigmoidal neurons} ...
-\end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}
-\begin{block}{Pre-requisites for Lecture 3 and Lecture 4}
-\begin{itemize}\justifying
-\item Please do Assignment 1 sincerely (you will be able to understand the next two lectures better if you do so!)
-\item Some more reading material (if needed) will be posted on moodle
-\end{itemize}
-\end{block}
-\end{frame}
 
 
-\if 0
-
-\begin{frame}
-\begin{columns}
-
-\column{0.4\textwidth}
-\begin{overlayarea}{\textwidth}{\textheight}
-\end{overlayarea}
-
-\column{0.6\textwidth}
-\begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}\justifying
-\item The thresholding logic used by a perceptron is very harsh !
-\item For example, let us return to our problem of deciding whether to watch a movie or not
-\item Consider that we base our decision only on 1 input ($x_1 = criticsRating$ which lies between 0 and 1)
-\item If the threshold be 0.5 and $w_1 = 1$ then what would be the decision for a movie with $criticsRating=0.51$ ? \onslide<5->{watch}
-\item What about a movie with $criticsRating=0.49$ ? \onslide<6->{don't watch}
-\item It seems harsh that we would watch a movie with rating 0.51 but not one with a rating of 0.49
-\end{itemize}
-\end{overlayarea}
-\end{columns}
-\end{frame}
-
-
-\begin{frame}
-\begin{columns}
-
-\column{0.4\textwidth}
-\begin{overlayarea}{\textwidth}{\textheight}
-\end{overlayarea}
-
-\column{0.6\textwidth}
-\begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}\justifying
-\item 1
-\end{itemize}
-\end{overlayarea}
-\end{columns}
-\end{frame}
-At some point remember that the sum of inputs should be greater than the bias for the neuron to fire
-Todo change the algorithm from wx > 0 to alpha < 90
-Show the change in algo for using P U N^- 
-delays on slide 12
-on slide 13 'fires if ..'
-delays on slide 14
-delays on slide 15 and correct equation of line
-delays on slide 20,23
-summation index on slide 25 and last bullet delay
-better delays on slide 26
-delay on 3d line equation -1, correct num errors and make -1 bold
-Slide 29 'and' algorithm 
-Slide 32 write sum wixi instead of wx
-revsit how you want to present the algorithnm (in terms of angles of wx ?)
-Slide 40 (delay before \because); correct delays
-Slide 42, so far we have 
-one by one animation on the MP neuron slide
-say excitatory/inhibitory after f and g
-animation for and function
-OR function (caption (fires if x1 + x2 >=1))
-The equation should appear on slide 29
-Slide 34 : it is clear from the picture but it should also be clear from the formula
-Slide 40: if p \in P is not needed
-
-emphasize that pi can be any random point
-emphasize on cyclic pass over the data
-k is the number of corrections
-Put y=mx +c on the board
-Put cosine formula on the board
-cos > 0 angle < 90
-cos < 0 angle > 90
-
-cos a > cos b
-a < b
-
-repeat <0 >0 for wx and angke as well as cos and angle
-\fi
 \end{document}
 
 
