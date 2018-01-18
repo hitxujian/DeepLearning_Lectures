@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+	\node (input0) at (8,-0.1)  {$x_{1}$};
+	\node (input1) at (9,-0.1)  {$x_{2}$};
+	\node (input2) at (10,-0.1)  {$..$};
+	\node (input3) at (11,-0.1)  {$..$};
+	\node (input4) at (12,-0.1)  {$x_{n}$};
+
+	\node [hidden_neuron] (neuron1) at (10,2)  {};
+
+
+	\node (output0)  at (10,3.5) {$y$};
+
+	\draw [->] (input0) -- (neuron1);
+	\draw [->] (input1) -- (neuron1);
+	\draw [->] (input2) -- (neuron1);
+	\draw [->] (input3) -- (neuron1);
+	\draw [->] (input4) -- (neuron1);
+
+	\draw [->] (neuron1) -- (output0);
+
+	\node (formula)[scale=.8] at (8.1,0.6) {$w_{1}$};
+	\node (formula)[scale=.8] at (9.1,0.6) {$w_{2}$};
+	\node (formula)[scale=.8] at (9.8,0.6) {$..$};
+	\node (formula)[scale=.8] at (10.4,0.6) {$..$};
+	\node (formula)[scale=.8] at (11.1,0.6) {$w_{n}$};
+\end{tikzpicture}

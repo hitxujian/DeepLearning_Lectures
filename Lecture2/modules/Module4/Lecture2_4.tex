@@ -1,0 +1,64 @@
+\begin{frame}
+	\begin{columns}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{
+				\begin{itemize}\justifying
+					\item<1-> Let us fix the threshold ($-w_0 = 1$) and try different values of $w_1, w_2$
+					\item<2-> Say, $w_1=-1, w_2=-1$
+					\item<3-> What is wrong with this line? \only<4->{We make an error on 1 out of the 4 inputs}
+					\item<5-> Lets try some more values of $w_1, w_2$ and note how many errors we make
+
+					      \onslide<6->{
+						      \begin{center}
+							      \begin{table}
+								      \begin{tabular}{ccc}
+									      \hline
+									      $w_1$              & $w_2$              & errors          \\
+									      \hline
+									      \onslide<6->{-1}   & \onslide<6->{-1}   & \onslide<6->{1} \\
+									      \onslide<7->{1.5}  & \onslide<7->{0}    & \onslide<7->{1} \\
+									      \onslide<8->{0.45} & \onslide<8->{0.45} & \onslide<8->{3} \\
+									      \hline
+
+									      \hline
+								      \end{tabular}
+							      \end{table}
+						      \end{center}
+					      }
+					\item<9-> We are interested in those values of $w_0, w_1, w_2$ which result in 0 error
+					\item<10-> Let us plot the error surface corresponding to different values of $w_0, w_1, w_2$
+				\end{itemize}
+			}
+		\end{overlayarea}
+
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\input{modules/Module4/tikz_pictures/linear_function}
+			\end{center}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\includegraphics<4->[scale= 0.5]{images/module4/or_error_surface.png}
+			\end{figure}
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> For ease of analysis, we will keep $w_0$ fixed (-1) and plot the error for different values of $w_1, w_2$
+				\item<2-> For a given  $w_0, w_1, w_2$ we will compute $-w_0 + w_1*x_1 + w_2*x_2$ for all computations of $(x_1, x_2)$ and note down how many errors we make
+				\item<3-> For the OR function, an error occurs if $(x_1, x_2) = (0,0)$  but $-w_0 + w_1*x_1 + w_2*x_2 \geq 0$ or if $(x_1, x_2) \neq (0,0)$  but $-w_0 + w_1*x_1 + w_2*x_2 < 0$
+				\item<5-> We are interested in finding an algorithm which finds the values of $w_1, w_2$ which minimize this error
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+

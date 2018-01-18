@@ -1,0 +1,212 @@
+
+
+
+\begin{frame}
+	\begin{block}{Coming back to our questions ...}
+		\onslide<1->{
+			\begin{itemize}\justifying
+				\item What about non-boolean (say, real) inputs ? \onslide<2->{\color{red}{Real valued inputs are allowed in perceptron}} \color{black}
+				\item Do we always need to hand code the threshold ? \onslide<3->{\color{red}{No, we can learn the threshold}} \color{black}
+				\item Are all inputs equal ? What if we want to assign more weight (importance) to some inputs ? \onslide<4->{\color{red}{A perceptron allows weights to be assigned to inputs}} \color{black}
+				\item What about functions which are not linearly separable ? \onslide<5->{\color{red}{Not possible with a single perceptron but we will see how to handle this ..}} \color{black}
+			\end{itemize}
+		}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1-> So what do we do about functions which are not linearly separable ?
+		\item<2-> Let us see one such simple boolean function first ?
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+
+			\begin{center}
+				\begin{table}
+					\begin{tabular}{cccc}
+						\hline
+						$x_1$ & $x_2$ & XOR  \\\hline
+						$0$ & $0$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$    \\
+						$1$ & $0$ & 1 & $w_0 + \sum_{i=1}^{2} w_i x_i \geq 0$ \\
+						$0$ & $1$ & 1 & $w_0 + \sum_{i=1}^{2} w_i x_i \geq 0$ \\
+						$1$ & $1$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$    \\
+						\hline
+					\end{tabular}
+				\end{table}
+
+
+				\begin{align*}
+					\onslide<2->{w_0 + w_1\cdot0 + w_2\cdot0 < 0    & \implies w_0 < 0}          \\
+					\onslide<3->{w_0 + w_1\cdot0 + w_2\cdot1 \geq 0 & \implies w_2 > -w_0}       \\
+					\onslide<4->{w_0 + w_1\cdot1 + w_2\cdot0 \geq 0 & \implies w_1 > -w_0}       \\
+					\onslide<5->{w_0 + w_1\cdot1 + w_2\cdot1 \geq 0 & \implies w_1 + w_2 < -w_0}
+				\end{align*}
+
+			\end{center}
+
+			\begin{itemize}\justifying
+				\item<6-> The fourth condition contradicts conditions 2 and 3
+				\item<7-> Hence we cannot have a solution to this set of inequalities
+
+				      %\item Note that we can come up with a similar set of inequalities and found the value of $\theta$ for McCulloch Pitts neuron also
+			\end{itemize}
+
+
+
+		\end{overlayarea}
+
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+
+			\onslide<7->{
+				\begin{tikzpicture}
+
+					\draw[thick,->] (0,0) -- (3.5,0);
+					\draw[thick,->] (0,0) -- (0,3.5);
+
+					%\onslide<8->{\draw[densely dotted] (-1.2021,3.1111) -- (3.1111,-1.2021);}
+
+					\node at (3.3, -0.2) {$x_1$};
+					\node at (-0.2, 3.3) {$x_2$};
+
+					\node at (-0.1, -0.3) {$(0,0)$};
+					\node at (-0.1, 2.3) {$(0,1)$};
+					\node at (2.0, -0.3) {$(1,0)$};
+					\node at (2.2, 2.3) {$(1,1)$};
+					%\onslide<8->{\node at (-0.1, 1.0) {$-1 + 1.1x_1 + 1.1x_2 = 0$};}
+
+					\filldraw[blue] (0,0) circle (2pt);
+					\filldraw[red] (0,2) circle (2pt);
+					\filldraw[red] (2,0) circle (2pt);
+					\filldraw[blue] (2,2) circle (2pt);
+				\end{tikzpicture}
+			}
+
+			\begin{itemize}\justifying
+				\item<8-> And indeed you can see that it is impossible to draw a line which separates the red points from the blue points
+			\end{itemize}
+
+		\end{overlayarea}
+
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{tikzpicture}
+				\filldraw[red] (1.717248,1.148263) circle (2pt);
+				\filldraw[blue] (1.022337,1.844630) circle (2pt);
+				\filldraw[blue] (0.929218,1.449012) circle (2pt);
+				\filldraw[red] (1.256599,1.328157) circle (2pt);
+				\filldraw[blue] (1.917421,1.041134) circle (2pt);
+				\filldraw[blue] (1.552910,0.757361) circle (2pt);
+				\filldraw[red] (0.476688,0.993158) circle (2pt);
+				\filldraw[blue] (1.139669,1.889055) circle (2pt);
+				\filldraw[red] (1.994183,1.472244) circle (2pt);
+				\filldraw[red] (0.611827,0.938297) circle (2pt);
+				\filldraw[blue] (1.954791,0.598560) circle (2pt);
+				\filldraw[red] (0.113127,1.025315) circle (2pt);
+				\filldraw[blue] (1.547272,1.235639) circle (2pt);
+				\filldraw[blue] (1.667688,0.664851) circle (2pt);
+				\filldraw[blue] (0.108270,0.066074) circle (2pt);
+				\filldraw[red] (1.551238,0.091185) circle (2pt);
+				\filldraw[red] (0.550644,0.461861) circle (2pt);
+				\filldraw[blue] (1.326191,1.171462) circle (2pt);
+				\filldraw[red] (0.285269,0.166320) circle (2pt);
+				\filldraw[blue] (0.645487,1.900755) circle (2pt);
+				\filldraw[red] (0.715271,0.514446) circle (2pt);
+				\filldraw[blue] (0.239037,0.110620) circle (2pt);
+				\filldraw[blue] (1.707163,1.213513) circle (2pt);
+				\filldraw[blue] (0.663682,1.796715) circle (2pt);
+				\filldraw[red] (0.512817,0.075660) circle (2pt);
+				\filldraw[blue] (1.542905,0.897760) circle (2pt);
+				\filldraw[blue] (1.928409,0.514645) circle (2pt);
+				\filldraw[blue] (0.430763,1.999726) circle (2pt);
+				\filldraw[red] (0.411993,0.218422) circle (2pt);
+				\filldraw[red] (0.951387,0.725352) circle (2pt);
+				\filldraw[red] (0.001601,1.490619) circle (2pt);
+				\filldraw[red] (0.983530,0.364934) circle (2pt);
+				\filldraw[red] (0.612532,0.194346) circle (2pt);
+				\filldraw[blue] (1.217355,1.773029) circle (2pt);
+				\filldraw[red] (0.398657,0.261244) circle (2pt);
+				\filldraw[blue] (0.452156,1.890002) circle (2pt);
+				\filldraw[red] (0.458527,0.384611) circle (2pt);
+				\filldraw[blue] (1.977895,1.687690) circle (2pt);
+				\filldraw[blue] (0.217980,0.748811) circle (2pt);
+				\filldraw[red] (0.075486,1.486788) circle (2pt);
+				\filldraw[blue] (1.872187,1.761516) circle (2pt);
+				\filldraw[blue] (1.142016,1.716686) circle (2pt);
+				\filldraw[blue] (1.411278,1.734101) circle (2pt);
+				\filldraw[blue] (1.951329,1.101424) circle (2pt);
+				\filldraw[red] (0.543241,0.052208) circle (2pt);
+
+				\draw[thick,->] (-0.5,-0.5) -- (3.5,-0.5);
+				\draw[thick,->] (-0.5,-0.5) -- (-0.5,3.5);
+
+				\if 0
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.890340, 3.855113);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-3.146939, 2.526956);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.594029, 3.284317);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-3.311277, 2.136054);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-2.288940, 3.980684);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-0.371519, 5.021818);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-0.371519, 5.021818);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.628118, 3.693661);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.628118, 3.693661);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-3.345366, 2.545398);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-3.345366, 2.545398);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.427945, 3.586532);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.427945, 3.586532);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-2.684544, 2.258375);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-1.131634, 3.015736);}
+					\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (-2.848882, 1.867473);}
+				\fi
+
+			\end{tikzpicture}
+
+			\only<3->{
+				\begin{tikzpicture}
+					\foreach \a in {1,2,...,18}{
+							\draw (\a*360/18: 1cm) node{\color{blue}{$+$}};
+						}
+					\foreach \a in {1,2,...,36}{
+							\draw (\a*360/36: 1.5cm) node{\color{red}{$o$}};
+						}
+
+					\draw[thick,->] (-1.6,-1.6) -- (2.5,-1.6);
+					\draw[thick,->] (-1.6,-1.6) -- (-1.6,2.5);
+
+				\end{tikzpicture}
+			}
+
+		\end{overlayarea}
+
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Most real world data is not linearly separable and will always contain some outliers
+				\item<2-> In fact, sometimes there may not be any outliers but still the data may not be linearly separable
+				\item<3-> We need computational units (models) which can deal with such data
+				\item<4-> While a single perceptron cannot deal with such data, we will show that a network of perceptrons can indeed deal with such data
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1-> Before seeing how a network of perceptrons can deal with linearly inseparable data, we will discuss boolean functions in some more detail ...
+	\end{itemize}
+\end{frame}
