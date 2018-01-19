@@ -18,10 +18,15 @@
 \PassOptionsToClass{}{beamer}
 \documentclass[serif, aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
+
+%\StartShownPreambleCommands
 \usepackage{amsmath,esint}
 \usepackage[british]{babel}
 \usetheme{Warsaw}
 \usecolortheme{rose}
+
+%\usetheme{metropolis}
+%\usepackage{appendixnumberbeamer}
 
 %\StopShownPreambleCommands
 \usepackage{pgfplots}
@@ -50,7 +55,7 @@
     \usebeamerfont{footline}%
     \usebeamercolor[fg]{footline}%
     \hspace{1em}%
-    \insertframenumber/\inserttotalframenumber
+    \insertframenumber
     }
 
     \renewcommand{\thealgocf}{}
@@ -86,8 +91,7 @@
     \end{centering}
   %\vfill
   }
-
-\makeatother
+  \makeatother
 %\author{Anirban Laha and Preksha Nema \\\vspace{0.2in} Presented By: Mitesh M. Khapra}
 \author{Mitesh M. Khapra}
 \title{CS7015 (Deep Learning) : Lecture 2}
@@ -100,6 +104,7 @@
 \newcommand\myheading[1]{%
 \par\bigskip
 {\Large\bfseries#1}\par\smallskip}
+
 
 
 \begin{document}
