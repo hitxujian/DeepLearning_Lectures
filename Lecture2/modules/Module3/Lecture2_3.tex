@@ -1,12 +1,31 @@
 \begin{frame}
+	\myheading{Module 2.3: Perceptron}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{The story ahead ...}
+		\onslide<1->{
+			\begin{itemize}\justifying
+				\item<1-> What about non-boolean (say, real) inputs ?
+				\item<2-> Do we always need to hand code the threshold ?
+				\item<3-> Are all inputs equal ? What if we want to assign more weight (importance) to some inputs ?
+				\item<4-> What about functions which are not linearly separable ?
+			\end{itemize}
+		}
+	\end{block}
+\end{frame}
+
+\begin{frame}
 	\begin{columns}
 		\column{0.4\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			%\begin{center}
 			\begin{center}
 				\onslide<2->{
-					\input{modules/Module3/tikz_pictures/classic_perceptron}	
+					\input{modules/Module3/tikz_images/classic_perceptron}
 				}
+				%\end{center}
+
 			\end{center}
 		\end{overlayarea}
 
@@ -27,11 +46,10 @@
 
 \begin{frame}
 	\begin{columns}
-
 		\column{0.4\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{center}
-					\input{modules/Module3/tikz_pictures/classic_perceptron}	
+				\input{modules/Module3/tikz_images/bias_perceptron}
 			\end{center}
 			\vspace{-0.2in}
 			\onslide<7->{A more accepted convention,}
@@ -59,45 +77,47 @@
 \begin{frame}
 	We will now try to answer the following questions:
 	\begin{itemize}\justifying
+		\item Why are we trying to implement boolean functions?
 		\item Why do we need weights ?
 		\item Why is $w_0 = -\theta$ called the bias ?
 	\end{itemize}
 \end{frame}
 
+
 \begin{frame}
 	\begin{columns}
-		\column{0.4\textwidth}
+
+		\column{0.3\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{center}
-				\input{modules/Module3/tikz_pictures/classic_perceptron_params}
+				\input{modules/Module3/tikz_images/movie_perceptron}
 			\end{center}
-			\onslide<2->{
+			\onslide<3->{
 				\begin{align*}
 					x_1 = isActorDamon    \\
 					x_2 = isGenreThriller \\
 					x_3 = isDirectorNolan \\
 				\end{align*}
 			}
-
 		\end{overlayarea}
-
-		\column{0.6\textwidth}
+		\column{0.7\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-4>{
 				\begin{itemize}\justifying
-					\item<1-> Why are we trying to implement boolean functions?
-					\item<2-> Consider the task of predicting whether we would like a movie or not
-					\item<3-> Suppose, we base our decision on 3 inputs (binary, for simplicity)
-					\item<4-> Based on our past viewing experience (\textbf{data}), we may give a high weight to \textit{isDirectorNolan} as compared to the other inputs
-					\item<5-> Specifically, even if the actor is not \textit{Matt Damon} and the genre is not \textit{thriller} we would still want to cross the threshold $\theta$ by assigning a high weight to \textit{isDirectorNolan}
-					\item<6-> Given the following weight assignments $w_0=-2, w_1=1, w_2=1, w_3=2$, which input configurations will result in an output of 1 (watch movie) ? \onslide<6->{[001, 011, 101, 111, 110]}
+					\item<1-> Consider the task of predicting whether we would like a movie or not
+					\item<2-> Suppose, we base our decision on 3 inputs (binary, for simplicity)
+					\item<3-> Based on our past viewing experience (\textbf{data}), we may give a high weight to \textit{isDirectorNolan} as compared to the other inputs
+					\item<4-> Specifically, even if the actor is not \textit{Matt Damon} and the genre is not \textit{thriller} we would still want to cross the threshold $\theta$ by assigning a high weight to \textit{isDirectorNolan}
 				\end{itemize}
-
+			}
+			\only<5->{
 				\begin{itemize}\justifying
-					\item<7-> $w_0$ is called the bias as it represents the prior (prejudice)
-					\item<8-> A movie buff may have a very low threshold and may watch any movie irrespective of the genre, actor, director [$\theta = 0$]
-					\item<9-> On the other hand, a selective viewer may only watch thrillers starring Matt Damon and directed by Nolan [$\theta = 3$]
-					\item<10-> The weights ($w_1, w_2, ..., w_n$) and the bias ($w_0$) will depend on the data (viewer history in this case)
+					\item<5-> $w_0$ is called the bias as it represents the prior (prejudice)
+					\item<6-> A movie buff may have a very low threshold and may watch any movie irrespective of the genre, actor, director [$\theta = 0$]
+					\item<7-> On the other hand, a selective viewer may only watch thrillers starring Matt Damon and directed by Nolan [$\theta = 3$]
+					\item<8-> The weights ($w_1, w_2, ..., w_n$) and the bias ($w_0$) will depend on the data (viewer history in this case)
 				\end{itemize}
+			}
 		\end{overlayarea}
 	\end{columns}
 \end{frame}
@@ -109,31 +129,27 @@
 
 \begin{frame}
 	\begin{columns}
-
 		\column{0.4\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-
 			\textbf{McCulloch Pitts Neuron}\\
 			(assuming no inhibitory inputs)
 			\begin{align*}
 				y & =1 \quad if \sum^{n}_{i=0} x_i \geq \theta \\
 				  & =0  \quad if \sum^{n}_{i=0} x_i < \theta   \\
 			\end{align*}
-
 			\textbf{Perceptron}
 			\begin{align*}
 				y & =1 \quad if \sum^{n}_{i=0} \color{red}{w_i} \color{black}{} * x_i \geq \theta \\
 				  & =0  \quad if \sum^{n}_{i=0} \color{red}{w_i} \color{black}{} * x_i < \theta   \\
 			\end{align*}
 		\end{overlayarea}
-
 		\column{0.6\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
 				\item<2-> From the equations it should be clear that even a perceptron separates the input space into two halves
 				\item<3-> All inputs which produce a 1 lie on one side and all inputs which produce a 0 lie on the other side
 				\item<4-> In other words, a single perceptron can only be used to implement linearly separable functions
-				\item<5-> Then what is the difference ? \onslide<6->{The weights (including threshold) can be learned and the inputs can be real valued}
+				\item<5-> Then what is the difference? \onslide<6->{The weights (including threshold) can be learned and the inputs can be real valued}
 				\item<7-> We will first revisit some boolean functions and then see the perceptron learning algorithm (for learning weights)
 			\end{itemize}
 		\end{overlayarea}
@@ -142,10 +158,8 @@
 
 \begin{frame}
 	\begin{columns}
-
 		\column{0.6\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-
 			\begin{center}
 				\begin{table}
 					\begin{tabular}{cccc}
@@ -158,7 +172,6 @@
 						\hline
 					\end{tabular}
 				\end{table}
-
 				\begin{align*}
 					\onslide<10->{w_0 + w_1\cdot0 + w_2\cdot0 < 0    & \implies w_0 < 0}          \\
 					\onslide<11->{w_0 + w_1\cdot0 + w_2\cdot1 \geq 0 & \implies w_2 > -w_0}       \\
@@ -172,10 +185,13 @@
 				\item<14-> One possible solution to this set of inequalities is $w_0=-1, w_1=1.1,, w_2=1.1$ (and various other solutions are possible)
 				      %\item Note that we can come up with a similar set of inequalities and found the value of $\theta$ for McCulloch Pitts neuron also
 			\end{itemize}
-		\end{overlayarea}
 
+		\end{overlayarea}
 		\column{0.4\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<15->{
+				\input{modules/Module3/tikz_images/line_equation}
+			}
 			\begin{itemize}\justifying
 				\item<17-> Note that we can come up with a similar set of inequalities and find the value of $\theta$ for a McCulloch Pitts neuron also \onslide<18->{(Try it!)}
 			\end{itemize}

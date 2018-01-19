@@ -1,11 +1,12 @@
-
+\begin{frame}
+	\myheading{Module 2.6: Proof of Convergence}
+\end{frame}
 
 \begin{frame}
 	\begin{itemize}\justifying
 		\item<1-> Now that we have some faith and intuition about why the algorithm works, we will see a more formal proof of convergence ...
 	\end{itemize}
 \end{frame}
-
 
 \begin{frame}
 	\begin{block}{Theorem}
@@ -20,7 +21,6 @@
 
 \begin{frame}
 	\begin{columns}
-
 		\column{0.4\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\textbf{Setup:}
@@ -30,12 +30,10 @@
 				\item<12-> Further we will normalize all the $p$'s so that $||p|| = 1$ (notice that this does not affect the solution $\because if \quad w^T \frac{p}{||p||} \geq 0$ then $w^Tp \geq 0$)
 				\item<14-> Let $w^*$ be the normalized solution vector (we know one exists as the data is linearly separable)
 			\end{itemize}
-
 		\end{overlayarea}
 
 		\column{0.6\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-
 			\begin{center}
 				\small{
 					\onslide<3->{
@@ -58,8 +56,6 @@
 						\end{algorithm}
 					}}
 			\end{center}
-
-
 		\end{overlayarea}
 	\end{columns}
 \end{frame}
@@ -67,7 +63,6 @@
 
 \begin{frame}
 	\begin{columns}
-
 		\column{0.42\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\textbf{Observations:}
@@ -79,7 +74,6 @@
 				\item<16-> Every time we make a correction a quantity  $\delta$ gets added to the numerator
 				\item<17-> So by time-step $t$, a quantity $k\delta$ gets added to the numerator
 			\end{itemize}
-
 		\end{overlayarea}
 
 		\column{0.58\textwidth}
@@ -100,7 +94,6 @@
 					      \onslide<12->{         & \geq w^*\cdot w_{t-1} + 2\delta \\}
 					      \onslide<18->{         & \geq w^*\cdot w_{0} + (k)\delta \quad (\textit {By induction})}
 				      \end{align*}
-
 			\end{itemize}
 		\end{overlayarea}
 	\end{columns}
@@ -109,7 +102,6 @@
 
 \begin{frame}
 	\begin{columns}
-
 		\column{1.0\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\textbf{Proof (continued:)}
@@ -127,7 +119,6 @@
 				\onslide<11->{                                          & \leq ||w_{0}||^2 + (k) \quad (\textit {By same observation that we made about $\delta$})}
 			\end{align*}
 		\end{overlayarea}
-
 	\end{columns}
 \end{frame}
 
@@ -152,8 +143,18 @@
 				\item<5-> But since $cos \beta \leq 1$, $k$ must be bounded by a maximum number
 				\item<6-> Thus, there can only be a finite number of corrections ($k$) to $w$ and the algorithm will converge!
 			\end{itemize}
-
 		\end{overlayarea}
-
 	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{Coming back to our questions ...}
+			\begin{itemize}\justifying
+				\item What about non-boolean (say, real) inputs? \onslide<2->{\color{red}{Real valued inputs are allowed in perceptron}} \color{black}
+				\item Do we always need to hand code the threshold? \onslide<3->{\color{red}{No, we can learn the threshold}} \color{black}
+				\item Are all inputs equal? What if we want to assign more weight (importance) to some inputs? \onslide<4->{\color{red}{A perceptron allows weights to be assigned to inputs}} \color{black}
+				\item What about functions which are not linearly separable ? \onslide<5->{\color{red}{Not possible with a single perceptron but we will see how to handle this ..}} \color{black}
+			\end{itemize}
+	\end{block}
 \end{frame}

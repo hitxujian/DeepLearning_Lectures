@@ -1,0 +1,78 @@
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
+	\node [output_neuron] (out0) at (0,12)  {} ;
+
+	\node (input0) at (-0.75,7)  {$x_1$};
+	\node (input1) at (0.75,7) {$x_2$};
+	\node (input2) at (2.25,7) {$x_3$};
+
+	\node [hidden_neuron] (hi0) at (-4.5,10)  {  } ;
+	\node [hidden_neuron] (hi1) at (-3,10)  {  } ;
+	\node [hidden_neuron] (hi2) at (-1.5,10)  {  } ;
+	\node [hidden_neuron] (hi3) at (0,10)  {  } ;
+	\node [hidden_neuron] (hi4) at (1.5,10)  {  } ;
+	\node [hidden_neuron] (hi5) at (3,10)  {  } ;
+	\node [hidden_neuron] (hi6) at (4.5,10)  {  } ;
+	\node [hidden_neuron] (hi7) at (6,10)  {  } ;
+
+
+
+	\node (bias) at (-6,10)  {$bias=$-3} ;
+
+	\node (output0) at (0,13)  {$y$} ;
+
+	\node (w1) at (-2.8,11)  {$w_1$} ;
+	\node (w2) at (-1.85,11)  {$w_2$} ;
+	\node (w3) at (-1.0,11)  {$w_3$} ;
+	\node (w3) at (-0.3,11)  {$w_4$} ;
+	\node (w3) at (0.4,11)  {$w_5$} ;
+	\node (w3) at (1.2,11)  {$w_6$} ;
+	\node (w4) at (1.85,11)  {$w_7$} ;
+	\node (w4) at (2.7,11)  {$w_8$} ;
+
+	\draw [->,  red] (input0) -- (hi0);
+	\draw [->,  red] (input1) -- (hi0);
+	\draw [->,  red] (input2) -- (hi0);
+
+	\draw [->,  red](input0) -- (hi1);
+	\draw [->,  red](input1) -- (hi1);
+	\draw [->,  blue] (input2) -- (hi1);
+
+	\draw [->,  red] (input0) -- (hi2);
+	\draw [->,  blue] (input1) -- (hi2);
+	\draw [->,  red] (input2) -- (hi2);
+
+	\draw [->,  red](input0) -- (hi3);
+	\draw [->,  blue](input1) -- (hi3);
+	\draw [->,  blue] (input2) -- (hi3);
+
+	\draw [->,  blue](input0) -- (hi4);
+	\draw [->,  red](input1) -- (hi4);
+	\draw [->,  red] (input2) -- (hi4);
+
+	\draw [->,  blue](input0) -- (hi5);
+	\draw [->,  red](input1) -- (hi5);
+	\draw [->,  blue] (input2) -- (hi5);
+
+	\draw [->,  blue](input0) -- (hi6);
+	\draw [->,  blue](input1) -- (hi6);
+	\draw [->,  red] (input2) -- (hi6);
+
+	\draw [->,  blue](input0) -- (hi7);
+	\draw [->,  blue](input1) -- (hi7);
+	\draw [->,  blue] (input2) -- (hi7);
+
+	\draw [->] (hi0) -- (out0);
+	\draw [->] (hi1) -- (out0);
+	\draw [->] (hi2) -- (out0);
+	\draw [->] (hi3) -- (out0);
+	\draw [->] (hi4) -- (out0);
+	\draw [->] (hi5) -- (out0);
+	\draw [->] (hi6) -- (out0);
+	\draw [->] (hi7) -- (out0);
+
+	\draw [->] (out0) -- (output0);
+
+	%\node at (-6,1) {red edge indicates $w$ = -1};
+	%\node at (-6,0) {green edge indicates $w$ = +1};
+
+\end{tikzpicture}

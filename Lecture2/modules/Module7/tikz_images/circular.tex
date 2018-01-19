@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+	\foreach \a in {1,2,...,18}{
+			\draw (\a*360/18: 1cm) node{\color{blue}{$+$}};
+		}
+	\foreach \a in {1,2,...,36}{
+			\draw (\a*360/36: 1.5cm) node{\color{red}{$o$}};
+		}
+
+	\draw[thick,->] (-1.6,-1.6) -- (2.5,-1.6);
+	\draw[thick,->] (-1.6,-1.6) -- (-1.6,2.5);
+
+\end{tikzpicture}

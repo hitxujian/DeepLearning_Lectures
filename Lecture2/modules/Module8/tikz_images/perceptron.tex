@@ -1,0 +1,45 @@
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
+	\node [output_neuron] (out0) at (-3,12)  {} ;
+
+	\node (input0) at (-4,8)  {$x_1$};
+	\node (input1) at (-2,8) {$x_2$};
+
+	\node [hidden_neuron] (hi0) at (-6,10)  {  } ;
+	\node [hidden_neuron] (hi1) at (-4,10)  {  } ;
+	\node [hidden_neuron] (hi2) at (-2,10)  {  } ;
+	\node [hidden_neuron] (hi3) at (0,10)  {  } ;
+
+
+	\onslide<5->{\node (h1_label) at (-6,10.75)  { $h_1$ } ;}
+	\onslide<5->{\node (h2_label) at (-4,10.75)  { $h_2$ } ;}
+	\onslide<5->{\node (h3_label) at (-2,10.75)  { $h_3$ } ;}
+	\onslide<5->{\node (h4_label) at (-0,10.75)  { $h_4$ } ;}
+
+	\node (bias) at (-6,9)  {$bias=$-2} ;
+
+	\node (output0) at (-3,13)  {$y$} ;
+
+	\node (w1) at (-5,11)  {$w_1$} ;
+	\node (w2) at (-3.8,11)  {$w_2$} ;
+	\node (w3) at (-2.8,11)  {$w_3$} ;
+	\node (w4) at (-1.85,11)  {$w_4$} ;
+
+	\draw [->, thick, red] (input0) -- (hi0);
+	\draw [->, thick, red] (input1) -- (hi0);
+
+	\draw [->, thick, red](input0) -- (hi1);
+	\draw [->, thick, blue](input1) -- (hi1);
+
+	\draw [->, thick, blue] (input0) -- (hi2);
+	\draw [->, thick, red] (input1) -- (hi2);
+
+	\draw [->, thick, blue](input0) -- (hi3);
+	\draw [->, thick, blue](input1) -- (hi3);
+
+	\draw [->] (hi0) -- (out0);
+	\draw [->] (hi1) -- (out0);
+	\draw [->] (hi2) -- (out0);
+	\draw [->] (hi3) -- (out0);
+
+	\draw [->] (out0) -- (output0);
+\end{tikzpicture}
