@@ -6,7 +6,7 @@
 #	nonstopmode will not stop compiling at warnings
 #	ref will compile along with references
 #	all-modules will generate pdf for all the modules 
-
+#       #num_modules
 if [[ "$2" == "nonstopmode" ]]; then
 	pdflatex -interaction=nonstopmode -halt-on-error Lecture$1.tex
 else
@@ -29,14 +29,14 @@ if [[ $? == 1 ]]; then
 	echo "Could not link the references"
 	return 1
 fi
-
+us="_"
 if [[ "$4" == "all-modules" ]]; then
-	for i in {1..9}
+	for i in {1..8}
 	do
 		if [[ "$i" == "packages.tex" ]]; then
 			continue
 		fi
-		cat modules/packages.tex modules/Module$i/Lecture1_$i.tex modules/end.tex > modules/temp.tex
+		cat modules/packages.tex modules/Module$i/Lecture$1$us$i.tex modules/end.tex > modules/temp.tex
 		echo  "\end{document}"  >> modules/temp.tex
 		pdflatex -interaction=nonstopmode modules/temp.tex
 

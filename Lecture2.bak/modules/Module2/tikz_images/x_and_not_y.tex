@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+	\node[name=s,shape=circle split,draw=gray!40,line width=0mm,minimum size=1cm] {};
+	\begin{scope}[on background layer]
+		\fill[black!50] (s.base) ([xshift=-0mm]s.east) arc (0:180:0.5cm-0mm)--cycle;
+		\fill[white!50] (s.base) ([xshift=0mm]s.west) arc (180:360:0.5cm-0mm)--cycle;
+	\end{scope}
+	\node (input1) at (-0.75, -1.25) {$x_1$};
+	\node (input2) at (0.75, -1.25) {$x_2$};
+
+	\node (output) at (0, 1.25) {$y \in \{0,1\}$};
+
+	%\node at (0,0.25) {$f$};
+	\onslide<7->{\node at (0,-0.25) {$1$};}
+
+	\draw [->] (input1) -- (s.255);
+	\draw [o=1pt] (input2) -- (s.285);
+	\draw [->] (s.90) -- (output);
+
+\end{tikzpicture}

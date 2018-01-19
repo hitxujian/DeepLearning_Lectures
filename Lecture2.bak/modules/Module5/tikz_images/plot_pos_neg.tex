@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+
+	\draw[thick,->] (0,0) -- (3.5,0);
+	\draw[thick,->] (0,0) -- (0,3.5);
+
+	\onslide<1->{\draw[densely dashed] (-2,2) -- (2,-2);}
+	\onslide<1->{\draw[-{>[length=3]}] (0,0) -- (2.2, 2.2);}
+	\onslide<3->{\draw[-{>[length=3]}, blue] (0,0) -- (-0.5, 1.2);}
+	\onslide<3->{\draw[-{>[length=3]}, blue] (0,0) -- (0.5, 2);}
+	\onslide<3->{\draw[-{>[length=3]}, blue] (0,0) -- (3, 1);}
+	\onslide<6->{\draw[-{>[length=3]}, red] (0,0) -- (-1.5, 0.5);}
+	\onslide<6->{\draw[-{>[length=3]}, red] (0,0) -- (-0.5, -2);}
+	\onslide<6->{\draw[-{>[length=3]}, red] (0,0) -- (0.5, -2);}
+
+
+	\node at (3.3, -0.2) {$x_1$};
+	\node at (-0.2, 3.3) {$x_2$};
+
+	\onslide<2->{\node at (-0.5, 1.5) {$p_1$};}
+	\onslide<2->{\node at (0.5, 2.3) {$p_2$};}
+	\onslide<2->{\node at (3, 1.3) {$p_3$};}
+	\onslide<5->{\node at (-1.5, 0.2) {$n_1$};}
+	\onslide<5->{\node at (-0.5, -2.3) {$n_2$};}
+	\onslide<5->{\node at (0.5, -2.3) {$n_3$};}
+	%\node at (-0.1, 2.3) {$(0,1)$};
+	%\node at (2.0, -0.3) {$(1,0)$};
+	\node at (2.5, 2.5) {$\mathbf{w}$};
+	\onslide<1->{\node at (-1, 2) {$\mathbf{w^Tx} = 0$};}
+
+	\onslide<2->{\filldraw[blue] (-0.5,1.2) circle (2pt);}
+	\onslide<2->{\filldraw[blue] (0.5,2) circle (2pt);}
+	\onslide<2->{\filldraw[blue] (3,1) circle (2pt);}
+	\onslide<5->{\filldraw[red] (-1.5,0.5) circle (2pt);}
+	\onslide<5->{\filldraw[red] (-0.5,-2) circle (2pt);}
+	\onslide<5->{\filldraw[red] (0.5,-2) circle (2pt);}
+	%\filldraw (2,0) circle (2pt);
+	%\filldraw (2,2) circle (2pt);
+\end{tikzpicture}

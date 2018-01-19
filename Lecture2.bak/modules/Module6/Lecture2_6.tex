@@ -1,0 +1,160 @@
+\begin{frame}
+	\myheading{Module 2.6: Proof of Convergence}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1-> Now that we have some faith and intuition about why the algorithm works, we will see a more formal proof of convergence ...
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem}
+		\textbf{Definition:} Two sets $P$ and $N$ of points in an $n$-dimensional space are called absolutely linearly separable if \onslide<2->{$n$ + 1 real numbers $w_0, w_1, . . . , w_n$ exist} \onslide<3->{such that every point $(x_1, x_2, . . . , x_n) \in  P$ satisfies $\sum_{i=1}^{n} w_i * x_i > w_0$} \onslide<4->{and every point $(x_1, x_2, . . . , x_n) \in  N$ satisfies $\sum_{i=1}^{n} w_i * x_i < w_0$.} \\
+		\vspace{0.2in}
+		\onslide<5->{\textbf{Proposition:}} \onslide<6->{If the sets $P$ and $N$ are finite and linearly separable,} \onslide<7->{the perceptron learning algorithm updates the weight vector $\mathbf{w}_t$ a finite number of times.} \onslide<8->{In other words: if the vectors in $P$ and $N$ are tested cyclically one after the other,} \onslide<9->{a weight vector $\mathbf{w}_t$ is found after a finite number of steps $t$ which can separate the two sets.} \\
+		\vspace{0.2in}
+		\onslide<10->{\textbf{Proof:} On the next slide}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Setup:}
+			\begin{itemize}\justifying
+				\item<1-> If $x \in N$ then -$x \in P$ ($\because w^Tx < 0 \implies w^T(-x) \geq 0 $)
+				\item<2-> We can thus consider a single set $P' = P \cup N^-$ and for every element $p \in P'$ ensure that $w^Tp \geq 0$
+				\item<12-> Further we will normalize all the $p$'s so that $||p|| = 1$ (notice that this does not affect the solution $\because if \quad w^T \frac{p}{||p||} \geq 0$ then $w^Tp \geq 0$)
+				\item<14-> Let $w^*$ be the normalized solution vector (we know one exists as the data is linearly separable)
+			\end{itemize}
+		\end{overlayarea}
+
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\small{
+					\onslide<3->{
+						\begin{algorithm}[H]
+							\onslide<3->{$P \leftarrow inputs\quad with \quad label \quad 1$\;}
+							\onslide<4->{$N \leftarrow inputs \quad with \quad label \quad 0$\;}
+							\onslide<5->{$N^- \textit{contains negations of all points in N}$\;}
+							\onslide<6->{$P' \leftarrow P \cup N^-$\;}
+							\onslide<7->{Initialize $\mathbf{w}$ randomly\;}
+							\onslide<8->{\While{$!convergence$}{
+									\onslide<9->{Pick random $\mathbf{p} \in P'$ \;}
+									\onslide<13->{$\mathbf{p} \leftarrow \frac{p}{||p||} \quad (\textit{so now,} ||p||=1)$ \;}
+									\onslide<10->{\If{$\mathbf{w.p} < 0$} {
+											\onslide<11->{$\mathbf{w} = \mathbf{w} + \mathbf{p}$ \;}
+										}}
+								}}
+							\onslide<8->{//the algorithm converges when all the inputs are classified correctly\\}
+							\onslide<11->{//notice that we do not need the other \textbf{if} condition because by construction we want all points in $P'$ to lie in the positive half space $\mathbf{w.p} \geq 0$}
+							\caption{Perceptron Learning Algorithm}
+						\end{algorithm}
+					}}
+			\end{center}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.42\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Observations:}
+			\begin{itemize}\justifying
+				\item $w^*$ is some optimal solution which exists but we don't know what it is
+				\item<13-> We do not make a correction at every time-step
+				\item<14-> We make a correction only if $w^T\cdot p_i \leq 0$ at that time step
+				\item<15-> So at time-step $t$ we would have made only $k$ ($\leq t$) corrections
+				\item<16-> Every time we make a correction a quantity  $\delta$ gets added to the numerator
+				\item<17-> So by time-step $t$, a quantity $k\delta$ gets added to the numerator
+			\end{itemize}
+		\end{overlayarea}
+
+		\column{0.58\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Proof:}
+			\begin{itemize}\justifying
+				\item<2-> Now suppose at time step $t$ we inspected the point $p_i$ and found that $w^T\cdot p_i \leq 0$
+				\item<3-> We make a correction $w_{t+1} = w_t + p_i$
+				\item<4-> Let $\beta$ be the angle between $w^*$ and $w_{t+1}$
+				      \vspace{-0.1in}
+				      \begin{align*}
+					      \onslide<5->{cos \beta & = \frac{w^*\cdot w_{t+1}}{||w_{t+1}||} \\}
+					      \onslide<6->{Numerator & = w^*\cdot w_{t+1} \onslide<7->{= w^*\cdot (w_{t} + p_i) \\}}
+					      \onslide<8->{          & = w^*\cdot w_{t} + w^*\cdot p_i \\}
+					      \onslide<9->{          & \geq w^*\cdot w_{t} + \delta \quad (\delta = min\{w^*\cdot p_i | \forall i \}) \\}
+					      \onslide<10->{         & \geq w^*\cdot (w_{t-1} + p_j) + \delta \\}
+					      \onslide<11->{         & \geq w^*\cdot w_{t-1} + w^*\cdot p_j + \delta \\}
+					      \onslide<12->{         & \geq w^*\cdot w_{t-1} + 2\delta \\}
+					      \onslide<18->{         & \geq w^*\cdot w_{0} + (k)\delta \quad (\textit {By induction})}
+				      \end{align*}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{1.0\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Proof (continued:)}
+			\begin{align*}
+				\onslide<1->{\textit{So far we have,}\quad w^T\cdot p_i & \leq 0 \quad \textit{(and hence we made the correction)} \\}
+				\onslide<2->{cos \beta                                  & = \frac{w^*\cdot w_{t+1}}{||w_{t+1}||} \quad (\textit{by definition}) \\}
+				\onslide<3->{Numerator                                  & \geq w^*\cdot w_{0} + k\delta \quad (\textit {proved by induction}) \\}
+				\onslide<4->{Denominator^2                              & = ||w_{t+1}||^2 \\}
+				\onslide<5->{                                           & = (w_t + p_i)\cdot(w_t + p_i) \\}
+				\onslide<6->{                                           & = ||w_t||^2 + 2 w_t \cdot p_i + ||p_i||^2) \\}
+				\onslide<7->{                                           & \leq ||w_t||^2 + ||p_i||^2 \quad (\because w_t \cdot p_i \leq 0) \\}
+				\onslide<8->{                                           & \leq ||w_t||^2 + 1 \quad (\because ||p_i||^2 = 1) \\}
+				\onslide<9->{                                           & \leq (||w_{t-1}||^2 + 1) + 1 \\}
+				\onslide<10->{                                          & \leq ||w_{t-1}||^2 + 2 \\}
+				\onslide<11->{                                          & \leq ||w_{0}||^2 + (k) \quad (\textit {By same observation that we made about $\delta$})}
+			\end{align*}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+
+		\column{1.0\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Proof (continued:)}
+			\begin{align*}
+				\onslide<1->{\textit{So far we have,}\quad w^T\cdot p_i & \leq 0 \quad \textit{(and hence we made the correction)} \\}
+				\onslide<1->{cos \beta                                  & = \frac{w^*\cdot w_{t+1}}{||w_{t+1}||} \quad (\textit{by definition}) \\}
+				\onslide<1->{Numerator                                  & \geq w^*\cdot w_{0} + k\delta \quad (\textit {proved by induction}) \\}
+				\onslide<1->{Denominator^2                              & \leq ||w_{0}||^2 + k \quad (\textit {By same observation that we made about $\delta$}) \\}
+				\onslide<2->{cos \beta                                  & \geq \frac{w^*\cdot w_{0} + k\delta}{\sqrt{||w_{0}||^2 + k}} \\}
+			\end{align*}
+			\vspace{-0.5in}
+			\begin{itemize}\justifying
+				\item<3-> $cos \beta$ thus grows proportional to $\sqrt{k}$
+				\item<4-> As $k$ (number of corrections) increases $cos \beta$ can become arbitrarily large
+				\item<5-> But since $cos \beta \leq 1$, $k$ must be bounded by a maximum number
+				\item<6-> Thus, there can only be a finite number of corrections ($k$) to $w$ and the algorithm will converge!
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{Coming back to our questions ...}
+			\begin{itemize}\justifying
+				\item What about non-boolean (say, real) inputs? \onslide<2->{\color{red}{Real valued inputs are allowed in perceptron}} \color{black}
+				\item Do we always need to hand code the threshold? \onslide<3->{\color{red}{No, we can learn the threshold}} \color{black}
+				\item Are all inputs equal? What if we want to assign more weight (importance) to some inputs? \onslide<4->{\color{red}{A perceptron allows weights to be assigned to inputs}} \color{black}
+				\item What about functions which are not linearly separable ? \onslide<5->{\color{red}{Not possible with a single perceptron but we will see how to handle this ..}} \color{black}
+			\end{itemize}
+	\end{block}
+\end{frame}

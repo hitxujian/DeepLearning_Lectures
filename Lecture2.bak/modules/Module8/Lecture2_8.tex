@@ -1,0 +1,238 @@
+\begin{frame}
+	\myheading{Module 2.8: Representation Power of a Network of Perceptrons}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1-> We will now see how to implement \textbf{any} boolean function using a network of perceptrons ...
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+			\input{modules/Module8/tikz_images/perceptron_onslide}
+			\onslide<4->{red edge indicates $w$ = -1 \\}
+			\onslide<4->{blue edge indicates $w$ = +1}
+		\end{overlayarea}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-13>{
+				\begin{itemize}\justifying
+					\item For this discussion, we will assume True = +1 and False = -1
+					\item<2-> We consider 2 inputs and 4 perceptrons
+					\item<3-> Each input is connected to all the 4 perceptrons with specific weights
+					\item<9-> The bias ($w_0$) of each perceptron is -2 (i.e., each perceptron will fire only if the weighted sum of its input is $\geq$ 2)
+					\item<10-> Each of these perceptrons is connected to an output perceptron by weights (which need to be learned)
+					\item<13> The output of this perceptron ($y$) is the output of this network
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+			\input{modules/Module8/tikz_images/perceptron}
+			red edge indicates $w$ = -1 \\
+			blue edge indicates $w$ = +1
+		\end{overlayarea}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Terminology:}
+			\begin{itemize}\justifying
+				\item This network contains 3 layers
+				\item<2-> The layer containing the inputs ($x_1, x_2$) is called the \textbf{input layer}
+				\item<3-> The middle layer containing the 4 perceptrons is called the \textbf{hidden layer}
+				\item<4-> The final layer containing one output neuron is called the \textbf{output layer}
+				\item<5-> The outputs of the 4 perceptrons in the hidden layer are denoted by $h_1, h_2, h_3, h_4$
+				\item<6-> The red and blue edges are called layer 1 weights
+				\item<7-> $w_1, w_2, w_3, w_4$ are called layer 2 weights
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+			\input{modules/Module8/tikz_images/perceptron_onslide_v2}
+			red edge indicates $w$ = -1 \\
+			blue edge indicates $w$ = +1
+		\end{overlayarea}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1->{
+				\begin{itemize}\justifying
+					\item We claim that this network can be used to implement \textbf{any} boolean function (linearly separable or not) !
+					\item<2-> In other words, we can find $w_1, w_2, w_3, w_4$ such that the truth table of any boolean function can be represented by this network
+					\item<3-> Astonishing claim! \onslide<4->{Well, not really, if you understand what is going on}
+					\item<5-> Each perceptron in the middle layer fires only for a specific input (and no two perceptrons fire for the same input)
+					      \only<6>{\item the first perceptron fires for \{-1,-1\} }
+					      \only<7>{\item the second perceptron fires for \{-1,1\} }
+					      \only<8>{\item the third perceptron fires for \{1,-1\} }
+					      \only<9>{\item the fourth perceptron fires for \{1,1\} }
+					\item<10-> Let us see why this network works by taking an example of the XOR function
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+			\input{modules/Module8/tikz_images/perceptron_no_onslide}
+			red edge indicates $w$ = -1 \\
+			blue edge indicates $w$ = +1
+		\end{overlayarea}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item Let $w_0$ be the bias output of the neuron (\textit{i.e.}, it will fire if $\sum_{i=1}^{4}w_ih_i \geq w_0$)
+			\end{itemize}
+			\onslide<2->{
+				\small{
+					\begin{table}
+						\begin{tabular}{cccccccc}
+							\hline
+							\onslide<2->{$x_1$} & \onslide<2->{$x_2$} & \onslide<2->{$XOR$} & \onslide<2->{$h_1$} & \onslide<2->{$h_2$} & \onslide<2->{$h_3$} & \onslide<2->{$h_4$} & \onslide<2->{$\sum_{i=1}^{4}w_ih_i$} \\
+							\hline
+							\onslide<2->{0}     & \onslide<2->{0}     & \onslide<2->{0}     & \onslide<2->{1}     & \onslide<2->{0}     & \onslide<2->{0}     & \onslide<2->{0}     & \onslide<2->{$w_1$}                  \\
+							\onslide<3->{0}     & \onslide<3->{1}     & \onslide<3->{1}     & \onslide<3->{0}     & \onslide<3->{1}     & \onslide<3->{0}     & \onslide<3->{0}     & \onslide<3->{$w_2$}                  \\
+							\onslide<4->{1}     & \onslide<4->{0}     & \onslide<4->{1}     & \onslide<4->{0}     & \onslide<4->{0}     & \onslide<4->{1}     & \onslide<4->{0}     & \onslide<4->{$w_3$}                  \\
+							\onslide<5->{1}     & \onslide<5->{1}     & \onslide<5->{0}     & \onslide<5->{0}     & \onslide<5->{0}     & \onslide<5->{0}     & \onslide<5->{1}     & \onslide<5->{$w_4$}                  \\
+							\hline
+						\end{tabular}
+					\end{table}
+				}
+			}
+			\vspace{-0.2in}
+			\textnormal{
+				\begin{itemize}\justifying
+					\item<6-> This results in the following four conditions to implement XOR: $w_1 < w_0, w_2 \geq w_0, w_3 \geq w_0, w_4 < w_0$
+					\item<7-> Unlike before, there are no contradictions now and the system of inequalities can be satisfied
+					\item<8-> Essentially each $w_i$ is now responsible for one of the 4 possible inputs and can be adjusted to get the desired output for that input
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+			\input{modules/Module8/tikz_images/perceptron_no_onslide}
+			red edge indicates $w$ = -1 \\
+			blue edge indicates $w$ = +1
+		\end{overlayarea}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> It should be clear that the same network can be used to represent the remaining 15 boolean functions also
+				\item<2-> Each boolean function will result in a different set of non-contradicting inequalities which can be satisfied by appropriately setting $w_1, w_2, w_3, w_4$
+				\item<3-> Try it!
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1-> What if we have more than 3 inputs ?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item Again each of the 8 perceptorns will fire only for one of the 8 inputs
+		\item Each of the 8 weights in the second layer is responsible for one of the 8 inputs and can be adjusted to produce the desired output for that input
+	\end{itemize}
+	\input{modules/Module8/tikz_images/perceptron_8}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1-> What if we have $n$ inputs ?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{Theorem}
+		Any boolean function of $n$ inputs can be represented exactly by a network of perceptrons containing 1 hidden layer with $2^n$ perceptrons and one output layer containing $1$ perceptron \\
+		\vspace{0.2in}
+		\onslide<2->{\textbf{Proof (informal:)} We just saw how to construct such a network} \\
+		\vspace{0.2in}
+		\onslide<2->{\textbf{Note:} A network of $2^n + 1$ perceptrons is not necessary but sufficient. For example, we already saw how to represent AND function with just 1 perceptron}\\
+		\vspace{0.2in}
+		\onslide<3->{\textbf{Catch:} As $n$ increases the number of perceptrons in the hidden layers obviously increases exponentially}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{itemize}\justifying
+		\item<1->{Again, why do we care about boolean functions ?}
+		\item<2->{How does this help us with our original problem: which was to predict whether we like a movie or not? \onslide<3-> Let us see!}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<5->{
+			\begin{center}
+				\input{modules/Module8/tikz_images/perceptron_8_small}
+			\end{center}}
+			\begin{align*}
+				\begin{array}{c} p_1 \\ p_2 \\ \vdots \\ n_1 \\ n_2 \\ \vdots\\ \end{array} &
+				\begin{bmatrix}
+					x_{11} & x_{12} & \dots  & x_{1n} & y_1=1  \\
+					x_{21} & x_{22} & \dots  & x_{2n} & y_2=1  \\
+					\vdots & \vdots & \vdots & \vdots & \vdots \\
+					x_{k1} & x_{k2} & \dots  & x_{kn} & y_i=0  \\
+					x_{j1} & x_{j2} & \dots  & x_{jn} & y_j=0  \\
+					\vdots & \vdots & \vdots & \vdots & \vdots \\
+				\end{bmatrix}
+			\end{align*}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> We are given this data about our past movie experience
+				\item<2->For each movie, we are given the values of the various factors $(x_1, x_2,\dots, x_n)$ that we base our decision on and we are also also given the value of $y$ (like/dislike)
+				\item<3-> $p_i$'s are the points for which the output was $1$ and $n_i$'s are the points for which it was $0$
+				\item<4->The data may or may not be linearly separable
+				\item<5-> The proof that we just saw tells us that it is possible to have a network of perceptrons and learn the weights in this network such that for any given $p_i$ or $n_j$ the output of the network will be the same as $y_i$ or $y_j$ (i.e., we can separate the positive and the negative points)
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{The story so far ...}
+		\begin{itemize}\justifying
+			\item<1-> Networks of the form that we just saw (containing, an input, output and one or more hidden layers) are called Multilayer Perceptrons (MLP, in short)
+			\item<2-> More appropriate terminology would be``Multilayered Network of Perceptrons'' but MLP is the more commonly used name
+			\item<3-> The theorem that we just saw gives us the representation power of a MLP with a single hidden layer
+			\item<4-> Specifically, it tells us that a MLP with a single hidden layer can represent \textbf{any} boolean function
+		\end{itemize}
+	\end{block}
+\end{frame}
+
