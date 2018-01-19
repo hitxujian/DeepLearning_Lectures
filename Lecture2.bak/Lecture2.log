@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.17)  19 JAN 2018 11:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2018.1.17)  19 JAN 2018 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3278,37 +3278,37 @@ Overfull \vbox (1.0pt too high) detected at line 1197
 
 [121
 
-]
-Overfull \hbox (31.18904pt too wide) in paragraph at lines 1197--1197
- [] 
- []
-
-
-Overfull \vbox (11.71039pt too high) detected at line 1197
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1197
- []
-
-[122
+] [122
 
 ]
-Overfull \hbox (31.18904pt too wide) in paragraph at lines 1197--1197
- [] 
+Overfull \vbox (4.62929pt too high) detected at line 1237
  []
 
 
-Overfull \vbox (11.71039pt too high) detected at line 1197
+Underfull \hbox (badness 1189) in paragraph at lines 1237--1237
+\OT1/cmr/m/n/10.95 and then see the per-ceptron learn-ing al-
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1197
+Overfull \vbox (1.0pt too high) detected at line 1237
  []
 
 [123
 
-] [124
+]
+Overfull \vbox (4.62929pt too high) detected at line 1237
+ []
+
+
+Underfull \hbox (badness 1189) in paragraph at lines 1237--1237
+\OT1/cmr/m/n/10.95 and then see the per-ceptron learn-ing al-
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1237
+ []
+
+[124
 
 ]
 Overfull \vbox (4.62929pt too high) detected at line 1237
@@ -3386,31 +3386,23 @@ Overfull \vbox (1.0pt too high) detected at line 1237
 [129
 
 ]
-Overfull \vbox (4.62929pt too high) detected at line 1237
+Overfull \hbox (5.6265pt too wide) in paragraph at lines 1313--1313
+[][][] 
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 1237--1237
-\OT1/cmr/m/n/10.95 and then see the per-ceptron learn-ing al-
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1237
+Overfull \vbox (1.0pt too high) detected at line 1313
  []
 
 [130
 
 ]
-Overfull \vbox (4.62929pt too high) detected at line 1237
+Overfull \hbox (5.6265pt too wide) in paragraph at lines 1313--1313
+[][][] 
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 1237--1237
-\OT1/cmr/m/n/10.95 and then see the per-ceptron learn-ing al-
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1237
+Overfull \vbox (1.0pt too high) detected at line 1313
  []
 
 [131
@@ -3549,7 +3541,7 @@ Overfull \vbox (1.0pt too high) detected at line 1313
 
 ]
 Overfull \hbox (5.6265pt too wide) in paragraph at lines 1313--1313
-[][][] 
+[][][][] 
  []
 
 
@@ -3560,7 +3552,7 @@ Overfull \vbox (1.0pt too high) detected at line 1313
 
 ]
 Overfull \hbox (5.6265pt too wide) in paragraph at lines 1313--1313
-[][][] 
+[][][][] 
  []
 
 
@@ -3591,29 +3583,29 @@ Overfull \vbox (1.0pt too high) detected at line 1313
 
 [147
 
-]
-Overfull \hbox (5.6265pt too wide) in paragraph at lines 1313--1313
-[][][][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1313
- []
-
-[148
+] [148
 
 ]
-Overfull \hbox (5.6265pt too wide) in paragraph at lines 1313--1313
-[][][][] 
+Overfull \hbox (37.62556pt too wide) in paragraph at lines 1390--1390
+ [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1313
+Overfull \vbox (1.0pt too high) detected at line 1390
  []
 
 [149
 
-] [150
+]
+Overfull \hbox (37.62556pt too wide) in paragraph at lines 1390--1390
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1390
+ []
+
+[150
 
 ]
 Overfull \hbox (37.62556pt too wide) in paragraph at lines 1390--1390
@@ -3704,23 +3696,13 @@ Overfull \vbox (1.0pt too high) detected at line 1390
 [158
 
 ]
-Overfull \hbox (37.62556pt too wide) in paragraph at lines 1390--1390
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1390
+Overfull \vbox (1.0pt too high) detected at line 1415
  []
 
 [159
 
 ]
-Overfull \hbox (37.62556pt too wide) in paragraph at lines 1390--1390
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1390
+Overfull \vbox (1.0pt too high) detected at line 1415
  []
 
 [160
@@ -3731,19 +3713,7 @@ Overfull \vbox (1.0pt too high) detected at line 1415
 
 [161
 
-]
-Overfull \vbox (1.0pt too high) detected at line 1415
- []
-
-[162
-
-]
-Overfull \vbox (1.0pt too high) detected at line 1415
- []
-
-[163
-
-] <images/or_error_surface.png, id=4405, 462.528pt x 359.9046pt>
+] <images/or_error_surface.png, id=4352, 462.528pt x 359.9046pt>
 File: images/or_error_surface.png Graphic file (type png)
 
 <use images/or_error_surface.png>
@@ -3758,7 +3728,7 @@ Overfull \hbox (32.09413pt too wide) in paragraph at lines 1415--1415
 Overfull \vbox (1.0pt too high) detected at line 1415
  []
 
-[164
+[162
 
  <./images/or_error_surface.png>]
 File: images/or_error_surface.png Graphic file (type png)
@@ -3774,867 +3744,871 @@ Overfull \hbox (32.09413pt too wide) in paragraph at lines 1415--1415
 Overfull \vbox (1.0pt too high) detected at line 1415
  []
 
-[165
+[163
 
-] [166
+] [164
 
-] [167
-
-] [168
-
-] [169
+] [165
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1503--1503
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1501--1501
  [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1503
+Overfull \vbox (1.0pt too high) detected at line 1501
+ []
+
+[166
+
+]
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1501--1501
+ [][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1501
+ []
+
+[167
+
+]
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1501--1501
+ [][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1501
+ []
+
+[168
+
+]
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1501--1501
+ [][] 
+ []
+
+
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1501--1501
+[]  
+ []
+
+
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1501--1501
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1501
+ []
+
+[169
+
+]
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1501--1501
+ [][][] 
+ []
+
+
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1501--1501
+[]  
+ []
+
+
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1501--1501
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1501
  []
 
 [170
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1503--1503
- [][] 
+Overfull \hbox (11.72939pt too wide) in paragraph at lines 1501--1501
+ [][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1503
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1501--1501
+[]  
+ []
+
+
+Overfull \hbox (22.5079pt too wide) in paragraph at lines 1501--1501
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1501
  []
 
 [171
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1503--1503
- [][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1503
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [172
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1503--1503
- [][] 
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1503--1503
-[]  
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1503--1503
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1503
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [173
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1503--1503
- [][][] 
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1503--1503
-[]  
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1503--1503
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1503
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [174
 
 ]
-Overfull \hbox (11.72939pt too wide) in paragraph at lines 1503--1503
- [][][] 
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1503--1503
-[]  
- []
-
-
-Overfull \hbox (22.5079pt too wide) in paragraph at lines 1503--1503
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1503
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [175
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [176
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [177
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [178
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [179
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [180
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [181
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [182
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [183
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1542
  []
 
 [184
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [185
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [186
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [187
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1544
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [188
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [189
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [190
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [191
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [192
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [193
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \vbox (1.0pt too high) detected at line 1581
  []
 
 [194
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [195
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [196
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [197
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 1583
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [198
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [199
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [200
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [201
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [202
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
+Overfull \hbox (0.82037pt too wide) in paragraph at lines 1645--1645
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1645
  []
 
 [203
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
- [] 
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
+\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
+rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [204
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
- [] 
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
+\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
+rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [205
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
- [] 
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
+\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
+rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [206
 
 ]
-Overfull \hbox (0.82037pt too wide) in paragraph at lines 1647--1647
- [] 
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
+\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
+rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1647
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [207
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
 \OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
 rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [208
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
 \OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
 rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [209
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
 \OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
 rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [210
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
 \OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
 rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [211
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
 \OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
 rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [212
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
+Underfull \hbox (badness 1527) in paragraph at lines 1700--1700
 \OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
 rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1700
  []
 
 [213
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
-\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
-rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [214
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
-\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
-rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [215
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
-\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
-rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [216
 
 ]
-Underfull \hbox (badness 1527) in paragraph at lines 1702--1702
-\OT1/cmr/m/n/10.95 this $\OT1/cmr/bx/n/10.95 x$ \OT1/cmr/m/n/10.95 and the cur-
-rent $\OT1/cmr/bx/n/10.95 w$ \OT1/cmr/m/n/10.95 is
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1702
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [217
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [218
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [219
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [220
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [221
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [222
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \vbox (6.2124pt too high) detected at line 1755
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1755
  []
 
 [223
 
-]
-Overfull \vbox (6.2124pt too high) detected at line 1757
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1757
- []
-
-[224
+] [224
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
+ [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [225
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
+ [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1757
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [226
 
 ]
-Overfull \vbox (6.2124pt too high) detected at line 1757
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1757
- []
-
-[227
-
-] [228
-
-]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
+ []
+
+[227
+
+]
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1849
+ []
+
+[228
+
+]
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [229
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [230
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [231
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [232
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [233
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [234
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [235
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [236
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [237
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [238
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [239
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [240
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [241
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [242
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [243
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [244
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [245
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [246
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [247
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [248
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [249
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [250
 
 ]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
+Overfull \hbox (15.04674pt too wide) in paragraph at lines 1849--1849
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1851
+Overfull \vbox (1.0pt too high) detected at line 1849
  []
 
 [251
 
-]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
- [] 
- []
+] [252
 
+] [253
 
-Overfull \vbox (1.0pt too high) detected at line 1851
- []
+] [254
 
-[252
-
-]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1851
- []
-
-[253
-
-]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1851
- []
-
-[254
-
-]
-Overfull \hbox (15.04674pt too wide) in paragraph at lines 1851--1851
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 1851
- []
-
-[255
+] [255
 
 ] [256
 
@@ -4650,788 +4624,788 @@ Overfull \vbox (1.0pt too high) detected at line 1851
 
 ] [262
 
-] [263
-
-] [264
-
-] [265
-
-] [266
+]
+[263
 
 ]
-[267
-
-]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
+ []
+
+[264
+
+]
+Overfull \vbox (1.68578pt too high) detected at line 1916
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1916
+ []
+
+[265
+
+]
+Overfull \vbox (1.68578pt too high) detected at line 1916
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1916
+ []
+
+[266
+
+]
+Overfull \vbox (1.68578pt too high) detected at line 1916
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1916
+ []
+
+[267
+
+]
+Overfull \vbox (1.68578pt too high) detected at line 1916
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [268
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [269
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [270
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [271
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [272
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [273
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [274
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [275
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [276
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (1.68578pt too high) detected at line 1916
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \vbox (1.0pt too high) detected at line 1916
  []
 
 [277
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
+[] 
+ []
+
+
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [278
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
+[] 
+ []
+
+
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [279
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
+[] 
+ []
+
+
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [280
 
 ]
-Overfull \vbox (1.68578pt too high) detected at line 1918
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1918
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
+[] 
+ []
+
+
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [281
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [282
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [283
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [284
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [285
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [286
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [287
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [288
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [289
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [290
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [291
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [292
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [293
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [294
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \vbox (4.20976pt too high) detected at line 1958
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (3.78972pt too wide) in paragraph at lines 1958--1958
 [] 
  []
 
 
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (25.68977pt too wide) in paragraph at lines 1958--1958
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1958
  []
 
 [295
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
+[]  
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
-[] 
- []
-
-
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [296
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
+[]  
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
-[] 
- []
-
-
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [297
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
+[]  
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
-[] 
- []
-
-
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [298
 
 ]
-Overfull \vbox (4.20976pt too high) detected at line 1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
+[]  
  []
 
 
-Overfull \hbox (3.78972pt too wide) in paragraph at lines 1960--1960
-[] 
- []
-
-
-Overfull \hbox (25.68977pt too wide) in paragraph at lines 1960--1960
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1960
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [299
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [300
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [301
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [302
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [303
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [304
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [305
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (14.81227pt too wide) in paragraph at lines 1983--1983
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 1983
  []
 
 [306
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 2010
  []
 
 [307
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 2010
  []
 
 [308
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 2010
  []
 
 [309
 
 ]
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []  
  []
 
 
-Overfull \hbox (14.81227pt too wide) in paragraph at lines 1985--1985
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 1985
+Overfull \vbox (1.0pt too high) detected at line 2010
  []
 
 [310
 
 ]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []  
  []
 
 
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2012
+Overfull \vbox (1.0pt too high) detected at line 2010
  []
 
 [311
 
 ]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []  
  []
 
 
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
+Overfull \hbox (6.29558pt too wide) in paragraph at lines 2010--2010
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2012
+Overfull \vbox (1.0pt too high) detected at line 2010
  []
 
 [312
 
-]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]  
- []
+] [313
 
+] [314
 
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]|[]  
- []
+] [315
 
-
-Overfull \vbox (1.0pt too high) detected at line 2012
- []
-
-[313
-
-]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]  
- []
-
-
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2012
- []
-
-[314
-
-]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]  
- []
-
-
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2012
- []
-
-[315
-
-]
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]  
- []
-
-
-Overfull \hbox (6.29558pt too wide) in paragraph at lines 2012--2012
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2012
- []
-
-[316
+] [316
 
 ] [317
 
@@ -5441,765 +5415,765 @@ Overfull \vbox (1.0pt too high) detected at line 2012
 
 ] [320
 
-] [321
+]
+Overfull \vbox (1.0pt too high) detected at line 2114
+ []
 
-] [322
-
-] [323
-
-] [324
+[321
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2114
+ []
+
+[322
+
+]
+Overfull \vbox (1.0pt too high) detected at line 2114
+ []
+
+[323
+
+]
+Overfull \vbox (1.0pt too high) detected at line 2114
+ []
+
+[324
+
+]
+Overfull \vbox (1.0pt too high) detected at line 2114
  []
 
 [325
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2114
  []
 
 [326
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2114
  []
 
 [327
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2114
  []
 
 [328
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2219
  []
 
 [329
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2219
  []
 
 [330
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2219
  []
 
 [331
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2116
+Overfull \vbox (1.0pt too high) detected at line 2219
  []
 
 [332
 
-]
-Overfull \vbox (1.0pt too high) detected at line 2221
- []
-
-[333
+] [333
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2221
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
+ [] 
  []
 
 [334
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2221
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
+ [] 
  []
 
 [335
 
 ]
-Overfull \vbox (1.0pt too high) detected at line 2221
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
+ [] 
  []
 
 [336
 
-] [337
+]
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
+ [] 
+ []
+
+[337
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [338
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [339
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [340
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [341
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [342
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [343
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [344
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [345
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [346
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [347
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [348
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [349
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [350
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [351
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [352
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [353
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [354
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [355
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [356
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [357
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
+Overfull \hbox (22.54582pt too wide) in paragraph at lines 2254--2254
  [] 
  []
 
 [358
 
+] [359
+
+] [360
+
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
- [] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
+[][][] 
  []
 
-[359
 
-]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
- [] 
- []
-
-[360
-
-]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
- [] 
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [361
 
 ]
-Overfull \hbox (22.54582pt too wide) in paragraph at lines 2256--2256
- [] 
- []
-
-[362
-
-] [363
-
-] [364
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
+ []
+
+[362
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
+[][][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2350
+ []
+
+[363
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
+[][][][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2350
+ []
+
+[364
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
+[][][][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [365
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
-[][][] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
+[][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [366
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
-[][][] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
+[][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [367
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [368
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [369
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [370
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [371
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [372
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2350--2350
 [][][][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2350
  []
 
 [373
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
-[][][][] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
+[][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [374
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
-[][][][] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
+[][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [375
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
-[][][][] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
+[][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [376
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2352--2352
-[][][][] 
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
+[][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2352
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [377
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [378
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [379
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2440--2440
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2440
  []
 
 [380
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2538
  []
 
 [381
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2538
  []
 
 [382
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2538
  []
 
 [383
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2442--2442
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2442
+Overfull \vbox (1.0pt too high) detected at line 2538
  []
 
 [384
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2540
+Overfull \vbox (1.0pt too high) detected at line 2538
  []
 
 [385
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
 [][] 
  []
 
-
-Overfull \vbox (1.0pt too high) detected at line 2540
- []
-
-[386
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2540
- []
-
-[387
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2540
- []
-
-[388
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2540
- []
-
-[389
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
-[][] 
- []
-
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 2540
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 2538
 .
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2540.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2538.
 
 
-Overfull \vbox (1.0pt too high) detected at line 2540
+Overfull \vbox (1.0pt too high) detected at line 2538
+ []
+
+[386
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2538
+ []
+
+[387
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2538
+ []
+
+[388
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2538
+ []
+
+[389
+
+]
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2538--2538
+[][] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2538
  []
 
 [390
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2540
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [391
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2540
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [392
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2540
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [393
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2540--2540
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2540
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
+ [] 
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [394
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [395
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [396
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [397
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2649--2649
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.2072pt too wide) in paragraph at lines 2649--2649
  [] 
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2649
  []
 
 [398
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2740--2740
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2740
  []
 
 [399
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2740--2740
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2740
  []
 
 [400
 
 ]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
+Overfull \hbox (8.91492pt too wide) in paragraph at lines 2740--2740
 [][] 
  []
 
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
- [] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2651
+Overfull \vbox (1.0pt too high) detected at line 2740
  []
 
 [401
 
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2651--2651
-[][] 
- []
+] [402
 
+] [403
 
-Overfull \hbox (8.2072pt too wide) in paragraph at lines 2651--2651
- [] 
- []
+] [404
 
-
-Overfull \vbox (1.0pt too high) detected at line 2651
- []
-
-[402
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2742--2742
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2742
- []
-
-[403
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2742--2742
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2742
- []
-
-[404
-
-]
-Overfull \hbox (8.91492pt too wide) in paragraph at lines 2742--2742
-[][] 
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2742
- []
-
-[405
+] [405
 
 ] [406
 
@@ -6211,101 +6185,93 @@ Overfull \vbox (1.0pt too high) detected at line 2742
 
 ] [410
 
-] [411
-
-] [412
-
-] [413
-
-] [414
-
 ]
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
 []  
  []
 
 
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
 []|[]  
  []
 
 
-Overfull \vbox (1.0pt too high) detected at line 2988
+Overfull \vbox (1.0pt too high) detected at line 2986
+ []
+
+[411
+
+]
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]  
+ []
+
+
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2986
+ []
+
+[412
+
+]
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]  
+ []
+
+
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2986
+ []
+
+[413
+
+]
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]  
+ []
+
+
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2986
+ []
+
+[414
+
+]
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]  
+ []
+
+
+Overfull \hbox (9.23225pt too wide) in paragraph at lines 2986--2986
+[]|[]  
+ []
+
+
+Overfull \vbox (1.0pt too high) detected at line 2986
  []
 
 [415
 
-]
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]  
- []
+] [416
 
+] [417
 
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]|[]  
- []
+] [418
 
-
-Overfull \vbox (1.0pt too high) detected at line 2988
- []
-
-[416
-
-]
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]  
- []
-
-
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2988
- []
-
-[417
-
-]
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]  
- []
-
-
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2988
- []
-
-[418
-
-]
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]  
- []
-
-
-Overfull \hbox (9.23225pt too wide) in paragraph at lines 2988--2988
-[]|[]  
- []
-
-
-Overfull \vbox (1.0pt too high) detected at line 2988
- []
-
-[419
-
-] [420
-
-] [421
-
-] [422
-
-] [423
+] [419
 
 ]
 \tf@nav=\write6
@@ -6317,11 +6283,17 @@ Overfull \vbox (1.0pt too high) detected at line 2988
 \tf@snm=\write8
 \openout8 = `Lecture2.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3004.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3004.
- (./Lecture2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3004.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3004.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3002.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3002.
+ (./Lecture2.aux
+*************************************************
+* pdfbase warning: "rerun"
+* 
+* Rerun to get internal references right!
+*************************************************
+)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3002.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3002.
 
 Package rerunfilecheck Info: File `Lecture2.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -6336,39 +6308,46 @@ LaTeX Font Warning: Size substitutions with differences
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 47839 strings out of 492995
- 1087403 string characters out of 6132704
- 1392024 words of memory out of 5000000
+ 47833 strings out of 492995
+ 1087345 string characters out of 6132704
+ 1392042 words of memory out of 5000000
  49610 multiletter control sequences out of 15000+600000
  18182 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,23n,96p,10433b,9164s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmbx8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
-7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
-pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pf
-b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
-cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/te
-xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texli
-ve/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive
-/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on Lecture2.pdf (423 pages, 7920159 bytes).
+ 62i,23n,96p,10433b,9148s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Navigation420} has been referenced 
+but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Navigation421} has been referenced but does not exi
+st, replaced by a fixed one
+
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/l
+ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loca
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/
+2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/201
+7/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2017/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2017/texmf-dist/font
+s/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2017/texmf-dist/fonts/
+type1/public/amsfonts/symbols/msam10.pfb>
+Output written on Lecture2.pdf (419 pages, 7916889 bytes).
 PDF statistics:
- 11533 PDF objects out of 12825 (max. 8388607)
- 10918 compressed objects within 110 object streams
- 847 named destinations out of 1000 (max. 500000)
+ 11432 PDF objects out of 12825 (max. 8388607)
+ 10821 compressed objects within 109 object streams
+ 841 named destinations out of 1000 (max. 500000)
  195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

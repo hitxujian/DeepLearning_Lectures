@@ -1174,7 +1174,7 @@ x_3 = isDirectorNolan \\
 
 \column{0.7\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\only<1-6>{
+\only<1-4>{
 \begin{itemize}\justifying
 \item<1-> Consider the task of predicting whether we would like a movie or not 
 \item<2-> Suppose, we base our decision on 3 inputs (binary, for simplicity)  
@@ -1184,12 +1184,12 @@ x_3 = isDirectorNolan \\
 \end{itemize}
 }
 
-\only<7->{
+\only<5->{
 \begin{itemize}\justifying
-\item<7-> $w_0$ is called the bias as it represents the prior (prejudice)
-\item<8-> A movie buff may have a very low threshold and may watch any movie irrespective of the genre, actor, director [$\theta = 0$]
-\item<9-> On the other hand, a selective viewer may only watch thrillers starring Matt Damon and directed by Nolan [$\theta = 3$]
-\item<10-> The weights ($w_1, w_2, ..., w_n$) and the bias ($w_0$) will depend on the data (viewer history in this case)
+\item<5-> $w_0$ is called the bias as it represents the prior (prejudice)
+\item<6-> A movie buff may have a very low threshold and may watch any movie irrespective of the genre, actor, director [$\theta = 0$]
+\item<7-> On the other hand, a selective viewer may only watch thrillers starring Matt Damon and directed by Nolan [$\theta = 3$]
+\item<8-> The weights ($w_1, w_2, ..., w_n$) and the bias ($w_0$) will depend on the data (viewer history in this case)
 \end{itemize}
 }
 \end{overlayarea}
@@ -1327,7 +1327,7 @@ $0$ & $0$ & \onslide<2->{0} & \onslide<3->{$w_0 + \sum_{i=1}^{2} w_i x_i} \onsli
 \item<1-> Let us fix the threshold ($-w_0 = 1$) and try different values of $w_1, w_2$
 \item<2-> Say, $w_1=-1, w_2=-1$ 
 \item<3-> What is wrong with this line? \onslide<4->{We make an error on 1 out of the 4 inputs}
-\item<5-> Lets try some more values of $w_1, w_2$ and note how many errors we make
+\item<5-> Let us try some more values of $w_1, w_2$ and note how many errors we make
 
 \onslide<6->{
 \begin{center}
@@ -1421,9 +1421,7 @@ $w_1$&$w_2$&errors \\
 
 \begin{frame}
 \begin{itemize}\justifying
-\item<1-> We will now see a more principled approach for learning these weights and threshold but before that let us answer this question...
-\item<2-> Apart from implementing boolean functions (which does not look very interesting) what can a perceptron be used for ?
-\item<3-> Our interest lies in the use of perceptron as a binary classifier. Let us see what this means...
+\item<1-> We will now see a more principled approach for learning these weights and threshold but before that let us revisit our movie example again
 \end{itemize}
 \end{frame}
 
@@ -1513,7 +1511,7 @@ x_n &= criticsRating  \textit{(scaled to 0 to 1)}
 \begin{algorithm}[H]
 \onslide<2->{$P \leftarrow inputs\quad with \quad label \quad 1$\;}
 \onslide<3->{$N \leftarrow inputs \quad with \quad label \quad 0$\;}
-\onslide<4->{Initialize $\mathbf{w}$ randomly\;}
+\onslide<4->{Initialize $\mathbf{w} = [w_1, w_2, \dots, w_N]$ randomly\;}
 \onslide<5->{\While{$!convergence$}{
 \onslide<7->{Pick random $\mathbf{x} \in P \cup N$ \;}
 \onslide<8->{\If{$\mathbf{x} \in P \quad and \quad \sum_{i=0}^{n} w_i * x_i < 0$} {
@@ -1900,7 +1898,7 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \onslide<7->{Initialize $\mathbf{w}$ randomly\;}
 \onslide<8->{\While{$!convergence$}{
 \onslide<9->{Pick random $\mathbf{p} \in P'$ \;}
-\onslide<13->{$\mathbf{p} \leftarrow \frac{p}{||p||} \quad (\textit{so now,} ||p||=1)$ \;}
+\onslide<13->{$\mathbf{p} \leftarrow \frac{\mathbf{p}}{||\mathbf{p}||} \quad (\textit{so } \mathbf{p} \textit{ now becomes unit norm})$ \;}
 \onslide<10->{\If{$\mathbf{w.p} < 0$} {
 \onslide<11->{$\mathbf{w} = \mathbf{w} + \mathbf{p}$ \;}
 }}
