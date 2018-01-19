@@ -1,0 +1,32 @@
+\begin{tikzpicture}[inner sep=2mm]
+	\node (theta) at (1,6)  {\only<1->{$\theta = [w, b]$}} ;
+	\node (deltatheta) at (1,5)  {\only<2->{$\Delta\theta = [\Delta w, \Delta b]$}} ;
+	\node (thetanew) at (1,3)  {\only<9->{$\theta_{new} = \theta + \eta\cdot\Delta\theta$}} ;
+	\node (text1) at (-1,7)  {\only<1->{{\parbox[c][20pt][c]{110pt}{vector of parameters, say, randomly initialized}}}};
+	\node (text2) at (-2,4)  {\only<2->{{\parbox[c][20pt][c]{70pt}{change in the values of w, b}}}};
+	\node (text3) at (6,2)  {\only<10->{{\parbox[c][20pt][c]{190pt}{\textbf{Question:} What is the right $\Delta\theta$ to use ?}}}};
+
+	\node (text4) at (9,6)  {\only<5->{{\parbox[c][40pt][c]{120pt}{We moved in the direction of $\Delta\theta$}}}};
+
+	\node (text5) at (9,4)  {\only<6->{{\parbox[c][60pt][c]{120pt}{Let us be a bit conservative: move only by a small amount $\eta$}}}};
+
+	\node (text4) at (6,1)  {\only<11->{{\parbox[c][20pt][c]{190pt}{The answer comes from Taylor series}}}};
+
+
+	\only<1->{\draw [->] (text1) to [out=-90,in=180] (theta)};
+	\only<2->{\draw [->] (text2) to [out=90,in=180] (deltatheta)};
+	\only<10->{\draw [->] (text3) to [out=90,in=0] (thetanew)};
+
+	\only<3->{\draw [->] (3,5) to node[left]{$\theta$} (4,7)};
+	\only<3->{\draw [->] (3,5) to node[below]{$\Delta\theta$} (6,5)};
+	\only<4->{\draw [dashed] (4,7) to (7,7)};
+	\only<4->{\draw [dashed] (6,5) to (7,7)};
+	\only<4->{\draw [->] (3,5) to node[left]{$\theta_{new}$} (7,7)};
+
+	\begin{scope}[color=red]
+		\only<7->{\draw [->] (3,5) to node[below]{$\eta\cdot\Delta\theta$} (4,5)};
+		\only<8->{\draw [dashed] (4,7) to (5,7)};
+		\only<8->{\draw [dashed] (4,5) to (5,7)};
+		\only<8->{\draw [->] (3,5) to  (5,7)};
+	\end{scope}
+\end{tikzpicture}

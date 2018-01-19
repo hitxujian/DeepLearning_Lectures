@@ -1,0 +1,89 @@
+\begin{frame}
+	\myheading {Module 3.2: A typical Supervised Machine Learning Setup}
+\end{frame}
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{+0.2in}
+			\begin{center}
+				\textbf{Sigmoid (logistic) Neuron}
+				\input{modules/Module2/tikz_images/sigmoid_neuron}
+			\end{center}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> What next ?
+				\item<2-> Well, just as we had an algorithm for learning the weights of a perceptron, we also need a way of learning the weights of a sigmoid neuron
+				\item<3-> Before we see such an algorithm we will revisit the concept of \textbf{error}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.3\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module2/tikz_images/scatterplot}
+		\end{overlayarea}
+		\column{0.7\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Earlier we mentioned that a single perceptron cannot deal with this data because it is not linearly separable
+				\item<2-> What does ``cannot deal with'' mean?
+				\item<3-> What would happen if we use a perceptron model to classify this data ?
+				\item<4-> We would probably end up with a line like this ...
+				\item<5-> This line doesn't seem to be too bad
+				\item<6-> Sure, it misclassifies 3 blue points and 3 red points but we could live with this error in \textbf{most} real world applications
+				\item<7-> From now on, we will accept that it is hard to drive the error to 0 in most cases and will instead aim to reach the minimum possible error
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	This brings us to a typical machine learning setup which has the following components...
+	\begin{itemize}\justifying
+		\item<2-> \textbf{Data:} $\{x_i, y_i\}_{i=1}^{n}$
+		\item<3-> \textbf{Model:} Our approximation of the relation between $x$ and $y$. For example,
+		      \onslide<4->{
+			      \begin{align*}
+				      \onslide<4->{\hat{y}         & = \frac{1}{1 + e^{-(w^T x)}}} \\
+				      \onslide<5->{or\quad \hat{y} & = w^T x}                      \\
+				      \onslide<6->{or\quad \hat{y} & = (w^T x)^2}
+			      \end{align*}
+		      }
+		      \onslide<7->{or just about any function}
+		\item<8-> \textbf{Parameters:} In all the above cases, $w$ is a parameter which needs to be learned from the data
+		\item<9-> \textbf{Learning algorithm:} An algorithm for learning the parameters ($w$) of the model (for example, perceptron learning algorithm, gradient descent, etc.)
+		\item<10-> \textbf{Objective/Loss/Error function:} To guide the learning algorithm \onslide<11->{- the learning algorithm should aim to minimize the loss function}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	As an illustration, consider our movie example
+	\begin{itemize}\justifying
+		\item<2-> \textbf{Data:} $\{x_i = movie, y_i = like/dislike\}_{i=1}^{n}$
+		\item<3-> \textbf{Model:} Our approximation of the relation between $x$ and $y$ (the probability of liking a movie).
+		      \onslide<4->{
+			      \begin{align*}
+				      \onslide<4->{\hat{y} & = \frac{1}{1 + e^{-(w^T x)}}} \\
+			      \end{align*}
+		      }
+		      \vspace{-0.3in}
+		\item<5-> \textbf{Parameter:} $w$
+		\item<6-> \textbf{Learning algorithm:} Gradient Descent [we will see soon]
+		\item<7-> \textbf{Objective/Loss/Error function:} \onslide<8->{One possibility is
+			      %\vspace{-0.1in}
+			      \begin{align*}
+				      \onslide<8->{\mathscr{L}(w) = \sum_{i=1}^{n} (\hat{y}_i - y_i)^2} \\
+			      \end{align*}
+		      }
+		      %\vspace{-0.1in}
+		      \onslide<9->{The learning algorithm should aim to find a $w$ which minimizes the above function (squared error between $y$ and $\hat{y}$)}
+	\end{itemize}
+\end{frame}

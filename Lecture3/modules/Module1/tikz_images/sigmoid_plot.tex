@@ -1,0 +1,20 @@
+\begin{tikzpicture}[scale=0.75]
+	\begin{axis}[
+			xmin=-2.5, xmax=2.5,
+			ymin=-0.0, ymax=1.1,
+			axis lines=left,
+			xtick=\empty, ytick={1},
+			axis on top=true,
+			line width = 2pt,
+			%domain=-2.5:2.5,
+			ylabel=$y$,
+			xlabel=$\sum_{i=1}^{n} w_i x_i$,
+			label style={scale=2}
+		]
+		\addplot [smooth,line width = 2pt, mark=none,draw=red] {1/(1+exp(-2.5*\x)};
+
+		%% Add the asymptotes
+	\end{axis}
+
+	\node at (3.5,-0.5) {-$w_0$};
+\end{tikzpicture}

@@ -1,0 +1,86 @@
+Lets look at some of the success stories of Deep learning....
+
+While looking at these success stories we will try to identify some of the building blocks of Deep Learning
+
+Word2Vec
+
+Learn distributed vectorial representations of words
+
+
+LHS Diagram of skip gram model 
+RHS Feedforward Neural Network 
+	Trained Using Backpropagation
+
+Autoencoders
+	- representation learning
+	- deep representation learning (stacked autoencoders)
+	- other variants (denoising autoencoders, sparse autoencoders)
+
+RMBs
+	- Restricted Boltzmann Machines
+	- One of the earliest successes of Deep Learning (speech)
+	- Deep Belief Networks
+
+Natural Language Generation
+	- Translation
+	- Large Vocabulary Speech Recognition
+		- basic building block
+		- RNNs, LSTMs, GRUs
+	- Dialog
+		- Heirarchical Encoder Decoder Model
+	- The idea of attention
+
+Image Processing
+	- Object CLassification
+	- Highway Networks
+	- Residual Networks
+	- rCNNs
+
+Question Answering
+	- Memory Networks
+	- Dynamic Memory Networks
+
+Recursive Neural Networks
+	- Sentiment Analysis
+
+Mixed models
+	- Image Captioning
+	- NER
+
+Social Network Analysis
+	- DeepWalk
+	- Node2Vec
+
+Neural Draw
+	- Variational Autoencoders
+	- Generative Adverserial Networks
+
+Making Deep Learning Work
+	- Greedy Layerwise pre-training
+	- choosing the right activation function
+	- right weight initialization methods
+	- batch normalization
+	- right optimization algorithms for better convergence
+	- regularization
+
+Getting your hands dirty
+	- Tensorflow	
+	- Theano
+
+
+Autoencoders
+ - 17, 25, 90
+ - Assignments
+ The denoising auto-encoder minimizes the error in reconstructing the input from a stochastically corrupted transformation of the input. It can be shown that it maximizes a lower bound on the log-likelihood of a generative model. See Section 7.2 for more details.
+ Argue why this is true ? To achieve perfect reconstruction of continuous inputs, a one-hidden layer auto-encoder with non-linear hidden units needs very small weights in the first layer (to bring the non-linearity of the hidden units in their linear regime) and very large weights in the second layer.
+
+
+ -- Making Deep Learning Work
+ 	-- 
+
+Why depth is important ?
+ 	It has been shown that a “shallow” neural network with only one arbitrarily large hidden layer could approximate a function to any level of precision (Hornik et al., 1989). Similarly, any Boolean function can be represented by a two-layer circuit of logic gates. However, most Boolean functions require an exponential number of logic gates (with respect to the input size) to be represented by a two-layer circuit (Wegener, 1987). For example, the parity function, which can be efficiently represented by a circuit of depth O(logn) (for n input bits) needs O(2n) gates to be represented by a depth two circuit (Yao, 1985). What about deeper circuits? Some families of functions which can be represented with a depth k circuit are such that they require an exponential number of logic gates to be represented by a depth k−1 circuit (Ha ̊stad, 1986). Interestingly, an equivalent result has been proved for architectures whose computational elements are not logic gates but linear threshold units (i.e., formal neurons) (Hastad and Goldmann, 1991). The machine learning literature also suggests that shallow architectures can be very inefficient in terms of the number of computational units (e.g., bases, hidden units), and thus in terms of required examples (Bengio and Le Cun, 2007; Bengio et al., 2006).
+
+
+--------------------
+Draw a complex error surface in two dimensions 	

@@ -16,8 +16,9 @@
 
 %% ==== 
 \PassOptionsToClass{}{beamer}
-\documentclass[aspectratio=169]{beamer}
+\documentclass[serif, aspectratio=169]{beamer}
 \usepackage[utf8]{inputenc}
+\usepackage{textcomp}
 
 %\StartShownPreambleCommands
 \usepackage{amsmath,esint}
@@ -32,7 +33,7 @@
 \usepackage{pgfplots}
 \usepackage{ mathrsfs }
 \usepackage{caption}
-
+\usepackage{ragged2e}
 \usepackage{gensymb}
 \usepackage{color}
 \usepackage{url}
@@ -95,7 +96,7 @@
 \title{CS7015 (Deep Learning) : Lecture 3}
 \subtitle{Sigmoid Neurons, Gradient Descent, Feedforward Neural Networks, Representation Power of Feedforward Neural Networks}
 \institute{Department of Computer Science and Engineering\\ Indian Institute of Technology Madras}
-\date{January 13, 2017}
+\date{}
 \titlegraphic{\includegraphics[height=1cm,width=2cm]{images/iitm_logo.png}}
 %\titlegraphicii{\includegraphics[height=1cm,width=2cm]{logo2}}
 
@@ -135,22 +136,9 @@
 \maketitle
 
 
-
-
-%\begin{frame}
-%\begin{block}{The story so far ...}
-%\begin{itemize}
-%\item<1-> Networks of the form that we just saw (containing, an input, output and one or more hidden layers) are called Multilayer Perceptrons (MLP, in short)
-%\item<2-> More appropriate terminology would be``Multilayered Network of Perceptrons'' but MLP is the more commonly used term
-%\item<3-> The theorem that we just saw gives us the representation power of a MLP with a single hidden layer
-%\item<4-> Specifically, it tells us that a MLP with a single hidden layer can represent \textbf{any} boolean function
-%\end{itemize}
-%\end{block}
-%\end{frame}
-
 \begin{frame}
 \begin{block}{The story ahead ...}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> Enough about boolean functions!
 \item<2-> What about arbitrary functions of the form $y=f(x)$ where $x\in \mathbb{R}^n$ (instead of $\{0, 1\}^n$) and $y \in \mathbb{R}$ (instead of $\{0, 1\}$) ?
 \item<3-> Can we have a network which can (approximately) represent such functions ?
@@ -161,10 +149,8 @@
 
 \begin{frame}
 \begin{block}{Recall}
-
-\begin{itemize}
+\begin{itemize}\justifying
 \item A perceptron will fire if the weighted sum of its inputs is greater than the threshold (-$w_0$)
-
 \end{itemize}
 \end{block}
 \end{frame}
@@ -207,7 +193,7 @@
 
 \column{0.6\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> The thresholding logic used by a perceptron is very harsh !
 \item<2-> For example, let us return to our problem of deciding whether we will like or dislike a movie
 \item<3-> Consider that we base our decision only on one input ($x_1 = criticsRating$ which lies between 0 and 1)
@@ -263,7 +249,7 @@
 \column{0.6\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
 \only<1-4>{
-\begin{itemize}
+\begin{itemize}\justifying
 
 \item<1-> This behavior is not a characteristic of the specific problem we chose or the specific weight and threshold that we chose
 \item<2-> It is a characteristic of the perceptron function itself which behaves like a step function
@@ -274,7 +260,7 @@
 
 
 \only<5->{
-\begin{itemize}
+\begin{itemize}\justifying
 \item<5-> Introducing sigmoid neurons where the output function is much smoother than the step function
 \item<6-> Here is one form of the sigmoid function called the logistic function
 \only<6->{
@@ -532,7 +518,7 @@ Smooth, continuous, \textbf{differentiable}
 
 \column{0.6\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> What next ?
 \item<2-> Well, just as we had an algorithm for learning the weights of a perceptron, we also need a way of learning the weights of a sigmoid neuron 
 \item<3-> Before we see such an algorithm we will revisit the concept of \textbf{error} 
@@ -611,7 +597,7 @@ Smooth, continuous, \textbf{differentiable}
 
 \column{0.7\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> Earlier we mentioned that a single perceptron cannot deal with this data because it is not linearly separable
 \item<2-> What does ``cannot deal with'' mean?
 \item<3-> What would happen if we use a perceptron model to classify this data ?
@@ -628,7 +614,7 @@ Smooth, continuous, \textbf{differentiable}
 \begin{frame}
 This brings us to a typical machine learning setup which has the following components...
 
-\begin{itemize}
+\begin{itemize}\justifying
 \item<2-> \textbf{Data:} $\{x_i, y_i\}_{i=1}^{n}$
 \item<3-> \textbf{Model:} Our approximation of the relation between $x$ and $y$. For example, 
 \onslide<4->{
@@ -648,7 +634,7 @@ This brings us to a typical machine learning setup which has the following compo
 \begin{frame}
 As an illustration, consider our movie example
 
-\begin{itemize}
+\begin{itemize}\justifying
 \item<2-> \textbf{Data:} $\{x_i = movie, y_i = like/dislike\}_{i=1}^{n}$ 
 \item<3-> \textbf{Model:} Our approximation of the relation between $x$ and $y$ (the probability of liking a movie). 
 \onslide<4->{
@@ -745,7 +731,7 @@ As an illustration, consider our movie example
 \end{overlayarea}
 \column{0.6\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> With this setup in mind, we will now focus on this \textbf{model} and discuss an \textbf{algorithm} for learning the \textbf{parameters} of this model from some given \textbf{data}
 \item<2-> $\sigma$ stands for the sigmoid function (logistic function in this case) 
 \item<3-> For ease of explanation, we will consider a very simplified version of the model having just 1 input
@@ -811,7 +797,7 @@ $\displaystyle{\minimize_{w,b} \mathscr{L}(w,b) = \sum_{i=1}^{N} (y_i - f(x_i))^
 
 \only<5->{
 \begin{block}{What does it mean to train the network?}
-\begin{itemize}
+\begin{itemize}\justifying
     \item<5-> Suppose we train the network with $ (x, y) = (0.5, 0.2)$ and $(2.5, 0.9)$  
     \item<6-> At the end of training we expect to find w*, b* such that:
     \item<7-> $f(0.5) \rightarrow 0.2$ and  $f(2.5) \rightarrow 0.9$
@@ -820,7 +806,7 @@ $\displaystyle{\minimize_{w,b} \mathscr{L}(w,b) = \sum_{i=1}^{N} (y_i - f(x_i))^
 \end{block}
 
 \begin{block}<8->{In other words...}
-\begin{itemize}
+\begin{itemize}\justifying
     \item We hope to find a sigmoid function such that $(0.5, 0.2)$ and $(2.5, 0.9)$ lie on this sigmoid
 \end{itemize}
 \end{block}
@@ -833,7 +819,7 @@ $\displaystyle{\minimize_{w,b} \mathscr{L}(w,b) = \sum_{i=1}^{N} (y_i - f(x_i))^
 %\subsection{Curve-fitting}
 \begin{frame}
 \fontsize{16pt}{7.2}\selectfont
- \textit{Lets see this in more detail....}
+ \textit{Let us see this in more detail....}
 \end{frame}
 
 \begin{frame}
@@ -858,11 +844,11 @@ $\displaystyle{\minimize_{w,b} \mathscr{L}(w,b) = \sum_{i=1}^{N} (y_i - f(x_i))^
 \column{0.65\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
 \only<2-5>{
-\begin{itemize}
+\begin{itemize}\justifying
     \item Can we try to find such a $w*, b*$ manually
-    \item<3-> Lets try a random guess.. (say, $w=0.5, b=0$)
+    \item<3-> Let us try a random guess.. (say, $w=0.5, b=0$)
     \item<4-> Clearly not good, but how bad is it ?
-    \item<5-> Lets revisit $\mathscr{L}(w,b)$ to see how bad it is ... 
+    \item<5-> Let us revisit $\mathscr{L}(w,b)$ to see how bad it is ... 
 \end{itemize}
 }
 
@@ -877,7 +863,7 @@ $\displaystyle{\minimize_{w,b} \mathscr{L}(w,b) = \sum_{i=1}^{N} (y_i - f(x_i))^
 }
 
 \only<11-> {
-Lets try some other values of w, b 
+Let us try some other values of w, b 
 
 \begin{flushleft}
 \begin{table}
@@ -901,7 +887,7 @@ $w$&$b$&$\mathscr{L}(w,b)$\\
 
 \only<12>{\parbox[c][50pt][c]{230pt}{Oops!! this made things even worse...}}
 \only<13>{\parbox[c][50pt][c]{230pt}{Perhaps it would help to push w and b in the other direction...}}
-\only<14-15>{\parbox[c][50pt][c]{230pt}{Lets keep going in this direction, \textit{i.e.}, increase $w$ and decrease $b$}}
+\only<14-15>{\parbox[c][50pt][c]{230pt}{Let us keep going in this direction, \textit{i.e.}, increase $w$ and decrease $b$}}
 \only<16>{\parbox[c][50pt][c]{230pt}{With some guess work and intuition we were able to find the right values for $w$ and $b$}}
 }
 \end{overlayarea}
@@ -912,7 +898,7 @@ $w$&$b$&$\mathscr{L}(w,b)$\\
 %\subsection{Error surfaces}
 \begin{frame}
 \fontsize{16pt}{7.2}\selectfont
- \textit{Lets look at something better than our ``guess work'' algorithm....}
+ \textit{Let us look at something better than our ``guess work'' algorithm....}
 \end{frame}
 
 \begin{frame}
@@ -930,7 +916,7 @@ $w$&$b$&$\mathscr{L}(w,b)$\\
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
     \item Since we have only 2 points and 2 parameters ($w$, $b$) we can easily plot $\mathscr{L}(w,b)$ for different values of ($w$, $b$) and pick the one where $\mathscr{L}(w,b)$ is minimum
     \item<3-> But of course this becomes intractable once you have many more data points and many more parameters !!
     \item<4-> Further, even here we have plotted the error surface only for a small range of ($w$, $b$) [from $(-6, 6)$ and not from $(-\inf, \inf)$]
@@ -941,7 +927,7 @@ $w$&$b$&$\mathscr{L}(w,b)$\\
 
 \begin{frame}
 \fontsize{16pt}{7.2}\selectfont
- \textit{Lets look at the geometric interpretation of our ``guess work'' algorithm in terms of this error surface}
+ \textit{Let us look at the geometric interpretation of our ``guess work'' algorithm in terms of this error surface}
 \end{frame}
 
 
@@ -988,7 +974,7 @@ $w$&$b$&$\mathscr{L}(w,b)$\\
 
 \begin{frame}
 \fontsize{16pt}{7.2}\selectfont
- \textit{Now lets see if there is a more efficient and principled way of doing this}
+ \textit{Now let us see if there is a more efficient and principled way of doing this}
 \end{frame}
 
 \section{Optimization methods}
@@ -1013,7 +999,7 @@ $w$&$b$&$\mathscr{L}(w,b)$\\
 
 \node (text4) at (9,6)  {\only<5->{{\parbox[c][40pt][c]{120pt}{We moved in the direction of $\Delta\theta$}}}};
 
-\node (text5) at (9,4)  {\only<6->{{\parbox[c][60pt][c]{120pt}{Lets be a bit conservative: move only by a small amount $\eta$}}}};
+\node (text5) at (9,4)  {\only<6->{{\parbox[c][60pt][c]{120pt}{Let us be a bit conservative: move only by a small amount $\eta$}}}};
 
 \node (text4) at (6,1)  {\only<11->{{\parbox[c][20pt][c]{190pt}{The answer comes from Taylor series}}}};
 
@@ -1066,13 +1052,13 @@ Okay, so we have,
 u^T \nabla\mathscr{L}(\theta) < 0
 \end{align*}
 
-\only<1->{But, what is the range of $u^T \nabla\mathscr{L}(\theta)$ ?} \only<2->{Lets see....}\\
+\only<1->{But, what is the range of $u^T \nabla\mathscr{L}(\theta)$ ?} \only<2->{Let us see....}\\
 
 \only<3->{Let $\beta$ be the angle between $u^T$ and $\nabla\mathscr{L}(\theta)$, then we know that,} 
 \only<4->{
 \begin{align*}
 \only<4->{-1 &\leq cos(\beta) = \frac{u^T \nabla\mathscr{L}(\theta)}{||u||*||\nabla\mathscr{L}(\theta)||} \leq 1}
-%\only<5->{\intertext{Lets assume $u$ and $\mathscr{L}'(\theta)$ are unit vectors}}
+%\only<5->{\intertext{Let us assume $u$ and $\mathscr{L}'(\theta)$ are unit vectors}}
 \only<6->{\intertext{multiply throughout by $k = ||u||*||\nabla\mathscr{L}(\theta)||$ }}
 \only<6->{-k &\leq k*cos(\beta) = u^T \nabla\mathscr{L}(\theta) \leq k }
 \only<7->{\intertext{Thus, $\mathscr{L}(\theta + \eta u) - \mathscr{L}(\theta) = u^T \nabla\mathscr{L}(\theta) = k*cos(\beta)$ will be most negative when $cos(\beta) =-1$ \textit{i.e.}, when $\beta$ is $180\degree$}}
@@ -1087,7 +1073,7 @@ u^T \nabla\mathscr{L}(\theta) < 0
 \begin{overlayarea}{\textwidth}{\textheight}
 
 \begin{block}{Gradient Descent Rule}
-\begin{itemize}
+\begin{itemize}\justifying
     \item<1-> The direction $u$ that we intend to move in should be at $180\degree$ w.r.t. the gradient
     \item<2-> In other words, move in a direction opposite to the gradient
 \end{itemize}
@@ -1114,9 +1100,9 @@ u^T \nabla\mathscr{L}(\theta) < 0
 \begin{frame}
 \begin{overlayarea}{\textwidth}{\textheight}
 
-\begin{itemize}
+\begin{itemize}\justifying
     
-\item <1-> Lets create an algorithm from this rule ... 
+\item <1-> Let us create an algorithm from this rule ... 
 
 \only<2-> {
 \begin{algorithm}[H]
@@ -1320,7 +1306,7 @@ $max\_iterations\leftarrow 1000$\;
 
 
 \begin{frame}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> Later on in the course we will look at gradient descent in much more detail and discuss its variants
 \item<2-> For the time being it suffices to know that we have an algorithm for learning the parameters of a sigmoid neuron
 \item<3-> So where do we head from here ?
@@ -1363,7 +1349,7 @@ $max\_iterations\leftarrow 1000$\;
 
 
 \begin{frame}
-\begin{itemize}
+\begin{itemize}\justifying
 \item See this link\footnote{\url{http://neuralnetworksanddeeplearning.com/chap4.html}} for an excellent illustration of this proof 
 \item The discussion in the next few slides is based on the ideas presented at the above link
 \end{itemize}
@@ -1386,7 +1372,7 @@ $max\_iterations\leftarrow 1000$\;
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item We are interested in knowing whether a network of neurons can be used to represent an arbitrary function (like the one shown in the figure)
 \item<2-> We observe that such an arbitrary function can be approximated by several ``tower'' functions 
 \item<3-> More the number of such ``tower'' functions, better the approximation  
@@ -1469,7 +1455,7 @@ $max\_iterations\leftarrow 1000$\;
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> We make a few observations
 \item<2-> All these ``tower'' functions are similar and only differ in their heights and positions on the x-axis
 \item<3-> Suppose there is a black box which takes the original input ($x$) and constructs these tower functions
@@ -1524,11 +1510,11 @@ We will figure this out over the next few slides ...
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> If we take the logistic function and set $w$ to a very high value we will recover the step function
 \item<2-> Let us see what happens as we change the value of $w$ 
 \item<45-> Further we can adjust the value of $b$ to control the position on the x-axis at which the function transitions from 0 to 1 
-%\item Now lets see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+%\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
 %\item Voila! We have our tower function !!
 %\item Let us see the neural network that gave us this tower function
 \end{itemize}
@@ -1561,8 +1547,8 @@ We will figure this out over the next few slides ...
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
-\item Now lets see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+\begin{itemize}\justifying
+\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
 \item<4-> Voila! We have our tower function !!
 \end{itemize}
 \end{overlayarea}
@@ -1570,7 +1556,7 @@ We will figure this out over the next few slides ...
 \end{frame}
 
 \begin{frame}
-\begin{itemize}
+\begin{itemize}\justifying
 \item Can we come up with a neural network to represent this operation of subtracting one sigmoid function from another ?
 \end{itemize}
 \end{frame}
@@ -1630,12 +1616,12 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> This is what a 3-dimensional sigmoid looks like 
 \item<2-> We need to figure out how to get a 3-dimensional tower
 \item<3-> First, let us set $w_2$ to 0 and see if we can get a two dimensional step function
 \item<26-> What would happen if we change $b$ ? 
-%\item Now lets see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+%\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
 %\item Voila! We have our tower function !!
 %\item Let us see the neural network that gave us this tower function
 \end{itemize}
@@ -1667,10 +1653,10 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> What if we take two such step functions (with different $b$ values) and subtract one from the other
 \item<4-> We still don't get a tower (or we get a tower which is open from two sides)
-%\item Now lets see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+%\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
 %\item Voila! We have our tower function !!
 %\item Let us see the neural network that gave us this tower function
 \end{itemize}
@@ -1718,7 +1704,7 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> Now let us set $w_1$ to 0 and adjust $w_2$ to get a 3-dimensional step function with a different orientation
 \item<26-> And now we change $b$ 
 \end{itemize}
@@ -1751,11 +1737,11 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> Again, what if we take two such step functions (with different $b$ values) and subtract one from the other
 \item<4-> We still don't get a tower (or we get a tower which is open from two sides)
 \item<5-> Notice that this open tower has a different orientation from the previous one
-%\item Now lets see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+%\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
 %\item Voila! We have our tower function !!
 %\item Let us see the neural network that gave us this tower function
 \end{itemize}
@@ -1796,12 +1782,12 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item<1-> Now what will we get by adding two such open towers ?
 \item<4-> We get a tower standing on an elevated base
 \item<5-> We can now pass this output through another sigmoid neuron to get the desired tower !
 \item<7-> We can now approximate any function by summing up many such towers
-%\item Now lets see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+%\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
 %\item Voila! We have our tower function !!
 %\item Let us see the neural network that gave us this tower function
 \end{itemize}
@@ -1821,7 +1807,7 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item For example, we could approximate the following function using a sum of several towers 
 \end{itemize}
 \end{overlayarea}
@@ -1829,7 +1815,7 @@ What if we have more than 1 input ?
 \end{frame}
 
 \begin{frame}
-\begin{itemize}
+\begin{itemize}\justifying
 \item Can we come up with a neural network to represent this entire procedure of constructing a 3 dimensional tower ?
 \end{itemize}
 \end{frame}
@@ -1849,7 +1835,7 @@ What if we have more than 1 input ?
 
 \begin{frame}
 \begin{block}{Think}
-\begin{itemize}
+\begin{itemize}\justifying
 \item For 1 dimensional input we needed 2 neurons to construct a tower
 \item For 2 dimensional input we needed 4 neurons to construct a tower
 \item How many neurons will you need to construct a tower in $n$ dimensions ?
@@ -1859,7 +1845,7 @@ What if we have more than 1 input ?
 
 \begin{frame}
 \begin{block}{Time to retrospect}
-\begin{itemize}
+\begin{itemize}\justifying
 \item Why do we care about approximating any arbitrary function ?
 \item Can we tie all this back to the classification problem that we have been dealing with ?
 \end{itemize}
@@ -1877,7 +1863,7 @@ What if we have more than 1 input ?
     \includegraphics<3->[scale=0.10]{images/Plots/sig1.png}    
 \end{figure}
 \vspace{-0.2in}
-\begin{itemize}
+\begin{itemize}\justifying
 \item We are interested in separating the blue points from the red points
 \item<2-> Suppose we use a single sigmoidal neuron to approximate the relation between $x = [x_1, x_2]$ and $y$
 \item<4-> Obviously, there will be errors (some blue points get classified as 1 and some red points get classified as 0) 
@@ -1895,7 +1881,7 @@ What if we have more than 1 input ?
 \end{figure}
 \vspace{-0.2in}
 
-\begin{itemize}
+\begin{itemize}\justifying
 \item<5-> This is what we actually want
 \item<6-> The illustrative proof that we just saw tells us that we can have a neural network with two hidden layers which can approximate the above function by a sum of towers
 \item<7-> Which means we can have a neural network which can exactly separate the blue points from the red points !!
@@ -1916,7 +1902,7 @@ What if we have more than 1 input ?
 
 \column{0.5\textwidth}
 \begin{overlayarea}{\textwidth}{\textheight}
-\begin{itemize}
+\begin{itemize}\justifying
 \item 1 
 \end{itemize}
 \end{overlayarea}

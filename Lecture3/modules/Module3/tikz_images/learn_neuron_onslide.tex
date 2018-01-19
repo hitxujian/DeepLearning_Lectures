@@ -1,0 +1,12 @@
+\begin{tikzpicture}
+	\node [neuron] (neuron0) at (1,6)  {$\sigma$} ;
+	\node (input1) at (-1,6)  {$x$};
+	\node (input0) at (-1,5)  {$1$};
+	\node (w) at (-0.25,5.8)  {$w$};
+	\node (b) at (-0.25,5.2)  {$b$};
+	\node (output0) at (3,6)  {$\hat{y} = f(x)$};
+	\onslide<4->{\node (formula) at (0,4) {$f(x)= \frac{1}{1+e^{-(w\cdot x + b)}}$};}
+	\draw [->] (input0) -- (neuron0);
+	\draw [->] (input1) -- (neuron0);
+	\draw [->] (neuron0) -- (output0);
+\end{tikzpicture}
