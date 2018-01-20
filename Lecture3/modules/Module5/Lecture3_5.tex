@@ -8,7 +8,7 @@
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\textbf{Representation power of a multilayer network of perceptrons}
 			\vspace{0.1in}
-			\onslide<2->{\color{blue}{A multilayer network of perceptrons} \color{black}{} with a single hidden layer can be used to \color{cyan}{represent} \color{black}{} any \color{red}{boolean} \color{black}{} function \color{orange}{precisely (no errors)}} %($f(x): \{0, 1\}^n \rightarrow \{0, 1\}^m$) . \\
+			\onslide<2->{\color{blue}{A multilayer network of perceptrons} \color{black}{} with a single hidden layer can be used to \color{cyan}{represent} \color{black}{} any \color{red}{boolean} \color{black}{} function \color{orange}{precisely (no errors)}}
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
@@ -22,7 +22,6 @@
 		\end{overlayarea}
 	\end{columns}
 \end{frame}
-
 
 \begin{frame}
 	\begin{itemize}\justifying
@@ -62,64 +61,7 @@
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			\begin{tikzpicture}[scale=0.6]
-				\onslide<3->{
-					\node [neuron] (neuron1) at (10,0) {$x$};
-
-					\draw[->] (neuron1) -- (5.7,1.6);
-					\draw[->] (neuron1) -- (7.7,1.6);
-					\node[text width=0.5cm] at (10,1.2) {\LARGE {.}};
-					\node[text width=0.5cm] at (10.5,1.2) {\LARGE {.}};
-					\node[text width=0.5cm] at (11,1.2) {\LARGE {.}};
-					\draw[->] (neuron1) -- (12.7,1.6);
-					\draw[->] (neuron1) -- (14.7,1.6);
-
-
-					\node[text width=0.5cm] at (5.5,2.5) {Tower maker};
-					\draw[gray,thick,solid] (5,1.7) rectangle (6.75,3.3);
-
-					\node[text width=0.5cm] at (7.5,2.5) {Tower maker};
-					\draw[gray,thick,solid] (7,1.7) rectangle (8.75,3.3);
-
-					\node[text width=0.5cm] at (9.5,2.5) {\LARGE {.}};
-					\node[text width=0.5cm] at (10.5,2.5) {\LARGE {.}};
-					\node[text width=0.5cm] at (11.5,2.5) {\LARGE {.}};
-
-					\node[text width=0.5cm] at (12.5,2.5) {Tower maker};
-					\node[text width=0.5cm] at (12.5,2.5) {Tower maker};
-
-					\node[text width=0.5cm] at (12.5,2.5) {Tower maker};
-					\draw[gray,thick,solid] (12,1.7) rectangle (13.75,3.3);
-
-					\node[text width=0.5cm] at (14.5,2.5) {Tower maker};
-					\draw[gray,thick,solid] (14,1.7) rectangle (15.75,3.3);
-				}
-
-				\onslide<4-> {
-					\node (plot) at (5.7,4.5) {\includegraphics[scale=0.1]{p1.png}};
-					\node (plot) at (7.7,4.5) {\includegraphics[scale=0.1]{p2.png}};
-					\node[text width=0.5cm] at (9.5,4) {\LARGE {.}};
-					\node[text width=0.5cm] at (10.5,4) {\LARGE {.}};
-					\node[text width=0.5cm] at (11.5,4) {\LARGE {.}};
-					\node (plot) at (12.7,4.5) {\includegraphics[scale=0.1]{p3.png}};
-					\node (plot) at (14.7,4.5) {\includegraphics[scale=0.1]{p4.png}};
-				}
-
-				\onslide<6-> {
-					\node [neuron1] (neuron2) at (10,7) {$+$};
-					\draw[->]  (5.7,5.4) -- (neuron2);
-					\draw[->]  (7.7,5.4) -- (neuron2);
-
-					\node[text width=0.5cm] at (9.5,5.5) {\LARGE {.}};
-					\node[text width=0.5cm] at (10.5,5.5) {\LARGE {.}};
-					\node[text width=0.5cm] at (11.5,5.5) {\LARGE {.}};
-
-					\draw[->]  (12.7,5.4) -- (neuron2);
-					\draw[->]  (14.7,5.4) -- (neuron2);
-					\draw[->]  (neuron2) -- (10,8.8) ;
-				}
-				\node (plot) at (10,10.5) {\includegraphics[width=7cm, height=2cm]{plot.png}};
-			\end{tikzpicture}
+			\input{modules/Module5/tikz_images/tower_maker}
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
@@ -173,9 +115,6 @@
 				}
 			\end{onlyenv}
 		\end{overlayarea}
-
-
-
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
@@ -191,18 +130,7 @@
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			\begin{tikzpicture}
-
-				\node (plot) at (0,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/1}};
-
-				\node (plot) at (4,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/2}};
-
-				\onslide<3->{\node (plot) at (2,6) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/tower}};}
-				\onslide<2->{\draw[line width=0.2mm](2, 10) -- (2.2,10);}
-				%\draw[line width=0.2mm](2.1,10.1)--(2.1,9.9);
-				\onslide<3->{\draw[line width=0.2mm](2,8) -- (2.2,8);}
-				\onslide<3->{\draw[line width=0.2mm](2,8.1)--(2.2,8.1);}
-			\end{tikzpicture}
+			\input{modules/Module5/tikz_images/sigmoid_add_plot}
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
@@ -281,18 +209,7 @@
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			\begin{tikzpicture}
-
-				\node (plot) at (0,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/x1}};
-
-				\node (plot) at (4,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/x2}};
-
-				\onslide<3->{\node (plot) at (2,6) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/xjoin}};}
-				\onslide<2->{\draw[line width=0.2mm](2, 10) -- (2.2,10);}
-				%\draw[line width=0.2mm](2.1,10.1)--(2.1,9.9);
-				\onslide<3->{\draw[line width=0.2mm](2,8) -- (2.2,8);}
-				\onslide<3->{\draw[line width=0.2mm](2,8.1)--(2.2,8.1);}
-			\end{tikzpicture}
+			\input{modules/Module5/tikz_images/sigmoid_plot_3d}
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
@@ -303,7 +220,6 @@
 		\end{overlayarea}
 	\end{columns}
 \end{frame}
-
 
 \begin{frame}
 	\begin{columns}
@@ -349,23 +265,11 @@
 	\end{columns}
 \end{frame}
 
-
 \begin{frame}
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			\begin{tikzpicture}
-
-				\node (plot) at (0,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/y1}};
-
-				\node (plot) at (4,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/y2}};
-
-				\onslide<3->{\node (plot) at (2,6) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/yjoin}};}
-				\onslide<2->{\draw[line width=0.2mm](2, 10) -- (2.2,10);}
-				%\draw[line width=0.2mm](2.1,10.1)--(2.1,9.9);
-				\onslide<3->{\draw[line width=0.2mm](2,8) -- (2.2,8);}
-				\onslide<3->{\draw[line width=0.2mm](2,8.1)--(2.2,8.1);}
-			\end{tikzpicture}
+			\input{modules/Module5/tikz_images/sigmoid_plot_3d_y}
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
@@ -378,29 +282,17 @@
 	\end{columns}
 \end{frame}
 
-
 \begin{frame}
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\only<1-5>{
-			\begin{tikzpicture}
-				\node (plot) at (0,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/xjoin}};
-
-				\node (plot) at (4,10) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/yjoin}};
-
-				\onslide<3->{\node (plot) at (2,6) {\includegraphics[width=4cm,height=4cm]{./images/module5/Plots/three/xpyjoin}};}
-				\onslide<2->{\draw[line width=0.2mm](2, 10) -- (2.2,10);}
-				%\draw[line width=0.2mm](2.1,10.1)--(2.1,9.9);
-				\onslide<3->{\draw[line width=0.2mm](2,8) -- (2.2,8);}
-				\onslide<3->{\draw[line width=0.2mm](2,8.1)--(2.2,8.1);}
-			\end{tikzpicture}
+				\input{modules/Module5/tikz_images/sigmoid_xyjoin}
 			}
 			\only<6->{
 				\begin{figure}
 					\includegraphics[scale=0.3]{./images/module5/Plots/four/t_add}
 				\end{figure}
-
 			}
 		\end{overlayarea}
 		\column{0.5\textwidth}
@@ -475,7 +367,6 @@
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-
 			\begin{figure}
 				\includegraphics<1-2>[scale=0.10]{images/module5/Plots/scatter}
 				\includegraphics<3->[scale=0.10]{images/module5/Plots/sig1.png}
