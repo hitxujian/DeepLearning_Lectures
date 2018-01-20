@@ -1511,7 +1511,7 @@ x_n &= criticsRating  \textit{(scaled to 0 to 1)}
 \begin{algorithm}[H]
 \onslide<2->{$P \leftarrow inputs\quad with \quad label \quad 1$\;}
 \onslide<3->{$N \leftarrow inputs \quad with \quad label \quad 0$\;}
-\onslide<4->{Initialize $\mathbf{w} = [w_1, w_2, \dots, w_N]$ randomly\;}
+\onslide<4->{Initialize $\mathbf{w} = [w_0, w_1, \dots, w_n]$ randomly\;}
 \onslide<5->{\While{$!convergence$}{
 \onslide<7->{Pick random $\mathbf{x} \in P \cup N$ \;}
 \onslide<8->{\If{$\mathbf{x} \in P \quad and \quad \sum_{i=0}^{n} w_i * x_i < 0$} {
@@ -1828,7 +1828,7 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \begin{overlayarea}{\textwidth}{\textheight}
 \begin{itemize}\justifying
 \item<1-> We initialized $\mathbf{w}$ to a random value
-\item<2-> We observe that currently, $\mathbf{w}\cdot \mathbf{x} < 0$ ($\because$ angle $>$ 90$\degree$) for all the positive points and  $ \mathbf{w} \cdot \mathbf{x} \geq 0$ ($\because$ angle $<$ 90$\degree$) for all the negative points (the situation is exactly oppsite of what we actually want it to be)
+\item<2-> We observe that currently, $\mathbf{w}\cdot \mathbf{x} < 0$ ($\because$ angle $>$ 90$\degree$) for all the positive points and  $ \mathbf{w} \cdot \mathbf{x} \geq 0$ ($\because$ angle $<$ 90$\degree$) for all the negative points (the situation is exactly opposite of what we actually want it to be)
 \item<3-> We now run the algorithm by randomly going over the points
 \only<4-5>{\item Randomly pick a point (say, $p_1$), apply correction $\mathbf{w} = \mathbf{w} + \mathbf{x}$ $\because \mathbf{w\cdot x < 0}$ (you can check the angle visually) }
 \only<6-7>{\item Randomly pick a point (say, $p_2$), apply correction $\mathbf{w} = \mathbf{w} + \mathbf{x}$ $\because \mathbf{w\cdot x < 0}$ (you can check the angle visually) }
@@ -1925,7 +1925,7 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \begin{itemize}\justifying
 \item $w^*$ is some optimal solution which exists but we don't know what it is
 \item<13-> We do not make a correction at every time-step 
-\item<14-> We make a correction only if $w^T\cdot p_i \leq 0$ at that time step
+\item<14-> We make a correction only if $w^T\cdot p_i < 0$ at that time step
 \item<15-> So at time-step $t$ we would have made only $k$ ($\leq t$) corrections  
 \item<16-> Every time we make a correction a quantity  $\delta$ gets added to the numerator
 \item<17-> So by time-step $t$, a quantity $k\delta$ gets added to the numerator
@@ -1937,7 +1937,7 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \begin{overlayarea}{\textwidth}{\textheight}
 \textbf{Proof:}
 \begin{itemize}\justifying
-\item<2-> Now suppose at time step $t$ we inspected the point $p_i$ and found that $w^T\cdot p_i \leq 0$
+\item<2-> Now suppose at time step $t$ we inspected the point $p_i$ and found that $w^T\cdot p_i < 0$
 \item<3-> We make a correction $w_{t+1} = w_t + p_i$
 \item<4-> Let $\beta$ be the angle between $w^*$ and $w_{t+1}$
 \vspace{-0.1in}
@@ -1970,12 +1970,12 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \onslide<3->{Numerator &\geq w^*\cdot w_{0} + k\delta \quad (\textit {proved by induction}) \\}
 \onslide<4->{Denominator^2 &= ||w_{t+1}||^2 \\}
 \onslide<5->{&= (w_t + p_i)\cdot(w_t + p_i) \\}
-\onslide<6->{&= ||w_t||^2 + 2 w_t \cdot p_i + ||p_i||^2) \\}
-\onslide<7->{&\leq ||w_t||^2 + ||p_i||^2 \quad (\because w_t \cdot p_i \leq 0) \\}
-\onslide<8->{&\leq ||w_t||^2 + 1 \quad (\because ||p_i||^2 = 1) \\}
-\onslide<9->{&\leq (||w_{t-1}||^2 + 1) + 1 \\}
-\onslide<10->{&\leq ||w_{t-1}||^2 + 2 \\}
-\onslide<11->{&\leq ||w_{0}||^2 + (k) \quad (\textit {By same observation that we made about $\delta$})}
+\onslide<6->{&= ||w_t||^2 + 2 w_t \cdot p_i + ||p_i||^2 \\}
+\onslide<7->{&< ||w_t||^2 + ||p_i||^2 \quad (\because w_t \cdot p_i < 0) \\}
+\onslide<8->{&< ||w_t||^2 + 1 \quad (\because ||p_i||^2 = 1) \\}
+\onslide<9->{&< (||w_{t-1}||^2 + 1) + 1 \\}
+\onslide<10->{&< ||w_{t-1}||^2 + 2 \\}
+\onslide<11->{&< ||w_{0}||^2 + (k) \quad (\textit {By same observation that we made about $\delta$})}
 \end{align*}
 \end{overlayarea}
 
@@ -1993,7 +1993,7 @@ cos \alpha = \frac{\mathbf{w}^T\mathbf{x}}{||\mathbf{w}||||\mathbf{x}||}
 \onslide<1->{\textit{So far we have,}\quad w^T\cdot p_i &\leq 0 \quad \textit{(and hence we made the correction)} \\}
 \onslide<1->{cos \beta &= \frac{w^*\cdot w_{t+1}}{||w_{t+1}||} \quad (\textit{by definition}) \\}
 \onslide<1->{Numerator &\geq w^*\cdot w_{0} + k\delta \quad (\textit {proved by induction}) \\}
-\onslide<1->{Denominator^2 &\leq ||w_{0}||^2 + k \quad (\textit {By same observation that we made about $\delta$}) \\}
+\onslide<1->{Denominator^2 & < ||w_{0}||^2 + k \quad (\textit {By same observation that we made about $\delta$}) \\}
 \onslide<2->{cos \beta &\geq \frac{w^*\cdot w_{0} + k\delta}{\sqrt{||w_{0}||^2 + k}} \\}
 \end{align*}
 \vspace{-0.5in}
@@ -2097,10 +2097,10 @@ $1$ & $1$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$\\
 \node at (2.2, 2.3) {$(1,1)$};
 %\onslide<8->{\node at (-0.1, 1.0) {$-1 + 1.1x_1 + 1.1x_2 = 0$};}
 
-\filldraw[blue] (0,0) circle (2pt);
-\filldraw[red] (0,2) circle (2pt);
-\filldraw[red] (2,0) circle (2pt);
-\filldraw[blue] (2,2) circle (2pt);
+\filldraw[red] (0,0) circle (2pt);
+\filldraw[blue] (0,2) circle (2pt);
+\filldraw[blue] (2,0) circle (2pt);
+\filldraw[red] (2,2) circle (2pt);
 \end{tikzpicture}
 }
 
@@ -2254,7 +2254,7 @@ $1$ & $1$ & 0 & $w_0 + \sum_{i=1}^{2} w_i x_i < 0$\\
 \end{frame}
 
   \begin{frame}
-    \myheading{Module 2.8: Representation Power of a Network of Perceptrons}
+    \myheading{Module 2.8: Network of Perceptrons}
   \end{frame}
 
 \begin{frame}
