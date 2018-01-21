@@ -98,7 +98,7 @@
 					\foreach \n in {0,...,44} {%
 							\pgfmathsetmacro\result{int(\n + 6)}
 							\pgfmathsetmacro\t{int(\n + 3)}
-							\only<\t>{$w = \result, b = 0, \t$}
+							\only<\t>{$w = \result, b = 0 $}
 						}
 				}
 				\only<45->{
@@ -151,7 +151,7 @@
 
 \begin{frame}
 	\begin{figure}
-		\includegraphics[scale=0.5]{images/module5/Plots/nn2d}
+		\includegraphics[scale=0.4]{images/module5/Plots/sig_add}
 	\end{figure}
 \end{frame}
 
@@ -196,7 +196,7 @@
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
-				\item<1-> This is what a 3-dimensional sigmoid looks like
+				\item<1-> This is what a 2-dimensional sigmoid looks like
 				\item<2-> We need to figure out how to get a 3-dimensional tower
 				\item<3-> First, let us set $w_2$ to 0 and see if we can get a two dimensional step function
 				\item<26-> What would happen if we change $b$ ?
@@ -332,13 +332,13 @@
 
 \begin{frame}
 	\begin{figure}
-		\includegraphics[scale=0.25]{images/module5/Plots/nn_step}
+		\includegraphics[scale=0.3]{images/module5/Plots/nn_step}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\begin{figure}
-		\includegraphics[scale=0.25]{images/module5/Plots/nn_g}
+		\includegraphics[scale=0.3]{images/module5/Plots/nn_g}
 	\end{figure}
 \end{frame}
 
