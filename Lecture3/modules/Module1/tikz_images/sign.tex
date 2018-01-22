@@ -8,14 +8,14 @@
 			line width = 2pt,
 			%domain=-2.5:2.5,
 			ylabel=$y$,
-			xlabel=$\sum_{i=1}^{n} w_i x_i$,
+			xlabel=$z{=}\sum_{i=1}^{n} w_i x_i$,
 			label style={scale=2}
 		]
 
 		\addplot[line width = 5pt, domain=-2.5:0,blue] {0};
 		\addplot[line width = 2pt, domain=-0.02:2.5,blue] {1};
 
-		\only<5->{\addplot [smooth,line width = 2pt, mark=none,draw=red] {1/(1+exp(-2.5*\x)};}
+		\addplot [smooth,line width = 2pt, mark=none,draw=red] {1/(1+exp(-2.5*\x)};
 
 		\draw[line width=2pt, blue] (axis cs:0,0) -- (axis cs:0,1);
 		%% Add the asymptotes

@@ -35,10 +35,13 @@ for i in one3:
 
 	ax.zaxis.set_major_locator(LinearLocator(10))
 	ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+	ax.set_xlabel("x1")
+	ax.set_ylabel("x2")
+	ax.set_zlabel("z")
 	#fig.colorbar(surf, shrink=0.5, aspect=5)
 	#plt.savefig("bef.jpg")
 	fig1 = plt.gcf()
 	#plt.show()
-	print i
-	fig1.savefig(str(j)+".jpg")
+	print(i)
+	fig1.savefig(str(j))
 	j = j+1
