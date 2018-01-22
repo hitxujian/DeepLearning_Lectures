@@ -437,27 +437,29 @@
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{figure}
-				\includegraphics<1-2>[scale=0.10]{images/module5/Plots/scatter}
-				\includegraphics<3->[scale=0.10]{images/module5/Plots/sig1.png}
+				\includegraphics<1-2>[scale=0.20]{images/module5/Plots/scatter}
+				\includegraphics<3->[scale=0.35]{images/module5/Plots/sigmoid_plot.png}
 			\end{figure}
 			\vspace{-0.2in}
+			\footnotesize{
 			\begin{itemize}\justifying
 				\item We are interested in separating the blue points from the red points
 				\item<2-> Suppose we use a single sigmoidal neuron to approximate the relation between $x = [x_1, x_2]$ and $y$
 				\item<4-> Obviously, there will be errors (some blue points get classified as 1 and some red points get classified as 0)
-			\end{itemize}
+			\end{itemize}}
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{figure}
-				\includegraphics<5->[scale=0.10]{images/module5/Plots/g2.png}
+				\includegraphics<5->[scale=0.13]{images/module5/Plots/g2.png}
 			\end{figure}
 			\vspace{-0.2in}
+			\footnotesize{
 			\begin{itemize}\justifying
 				\item<5-> This is what we actually want
 				\item<6-> The illustrative proof that we just saw tells us that we can have a neural network with two hidden layers which can approximate the above function by a sum of towers
 				\item<7-> Which means we can have a neural network which can exactly separate the blue points from the red points !!
-			\end{itemize}
+			\end{itemize}}
 		\end{overlayarea}
 	\end{columns}
 \end{frame}
