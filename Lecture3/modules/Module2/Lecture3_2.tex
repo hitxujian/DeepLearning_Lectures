@@ -52,14 +52,14 @@
 		\item<3-> \textbf{Model:} Our approximation of the relation between $\mathbf{x}$ and $y$. For example,
 		      \onslide<4->{
 			      \begin{align*}
-				      \onslide<4->{\hat{y}         & = \frac{1}{1 + e^{-\mathbf{(W^T x)}}}} \\
-				      \onslide<5->{or\quad \hat{y} & = \mathbf{W^Tx}}                     \\
+				      \onslide<4->{\hat{y}         & = \frac{1}{1 + e^{-\mathbf{(w^T x)}}}} \\
+				      \onslide<5->{or\quad \hat{y} & = \mathbf{w^Tx}}                     \\
 				      \onslide<6->{or\quad \hat{y} & = \mathbf{x^TWx}}
 			      \end{align*}
 		      }
-		      \onslide<7->{or just about any function}
-		\item<8-> \textbf{Parameters:} In all the above cases, $\mathbf{W}$ is a parameter which needs to be learned from the data
-		\item<9-> \textbf{Learning algorithm:} An algorithm for learning the parameters ($\mathbf{W}$) of the model (for example, perceptron learning algorithm, gradient descent, etc.)
+		      \onslide<7->{or just about any function}x
+		\item<8-> \textbf{Parameters:} In all the above cases, $w$ is a parameter which needs to be learned from the data
+		\item<9-> \textbf{Learning algorithm:} An algorithm for learning the parameters ($w$) of the model (for example, perceptron learning algorithm, gradient descent, etc.)
 		\item<10-> \textbf{Objective/Loss/Error function:} To guide the learning algorithm \onslide<11->{- the learning algorithm should aim to minimize the loss function}
 	\end{itemize}
 \end{frame}
@@ -71,19 +71,19 @@
 		\item<3-> \textbf{Model:} Our approximation of the relation between $\mathbf{x}$ and $y$ (the probability of liking a movie).
 		      \onslide<4->{
 			      \begin{align*}
-				      \onslide<4->{\hat{y} & = \frac{1}{1 + e^{\mathbf{-(W^T x)}}}} \\
+				      \onslide<4->{\hat{y} & = \frac{1}{1 + e^{\mathbf{-(w^T x)}}}} \\
 			      \end{align*}
 		      }
 		      \vspace{-0.3in}
-		\item<5-> \textbf{Parameter:} $\mathbf{W}$
+		\item<5-> \textbf{Parameter:} $w$
 		\item<6-> \textbf{Learning algorithm:} Gradient Descent [we will see soon]
 		\item<7-> \textbf{Objective/Loss/Error function:} \onslide<8->{One possibility is
 			      %\vspace{-0.1in}
 			      \begin{align*}
-				      \onslide<8->{\mathscr{L}(\mathbf{W}) = \sum_{i=1}^{n} (\hat{y}_i - y_i)^2} \\
+				      \onslide<8->{\mathscr{L}(\mathbf{w}) = \sum_{i=1}^{n} (\hat{y}_i - y_i)^2} \\
 			      \end{align*}
 		      }
 		      %\vspace{-0.1in}
-		      \onslide<9->{The learning algorithm should aim to find a $\mathbf{W}$ which minimizes the above function (squared error between $y$ and $\hat{y}$)}
+		      \onslide<9->{The learning algorithm should aim to find a $w$ which minimizes the above function (squared error between $y$ and $\hat{y}$)}
 	\end{itemize}
 \end{frame}
