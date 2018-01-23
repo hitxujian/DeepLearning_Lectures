@@ -100,7 +100,7 @@
 					\foreach \n in {0,...,44} {%
 							\pgfmathsetmacro\result{int(\n + 6)}
 							\pgfmathsetmacro\t{int(\n + 3)}
-							\only<\t>{$w = \result, b = 0 $}
+							\only<\t>{$w = \result, b = 0 $,$\sigma(x) = \frac{1}{1- \exp^{(wx + b)}}$}
 						}
 				}
 				\only<45->{
@@ -171,7 +171,7 @@
 			\item <1-> What if we have more than one input?
 			\item<2-> Suppose we are trying to take a decision about whether we will find oil at a particular location on the ocean bed(Yes/No)
 			\item<3-> Further, suppose we base our decision on two factors: Salinity ($x_1$) and Pressure ($x_2$)
-			\item<4-> We are given some data and it seems that $y(oil|no-oil)$ is a complex function of $x_1$ and $x_2$
+			\item<4-> We are given some data and it seems that $y(\text{oil}|\text{no-oil})$ is a complex function of $x_1$ and $x_2$
 			\item<5-> We want a neural network to approximate this function
 			\end{itemize}
 		\end{overlayarea}
