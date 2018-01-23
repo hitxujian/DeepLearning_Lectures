@@ -36,6 +36,8 @@ for i in one3:
 
 	ax.zaxis.set_major_locator(LinearLocator(10))
 	ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+	plt.xlabel('x')
+	plt.ylabel('σ(x)')
 	#fig.colorbar(surf, shrink=0.5, aspect=5)
 	#plt.savefig("bef.jpg")
 	fig1 = plt.gcf()
