@@ -1,20 +1,22 @@
 \begin{frame}
-	\myheading{Module 3.5: Representation Power of Multilayer Network of Sigmoid Neurons}
+	\myheading{Module 3.5: Representation Power of a Multilayer Network of Sigmoid Neurons}
 \end{frame}
 
 \begin{frame}
 	\begin{columns}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
 			\textbf{Representation power of a multilayer network of perceptrons}
 			\vspace{0.1in}
-			\onslide<2->{\color{blue}{A multilayer network of perceptrons} \color{black}{} with a single hidden layer can be used to \color{cyan}{represent} \color{black}{} any \color{red}{boolean} \color{black}{} function \color{orange}{precisely (no errors)}}
+			\onslide<2->{\color{blue}{A multilayer network of perceptrons} \color{black}{} with a single hidden layer can be used to \color{cyan}{represent} \color{black}{} any \color{red}{boolean} \color{black}{} function \color{orange}{precisely (no errors)}}\\
 		\end{overlayarea}
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
 			\textbf{Representation power of a multilayer network of sigmoid neurons}
 			\vspace{0.1in}
-			\onslide<3->{\color{blue}{A multilayer network of neurons} \color{black}{} with a single hidden layer can be used to \color{cyan}{approximate} \color{black}{} any \color{red}{continuous} \color{black}{} function  \color{orange}{to any desired precision} \color{black}{}} %($f(x): \mathbb{R}^n \rightarrow \mathbb{R}^m$).  \\
+			\onslide<3->{\color{blue}{A multilayer network of neurons} \color{black}{} with a single hidden layer can be used to \color{cyan}{approximate} \color{black}{} any \color{red}{continuous} \color{black}{} function  \color{orange}{to any desired precision} \color{black}{}} \\%($f(x): \mathbb{R}^n \rightarrow \mathbb{R}^m$).  \\
 			\vspace{0.2in}
 			\onslide<4->{In other words, there is a guarantee that for any function $f(x): \mathbb{R}^n \rightarrow \mathbb{R}^m$, we can always find a neural network (with 1 hidden layer containing enough neurons) whose output g(x) satisfies $|g(x) - f(x) | < \epsilon$ !! \\}
 			\vspace{0.2in}
@@ -110,7 +112,7 @@
 					\end{figure}
 					\foreach \n in {1,...,35} {%
 							\pgfmathsetmacro\result{int(\n + 44)}
-							\only<\result>{$w = 50, b = \n $}
+							\only<\result>{$w = 50, b = \n $, $\sigma(x) = \frac{1}{1- \exp^{(wx + b)}}$}
 						}
 				}
 			\end{onlyenv}
@@ -135,7 +137,7 @@
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
-				\item Now let us see what we get by taking two such sigmoid functions (with different $b$s) and subtracting one from the other
+				\item Now let us see what we get by taking two such sigmoid functions (with different $b'$s) and subtracting one from the other
 				\item<4-> Voila! We have our tower function !!
 			\end{itemize}
 		\end{overlayarea}
@@ -156,7 +158,24 @@
 \end{frame}
 
 \begin{frame}
-	What if we have more than 1 input ?
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\includegraphics[scale=0.35]{images/module5/Plots/g2.png}
+			\end{figure}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+			\item <1-> What if we have more than one input?
+			\item<2-> Suppose we are trying to take a decision about whether we will find oil at a particular location on the ocean bed(Yes/No)
+			\item<3-> Further, suppose we base our decision on two factors: Salinity ($x_1$) and Pressure ($x_2$)
+			\item<4-> We are given some data and it seems that $y(oil|no-oil)$ is a complex function of $x_1$ and $x_2$
+			\item<5-> We want a neural network to approximate this function
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -194,7 +213,7 @@
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
 				\item<1-> This is what a 2-dimensional sigmoid looks like
-				\item<2-> We need to figure out how to get a 3-dimensional tower
+				\item<2-> We need to figure out how to get a tower in this case
 				\item<3-> First, let us set $w_2$ to 0 and see if we can get a two dimensional step function
 				\item<26-> What would happen if we change $b$ ?
 			\end{itemize}
@@ -236,7 +255,7 @@
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
 				\item This is what a 2-dimensional sigmoid looks like
-				\item We need to figure out how to get a 3-dimensional tower
+				\item We need to figure out how to get a tower in this case
 				\item First, let us set $w_2$ to 0 and see if we can get a two dimensional step function
 				\item What would happen if we change $b$ ?
 			\end{itemize}
@@ -290,7 +309,7 @@
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
-				\item<1-> Now let us set $w_1$ to 0 and adjust $w_2$ to get a 3-dimensional step function with a different orientation
+				\item<1-> Now let us set $w_1$ to 0 and adjust $w_2$ to get a 2-dimensional step function with a different orientation
 				\item<26-> And now we change $b$
 			\end{itemize}
 		\end{overlayarea}
@@ -327,7 +346,7 @@
 		\column{0.5\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
-				\item<1-> Now let us set $w_1$ to 0 and adjust $w_2$ to get a 3-dimensional step function with a different orientation
+				\item<1-> Now let us set $w_1$ to 0 and adjust $w_2$ to get a 2-dimensional step function with a different orientation
 				\item<1-> And now we change $b$
 			\end{itemize}
 		\end{overlayarea}
@@ -360,7 +379,7 @@
 			}
 			\only<6->{
 				\begin{figure}
-					\includegraphics[scale=0.3]{./images/module5/Plots/four/t_add}
+					\includegraphics[scale=0.3]{./images/module5/Plots/tower_sigmoid}
 				\end{figure}
 			}
 		\end{overlayarea}

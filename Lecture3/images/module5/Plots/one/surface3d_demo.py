@@ -25,12 +25,12 @@ one2 = np.arange(10,101,1)
 one3 = np.append(one1,one2)
 for i in one3:
 	Z = sigmoid(X, Y, i, 0, 0)
-	#Z1 =  sigmoid(X, Y, 1, 100, -200)
+	Z1 =  sigmoid(X, Y, 3, 3, -2)
 	#Y1 = sigmoid(X, Y, 100, 1, 200)
 	#Y2 = sigmoid(X, Y, 100, 1, -200)
 	fig = plt.figure()
 	ax = fig.gca(projection='3d')
-	surf = ax.plot_surface(X, Y, Z, rstride=1, cstride=1, alpha=0.2,
+	surf = ax.plot_surface(X, Y, Z1, rstride=1, cstride=1, alpha=0.2,
 		                   linewidth=0, antialiased=False)
 	ax.set_zlim(0, 1)
 
@@ -39,5 +39,5 @@ for i in one3:
 	#fig.colorbar(surf, shrink=0.5, aspect=5)
 	#plt.savefig("bef.jpg")
 	fig1 = plt.gcf()
-	#plt.show()
-	fig1.savefig(str(int(i))+".jpg")
+	plt.show()
+	#fig1.savefig(str(int(i))+".jpg")

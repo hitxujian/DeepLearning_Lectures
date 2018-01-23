@@ -21,7 +21,6 @@
 	\end{block}
 \end{frame}
 
-
 \begin{frame}
 	\begin{columns}
 		\column{0.4\textwidth}
@@ -49,7 +48,10 @@
 		\column{0.4\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{center}
-				\only<2->{
+				\only<2-4>{
+					\input{modules/Module1/tikz_images/only_sign}
+				}
+				\only<5->{
 					\input{modules/Module1/tikz_images/sign}
 				}
 			\end{center}
@@ -118,7 +120,8 @@
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{center}
 				Perceptron
-				\input{modules/Module1/tikz_images/sign}
+				\input{modules/Module1/tikz_images/only_sign}
+				\vspace{0.1in}
 				Not smooth, not continuous (at $w0$), \textbf{not differentiable}
 			\end{center}
 		\end{overlayarea}
@@ -128,7 +131,8 @@
 			\begin{center}
 				Sigmoid Neuron
 				\input{modules/Module1/tikz_images/sigmoid_plot}
-				Smooth, continuous, \textbf{differentiable}
+				\vspace{0.1in}\\
+				\onslide<2->{Smooth, continuous, \textbf{differentiable}}
 
 			\end{center}
 		\end{overlayarea}
