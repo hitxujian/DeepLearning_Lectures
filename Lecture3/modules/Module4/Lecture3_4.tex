@@ -26,14 +26,14 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		For ease of notation, let $\Delta\theta = u$, then from Taylor series, we have,
 		\begin{align*}
-			\only<2->{\mathscr{L}(\theta + \eta u) & =  \mathscr{L}(\theta)+ \eta*u^T \nabla\mathscr{L}(\theta) + \frac{\eta^2}{2!}*u^T \nabla^2\mathscr{L}(\theta)u + \frac{\eta^3}{3!}*... + \frac{\eta^4}{4!}*...} \\
-			\only<3->{                             & = \mathscr{L}(\theta)+ \eta*u^T \nabla\mathscr{L}(\theta) \text{  } [\textit{$\eta$ is typically small, so $\eta^2, \eta^3,.. \rightarrow 0$}]}
+			\only<2->{\mathscr{L}(\theta + \eta u) & =  \mathscr{L}(\theta)+ \eta*u^T \nabla_{\theta}\mathscr{L}(\theta) + \frac{\eta^2}{2!}*u^T \nabla^2\mathscr{L}(\theta)u + \frac{\eta^3}{3!}*... + \frac{\eta^4}{4!}*...} \\
+			\only<3->{                             & = \mathscr{L}(\theta)+ \eta*u^T \nabla_{\theta}\mathscr{L}(\theta) \text{  } [\textit{$\eta$ is typically small, so $\eta^2, \eta^3,.. \rightarrow 0$}]}
 		\end{align*}
 		\only<4->{Note that the move ($\eta u$) would be favorable only if,}
 		\begin{align*}
 			\only<4->{ & \mathscr{L}(\theta + \eta u) - \mathscr{L}(\theta) < 0\textit{ }  [\textit{i.e., if the new loss is less than the previous loss}]} \\
 			\only<5->{\intertext {This implies,}}
-			\only<5->{ & u^T \nabla\mathscr{L}(\theta) < 0}
+			\only<5->{ & u^T \nabla_{\theta}\mathscr{L}(\theta) < 0}
 		\end{align*}
 	\end{overlayarea}
 \end{frame}
@@ -42,17 +42,17 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		Okay, so we have,
 		\begin{align*}
-			u^T \nabla\mathscr{L}(\theta) < 0
+			u^T \nabla_{\theta}\mathscr{L}(\theta) < 0
 		\end{align*}
-		\only<1->{But, what is the range of $u^T \nabla\mathscr{L}(\theta)$ ?} \only<2->{Let us see....}\\
-		\only<3->{Let $\beta$ be the angle between $u^T$ and $\nabla\mathscr{L}(\theta)$, then we know that,}
+		\only<1->{But, what is the range of $u^T \nabla_{\theta}\mathscr{L}(\theta)$ ?} \only<2->{Let us see....}\\
+		\only<3->{Let $\beta$ be the angle between $u$ and $\nabla_{\theta}\mathscr{L}(\theta)$, then we know that,}
 		\only<4->{
 			\begin{align*}
-				\only<4->{-1 & \leq cos(\beta) = \frac{u^T \nabla\mathscr{L}(\theta)}{||u||*||\nabla\mathscr{L}(\theta)||} \leq 1}
+				\only<4->{-1 & \leq cos(\beta) = \frac{u^T \nabla_{\theta}\mathscr{L}(\theta)}{||u||*||\nabla_{\theta}\mathscr{L}(\theta)||} \leq 1}
 				%\only<5->{\intertext{Let us assume $u$ and $\mathscr{L}'(\theta)$ are unit vectors}}
-				\only<6->{\intertext{multiply throughout by $k = ||u||*||\nabla\mathscr{L}(\theta)||$ }}
-				\only<6->{-k & \leq k*cos(\beta) = u^T \nabla\mathscr{L}(\theta) \leq k }
-				\only<7->{\intertext{Thus, $\mathscr{L}(\theta + \eta u) - \mathscr{L}(\theta) = u^T \nabla\mathscr{L}(\theta) = k*cos(\beta)$ will be most negative when $cos(\beta) =-1$ \textit{i.e.}, when $\beta$ is $180\degree$}}
+				\only<6->{\intertext{multiply throughout by $k = ||u||*||\nabla_{\theta}\mathscr{L}(\theta)||$ }}
+				\only<6->{-k & \leq k*cos(\beta) = u^T \nabla_{\theta}\mathscr{L}(\theta) \leq k }
+				\only<7->{\intertext{Thus, $\mathscr{L}(\theta + \eta u) - \mathscr{L}(\theta) = u^T \nabla_{\theta}\mathscr{L}(\theta) = k*cos(\beta)$ will be most negative when $cos(\beta) =-1$ \textit{i.e.}, when $\beta$ is $180\degree$}}
 			\end{align*}
 		}
 	\end{overlayarea}
@@ -94,6 +94,7 @@
 					      \While{$t < max\_iterations$}{
 						      $w_{t+1} \leftarrow w_{t} - \eta \nabla w_{t}$\;
 						      $b_{t+1} \leftarrow b_{t} - \eta \nabla b_{t}$\;
+						      $t \leftarrow t+1$\;
 					      }
 					      \caption{gradient\_descent()}
 				      \end{algorithm}
@@ -148,8 +149,8 @@
 					\onslide<6->{ & =\frac{-1}{(1 + e^{-(wx + b)})^2}\frac{\partial}{\partial w}(e^{-(wx + b)})) \\}
 					\onslide<7->{ & =\frac{-1}{(1 + e^{-(wx + b)})^2}*(e^{-(wx + b)})\frac{\partial}{\partial w}(-(wx + b))) \\}
 					\onslide<8->{ & =\frac{-1}{(1 + e^{-(wx + b)})}*\frac{e^{-(wx + b)}}{(1 + e^{-(wx + b)})} *(-x) \\}
-					\onslide<8->{ & =\frac{1}{(1 + e^{-(wx + b)})}*\frac{e^{-(wx + b)}}{(1 + e^{-(wx + b)})} *(x) \\}
-					\onslide<9->{ & =f(x)*(1- f(x))*x}
+					\onslide<9->{ & =\frac{1}{(1 + e^{-(wx + b)})}*\frac{e^{-(wx + b)}}{(1 + e^{-(wx + b)})} *(x) \\}
+					\onslide<10->{ & =f(x)*(1- f(x))*x}
 				\end{align*}
 			\end{overlayarea}
 		\end{column}
