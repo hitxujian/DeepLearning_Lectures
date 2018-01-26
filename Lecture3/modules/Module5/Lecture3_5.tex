@@ -100,7 +100,7 @@
 					\foreach \n in {0,...,44} {%
 							\pgfmathsetmacro\result{int(\n + 6)}
 							\pgfmathsetmacro\t{int(\n + 3)}
-							\only<\t>{$\sigma(x) = \frac{1}{1- e^{-(wx + b)}}$ $w = 50, b = \n $}
+							\only<\t>{$\sigma(x) = \frac{1}{1- e^{-(wx + b)}}$ $w = \n, b = 0 $}
 						}
 				}
 				\only<45->{
@@ -418,13 +418,15 @@
 
 \begin{frame}
 	\begin{figure}
-		\includegraphics[scale=0.3]{images/module5/Plots/nn_step}
+		\vspace{-0.2in}
+		\includegraphics[scale=0.28]{images/module5/Plots/nn_step}
 	\end{figure}
 \end{frame}
 
 \begin{frame}
 	\begin{figure}
-		\includegraphics[scale=0.3]{images/module5/Plots/nn_g}
+		\vspace{-0.2in}
+		\includegraphics[scale=0.28]{images/module5/Plots/nn_g}
 	\end{figure}
 \end{frame}
 
