@@ -46,7 +46,7 @@ if [[ "$4" == "all-modules" ]]; then
 			pdflatex -interaction=nonstopmode modules/temp.tex
 			pdflatex -interaction=nonstopmode modules/temp.tex
 		fi
-		mv temp.pdf modules/Module$i/Lecture1_$i.pdf
+		mv temp.pdf modules/Module$i/Lecture$1_$i.pdf
 	done
 fi
 
