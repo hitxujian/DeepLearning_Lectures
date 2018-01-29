@@ -11,14 +11,14 @@
   \begin{overlayarea}{\textwidth}{\textheight}
     \textbf{Quantities of interest (roadmap for the remaining part):}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item Gradient w.r.t. output units
       \item \alert<1->{Gradient w.r.t. hidden units}
       \item Gradient w.r.t. weights and biases
     \end{itemize}
 
     \begin{align*}
-      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_
       {\substack{\text{Talk to the}\\ \text{weight directly}}}
       =
       \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
@@ -27,12 +27,12 @@
         {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
         \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
         {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}}
-      \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      \underbrace{\frac{\partial a_{1}}{\partial W_{111}}}_
       {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
     \end{align*}
 
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<1-> Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
     \end{itemize}
   \end{overlayarea}
@@ -43,7 +43,7 @@
   \begin{columns}
     \column{0.55\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}%\begin{block}{}
-      % \justifying
+      \justifying
       \textbf{Chain rule along multiple paths:} If a function $p(z)$ can be written as a function of intermediate results $q_i(z)$ then we have :
 
       \visible<2->{
@@ -56,7 +56,7 @@
       \visible<3->{
         In our case:
         \begin{itemize}
-          % \justifying
+          \justifying
           \item<3->$p(z)$ is the loss function $\mathscr{L}(\theta)$
           \item<4->$z = h_{ij}$
           \item<5->$q_m(z) = a_{Lm}$
@@ -81,7 +81,7 @@
     \column{0.55\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}[]
-      % \justifying
+      \justifying
         \item[] $\frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} \visible<2->{ =
                 \mathlarger{\sum_{m=1}^{k}} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} \frac{\partial a_{i+1, m}}{\partial h_{ij}}}$
         \item[]<3-> $\hspace{1cm}= \mathlarger{\sum_{m= 1}^{k}} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1,m,j}$
@@ -145,7 +145,7 @@
       \end{align*}
 
       \begin{itemize}
-        % \justifying
+        \justifying
         \item<12-> We are almost done except that we do not know how to calculate $\nabla_{a_{i+1}} \mathscr{L}(\theta)$ for $i < L-1$
         \item<13-> We will see how to compute that
       \end{itemize}
@@ -165,7 +165,7 @@
     \column{0.5\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{align*}
-        \nabla_{a_{i}} \mathscr{L}(\theta) \visible<2->{                   & =
+        \nabla_\mathbf{a_{i}} \mathscr{L}(\theta) \visible<2->{                   & =
           \begin{bmatrix}
             \visible<3->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{i1}}} \\
             \visible<4->{\vdots}                                               \\
@@ -174,7 +174,7 @@
         \visible<6->{
         \frac{\partial \mathscr{L}(\theta)}{\partial a_{ij}} \visible<7->{ & =  \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} \frac{\partial h_{ij}}{\partial a_{ij}}\\}
         \visible<8->{                                                      & = \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} g^{'}(a_{ij}) \quad [\because h_{ij} = g(a_{ij})]}\\}
-        \visible<9->{ \nabla_{a_{i}} \mathscr{L}(\theta) \visible<10->{    & =
+        \visible<9->{ \nabla_\mathbf{a_{i}} \mathscr{L}(\theta) \visible<10->{    & =
           \begin{bmatrix}
             \visible<11->{\frac{\partial \mathscr{L}(\theta)}{\partial h_{i1}} g^{'}(a_{i1})} \\
             \visible<12->{\vdots}                                                             \\

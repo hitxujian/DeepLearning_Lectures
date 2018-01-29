@@ -122,6 +122,12 @@
   \draw[thin,|-|,yshift=-3pt] (start) -- node[black,fill=white,#5] {#3}(start-|end);
   \draw[thin,|-|,xshift=3pt] (start-|end) -- node[black,fill=white,right] {#4}(end);
 }
+\setcounter{MaxMatrixCols}{20}
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
 \title{CS7015 (Deep Learning): Lecture 4}
 \author{Mitesh M. Khapra}
 \begin{document}
@@ -135,14 +141,4 @@
   \end{frame}
 
   \foreach \n in {1,...,9}{\include{modules/Module\n/Lecture4_\n}}
-
-  % \include{modules/Module1/Lecture4_1}
-  % \include{modules/Module2/Lecture4_2}
-  % \include{modules/Module3/Lecture4_3}
-  % \include{modules/Module4/Lecture4_4}
-  % \include{modules/Module5/Lecture4_5}
-  % \include{modules/Module6/Lecture4_6}
-  % \include{modules/Module7/Lecture4_7}
-  % \include{modules/Module8/Lecture4_8}
-  % \include{modules/Module9/Lecture4_9}
 \end{document}

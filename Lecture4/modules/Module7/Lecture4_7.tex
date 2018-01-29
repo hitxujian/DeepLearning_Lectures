@@ -10,14 +10,14 @@
   \begin{overlayarea}{\textwidth}{\textheight}
     \textbf{Quantities of interest (roadmap for the remaining part):}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item Gradient w.r.t. output units
       \item Gradient w.r.t. hidden units
       \item \alert<1->{Gradient w.r.t. weights and biases}
     \end{itemize}
 
     \begin{align*}
-      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_
       {\substack{\text{Talk to the}\\ \text{weight directly}}}
       =
       {\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
@@ -26,12 +26,12 @@
         {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
         \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
         {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}} 
-      \alert<1->{\underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      \alert<1->{\underbrace{\frac{\partial a_{1}}{\partial W_{111}}}_
         {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}}
     \end{align*}
 
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<1-> Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
     \end{itemize}
   \end{overlayarea}
@@ -42,15 +42,15 @@
   \begin{columns}
     \column{0.6\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
-      % \justifying
+      \justifying
       Recall that,
       \begin{align*}
-        a_k                                                                             & =  b_k + W_k h_{k-1}                                                                                                       \\
-        \visible<2->{a_{ki}                                                             & =  b_{ki} + W_{kij} h_{k-1,j} \\}
-        \visible<3->{\frac{\partial a_{ki}}{\partial W_{kij}}                           & = h_{k-1,j} \\}
-        \visible<4->{\frac{\partial\mathscr{L(\theta)}}{\partial W_{kij}} \visible<5->{ & = \frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} \frac{\partial a_{ki}}{\partial W_{k,i,j}}}\\}
-        \visible<6->{                                                                   & =\frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} h_{k-1,j}\\}
-        \visible<7->{\nabla_{W_K} \mathscr{L(\theta)}                                   & =} \visible<8->{\begin{bmatrix}
+        \mathbf{a_k}                                                                    & =  \mathbf{b_k}  + W_k \mathbf{h_{k-1}} \\
+        % \visible<2->{a_{ki}                                                             & =  b_{ki} + W_{kij} h_{k-1,j} \\}
+        \visible<2->{\frac{\partial a_{ki}}{\partial W_{kij}}                           & = h_{k-1,j} \\}
+        \visible<3->{\frac{\partial\mathscr{L(\theta)}}{\partial W_{kij}} \visible<4->{ & = \frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} \frac{\partial a_{ki}}{\partial W_{k,i,j}}}\\}
+        \visible<5->{                                                                   & =\frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} h_{k-1,j}\\}
+        \visible<6->{\nabla_{W_K} \mathscr{L(\theta)}                                   & =} \visible<7->{\begin{bmatrix}
             \frac{\partial\mathscr{L(\theta)}}{\partial W_{k00}} &
             \frac{\partial\mathscr{L(\theta)}}{\partial W_{k01}}
             & \dots &\dots &   \frac{\partial\mathscr{L(\theta)}}{\partial W_{k0n-1}} \\
@@ -95,7 +95,7 @@
           \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black} \color<4->{blue}{h_{k-1,0}} \color{black} & \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black} \color<5->{red}{h_{k-1,1}} \color{black} & \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black}\color<6->{orange}{h_{k-1,2}} \color{black} \\
            & & \\
           \frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}} \color{black} \color<4->{blue}{h_{k-1,0}}  \color{black}                      & \frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}} \color{black} \color<5->{red}{h_{k-1,1}} \color{black}                       & \frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}} \color{black} \color<6->{orange}{h_{k-1,2}} \color{black}                      \\
-        \end{bmatrix} = \visible<8->{\nabla_{a_k} \mathscr{L}(\theta) \cdot h_{k-1}^T}$
+        \end{bmatrix} = \visible<8->{\nabla_{a_k} \mathscr{L}(\theta) \cdot \mathbf{h_{k-1}}  ^T}$
     }
 
   \end{overlayarea}
@@ -107,22 +107,22 @@
     \column{0.6\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       Finally, coming to the biases
-      \visible <2-> {
         \begin{align*}
-          \visible<2->{a_{ki}                                                & =  b_{ki} + W_{kij} h_{k-1,j} \\}
+          \visible<2->{a_{ki}                                                & =  b_{ki} + \sum_j W_{kij} h_{k-1,j} \\}
           \visible<3->{\frac{\partial \mathscr{L}(\theta)} {\partial b_{ki}} & = \frac{\partial \mathscr{L}(\theta)}{\partial a_{ki}} \frac{\partial a_{ki}} {\partial b_{ki}} \\}
-          \visible<4->{                                                      & = \frac{\partial \mathscr{L}(\theta)}{\partial {a_{ki}}}\\}
-          \visible<5->{\intertext{We can now write the gradient w.r.t. the vector $b_k$}}
-          \visible<6->{\nabla_{b_k}\mathscr{L}(\theta)                       & =
+          \visible<4->{                                                      & = \frac{\partial \mathscr{L}(\theta)}{\partial {a_{ki}}}}
+        \end{align*}
+          \visible<5->{We can now write the gradient w.r.t. the vector $b_k$}
+        \begin{align*}
+          \visible<6->{\nabla_\mathbf{b_k}\mathscr{L}(\theta)                       & =
             \begin{bmatrix}
               \frac{\partial \mathscr{L}(\theta)}{a_{k_0}} \\
               \frac{\partial \mathscr{L}(\theta)}{a_{k_1}} \\
               \vdots                                       \\
               \frac{\partial \mathscr{L}(\theta)}{a_{k_n}}
             \end{bmatrix}}
-          \visible<7->{= \nabla_{a_{\textbf{k}}}\mathscr{L}(\theta)}
+          \visible<7->{= \nabla_{{\mathbf{a_k}}}\mathscr{L}(\theta)}
         \end{align*}
-      }
     \end{overlayarea}
 
     \column{0.4\textwidth}

@@ -8,7 +8,7 @@
 \begin{frame}
   \begin{block}{The story so far...}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item We have introduced feedforward neural networks
       \item We are now interested in finding an algorithm for learning the parameters of this model
     \end{itemize}
@@ -26,7 +26,7 @@
     \column{0.6\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}
-        % \justifying
+        \justifying
         \item Recall our gradient descent algorithm
         \item \visible<3-> {We can write it more concisely as}
             \visible<2-> {
@@ -59,24 +59,90 @@
 \begin{frame}
   \begin{overlayarea}{\textwidth}{\textheight}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<1-> Except that now our $\nabla \theta$ looks much more nasty \hspace{5cm}
-          \vspace{0.2cm}
+          % \vspace{0.2cm}
+  
           \visible<2->{
-            \small{$\begin{bmatrix}
-                  \visible<2->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}   & \visible<3->{\dots}   & \visible<4->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11n}}}   & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{211}} } & \visible<6->{\dots}  & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{21n}} } & \visible<7->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,11}} } & \visible<8->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,1k}} } \\
-                   & & & & & & & & & \\
-                  \visible<5->{ \frac{\partial \mathscr{L}(\theta)}{\partial W_{121}} } & \visible<5->{ \dots } & \visible<5->{ \frac{\partial \mathscr{L}(\theta)}{\partial W_{12n}} } & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{221}}}  & \visible<6->{ \dots} & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{22n}}}  & \visible<7->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,21}}}  & \visible<8->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,2k}} } \\
-                  \visible<5->{\vdots} & \visible<5->{\vdots}  & \visible<5->{\vdots}  & \visible<6->{\vdots} & \visible<6->{\vdots} & \visible<6->{\vdots} & \visible<7->{\vdots} & \visible<8->{\vdots} & \visible<8->{\vdots} & \visible<8->{\vdots} \\
-                  \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{1n1}} }  & \visible<5->{\dots}   & \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{1nn}}}   & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{2n1}}}  & \visible<6->{\dots}  & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{2nn}}}  & \visible<7->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,n1}}}  & \visible<8->{\dots } & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,nk}} } %\\
-                \end{bmatrix}$}
+             {
+            \begin{align*}
+            \hspace{-1cm}
+            \begingroup
+            \setlength\arraycolsep{2pt}
+            \begin{bmatrix}
+                  \visible<2->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}} 
+                    & \visible<3->{\dots}  
+                    & \visible<4->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11n}}}
+                    & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{211}} }
+                    & \visible<6->{\dots}
+                    & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{21n}} }
+                    & \visible<7->{\dots} 
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,11}} }
+                    & \visible<8->{\dots} 
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,1k}} }
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,1k}} }
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{11}} }
+                    & \visible<9->{\dots} 
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{L1}} }
+                    \\
+                   & & & & & & & & & & & & & 
+                    \\
+                  \visible<5->{ \frac{\partial \mathscr{L}(\theta)}{\partial W_{121}} }
+                    & \visible<5->{ \dots }
+                    & \visible<5->{ \frac{\partial \mathscr{L}(\theta)}{\partial W_{12n}} }
+                    & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{221}}}
+                    & \visible<6->{ \dots}
+                    & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{22n}}}
+                    & \visible<7->{\dots} 
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,21}}}
+                    & \visible<8->{\dots}
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,2k}}}
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,2k}}}
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{12}} }
+                    & \visible<9->{\dots}
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{L2}} }
+                    \\
+                  \visible<5->{\vdots} 
+                    & \visible<5->{\vdots}  
+                    & \visible<5->{\vdots}  
+                    & \visible<6->{\vdots} 
+                    & \visible<6->{\vdots} 
+                    & \visible<6->{\vdots} 
+                    & \visible<7->{\vdots} 
+                    & \visible<8->{\vdots} 
+                    & \visible<8->{\vdots} 
+                    & \visible<8->{\vdots} 
+                    & \visible<8->{\vdots} 
+                    & \visible<9->{\vdots} 
+                    & \visible<9->{\vdots} 
+                    & \visible<9->{\vdots}
+                    \\
+                  \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{1n1}} }  
+                    & \visible<5->{\dots}   
+                    & \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{1nn}}}   
+                    & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{2n1}}}  
+                    & \visible<6->{\dots}  
+                    & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{2nn}}}  
+                    & \visible<7->{\dots}  
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,n1}}}  
+                    & \visible<8->{\dots } 
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,nk}} } 
+                    & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,nk}} } 
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{1n}} } 
+                    & \visible<9->{\dots} 
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{Ln}} } 
+                    %\\
+                \end{bmatrix}
+                \endgroup
+                \end{align*}
+              }
           }
           \vspace{0.2in}
-      \item<9-> ... and similar entries for partial derivatives w.r.t. the elements of $b_1, b_2, ..., b_{L}$
+      % \item<9-> ... and similar entries for partial derivatives w.r.t. the elements of $b_1, b_2, ..., b_{L}$
 
       \item<10-> $\nabla \theta$ is thus composed of \\
-          $\nabla W_1, \nabla W_2, ... \nabla W_L \in \mathbb{R}^{n \times n}, \nabla W_{L} \in \mathbb{R}^{n \times k},$ \\
-          $\nabla b_1, \nabla b_2, ..., \nabla b_n \in \mathbb{R}^n $ and $\nabla b_{L} \in \mathbb{R}^k$
+          $\nabla W_1, \nabla W_2, ... \nabla W_{L-1}\in \mathbb{R}^{n \times n}, \nabla W_{L} \in \mathbb{R}^{n \times k},$ \\
+          $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_{L} \in \mathbb{R}^k$
     \end{itemize}
   \end{overlayarea}
 \end{frame}
@@ -85,7 +151,7 @@
 \begin{frame}
   \begin{block}{We need to answer two questions}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<2-> How to choose the loss function $\mathscr{L}(\theta)$?
       \item<3-> How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
     \end{itemize}

@@ -9,7 +9,7 @@
 \begin{frame}
   \begin{block}{We need to answer two questions}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item How to choose the loss function $\mathscr{L}(\theta)$ ?
       \item \alert<2->{How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_{L} \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_{L} \in \mathbb{R}^k$ ?}
     \end{itemize}
@@ -22,8 +22,8 @@
     \column{0.33\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}
-        % \justifying
-        \item<1-> Let us focus on this one weight.
+        \justifying
+        \item<1-> Let us focus on this one weight ($W_{112}$).
         \item<2-> To learn this weight using SGD we need a formula for $\frac{\partial \mathscr{L}(\theta)}{ \partial W_{112}}$.
         \item<3-> We will see how to calculate this.
       \end{itemize}
@@ -58,7 +58,7 @@
     \column{0.53\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}[<+->]
-      % \justifying
+      \justifying
         \item First let us take the simple case when we have a deep but thin network.
         \item In this case it is easy to find the derivative by chain rule.
       \end{itemize}
@@ -88,7 +88,7 @@
       % }
       % \only<7->{
       %   \begin{itemize}
-      % \justifying
+      \justifying
       %     \item <7->  Observe that if we come up with a generic formula:
       %         \begin{align*}
       %           \visible<7->{ & \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} \text{\hspace{1em}(gradient w.r.t. hidden units)}}     \\
@@ -116,9 +116,9 @@
       \visible{
         \small{
           \begin{itemize}
-            % \justifying
+            \justifying
 
-            % \justifying
+            \justifying
             \item<1-> We get a certain loss at the output and we try to figure out who is responsible for this loss
 
             \item<2-> So, we talk to the output layer and say ``Hey! You are not producing the desired output, better take responsibility".
@@ -146,7 +146,7 @@
     \begin{overlayarea}{\textwidth}{\textheight}
       \footnotesize{
         \begin{itemize}
-          % \justifying
+          \justifying
           \item So, we talk to $W_{L},b_{L}$ and $h_{L}$ and ask them ``What is wrong with you?"
           \item<2-> $W_{L}$ and $b_{L}$ take full responsibility but $h_{L}$ says ``Well, please understand that I am only as good as the pre-activation layer"
           \item<3-> The pre-activation layer in turn says that I am only as good as the hidden layer and weights below me.
@@ -154,16 +154,16 @@
           \item<5-> But instead of talking to them directly, it is easier to talk to them through the hidden layers and output layers (and this is exactly what the chain rule allows us to do)
               \visible<6->{
                 \begin{align*}
-                  \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+                  \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_
                   {\substack{\text{Talk to the}\\ \text{weight directly}}}
                   =
-                  \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial f(x)} \frac{\partial f(x)}{\partial a_{3}}}_
+                  \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
                   {\substack{\text{Talk to the} \\ \text{output layer}}}
                   \underbrace{\frac{\partial a_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial a_{2}}}_
                   {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
                   \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
                   {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}
-                  \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+                  \underbrace{\frac{\partial a_{1}}{\partial W_{111}}}_
                   {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
                 \end{align*}
               }
@@ -183,14 +183,14 @@
   \begin{overlayarea}{\textwidth}{\textheight}
     \visible<2->{\textbf{Quantities of interest (roadmap for the remaining part):}}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<3-> Gradient w.r.t. output units
       \item<4-> Gradient w.r.t. hidden units
       \item<5-> Gradient w.r.t. weights and biases
     \end{itemize}
 
     \begin{align*}
-      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_
       {\substack{\text{Talk to the}\\ \text{weight directly}}}
       =
       \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
@@ -199,12 +199,12 @@
       {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
       \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
       {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}
-      \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      \underbrace{\frac{\partial a_{1}}{\partial W_{111}}}_
       {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
     \end{align*}
     
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<6-> Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
     \end{itemize}
 

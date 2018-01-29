@@ -10,14 +10,14 @@
   \begin{overlayarea}{\textwidth}{\textheight}
     \textbf{Quantities of interest (roadmap for the remaining part):}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item \alert<1->{Gradient w.r.t. output units}
       \item Gradient w.r.t. hidden units
       \item Gradient w.r.t. weights
     \end{itemize}
 
     \begin{align*}
-      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}_
       {\substack{\text{Talk to the}\\ \text{weight directly}}}
       =
       \alert<1->{\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
@@ -26,11 +26,11 @@
       {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
       \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
       {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}
-      \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      \underbrace{\frac{\partial a_{1}}{\partial W_{111}}}_
       {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
     \end{align*}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
     \end{itemize}
 
@@ -108,13 +108,13 @@
         \visible<1-> {\frac{\partial \mathscr{L}(\theta)}{\partial a_{Li}} & = \frac{\partial (-\log \hat{y}_\ell)}{\partial a_{Li}}}                                                     \\
         \visible<2-> {                                                     & = \frac{\partial (-\log \hat{y}_\ell)}{\partial \hat{y}_\ell} \frac{\partial \hat{y}_\ell}{\partial a_{Li}}}
       \end{align*}
-      \visible<3-> {Does $\hat{y}_\ell$ depend on $a_{Li}$ ? Indeed, it does.}
-      \visible<4-> {
+      \visible<3-> {Does $\hat{y}_\ell$ depend on $a_{Li}$ ?} \visible<4->{Indeed, it does.}
+      \visible<5-> {
         \begin{align*}
           \hat{y}_\ell = \frac{exp(a_{L\ell})}{\sum_i exp(a_{Li})}
         \end{align*}
       }
-      \visible<5-> {\noindent Having established this, we will now derive the full expression on the next slide}
+      \visible<6-> {\noindent Having established this, we will now derive the full expression on the next slide}
     \end{overlayarea}
 
     \column{0.5\textwidth}
@@ -180,9 +180,9 @@
           \visible<9->{
             & = \frac{-1}{\hat{y}_{\ell}}
             \big(
-            \mathbbm{1}_{(\ell = i)} f(\mathbf{x})_{\ell}
+            \mathbbm{1}_{(\ell = i)} \hat{y}_{\ell}
             -
-            f(\mathbf{x})_{\ell} f(\mathbf{x})_i
+            \hat{y}_{\ell} \hat{y}_i
             \big) } \\
           \visible<10->{
             & = -\big(
@@ -225,12 +225,12 @@
 
       \vspace{0.42cm}
       \begin{itemize}
-        % \justifying
+        \justifying
         \item[]<2-> $\mathbf{\nabla_{a_{L}}} \visible<3->{ =
                 \begin{bmatrix}
-                  \visible<3->{\frac{\partial \mathscr{L}(\theta)}{\partial a_1}}   \\
+                  \visible<3->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{L1}}}   \\
                   \visible<4->{\vdots}                                              \\
-                  \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial a_k}} \\
+                  \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{Lk}}} \\
                 \end{bmatrix} }
               \visible<6->{ = \begin{bmatrix}
                   \visible<7->{ - (\mathbbm{1}_{\ell = 1} - \hat{y}_1)}       \\

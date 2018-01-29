@@ -31,7 +31,7 @@ if [[ $? == 1 ]]; then
 fi
 us="_"
 if [[ "$4" == "all-modules" ]]; then
-	for i in {1..8}
+	for i in {1..9}
 	do
 		if [[ "$i" == "packages.tex" ]]; then
 			continue

@@ -11,7 +11,7 @@
 \begin{frame}
   \begin{block}{We need to answer two questions}
     \begin{itemize}
-      % \justifying
+      \justifying
       \item \alert<2>{How to choose the loss function $\mathscr{L}(\theta)$ ?} \color{black}
       \item How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
     \end{itemize}
@@ -32,7 +32,7 @@
     \column{0.5\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}[<+->]
-      % \justifying
+      \justifying
         \item The choice of loss function depends on the problem at hand
         \item We will illustrate this with the help of two examples
         \item Consider our movie example again but this time we are interested in predicting ratings
@@ -61,14 +61,14 @@
     \column{0.5\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}[<+->]
-      % \justifying
+      \justifying
         \item A related question: What should the output function `$O$' be if $y_i \in \mathbb{R}$?
         \item More specifically, can it be the logistic function?
         \item No, because it restricts $\hat{y}_i$ to a value between $0$ \& $1$ but we want $\hat{y}_i \in \mathbb{R}$
-        \item So, in such cases it makes sense to have `$O$' as identity function
+        \item So, in such cases it makes sense to have `$O$' as linear function
             \begin{align*}
               f(x) & = h_{L} = O(a_{L})             \\
-                 & = a_{L} = W_{L}h_{L-1} + b_{L}
+                  &= W_{O}a_{L} + b_{O}
             \end{align*}
 
         \item $\hat{y}_i = f(x_i)$ is no longer bounded between 0 and 1
@@ -93,7 +93,7 @@
     \column{0.5\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}[<+->]
-      % \justifying
+      \justifying
         \item Now let us consider another problem for which a different loss function would be appropriate
         \item Suppose we want to classify an image into $1$ of $k$ classes
         \item Here again we could use the squared error loss to capture the deviation
@@ -120,17 +120,17 @@
     \column{0.5\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}
-        % \justifying
+        \justifying
         \item<1-> Notice that $y$ is a probability distribution
         \item<2-> Therefore we should also ensure that $\hat{y}$ is a probability distribution
         \item<3-> What choice of the output activation `$O$' will ensure this ?
             \vspace{-0.1in}
             \begin{align*}
               a_{L}               & = W_{L}h_{L-1} + b_{L}                                            \\
-              \visible<4->{f(x)_j & = O(a_{L})_j = \frac{e^{a_{L, j}}}{\sum_{j'=1}^{k} e^{a_{L,j'}}}}
+              \visible<4->{\hat{y}_j & = O(a_{L})_j = \frac{e^{a_{L, j}}}{\sum_{i=1}^{k} e^{a_{L,i}}}}
             \end{align*}
             % \vspace{-0.1in}
-            \visible<4->{$O(a_{L})_j$ is the $j^{th}$ element of $\hat{y}$\\ $a_{L,j}$ is the $j^{th}$ element of the vector $a_{L}$.}
+            \visible<4->{$O(a_{L})_j$ is the $j^{th}$ element of $\hat{y}$ and $a_{L,j}$ is the $j^{th}$ element of the vector $a_{L}$.}
         \item<5-> This function is called the \textit{softmax} function
       \end{itemize}
     \end{overlayarea}
@@ -149,7 +149,7 @@
     \column{0.5\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}
-        % \justifying
+        \justifying
         \item<1-> Now that we have ensured that both $y$ \& $\hat{y}$ are probability distributions can you think of a function which captures the difference between them?
         \item<2-> Cross-entropy \begin{equation*}
               \mathscr{L}(\theta) = - \sum_{c=1}^{k} y_c \log \hat{y}_c
@@ -157,7 +157,7 @@
         \item<3-> Notice that \begin{align*}
               y_c                 & = 1 \hspace{0.5cm} \text{if $c=\ell$ (the true class label)} \\
                         & = 0 \hspace{0.5cm} \text{otherwise}                          \\
-              \mathscr{L}(\theta) & = - \log \hat{y}_{\ell}
+              \therefore~~ &\mathscr{L}(\theta)  = - \log \hat{y}_{\ell}
             \end{align*}
       \end{itemize}
     \end{overlayarea}
@@ -177,11 +177,11 @@
     \column{0.65\textwidth}
     \begin{overlayarea}{\textwidth}{\textheight}
       \begin{itemize}[<+->]
-      % \justifying
+      \justifying
         \item So, for classification problem (where you have to choose $1$ of $K$ classes), we use the following objective function
           \begin{align*}
-                        \underset{\theta}{\text{minimize}} ~~~~~~\mathscr{L}_\theta &= -\log \hat{y}_{\ell} \\ %\{- \log \hat{y}_{\ell}\}$ \\ 
-              \text{or}~~~~~~\underset{\theta}{\text{maximize}} ~~ -\mathscr{L}_\theta &=  \log \hat{y}_{\ell}    %\{- \log \hat{y}_{\ell}\}$ \\ 
+                        \underset{\theta}{\text{minimize}} ~~~~~~\mathscr{L}(\theta) &= -\log \hat{y}_{\ell} \\ %\{- \log \hat{y}_{\ell}\}$ \\ 
+              \text{or}~~~~~~\underset{\theta}{\text{maximize}} ~~ -\mathscr{L}(\theta) &=  \log \hat{y}_{\ell}    %\{- \log \hat{y}_{\ell}\}$ \\ 
           \end{align*}
           % \hspace{2cm}
           % \hspace{2cm} 
@@ -220,7 +220,7 @@
     \end{center}
 
     \begin{itemize}
-      % \justifying
+      \justifying
       \item<6-> Of course, there could be other loss functions depending on the problem at hand but the two loss functions that we just saw are encountered very often
       \item<7-> For the rest of this lecture we will focus on the case where the output activation is a softmax function and the loss function is cross entropy
     \end{itemize}
