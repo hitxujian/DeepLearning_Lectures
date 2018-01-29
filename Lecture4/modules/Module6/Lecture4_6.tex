@@ -1,0 +1,194 @@
+\savestack{\nnhiddencompone}{\input{modules/Module6/tikz_images/nn_hidden_comp1.tex}}
+\savestack{\nnhiddencomp}{\input{modules/Module6/tikz_images/nn_hidden_comp.tex}}
+\savestack{\nnhiddensimp}{\input{modules/Module6/tikz_images/nn_hidden_simp.tex}}
+
+\begin{frame}
+  \myheading{Module 4.6: Backpropagation: Computing Gradients w.r.t. Hidden Units}
+\end{frame}
+
+%Slide 31
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \textbf{Quantities of interest (roadmap for the remaining part):}
+    \begin{itemize}
+      % \justifying
+      \item Gradient w.r.t. output units
+      \item \alert<1->{Gradient w.r.t. hidden units}
+      \item Gradient w.r.t. weights and biases
+    \end{itemize}
+
+    \begin{align*}
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      {\substack{\text{Talk to the}\\ \text{weight directly}}}
+      =
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
+        {\substack{\text{Talk to the} \\ \text{output layer}}}
+      \alert<1->{\underbrace{\frac{\partial a_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial a_{2}}}_
+        {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
+        \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
+        {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}}
+      \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
+    \end{align*}
+
+    \begin{itemize}
+      % \justifying
+      \item<1-> Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
+    \end{itemize}
+  \end{overlayarea}
+\end{frame}
+
+%Slide 32
+\begin{frame}
+  \begin{columns}
+    \column{0.55\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}%\begin{block}{}
+      % \justifying
+      \textbf{Chain rule along multiple paths:} If a function $p(z)$ can be written as a function of intermediate results $q_i(z)$ then we have :
+
+      \visible<2->{
+        \begin{align*}
+          \frac{\partial p(z)}{\partial z} & =
+          \mathlarger{\sum_m} \frac{\partial p(z)}{\partial q_m(z)} \frac{\partial q_m(z)}{\partial z}
+        \end{align*}
+      }
+
+      \visible<3->{
+        In our case:
+        \begin{itemize}
+          % \justifying
+          \item<3->$p(z)$ is the loss function $\mathscr{L}(\theta)$
+          \item<4->$z = h_{ij}$
+          \item<5->$q_m(z) = a_{Lm}$
+        \end{itemize}
+      }
+    \end{overlayarea}
+    \column{0.45\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnhiddensimpcontent}}
+    \end{overlayarea}
+    % \include{nn_hidden_simp}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[b]
+    \visible<1>{\tiny Intentionally left blank}
+\end{frame}
+
+%Slide 33
+\begin{frame}
+  \begin{columns}
+    \column{0.55\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}[]
+      % \justifying
+        \item[] $\frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} \visible<2->{ =
+                \mathlarger{\sum_{m=1}^{k}} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} \frac{\partial a_{i+1, m}}{\partial h_{ij}}}$
+        \item[]<3-> $\hspace{1cm}= \mathlarger{\sum_{m= 1}^{k}} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1,m,j}$
+      \end{itemize}
+      \visible<4->{Now consider these two vectors,}
+      \begin{align*}
+        \visible<5-> {\nabla_{a_{i+1}} \mathscr{L}(\theta) =
+        \begin{bmatrix}
+            % Need to change this on clarification
+            \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1,1} }}  \\
+            \visible<8->{\vdots}                                                    \\
+            \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1,k}}}
+          \end{bmatrix}; \visible<5->{W_{i+1,\hspace{0.025in}\cdot\hspace{0.025in}, j}} = \begin{bmatrix}
+            \visible<7->{ W_{i+1,1,j}}   \\
+            \visible<8->{\vdots}         \\
+            \visible<10->{W_{i+1,k,j}}
+          \end{bmatrix}}
+      \end{align*}
+      \visible<12->{$W_{i+1,\hspace{0.025in}\cdot\hspace{0.025in}, j}$ is the $j$-th column of $W_{i+1}$; \visible<13->{see that,}}
+      \begin{align*}
+        \visible<14-> {(W_{i+1,\hspace{0.025in}\cdot\hspace{0.025in}, j})^T \nabla_{a_{i+1}} \mathscr{L}(\theta) =} \visible<15->{\mathlarger{\sum_{m=1}^{k}} \frac{\partial \mathscr{L}(\theta)}{\partial a_{i+1, m}} W_{i+1,m,j} }
+      \end{align*}
+    \end{overlayarea}
+    \column{0.45\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnhiddensimpcontent}}
+      \begin{center}
+        $a_{i+1} = W_{i+1}h_{ij}+b_{i+1}$
+      \end{center}
+    \end{overlayarea}
+    % \include{nn_hidden_simp}
+  \end{columns}
+\end{frame}
+
+%Slide 34
+\begin{frame}
+  \begin{columns}
+    \column{0.61\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{align*}
+        \textit{We have,} \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} & =  (W_{i+1,.,j})^T \nabla_{a_{i+1}} \mathscr{L}(\theta)
+      \end{align*}
+      \visible<2->{We can now write the gradient w.r.t. $h_i$}
+      \begin{align*}
+        \visible<2->{\nabla_{\mathbf{h_i}} \mathscr{L}(\theta)} \visible<3->{ & =
+          \begin{bmatrix}
+            % Need to change this on clarification
+            \visible<4->{\frac{\partial \mathscr{L}(\theta)}{\partial h_{i1}}} \\
+            \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial h_{i2}}} \\
+            \visible<8->{\vdots}                                               \\
+            \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial h_{in}}}
+          \end{bmatrix} =
+          \begin{bmatrix}
+            % Need to change this on clarification
+            \visible<5->{(W_{i+1,\hspace{0.025in}\cdot\hspace{0.025in}, 1})^T \nabla_{a_{i+1}} \mathscr{L}(\theta)}  \\
+            \visible<7->{(W_{i+1,\hspace{0.025in}\cdot\hspace{0.025in}, 2})^T \nabla_{a_{i+1}} \mathscr{L}(\theta)}  \\
+            \visible<8->{\vdots}                                                                                     \\
+            \visible<10->{(W_{i+1,\hspace{0.025in}\cdot\hspace{0.025in}, n})^T \nabla_{a_{i+1}} \mathscr{L}(\theta)}
+          \end{bmatrix}} \\
+        \visible<11->{                                          & = (W_{i+1})^T (\nabla_{a_{i+1}} \mathscr{L}(\theta))}
+      \end{align*}
+
+      \begin{itemize}
+        % \justifying
+        \item<12-> We are almost done except that we do not know how to calculate $\nabla_{a_{i+1}} \mathscr{L}(\theta)$ for $i < L-1$
+        \item<13-> We will see how to compute that
+      \end{itemize}
+    \end{overlayarea}
+    \column{0.39\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnhiddencompcontent}}
+    \end{overlayarea}
+    %   \include{nn_hidden_comp}
+  \end{columns}
+\end{frame}
+
+
+%Slide 35
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{align*}
+        \nabla_{a_{i}} \mathscr{L}(\theta) \visible<2->{                   & =
+          \begin{bmatrix}
+            \visible<3->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{i1}}} \\
+            \visible<4->{\vdots}                                               \\
+            \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{in}}}
+          \end{bmatrix} \\}
+        \visible<6->{
+        \frac{\partial \mathscr{L}(\theta)}{\partial a_{ij}} \visible<7->{ & =  \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} \frac{\partial h_{ij}}{\partial a_{ij}}\\}
+        \visible<8->{                                                      & = \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} g^{'}(a_{ij}) \quad [\because h_{ij} = g(a_{ij})]}\\}
+        \visible<9->{ \nabla_{a_{i}} \mathscr{L}(\theta) \visible<10->{    & =
+          \begin{bmatrix}
+            \visible<11->{\frac{\partial \mathscr{L}(\theta)}{\partial h_{i1}} g^{'}(a_{i1})} \\
+            \visible<12->{\vdots}                                                             \\
+            \visible<13->{\frac{\partial \mathscr{L}(\theta)}{\partial h_{in}}
+            g^{'}(a_{in})}
+          \end{bmatrix} \\}
+        \visible<14->{                                                     & = \nabla_{h_{i}} \mathscr{L}(\theta) \odot [ \dots , g^{'}(a_{ik}),\dots]}}
+      \end{align*}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnhiddencomponecontent}}
+    \end{overlayarea}
+    % \include{nn_hidden_comp1}
+  \end{columns}
+\end{frame}

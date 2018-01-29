@@ -1,0 +1,94 @@
+\savestack{\nn}{\input{modules/Module2/tikz_images/nn.tex}}
+
+\begin{frame}
+  \myheading{Module 4.2: Learning Parameters of Feedforward Neural Networks (Intuition)}
+\end{frame}
+
+%Slide 08
+\begin{frame}
+  \begin{block}{The story so far...}
+    \begin{itemize}
+      % \justifying
+      \item We have introduced feedforward neural networks
+      \item We are now interested in finding an algorithm for learning the parameters of this model
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%Slide 09
+\begin{frame}
+  \begin{columns}
+    \column{0.4\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nncontent}}
+    \end{overlayarea}
+
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}
+        % \justifying
+        \item Recall our gradient descent algorithm
+        \item \visible<3-> {We can write it more concisely as}
+            \visible<2-> {
+              \begin{algorithm}[H]
+                \SetAlgoLined
+                $t \leftarrow 0$\;
+                $max\_iterations\leftarrow 1000$\;
+                \only<2-3>{$Initialize \quad w_0, b_0$\;}
+                \only<4-7>{$Initialize \quad \theta_0 = [w_0, b_0]$\;}
+                \only<8>{$Initialize \quad \alert<8>{\theta_0 = [W_1^{0}, ..., W_{L}^{0}, b_1^{0}, ..., b_{L}^{0}]}$\;}
+                \While{$t\texttt{++} < max\_iterations$}{
+                  \only<2-3>{$w_{t+1} \leftarrow w_{t} - \eta \nabla w_{t}$\;}
+                  \only<2-3>{$b_{t+1} \leftarrow b_{t} - \eta \nabla b_{t}$\;}
+                  \only<4->{$\theta_{t+1} \leftarrow \theta_{t} - \eta \nabla \theta_{t}$\;}
+                }
+                \caption{gradient\_descent()}
+              \end{algorithm}
+            }
+        \item<5-> where $\nabla \theta_{t} = \big[\frac{\partial \mathscr{L}(\theta)}{\partial w_t}, \frac{\partial \mathscr{L}(\theta)}{\partial b_t}\big]^{T}$
+        \item<6-> Now, in this feedforward neural network, instead of $\theta = [w, b]$ we have $\theta = {W_{1}, W_2, .., W_{L}, b_1, b_2, .., b_{L}}$
+        \item<7-> We can still use the same algorithm for learning the parameters of our model
+
+      \end{itemize}
+    \end{overlayarea}
+
+  \end{columns}
+\end{frame}
+
+%Slide 10
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \begin{itemize}
+      % \justifying
+      \item<1-> Except that now our $\nabla \theta$ looks much more nasty \hspace{5cm}
+          \vspace{0.2cm}
+          \visible<2->{
+            \small{$\begin{bmatrix}
+                  \visible<2->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{111}}}   & \visible<3->{\dots}   & \visible<4->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11n}}}   & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{211}} } & \visible<6->{\dots}  & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{21n}} } & \visible<7->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,11}} } & \visible<8->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,1k}} } \\
+                   & & & & & & & & & \\
+                  \visible<5->{ \frac{\partial \mathscr{L}(\theta)}{\partial W_{121}} } & \visible<5->{ \dots } & \visible<5->{ \frac{\partial \mathscr{L}(\theta)}{\partial W_{12n}} } & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{221}}}  & \visible<6->{ \dots} & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{22n}}}  & \visible<7->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,21}}}  & \visible<8->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,2k}} } \\
+                  \visible<5->{\vdots} & \visible<5->{\vdots}  & \visible<5->{\vdots}  & \visible<6->{\vdots} & \visible<6->{\vdots} & \visible<6->{\vdots} & \visible<7->{\vdots} & \visible<8->{\vdots} & \visible<8->{\vdots} & \visible<8->{\vdots} \\
+                  \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{1n1}} }  & \visible<5->{\dots}   & \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{1nn}}}   & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{2n1}}}  & \visible<6->{\dots}  & \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{2nn}}}  & \visible<7->{\dots}  & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,n1}}}  & \visible<8->{\dots } & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,nk}} } %\\
+                \end{bmatrix}$}
+          }
+          \vspace{0.2in}
+      \item<9-> ... and similar entries for partial derivatives w.r.t. the elements of $b_1, b_2, ..., b_{L}$
+
+      \item<10-> $\nabla \theta$ is thus composed of \\
+          $\nabla W_1, \nabla W_2, ... \nabla W_L \in \mathbb{R}^{n \times n}, \nabla W_{L} \in \mathbb{R}^{n \times k},$ \\
+          $\nabla b_1, \nabla b_2, ..., \nabla b_n \in \mathbb{R}^n $ and $\nabla b_{L} \in \mathbb{R}^k$
+    \end{itemize}
+  \end{overlayarea}
+\end{frame}
+
+%Slide 11
+\begin{frame}
+  \begin{block}{We need to answer two questions}
+    \begin{itemize}
+      % \justifying
+      \item<2-> How to choose the loss function $\mathscr{L}(\theta)$?
+      \item<3-> How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
+    \end{itemize}
+  \end{block}
+\end{frame}
+

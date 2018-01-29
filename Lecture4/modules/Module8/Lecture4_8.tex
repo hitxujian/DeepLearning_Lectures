@@ -1,0 +1,77 @@
+\begin{frame}
+  \myheading{Module 4.8: Backpropagation: Pseudo code}
+\end{frame}
+
+%Slide 40
+\begin{frame}
+  \vspace{1cm}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    Finally, we have all the pieces of the puzzle
+    \begin{align*}
+      \visible<2->{\nabla_{a_{L}}\mathscr{L(\theta)}                                    & \quad \text{(gradient w.r.t. output layer)}                                  \\~\\}
+      \visible<3->{\nabla_{h_{k}}\mathscr{L(\theta)}, \nabla_{a_{k}}\mathscr{L(\theta)} & \quad \text{(gradient w.r.t. hidden layers $0<k<L$)}                        \\~\\}
+      \visible<4->{\nabla_{W_{k}}\mathscr{L(\theta)}, \nabla_{b_{k}}\mathscr{L(\theta)} & \quad \text{(gradient w.r.t. weights and biases)} \\}
+    \end{align*}
+    \visible<5->{We can now write the full learning algorithm}
+  \end{overlayarea}
+\end{frame}
+
+%Slide 41
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \begin{algorithm}[H]
+      \SetAlgoLined
+      $t \leftarrow 0$\;
+      $max\_iterations\leftarrow 1000$\;
+      $Initialize \quad \color{black}{\theta_0 = [W_1^{0}, ..., W_{L}^{0}, b_1^{0}, ..., b_{L}^{0}]}$\;
+      \color{black}
+      \visible<2->{\While{$t\texttt{++} < max\_iterations$}{
+          \visible<3->{$h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, \hat{y} = forward\_propagation(\theta_t)$\;}
+          \visible<4->{$\nabla \theta_{t} = backward\_propagation(h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, \hat{y})$\;}
+          \visible<5->{$\theta_{t+1} \leftarrow \theta_{t} - \eta \nabla \theta_{t}$\;}
+        }}
+      \caption{gradient\_descent()}
+    \end{algorithm}
+  \end{overlayarea}
+\end{frame}
+
+%Slide 42
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \begin{algorithm}[H]
+      \SetAlgoLined
+      \visible<2->{\For{$k=1$ to $L - 1$}{
+          \visible<3->{$a_k = b_k + W_k h_{k-1}$\;}
+          \visible<4->{$h_k = g(a_k)$\;}
+        }}
+      \visible<5->{$a_{L} = b_L + W_L h_{L-1} $\;}
+      \visible<6->{$\hat{y} = O(a_L) $\;}
+      \caption{forward\_propagation($\theta$)}
+    \end{algorithm}
+  \end{overlayarea}
+\end{frame}
+
+%Slide 43
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    Just do a forward propagation and compute all $h_i$'s, $a_i$'s and $f(x)$
+    \begin{algorithm}[H]
+      \SetAlgoLined
+      \visible<1->{//Compute output gradient \;}
+      \visible<2->{$\nabla_{a_{L}}\mathscr{L(\theta)} = -(e(y)-f(x))$ \;}
+      \visible<3->{\For{$k=L$ to $1$}{
+      \visible<4->{ // Compute gradients w.r.t. parameters \;}
+      \visible<5->{ $\nabla_{W_{k}}\mathscr{L(\theta)}   = \nabla_{a_{k}}\mathscr{L(\theta)} h_{k-1}^{T}$ \;}
+      \visible<6->{ $\nabla_{b_{k}} \mathscr{L(\theta)}   =
+          \nabla_{a_{k}}\mathscr{L(\theta)} $ \;}
+      \visible<7->{ // Compute gradients w.r.t. layer below \;}
+      \visible<8->{$\nabla_{h_{k-1}}\mathscr{L(\theta)} = W_k^T (\nabla_{a_{k}}\mathscr{L(\theta)})$ \;}
+      \visible<9->{// Compute gradients w.r.t. layer below
+        (pre-activation)\; }
+      \visible<10->{$\nabla_{a_{k-1}}\mathscr{L(\theta)} =
+        \nabla_{h_{k-1}}\mathscr{L(\theta)} \odot [\dots,g'(a_{k-1,j}), \dots]$ \; }
+      }}
+      \caption{back\_propagation($h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, \hat{y}$)}
+    \end{algorithm}
+  \end{overlayarea}
+\end{frame}

@@ -1,0 +1,250 @@
+\savestack{\nnoutputone}{\input{modules/Module5/tikz_images/nn_output1.tex}}
+\savestack{\nnoutputtwo}{\input{modules/Module5/tikz_images/nn_output2.tex}}
+
+\begin{frame}
+  \myheading{Module 4.5: Backpropagation: Computing Gradients w.r.t. the Output Units}
+\end{frame}
+
+%Slide 25
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \textbf{Quantities of interest (roadmap for the remaining part):}
+    \begin{itemize}
+      % \justifying
+      \item \alert<1->{Gradient w.r.t. output units}
+      \item Gradient w.r.t. hidden units
+      \item Gradient w.r.t. weights
+    \end{itemize}
+
+    \begin{align*}
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      {\substack{\text{Talk to the}\\ \text{weight directly}}}
+      =
+      \alert<1->{\underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
+        {\substack{\text{Talk to the} \\ \text{output layer}}}}
+      \underbrace{\frac{\partial a_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial a_{2}}}_
+      {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
+      \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
+      {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}
+      \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
+    \end{align*}
+    \begin{itemize}
+      % \justifying
+      \item Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
+    \end{itemize}
+
+  \end{overlayarea}
+\end{frame}
+
+%Slide 26
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      Let us first consider the partial derivative w.r.t. $i$-th output
+      \begin{align*}
+        \visible<2-> {\mathscr{L}(\theta)                                                                            & = - \log \hat{y}_{\ell} \text{\hspace{0.1cm} \footnotesize ($\ell$ = true class label)}} \\
+        % &\ell = \text{true class label}} \\
+        \visible<3->{ \color{red}{\frac{\partial}{\partial \hat{y}_i}\left(\mathscr{L}(\theta)\right)} \color{black} & = }\visible<4->{\frac{\partial}{\partial \hat{y}_i}\left( - \log \hat{y}_{\ell} \right)} \\
+        \visible<5->{                                                                                                & =} \visible<5->{ - \frac{1}{\hat{y}_{\ell}} \textrm{\hspace{0.2cm} if $i=\ell$}}         \\
+        \visible<6->{                                                                                                & = \hspace{0.6cm} 0 \text{\hspace{0.7cm} $otherwise$}}                                    \\
+        \visible<7->{\text{More compactly,} }\\
+        \visible<8->{\frac{\partial}{\partial \hat{y}_i}\left(\mathscr{L}(\theta)\right)                             & = - \frac{\mathbbm{1}_{\left(i=\ell\right)}}{\hat{y}_{\ell}} }
+      \end{align*}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnoutputonecontent}}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 27
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+
+      \begin{align*}
+        \frac{\partial}{\partial \hat{y}_i}\left(\mathscr{L}(\theta)\right)
+          & = - \frac{\mathbbm{1}_{\left(\ell=i\right)}}{\hat{y}_{\ell}}
+      \end{align*}
+      \visible<2->{We can now talk about the gradient w.r.t. the vector $\hat{y}$}
+
+      \begin{align*}
+        \visible<3->{\nabla_{\mathbf{\hat{y}}} \mathscr{L}(\theta) \hspace{0.42cm} & =} \visible<3->{\begin{bmatrix}
+            \visible<4->{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}_1}}     \\
+            \visible<5->{\vdots}                                                      \\
+            \visible<6->{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}_{k}}}
+          \end{bmatrix}} \visible<7->{= -\frac{1}{\hat{y}_{\ell}}}
+        \visible<8->{\begin{bmatrix}
+            \visible<9->{\mathbbm{1}_{\ell=1}}    \\
+            \visible<10->{\mathbbm{1}_{\ell=2}}   \\
+            \visible<11->{\vdots}                 \\
+            \visible<12->{\mathbbm{1}_{\ell=k}}
+          \end{bmatrix}}\\
+        \visible<13->{                                                             & = \frac{1}{e(\ell)}\hat{y}_{\ell}}
+      \end{align*}
+
+      \visible<14->{where $e(\ell)$ is a k-dimensional vector whose $\ell$-th element is $1$ and all other elements are $0$.}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnoutputonecontent}}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 28
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      What we are actually interested in is
+      \begin{align*}
+        \visible<1-> {\frac{\partial \mathscr{L}(\theta)}{\partial a_{Li}} & = \frac{\partial (-\log \hat{y}_\ell)}{\partial a_{Li}}}                                                     \\
+        \visible<2-> {                                                     & = \frac{\partial (-\log \hat{y}_\ell)}{\partial \hat{y}_\ell} \frac{\partial \hat{y}_\ell}{\partial a_{Li}}}
+      \end{align*}
+      \visible<3-> {Does $\hat{y}_\ell$ depend on $a_{Li}$ ? Indeed, it does.}
+      \visible<4-> {
+        \begin{align*}
+          \hat{y}_\ell = \frac{exp(a_{L\ell})}{\sum_i exp(a_{Li})}
+        \end{align*}
+      }
+      \visible<5-> {\noindent Having established this, we will now derive the full expression on the next slide}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnoutputtwocontent}}
+      % \include{nn_output2}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 29
+\begin{frame}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \vspace{-0.5cm}
+      \small{
+        \begin{align*}
+          \visible<1->{
+            \frac{\partial}{\partial a_{Li} } - \log \hat{y}_{\ell}
+            & =}
+          \visible<2->{
+            \frac{-1}{\hat{y}_{\ell}}
+            \frac{\partial}{\partial a_{Li}} \hat{y}_{\ell}} \\
+          \visible<3->{
+            & = \frac{-1}{\hat{y}_{\ell}}
+            \frac{\partial}{\partial a_{Li}} softmax(\mathbf{a}_{L})_{\ell}} \\
+          \visible<4->{
+            & = \frac{-1}{\hat{y}_{\ell}} \frac{\partial}{\partial a_{Li}}
+            \frac{\exp(\mathbf{a}_{L})_{\ell}}{\sum_{i'} \exp(\mathbf{a}_{L})_{\ell}}} \\
+          \visible<6->{
+            & = \frac{-1}{\hat{y}_{\ell}}
+            \Bigg(
+            \frac{\frac{\partial}
+              {\partial a_{Li}} \exp(\mathbf{a}_{L})_{\ell}}
+            {\sum_{i'} \exp(\mathbf{a}_{L})_{i'}}
+            -
+            \frac
+                {\exp(\mathbf{a}_{L})_{\ell}\Big(\frac{\partial}
+              {\partial a_{Li}}
+              \sum_{i'} \exp(\mathbf{a}_{L})_{i'}
+              \Big)}
+                {(\sum_{i'} (\exp(\mathbf{a}_{L})_{i'})^2}
+            \Bigg) } \\
+          \visible<7->{
+            & = \frac{-1}{\hat{y}_{\ell}}
+            \Bigg(
+            \frac{\mathbbm{1}_{(\ell = i)} \exp(\mathbf{a}_{L})_{\ell}}
+            {\sum_{i'} \exp(\mathbf{a}_{L})_{i'}}
+            -
+            \frac{\exp(\mathbf{a}_{L})_{\ell}}
+            {\sum_{i'} \exp(\mathbf{a}_{L})_{i'}}
+            \frac{\exp(\mathbf{a}_{L})_i}
+            {\sum_{i'} \exp(\mathbf{a}_{L})_{i'}}
+            \Bigg)} \\
+          \visible<8->{
+            & = \frac{-1}{\hat{y}_{\ell}}
+            \bigg(
+            \mathbbm{1}_{(\ell = i)} softmax(\mathbf{a}_{L})_{\ell}
+            -
+            softmax(\mathbf{a}_{L})_{\ell} softmax(\mathbf{a}_{L})_{i}
+            \bigg)} \\
+          \visible<9->{
+            & = \frac{-1}{\hat{y}_{\ell}}
+            \big(
+            \mathbbm{1}_{(\ell = i)} f(\mathbf{x})_{\ell}
+            -
+            f(\mathbf{x})_{\ell} f(\mathbf{x})_i
+            \big) } \\
+          \visible<10->{
+            & = -\big(
+            \mathbbm{1}_{(\ell = i)}
+            -
+            f(\mathbf{x})_i
+            \big)}
+        \end{align*}
+      }
+    \end{overlayarea}
+
+    \column{0.4\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \visible<5->{
+        $$
+          \frac{\partial \frac{g(x)}{h(x)}}{\partial x}
+          =
+          \frac{\partial g(x)}{\partial x}
+          \frac{1}{h(x)}
+          -
+          \frac{g(x)}{{h(x)}^2}
+          \frac{\partial h(x)}{\partial x}
+        $$
+      }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 30
+\begin{frame}
+  \begin{columns}
+    \column{0.62\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      So far we have derived the partial derivative w.r.t. the $i$-th element of $\mathbf{a}_{L}$
+      \begin{equation*}
+        \hspace{-2cm}\frac{\partial \mathscr{L}(\theta)}{\partial a_{L,i}} =
+        - (\mathbbm{1}_{\ell = i} - \hat{y}_{\ell})
+      \end{equation*}
+      We can now write the gradient w.r.t. the vector $\mathbf{a}_{L}$
+
+      \vspace{0.42cm}
+      \begin{itemize}
+        % \justifying
+        \item[]<2-> $\mathbf{\nabla_{a_{L}}} \visible<3->{ =
+                \begin{bmatrix}
+                  \visible<3->{\frac{\partial \mathscr{L}(\theta)}{\partial a_1}}   \\
+                  \visible<4->{\vdots}                                              \\
+                  \visible<5->{\frac{\partial \mathscr{L}(\theta)}{\partial a_k}} \\
+                \end{bmatrix} }
+              \visible<6->{ = \begin{bmatrix}
+                  \visible<7->{ - (\mathbbm{1}_{\ell = 1} - \hat{y}_1)}       \\
+                  \visible<8->{- (\mathbbm{1}_{\ell = 2} - \hat{y}_2)}        \\
+                  \visible<9->{\vdots}                                     \\
+                  \visible<10->{- (\mathbbm{1}_{\ell = k} - \hat{y}_{k})} \\
+                \end{bmatrix} }$
+        \item[]<11-> $\hspace{1cm}= - (\mathbf{e}(\ell) - \mathbf{f}(x))$
+      \end{itemize}
+    \end{overlayarea}
+    \column{0.38\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nnoutputtwocontent}}
+      % \include{nn_output2}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}

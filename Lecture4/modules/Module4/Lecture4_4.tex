@@ -1,0 +1,212 @@
+\savestack{\figuretwo}{\input{modules/Module4/tikz_images/figure2.tex}}
+\savestack{\figurethree}{\input{modules/Module4/tikz_images/figure3.tex}}
+
+\begin{frame}
+  \myheading{Module 4.4: Backpropagation (Intuition)}
+\end{frame}
+
+%Slide 19
+\begin{frame}
+  \begin{block}{We need to answer two questions}
+    \begin{itemize}
+      % \justifying
+      \item How to choose the loss function $\mathscr{L}(\theta)$ ?
+      \item \alert<2->{How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_{L} \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_{L} \in \mathbb{R}^k$ ?}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%Slide 20
+\begin{frame}
+  \begin{columns}
+    \column{0.33\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}
+        % \justifying
+        \item<1-> Let us focus on this one weight.
+        \item<2-> To learn this weight using SGD we need a formula for $\frac{\partial \mathscr{L}(\theta)}{ \partial W_{112}}$.
+        \item<3-> We will see how to calculate this.
+      \end{itemize}
+    \end{overlayarea}
+
+    \column{0.33\textwidth}
+
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\figuretwocontent}}
+    \end{overlayarea}
+
+    \column{0.33\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{algorithm}[H]
+        \SetAlgoLined
+        $t \leftarrow 0$\;
+        $max\_iterations\leftarrow 1000$\;
+        $Initialize \quad \theta_0$\;
+        \color{black}
+        \While{$t\texttt{++} < max\_iterations$}{
+          $\theta_{t+1} \leftarrow \theta_{t} - \eta \nabla \theta_{t}$\;
+        }
+        \caption{gradient descent()}
+      \end{algorithm}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 21
+\begin{frame}
+  \begin{columns}
+    \column{0.53\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}[<+->]
+      % \justifying
+        \item First let us take the simple case when we have a deep but thin network.
+        \item In this case it is easy to find the derivative by chain rule.
+      \end{itemize}
+      \begin{align*}
+        \visible<3->{
+        \frac{\partial \mathscr{L}(\theta)}{\partial W_{111}} & = \color<6>{red}{\color<4->{red}{\color<5>{red}{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{L11}}} \color<6>{red}{\frac{\partial a_{L11}}{\partial h_{21}}} \color<5>{red}{\frac{\partial h_{21}}{\partial a_{21}} \frac{\partial a_{21}}{\partial h_{11}}} \color<4->{blue}{\frac{\partial h_{11}}{\partial a_{11}} \frac{\partial a_{11}}{\partial W_{111}}}}}
+        }\\
+        \visible<4->{
+        \frac{\partial \mathscr{L}(\theta)}{\partial W_{111}} & = \color<4->{red}{\frac{\partial \mathscr{L}(\theta)}{\partial h_{11}}}
+          \color<4->{blue}{\frac{\partial h_{11}}{\partial W_{111}}} ~~~~ \color<4->{black}\text{(just compressing the chain rule)}
+        } \\
+        \visible<5->{
+        \frac{\partial \mathscr{L}(\theta)}{\partial W_{211}} & = \frac{\partial \mathscr{L}(\theta)}{\partial h_{21}}
+          \frac{\partial h_{21}}{\partial W_{211}}
+        } \\
+        \visible<6->{
+        \frac{\partial \mathscr{L}(\theta)}{\partial W_{L11}} & = \frac{\partial \mathscr{L}(\theta)}{\partial a_{L1}}
+          \frac{\partial a_{L1}}{\partial W_{L11}}
+        }
+      \end{align*}
+    \end{overlayarea}
+
+    \column{0.47\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      % \only<1-6>{
+          \makebox[\textwidth][c]{\usebox{\figurethreecontent}}
+      % }
+      % \only<7->{
+      %   \begin{itemize}
+      % \justifying
+      %     \item <7->  Observe that if we come up with a generic formula:
+      %         \begin{align*}
+      %           \visible<7->{ & \frac{\partial \mathscr{L}(\theta)}{\partial h_{ij}} \text{\hspace{1em}(gradient w.r.t. hidden units)}}     \\
+      %           \visible<8->{ & \frac{\partial \mathscr{L}(\theta)}{\partial a_{L,j}} \text{\hspace{0.1em} (gradient w.r.t. output units)}} \\
+      %           \visible<9->{ & \frac{\partial h_{ij}}{\partial W_{ij}} \text{\hspace{1em} (gradient w.r.t. weights)}}
+      %         \end{align*}
+      %         \visible<10->{\noindent then we can compute all the required gradients}
+      %     \item <11->  This is called the backpropagation algorithm because the loss gets propagated all the way back to the weights.
+      %   \end{itemize}
+      % }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 22
+\begin{frame}
+  Let us see an intuitive explanation of backpropagation before we get into the mathematical details
+\end{frame}
+
+%Slide 23
+\begin{frame}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \visible{
+        \small{
+          \begin{itemize}
+            % \justifying
+
+            % \justifying
+            \item<1-> We get a certain loss at the output and we try to figure out who is responsible for this loss
+
+            \item<2-> So, we talk to the output layer and say ``Hey! You are not producing the desired output, better take responsibility".
+
+            \item<3-> The output layer says ``Well, I take responsibility for my part but please understand that I am only as the good as the hidden layer and weights below me". After all $\dots$
+                $$ f(x) = \hat{y} = O(W_{L}h_{L-1}+b_{L}) $$
+
+          \end{itemize}
+        }
+      }
+    \end{overlayarea}
+
+    \column{0.4\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \input{modules/Module4/tikz_images/nn_story1.tex}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+
+%Slide 24
+\begin{frame}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \footnotesize{
+        \begin{itemize}
+          % \justifying
+          \item So, we talk to $W_{L},b_{L}$ and $h_{L}$ and ask them ``What is wrong with you?"
+          \item<2-> $W_{L}$ and $b_{L}$ take full responsibility but $h_{L}$ says ``Well, please understand that I am only as good as the pre-activation layer"
+          \item<3-> The pre-activation layer in turn says that I am only as good as the hidden layer and weights below me.
+          \item<4-> We continue in this manner and realize that the responsibility lies with all the weights and biases (i.e. all the parameters of the model)
+          \item<5-> But instead of talking to them directly, it is easier to talk to them through the hidden layers and output layers (and this is exactly what the chain rule allows us to do)
+              \visible<6->{
+                \begin{align*}
+                  \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+                  {\substack{\text{Talk to the}\\ \text{weight directly}}}
+                  =
+                  \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial f(x)} \frac{\partial f(x)}{\partial a_{3}}}_
+                  {\substack{\text{Talk to the} \\ \text{output layer}}}
+                  \underbrace{\frac{\partial a_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial a_{2}}}_
+                  {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
+                  \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
+                  {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}
+                  \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+                  {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
+                \end{align*}
+              }
+        \end{itemize}
+      }
+    \end{overlayarea}
+
+    \column{0.4\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \input{modules/Module4/tikz_images/nn_story2.tex}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 25
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \visible<2->{\textbf{Quantities of interest (roadmap for the remaining part):}}
+    \begin{itemize}
+      % \justifying
+      \item<3-> Gradient w.r.t. output units
+      \item<4-> Gradient w.r.t. hidden units
+      \item<5-> Gradient w.r.t. weights and biases
+    \end{itemize}
+
+    \begin{align*}
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial W_{11}}}_
+      {\substack{\text{Talk to the}\\ \text{weight directly}}}
+      =
+      \underbrace{\frac{\partial \mathscr{L}(\theta)}{\partial \hat{y}} \frac{\partial \hat{y}}{\partial a_{3}}}_
+        {\substack{\text{Talk to the} \\ \text{output layer}}}
+      \underbrace{\frac{\partial a_{3}}{\partial h_{2}} \frac{\partial h_{2}}{\partial a_{2}}}_
+      {\substack{\text{Talk to the} \\ \text{previous hidden} \\ \text{layer}}}
+      \underbrace{\frac{\partial a_{2}}{\partial h_{1}} \frac{\partial h_{1}}{\partial a_{1}}}_
+      {\substack{\text{Talk to the} \\ \text{previous} \\ \text{hidden layer}}}
+      \underbrace{\frac{\partial a_{1}}{\partial W_{11}}}_
+      {\substack{\text{and now} \\ \text{talk to} \\ \text{the} \\ \text{weights}}}
+    \end{align*}
+    
+    \begin{itemize}
+      % \justifying
+      \item<6-> Our focus is on \textit{Cross entropy loss} and \textit{Softmax} output.
+    \end{itemize}
+
+  \end{overlayarea}
+\end{frame}

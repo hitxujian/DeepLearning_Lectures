@@ -1,0 +1,126 @@
+\savestack{\nn}{\input{modules/Module1/tikz_images/nn.tex}}
+
+\begin{frame}
+  \myheading{Module 4.1: Feedforward Neural Networks (a.k.a. multilayered network of neurons)}
+\end{frame}
+
+%Slide 04
+\begin{frame}
+  \begin{columns}
+    \column{0.35\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \input{modules/Module1/tikz_images/nn_anim.tex}
+    \end{overlayarea}
+
+    \column{0.65\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}
+        % \justifying
+        \item<1-> The input to the network is an $\mathbf{n}$-dimensional vector
+        \item<3-> The network contains $\mathbf{L-1}$ hidden layers (2, in this case) having $\mathbf{n}$ neurons each
+        \item<5-> Finally, there is one output layer containing $\mathbf{k}$ neurons (say, corresponding to $\mathbf{k}$ classes)
+        \item<7-> Each neuron in the hidden layer and output layer can be split into two parts : \visible<9->{pre-activation} \visible<10->{and activation} \visible<11->{($a_i$ and $h_i$ are vectors)}
+        \item<12-> The input layer can be called the $0$-th layer and the output layer can be called the $(L)$-th layer
+        \item<13-> $W_i \in \mathbb{R}^{n\times n}$ and $b_i \in \mathbb{R}^n$ are the weight and bias between layers $i-1$ and $i$  ($0<i<L$)
+        \item<15-> $W_{L} \in \mathbb{R}^{n\times k}$ and $b_{L} \in \mathbb{R}^k$ are the weight and bias between the last hidden layer and the output layer ($L = 3$ in this case)
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 05
+\begin{frame}
+  \begin{columns}
+    \column{0.35\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nncontent}}
+    \end{overlayarea}
+
+    \column{0.65\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}
+        % \justifying
+        \item<1-> The pre-activation at layer $i$ is given by
+          \begin{align*}
+            a_i(x) = b_i + W_i h_{i-1}(x)
+          \end{align*}
+        \item<2-> The activation at layer $i$ is given by
+          \begin{align*}
+            h_i(x) = g(a_i(x))
+          \end{align*}
+
+          \visible<3->{
+              \noindent where $g$ is called the activation function (for example, logistic, tanh, linear, \textit{etc.})
+          }
+        \item<4-> The output at layer $i$ is given by
+            \begin{align*}
+              f(x) = h_{L+1}(x) = O(a_{L+1}(x))
+            \end{align*}
+            \visible<5->{
+              \noindent where $O$ is the output activation function (for example, softmax, linear, \textit{etc.})
+            }
+        \item<6-> To simplify notation we will refer to $a_i(x)$ as $a_i$ and $h_i(x)$ as $h_i$
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%Slide 06
+\begin{frame}
+  \begin{columns}
+    \column{0.35\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nncontent}}
+    \end{overlayarea}
+
+    \column{0.65\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}
+        % \justifying
+        \item The pre-activation at layer $i$ is given by
+            \begin{align*}
+              a_i = b_i + W_i h_{i-1}
+            \end{align*}
+        \item The activation at layer $i$ is given by
+            \begin{align*}
+              h_i = g(a_i)
+            \end{align*}
+            where $g$ is called the activation function (for example, logistic, tanh, linear, \textit{etc.})
+        \item The activation at layer $i$ is given by
+            \begin{align*}
+              f(x) = h_{L+1} = O(a_{L+1})
+            \end{align*}
+            where $O$ is the output activation function (for example, softmax, linear, \textit{etc.})
+      \end{itemize}
+    \end{overlayarea}
+
+  \end{columns}
+\end{frame}
+
+%Slide 07
+\begin{frame}
+  \begin{columns}
+    \column{0.35\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\nncontent}}
+    \end{overlayarea}
+
+    \column{0.65\textwidth}
+    \visible <1-5> {
+      \begin{itemize}
+        % \justifying
+        \item <1-> \textbf{Data:} $\left\{ x_{i},y_{i} \right\}_{i=1}^{N}$
+        \item <2->  \textbf{Model:} \begin{align*}\hat y_{i} = f(x_{i}) = O(W^{3}g(W^{2}g(W^{1}x+b_{1})+b_{2})+b_{3})\end{align*}
+        \item <3-> \textbf{Parameters:} $\quad \theta = {W_{1}, .., W_{L}, b_1, b_2, ... , b_L} (L =3)$
+        \item <4-> \textbf{Algorithm:} Backpropagation
+        \item <5-> \textbf{Objective/Loss/Error function:} Say,
+            \vspace{-0.2in}
+            \begin{align*}
+              min                        & ~ \frac{1}{N} \sum_{i=1}^{N} (\hat y_{i} - y_{i})^{2} \\
+              \textit{In general,} ~ min & ~ \mathscr{L}(\theta)
+            \end{align*}
+            where $\mathscr{L}(\theta)$ is some function of the parameters
+      \end{itemize}
+    }
+  \end{columns}
+\end{frame}

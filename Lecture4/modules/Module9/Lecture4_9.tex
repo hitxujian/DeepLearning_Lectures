@@ -1,0 +1,34 @@
+\begin{frame}
+  \myheading{Module 4.9: Derivative of the activation function}
+\end{frame}
+
+%Slide 44
+\begin{frame}
+  Now, the only thing we need to figure out is how to compute $g'$
+  \begin{columns}
+    \column{0.4\textwidth}
+      \begin{overlayarea}{\textwidth}{\textheight}
+        \visible<2->{\textbf{Logistic function}}
+        \begin{align*}
+          \visible<2->{ g(z)  &= \sigma(z)}\\
+          \visible<2->{       &= \frac{1}{1+e^{-z}}}\\
+          \visible<3->{ g'(z) &= (-1)\frac{1}{(1+e^{-z})^2}\frac{d}{dz}(1+e^{-z})}\\
+          \visible<4->{       &= (-1)\frac{1}{(1+e^{-z})^2}(-e^{-z})}\\
+          \visible<5->{       &= \frac{1}{1+e^{-z}}\left(\frac{1+e^{-z}-1}{1+e^{-z}}\right)}\\
+          \visible<6->{       &= g(z)(1-g(z))}
+        \end{align*}
+      \end{overlayarea}
+    \column{0.6\textwidth}
+      \begin{overlayarea}{\textwidth}{\textheight}
+        \visible<7->{\textbf{\textit{tanh}}}
+        \begin{align*}
+          \visible<7-> {g(z)   =& \tanh{(z)}}\\
+          \visible<7-> {       =& \frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}}\\
+          \visible<8-> {g'(z)  =& \frac{\left(\splitfrac{(e^{z}+e^{-z}) \frac{d}{dz} (e^{z}-e^{-z})} {- (e^{z}-e^{-z}) \frac{d}{dz} (e^{z}+e^{-z})}\right)}{(e^{z}+e^{-z})^2}}\\
+          \visible<9-> {       =& \frac{(e^{z}+e^{-z})^2 - (e^{z}-e^{-z})^2}{(e^{z}+e^{-z})^2}}\\
+          \visible<10->{       =& 1-\frac{(e^{z}-e^{-z})^2}{(e^{z}+e^{-z})^2}}\\
+          \visible<11->{       =& 1-\left(g(z)\right)^2}
+        \end{align*}
+      \end{overlayarea}
+  \end{columns}
+\end{frame}
