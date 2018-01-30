@@ -28,7 +28,7 @@
       \begin{itemize}
         \justifying
         \item Recall our gradient descent algorithm
-        \item \visible<3-> {We can write it more concisely as}
+        \item \visible<3-> {We can write it more concisely as\\}
             \visible<2-> {
               \begin{algorithm}[H]
                 \SetAlgoLined
@@ -45,8 +45,10 @@
                 \caption{gradient\_descent()}
               \end{algorithm}
             }
-        \item<5-> where $\nabla \theta_{t} = \big[\frac{\partial \mathscr{L}(\theta)}{\partial w_t}, \frac{\partial \mathscr{L}(\theta)}{\partial b_t}\big]^{T}$
-        \item<6-> Now, in this feedforward neural network, instead of $\theta = [w, b]$ we have $\theta = {W_{1}, W_2, .., W_{L}, b_1, b_2, .., b_{L}}$
+        \item<5-> where 
+        	\only<5-7>{$\nabla \theta_{t} = \big[\frac{\partial \mathscr{L}(\theta)}{\partial w_t}, \frac{\partial \mathscr{L}(\theta)}{\partial b_t}\big]^{T}$} 
+        	\only<8>{\alert<8>{\small $\nabla \theta_{t} = \big[\frac{\partial \mathscr{L}(\theta)}{\partial W_{1,t}},.,\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,t}}, \frac{\partial \mathscr{L}(\theta)}{\partial b_{1,t}},.,\frac{\partial \mathscr{L}(\theta)}{\partial b_{L,t}}\big]^{T}$}}
+        \item<6-> Now, in this feedforward neural network, instead of $\theta = [w, b]$ we have $\theta = [W_{1}, W_2, .., W_{L}, b_1, b_2, .., b_{L}]$
         \item<7-> We can still use the same algorithm for learning the parameters of our model
 
       \end{itemize}
@@ -130,7 +132,7 @@
                     & \visible<8->{\frac{\partial \mathscr{L}(\theta)}{\partial W_{L,nk}} } 
                     & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{1n}} } 
                     & \visible<9->{\dots} 
-                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{Ln}} } 
+                    & \visible<9->{\frac{\partial \mathscr{L}(\theta)}{\partial b_{Lk}} } 
                     %\\
                 \end{bmatrix}
                 \endgroup
@@ -153,7 +155,9 @@
     \begin{itemize}
       \justifying
       \item<2-> How to choose the loss function $\mathscr{L}(\theta)$?
-      \item<3-> How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
+      \item<3-> How to compute $\nabla \theta$ which is composed of\\
+      $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k}$\\
+      $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
     \end{itemize}
   \end{block}
 \end{frame}

@@ -13,7 +13,9 @@
     \begin{itemize}
       \justifying
       \item \alert<2>{How to choose the loss function $\mathscr{L}(\theta)$ ?} \color{black}
-      \item How to compute $\nabla \theta$ which is composed of $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k},$ \\ $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
+      \item How to compute $\nabla \theta$ which is composed of:\\
+      $\nabla W_1, \nabla W_2, ..., \nabla W_{L-1} \in \mathbb{R}^{n \times n}, \nabla W_L \in \mathbb{R}^{n \times k}$\\
+      $\nabla b_1, \nabla b_2, ..., \nabla b_{L-1} \in \mathbb{R}^n $ and $\nabla b_L \in \mathbb{R}^k$ ?
     \end{itemize}
   \end{block}
 \end{frame}
@@ -190,7 +192,7 @@
             Is $\hat{y}_\ell$ a function of $\theta=[W_1,W_2,.,W_L,b_1,b_2,.,b_L]$?
         \item Yes, it is indeed a function of $\theta$
           \begin{center}
-            $ \hat y_\ell = [O(W^{3}g(W^{2}g(W^{1}x+b_{1})+b_{2})+b_{3})]_\ell $
+            $ \hat y_\ell = [O(W_{3}g(W_{2}g(W_{1}x+b_{1})+b_{2})+b_{3})]_\ell $
           \end{center}
         \item What does $\hat{y}_\ell$ encode? 
         \item It is the probability that $x$ belongs to the $\ell^{th}$ class (bring it as close to $1$).
