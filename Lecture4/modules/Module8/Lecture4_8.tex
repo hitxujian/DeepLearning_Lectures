@@ -54,7 +54,7 @@
 %Slide 43
 \begin{frame}
   \begin{overlayarea}{\textwidth}{\textheight}
-    Just do a forward propagation and compute all $h_i$'s, $a_i$'s, $y$ and $\hat{y}$
+    Just do a forward propagation and compute all $h_i$'s, $a_i$'s, and $\hat{y}$
     \begin{algorithm}[H]
       \SetAlgoLined
       \visible<1->{//Compute output gradient \;}
@@ -71,7 +71,7 @@
       \visible<10->{$\nabla_{a_{k-1}}\mathscr{L(\theta)} =
         \nabla_{h_{k-1}}\mathscr{L(\theta)} \odot [\dots,g'(a_{k-1,j}), \dots]$ \; }
       }}
-      \caption{back\_propagation($h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, \hat{y}$)}
+      \caption{back\_propagation($h_1, h_2, ..., h_{L-1}, a_1, a_2, ..., a_L, y, \hat{y}$)}
     \end{algorithm}
   \end{overlayarea}
 \end{frame}
