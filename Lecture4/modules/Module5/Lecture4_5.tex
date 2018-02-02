@@ -85,7 +85,7 @@
             \visible<11->{\vdots}                 \\
             \visible<12->{\mathbbm{1}_{\ell=k}}
           \end{bmatrix}}\\
-        \visible<13->{                                                             & = \frac{1}{e(\ell)}\hat{y}_{\ell}}
+        \visible<13->{                                                             & = -\frac{1}{\hat{y}_\ell} {e_\ell} }
       \end{align*}
 
       \visible<14->{where $e(\ell)$ is a k-dimensional vector whose $\ell$-th element is $1$ and all other elements are $0$.}
@@ -188,7 +188,7 @@
             & = -\big(
             \mathbbm{1}_{(\ell = i)}
             -
-            f(\mathbf{x})_i
+            \hat{y}_i
             \big)}
         \end{align*}
       }
@@ -219,14 +219,14 @@
       So far we have derived the partial derivative w.r.t. the $i$-th element of $\mathbf{a}_{L}$
       \begin{equation*}
         \hspace{-2cm}\frac{\partial \mathscr{L}(\theta)}{\partial a_{L,i}} =
-        - (\mathbbm{1}_{\ell = i} - \hat{y}_{\ell})
+        - (\mathbbm{1}_{\ell = i} - \hat{y}_{i})
       \end{equation*}
       We can now write the gradient w.r.t. the vector $\mathbf{a}_{L}$
 
       \vspace{0.42cm}
       \begin{itemize}
         \justifying
-        \item[]<2-> $\mathbf{\nabla_{a_{L}}} \visible<3->{ =
+        \item[]<2-> $\mathbf{\nabla_{a_{L}}} \mathscr{L}(\theta) \visible<3->{ =
                 \begin{bmatrix}
                   \visible<3->{\frac{\partial \mathscr{L}(\theta)}{\partial a_{L1}}}   \\
                   \visible<4->{\vdots}                                              \\
@@ -238,7 +238,7 @@
                   \visible<9->{\vdots}                                     \\
                   \visible<10->{- (\mathbbm{1}_{\ell = k} - \hat{y}_{k})} \\
                 \end{bmatrix} }$
-        \item[]<11-> $\hspace{1cm}= - (\mathbf{e}(\ell) - \mathbf{f}(x))$
+        \item[]<11-> $\hspace{1cm}= - (\mathbf{e}(\ell) - \hat{y})$
       \end{itemize}
     \end{overlayarea}
     \column{0.38\textwidth}

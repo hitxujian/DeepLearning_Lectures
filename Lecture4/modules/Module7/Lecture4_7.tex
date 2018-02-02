@@ -48,15 +48,15 @@
         \mathbf{a_k}                                                                    & =  \mathbf{b_k}  + W_k \mathbf{h_{k-1}} \\
         % \visible<2->{a_{ki}                                                             & =  b_{ki} + W_{kij} h_{k-1,j} \\}
         \visible<2->{\frac{\partial a_{ki}}{\partial W_{kij}}                           & = h_{k-1,j} \\}
-        \visible<3->{\frac{\partial\mathscr{L(\theta)}}{\partial W_{kij}} \visible<4->{ & = \frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} \frac{\partial a_{ki}}{\partial W_{k,i,j}}}\\}
+        \visible<3->{\frac{\partial\mathscr{L(\theta)}}{\partial W_{kij}} \visible<4->{ & = \frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} \frac{\partial a_{ki}}{\partial W_{kij}}}\\}
         \visible<5->{                                                                   & =\frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} h_{k-1,j}\\}
-        \visible<6->{\nabla_{W_K} \mathscr{L(\theta)}                                   & =} \visible<7->{\begin{bmatrix}
-            \frac{\partial\mathscr{L(\theta)}}{\partial W_{k00}} &
-            \frac{\partial\mathscr{L(\theta)}}{\partial W_{k01}}
-            & \dots &\dots &   \frac{\partial\mathscr{L(\theta)}}{\partial W_{k0n-1}} \\
+        \visible<6->{\nabla_{W_k} \mathscr{L(\theta)}                                   & =} \visible<7->{\begin{bmatrix}
+            \frac{\partial\mathscr{L(\theta)}}{\partial W_{k11}} &
+            \frac{\partial\mathscr{L(\theta)}}{\partial W_{k12}}
+            & \dots &\dots &   \frac{\partial\mathscr{L(\theta)}}{\partial W_{k1n}} \\
             \dots  & \dots  & \dots  & \dots  & \dots                                                      \\
             \vdots & \vdots & \vdots & \vdots & \vdots                                                     \\
-            \dots  & \dots  & \dots  & \dots  & \frac{\partial\mathscr{L(\theta)}}{\partial W_{k,n-1,n-1}}
+            \dots  & \dots  & \dots  & \dots  & \frac{\partial\mathscr{L(\theta)}}{\partial W_{knn}}
           \end{bmatrix}}
       \end{align*}
     \end{overlayarea}
@@ -80,21 +80,21 @@
     \\~\\
     \visible<2->{
       $\nabla_{W_k}\mathscr{L}(\theta)= \begin{bmatrix}
-          \frac{\partial \mathscr{L}(\theta)}{\partial W_{k00}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k01}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k02}} \\
+          \frac{\partial \mathscr{L}(\theta)}{\partial W_{k11}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k12}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k13}} \\
           & & \\
-          \frac{\partial \mathscr{L}(\theta)}{\partial W_{k10}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k11}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k12}} \\
+          \frac{\partial \mathscr{L}(\theta)}{\partial W_{k21}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k22}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k23}} \\
           & & \\
-          \frac{\partial \mathscr{L}(\theta)}{\partial W_{k20}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k21}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k22}} \\
-        \end{bmatrix} \frac{\partial\mathscr{L(\theta)}}{\partial W_{kij}} \visible<2->{= \frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} \frac{\partial a_{ki}}{\partial W_{k,i,j}}}$
+          \frac{\partial \mathscr{L}(\theta)}{\partial W_{k31}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k32}} & \frac{\partial \mathscr{L}(\theta)}{\partial W_{k33}} \\
+        \end{bmatrix} \frac{\partial\mathscr{L(\theta)}}{\partial W_{kij}} \visible<2->{= \frac{\partial\mathscr{L(\theta)}}{\partial a_{ki}} \frac{\partial a_{ki}}{\partial W_{kij}}}$
     }
     \vspace{1cm}
     \visible<3->{
       $ \nabla_{W_k}\mathscr{L}(\theta) = \begin{bmatrix}
-          \color<7->{brown} {\frac{\partial \mathscr{L}(\theta)} {\partial a_{k0}}} \color{black} \color<4->{blue}{h_{k-1,0}} \color{black}  & \color<7->{brown} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k0}}}  \color{black} \color<5->{red}{h_{k-1,1}} \color{black}  & \color<7->{brown} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k0}}} \color{black} \color<6->{orange}{h_{k-1,2}} \color{black}  \\
+          \color<7->{brown} {\frac{\partial \mathscr{L}(\theta)} {\partial a_{k1}}} \color{black} \color<4->{blue}{h_{k-1,1}} \color{black}  & \color<7->{brown} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}}  \color{black} \color<5->{red}{h_{k-1,2}} \color{black}  & \color<7->{brown} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black} \color<6->{orange}{h_{k-1,3}} \color{black}  \\
           & & \\
-          \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black} \color<4->{blue}{h_{k-1,0}} \color{black} & \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black} \color<5->{red}{h_{k-1,1}} \color{black} & \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k1}}} \color{black}\color<6->{orange}{h_{k-1,2}} \color{black} \\
+          \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}} \color{black} \color<4->{blue}{h_{k-1,1}} \color{black} & \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}} \color{black} \color<5->{red}{h_{k-1,2}} \color{black} & \color<7->{magenta} {\frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}}} \color{black}\color<6->{orange}{h_{k-1,3}} \color{black} \\
            & & \\
-          \frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}} \color{black} \color<4->{blue}{h_{k-1,0}}  \color{black}                      & \frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}} \color{black} \color<5->{red}{h_{k-1,1}} \color{black}                       & \frac{\partial \mathscr{L}(\theta)}{\partial a_{k2}} \color{black} \color<6->{orange}{h_{k-1,2}} \color{black}                      \\
+          \frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}} \color{black} \color<4->{blue}{h_{k-1,1}}  \color{black}                      & \frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}} \color{black} \color<5->{red}{h_{k-1,2}} \color{black}                       & \frac{\partial \mathscr{L}(\theta)}{\partial a_{k3}} \color{black} \color<6->{orange}{h_{k-1,3}} \color{black}                      \\
         \end{bmatrix} = \visible<8->{\nabla_{a_k} \mathscr{L}(\theta) \cdot \mathbf{h_{k-1}}  ^T}$
     }
 
@@ -116,10 +116,10 @@
         \begin{align*}
           \visible<6->{\nabla_\mathbf{b_k}\mathscr{L}(\theta)                       & =
             \begin{bmatrix}
-              \frac{\partial \mathscr{L}(\theta)}{a_{k_0}} \\
-              \frac{\partial \mathscr{L}(\theta)}{a_{k_1}} \\
+              \frac{\partial \mathscr{L}(\theta)}{a_{k1}} \\
+              \frac{\partial \mathscr{L}(\theta)}{a_{k2}} \\
               \vdots                                       \\
-              \frac{\partial \mathscr{L}(\theta)}{a_{k_n}}
+              \frac{\partial \mathscr{L}(\theta)}{a_{kn}}
             \end{bmatrix}}
           \visible<7->{= \nabla_{{\mathbf{a_k}}}\mathscr{L}(\theta)}
         \end{align*}
