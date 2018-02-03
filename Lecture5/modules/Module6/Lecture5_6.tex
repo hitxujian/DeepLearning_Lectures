@@ -221,11 +221,11 @@
 		\column{0.57\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
-				\item<9-> Even with a batch size of k=2 the oscillations have reduced slightly. \onslide<10->{Why ?} 
-				\item<11-> Because we now have slightly better estimates of the gradient \onslide<12->{[analogy: we are now tossing the coin k=2 times to estimate P(heads)]}
-				\item<13-> The higher the value of k the more accurate are the estimates 
-				\item<14-> In practice, typical values of k are 16, 32, 64
-				\item<15-> Of course, there are still oscillations and they will always be there as long as we are using an approximate gradient as opposed to the true gradient
+				\item<20-> Even with a batch size of k=2 the oscillations have reduced slightly. \onslide<21->{Why ?} 
+				\item<22-> Because we now have slightly better estimates of the gradient \onslide<23->{[analogy: we are now tossing the coin k=2 times to estimate P(heads)]}
+				\item<24-> The higher the value of k the more accurate are the estimates 
+				\item<25-> In practice, typical values of k are 16, 32, 64
+				\item<26-> Of course, there are still oscillations and they will always be there as long as we are using an approximate gradient as opposed to the true gradient
 			\end{itemize}
 		\end{overlayarea}
 		
@@ -243,6 +243,14 @@
 						\only<\n>{\draw[->, line width=0.2mm](b)--(0,0.8\ht0)};
 					\end{tikzpicture}
 				}
+				\begin{tikzpicture}
+						\sbox0{\includegraphics[scale=0.38]{images/module6/mini_batch_gd5/2d_path90.png}}% get width and height
+						\only<21->{\node[above right,inner sep=0pt] at (0,0)  {\usebox{0}}};
+						\only<21->{\node[red,font=\small](w) at (0.5\wd0,0.23\ht0) {w}};
+						\only<21->{\node[red,font=\small](b) at (0,0.67\ht0) {b}};
+						\only<21->{\draw[->, line width=0.2mm](w)--(0.6\wd0,0.23\ht0)};
+						\only<21->{\draw[->, line width=0.2mm](b)--(0,0.8\ht0)};
+					\end{tikzpicture}
 			\end{figure}
 		\end{overlayarea}
 	\end{columns}
@@ -326,7 +334,7 @@
 		\begin{overlayarea}{\textwidth}{\textheight}
 			
 			\begin{itemize}\justifying 
-				\item<2-> While the stochastic versions of both Momentum [blue] and NAG [red] exhibit oscillations the relative advantage of NAG over Momentum still holds \onslide<3->{(i.e., NAG takes relatively shorter u-turns)}
+				\item<2-> While the stochastic versions of both Momentum [red] and NAG [blue] exhibit oscillations the relative advantage of NAG over Momentum still holds \onslide<3->{(i.e., NAG takes relatively shorter u-turns)}
 				\item<4-> Further both of them are faster than stochastic gradient descent \onslide<5->{(after 60 steps, stochastic gradient descent [black - top figure] still exhibits a very high error whereas NAG and Momentum are close to convergence)}
 			\end{itemize} 
 		\end{overlayarea}
