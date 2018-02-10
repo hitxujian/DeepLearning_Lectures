@@ -1,0 +1,365 @@
+\savestack{\pcabnwnoaxis}{\input{modules/Module4/tikz_images/pca_bnw_noaxis.tex}}
+\savestack{\pcabnwaxis}{\input{modules/Module4/tikz_images/pca_bnw_axis.tex}}
+\savestack{\pcacolor}{\input{modules/Module4/tikz_images/pca_color.tex}}
+
+\begin{frame}
+  \myheading{Module 6.4 : Principal Component Analysis and its Interpretations}
+\end{frame}
+
+% Slide 24
+\begin{frame}
+  \begin{block}{The story ahead...}
+    \begin{itemize}\justifying
+      \item<2-> \onslide<2->{Over the next few slides we will introduce Principal Component Analysis and see three different interpretations of it}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+%-----------------------------------------------------------------------------------------------------------
+% Slide 25
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\pcabnwnoaxiscontent}}
+      % \input{./modules/Module4/tikz_images/pca_bnw_noaxis.tex}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}\justifying
+        \item<1-> Consider the following data
+        \item<2-> Each point (vector) here is represented using a linear combination of the $x$ and $y$ axes (i.e. using the point's $x$ and $y$ co-ordinates)
+        \item<3-> In other words we are using $x$ and $y$ as the basis
+        \item<4-> What if we choose a different basis?
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 26
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\pcabnwaxiscontent}}
+      % \input{modules/Module4/tikz_images/pca_bnw_axis.tex}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}\justifying
+        \item<1-> For example, what if we use $u_1$ and $u_2$ as a basis instead of $x$ and $y$.
+        \item<2-> We observe that all the points have a very small component in the direction of $u_2$ (almost noise)
+        \item<3-> It seems that the same data which was originally in $\mathbb{R}^2(x,y)$ can now be represented in $\mathbb{R}^{1}(u_1)$ by making a smarter choice for the basis
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 27
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \only<1-3>{\makebox[\textwidth][c]{\usebox{\pcabnwaxiscontent}}}
+      \only<4->{\makebox[\textwidth][c]{\usebox{\pcacolorcontent}}}
+
+      % \only<1-3>{\input{modules/Module4/tikz_images/pca_bnw_axis.tex}}
+      % \only<4->{\input{modules/Module4/tikz_images/pca_color.tex}}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}\justifying
+        \item<1-> Let's try stating this more formally
+        \item<2-> Why do we not care about $u_2$?
+        \item<3-> Because the variance in the data in this direction is very small (all data points have almost the same value in the $u_2$ direction)
+        \item<4-> If we were to build a classifier on top of this data then $u_2$ would not contribute to the classifier as the points are not distinguishable along this direction
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 28
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\pcacolorcontent}}
+     % \input{modules/Module4/tikz_images/pca_color.tex}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}\justifying
+        \item<1-> In general, we are interested in representing the data using fewer dimensions such that \onslide<2-> {the data has high variance along these dimensions}
+        \item<3-> Is that all?
+        \item<4-> No, there is something else that we desire. Let's see what.
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 29
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{table}[]
+        \centering
+
+        \label{my-label}
+        \begin{tabular}{ccc}
+          \hline
+          \textbf{x} & \textbf{y} & \textbf{z} \\ \hline
+          1          & 1          & 1          \\
+          0.5        & 0          & 0          \\
+          0.25       & 1          & 1          \\
+          0.35       & 1.5        & 1.5        \\
+          0.45       & 1          & 1          \\
+          0.57       & 2          & 2.1        \\
+          0.62       & 1.1        & 1          \\
+          0.73       & 0.75       & 0.76       \\
+          0.72       & 0.86       & 0.87       \\
+          \hline
+        \end{tabular}
+      \end{table}
+      \onslide<3->{
+        \begin{equation*}
+          \rho_{yz} = \frac{\sum_{i=1}^{n}(y_i-\overline{y})(z_i-\overline{z})}{\sqrt{\sum_{i=1}^{n}(y_i-\overline{y})^2}\sqrt{\sum_{i=1}^{n}(z_i-\overline{z})^2}}
+        \end{equation*}
+      }
+    \end{overlayarea}
+
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}\justifying
+        \item<1-> Consider the following data
+        \item<2-> Is $z$ adding any new information beyond what is already contained in $y$?
+        \item<3-> The two columns are highly correlated (or they have a high covariance)
+        \item<4-> In other words the column $z$ is redundant since it is linearly dependent on $y$.
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 30
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \makebox[\textwidth][c]{\usebox{\pcacolorcontent}}
+     % \input{modules/Module4/tikz_images/pca_color.tex}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}<1->
+    \begin{overlayarea}{\textwidth}{\textheight}
+      \begin{itemize}\justifying
+        \item[] In general, we are interested in representing the data using fewer dimensions such that
+        \item<2-> the data has high variance along these dimensions
+        \item<3-> the dimensions are linearly independent (uncorrelated)
+        \item<4-> (even better if they are orthogonal because that is a very convenient basis)
+      \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 31
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{0.7cm}
+    \onslide<1->{Let $p_1,p_2,\cdots,p_n$ be a set of such $n$ linearly independent orthonormal vectors. Let $P$ be a $n \times n$ matrix such that $p_1,p_2,\cdots,p_n$ are the columns of $P$.}
+    \vspace{0.3cm}
+    \par
+    \onslide<2->{
+      Let ${x_1,x_2,\cdots,x_m} \in \mathbb{R}^n $ be $m$ data points and let $X$ be a matrix such that  $x_1,x_2,\cdots,x_m$ are the rows of this matrix. Further let us assume that the data is $0$-mean and unit variance.\\}
+    \vspace{0.2cm}
+    \onslide<3->{
+      We want to represent each $x_i$ using this new basis $P$.
+      \begin{equation*}
+        x_i= \alpha_{i1}p_1+\alpha_{i2}p_2+\alpha_{i3}p_3+ \cdots + \alpha_{in}p_n
+      \end{equation*}
+    }
+    \onslide<4->{
+      For an orthonormal basis we know that we can find these $\alpha_{i}'s$ using
+      \begin{equation*}
+        \alpha_{ij} = x_i^T p_j
+        = \begin{bmatrix}
+          \leftarrow & x_i & \rightarrow
+        \end{bmatrix} ^T
+        \begin{bmatrix}
+          \uparrow \\
+          p_j
+          \\
+          \downarrow
+        \end{bmatrix}
+      \end{equation*}
+    }
+  \end{overlayarea}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 32
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{1cm}
+    \onslide<1->{
+      In general, the transformed data $\hat{x}_i$ is given by
+      \begin{equation*}
+        \hat{x}_i = \begin{bmatrix}
+          \leftarrow &  & x_i^T &  & \rightarrow
+        \end{bmatrix}
+        \begin{bmatrix}
+          \uparrow   &        & \uparrow \\
+          p_1        & \cdots & p_n      \\
+          \downarrow &        & \downarrow
+        \end{bmatrix} = x_i^T P
+      \end{equation*} }
+    \vspace{0.5cm}
+
+    \onslide<2->{ and \\
+      \center{
+        $\hat{X}=XP$  \hspace{0.5cm}
+        ($\hat{X}$ is the matrix of transformed points)
+      } }
+  \end{overlayarea}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 33
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \onslide<1->
+    {\underline{\textbf{Theorem:}}\\
+    If $X$ is a matrix such that its columns have zero mean %and unit variance \& $P$ is an orthogonal matrix 
+    and if $\hat{X}=XP$ then the columns of $\hat{X}$ will also have zero mean.
+    } \\%and unit variance.\\
+    \onslide<2->
+    {
+      \textbf{Proof:} For any matrix A, $\mathbf{1}^{T} A$ gives us a row vector with the $i^{th}$ element containing the sum of the $i^{th}$ column of $A$. (this is easy to see using the row-column picture of matrix multiplication).\\
+    }
+    \onslide<3->
+    {
+      Consider \[\mathbf{1}^{T} \hat{X} = \mathbf{1}^{T} X P = (\mathbf{1}^{T} X) P\]
+      But $\mathbf{1}^{T} X$ is the row vector containing the sums of the columns of $X$. Thus $\mathbf{1}^{T} X = 0$.
+      Therefore, $\mathbf{1}^T \hat{X} = 0$. \\
+      Hence the transformed matrix also has columns with  sum $= 0$.
+    }
+    
+    \vspace{0.3cm}
+    \onslide<4->
+    {\underline{\textbf{Theorem:}}\\
+    $X^T X$ is a symmetric matrix.}\\
+    \onslide<5->
+    {\textbf{Proof: } We can write $(X^{T} X)^{T} = X^{T} (X^{T})^{T} = X^{T} X$
+    }
+  \end{overlayarea}
+\end{frame}
+
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \onslide<1->
+    {\underline{\textbf{Definition:}}\\
+    If $X$ is a matrix whose columns are zero mean then $\Sigma =  \frac{1}{m} X^T X$ is the covariance matrix. In other words each entry $\Sigma_{ij}$ stores the covariance between columns $i$ and $j$ of $X$.
+    }\\
+    \onslide<2->
+    {\textbf{Explanation:} Let $C$ be the covariance matrix of $X$. Let $\mu_{i}$, $\mu_{j}$ denote the means of the $i^{th}$ and $j^{th}$ column of $X$ respectively. Then by definition of covariance, we can write :
+      \begin{align*}
+          C_{ij} &= \frac{1}{m} \sum_{k=1}^{m} (X_{ki} - \mu_{i})(X_{kj} - \mu_{j}) \\
+                 &= \frac{1}{m} \sum_{k=1}^m X_{ki} X_{kj} &(\because \mu_i = \mu_j = 0)\\
+                 &= \frac{1}{m} X^{T}_{i} X_{j} = \frac{1}{m} (X^{T} X)_{ij}
+      \end{align*}
+    } 
+  \end{overlayarea}
+\end{frame}
+%----------------------------------------------------------------------------------------------------------
+% Slide 34
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    {\footnotesize
+      \onslide<1->{\begin{equation*}
+          \hat{X} = XP
+        \end{equation*}
+      }}
+    \small{
+    \vspace{-0.5cm}
+      \begin{itemize}\justifying
+      \item \onslide<2->{
+        Using the previous theorem \& definition, we get $ \frac{1}{m} \hat{X}^T \hat{X}$ is the covariance matrix of the transformed data. We can write :
+        \begin{align*}
+          \begin{split}
+            \onslide<3->{  \frac{1}{m} \hat{X}^T \hat{X} &= \frac{1}{m} \left (XP \right )^T XP} 
+            \onslide<4->{   = \frac{1}{m} P^T X^T XP =  P^T \left(\frac{1}{m} X^T X\right)P}
+            \onslide<5->{ =  P^T \Sigma P }
+          \end{split}
+        \end{align*}
+        }
+      \vspace{-0.5cm}
+      \item \onslide<6->{
+        Each cell $i,j$ of the covariance matrix $ \frac{1}{m} \hat{X}^T \hat{X}$ stores the covariance between columns $i$ and $j$ of $\hat{X}$.
+      }
+      \item \onslide<7->{Ideally we want,
+      	\vspace{-0.1cm}
+        \begin{align*}
+            \left ( \frac{1}{m}  \hat{X}^T \hat{X} \right )_{ij} &=	 0 \qquad \qquad i \neq j \left ( \textnormal{ covariance}=0 \right ) \\
+            \left ( \frac{1}{m}  \hat{X}^T \hat{X} \right )_{ij} &\neq  0 \qquad \qquad i = j \left ( \textnormal{ variance}\neq 0 \right )
+        \end{align*}
+      }
+      \vspace{-0.4cm}
+      \onslide<8->{
+        In other words, we want
+        \begin{align*}
+          \frac{1}{m} \hat{X}^T \hat{X}  =   P^T  \Sigma P = D \qquad \qquad  [\textnormal{ where D is a diagonal matrix }] 
+        \end{align*}
+      }
+      \end{itemize}
+    }
+  \end{overlayarea}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 35
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \begin{itemize}\justifying
+      \item<1-> We want,
+            \begin{equation*}
+              P^T \Sigma P = D
+            \end{equation*}
+
+      \item<2-> But $\Sigma$ is a square matrix and $P$ is an orthogonal matrix
+      \item<3-> Which orthogonal matrix satisfies the following condition? \\
+            \onslide<4->{
+              \begin{equation*}
+                P^T \Sigma P= D
+              \end{equation*}
+            }
+      \item<5-> In other words, which orthogonal matrix $P$ diagonalizes $\Sigma$?
+      \item<6-> \textbf{Answer:} A matrix $P$ whose columns are the eigen vectors of $\Sigma = X^T X $ [By Eigen Value Decomposition]
+      \item<7-> Thus, the new basis $P$ used to transform $X$ is the basis consisting of the eigen vectors of $X^T X$
+    \end{itemize}
+  \end{overlayarea}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 36
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \begin{itemize}\justifying
+      \item<1-> Why is this a good basis?
+      \item<2-> Because the eigen vectors of $X^T X$ are linearly independent (\textbf{proof : Slide 19 Theorem 1})
+      \item<3-> And because the eigen vectors of $X^T X$ are orthogonal ($\because$ $X^T X$ is symmetric - \textbf{saw proof earlier})
+      \item<4-> This method is called Principal Component Analysis for transforming the data to a new basis where the dimensions are non-redundant (low covariance) \& not noisy (high variance)
+      \item<5-> In practice, we select only the top-$k$ dimensions along which the variance is high (this will become more clear when we look at an alternalte interpretation of PCA)
+    \end{itemize}
+  \end{overlayarea}
+\end{frame}

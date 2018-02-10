@@ -1,0 +1,72 @@
+%----------------------------------------------------------------------------------------------------------
+% Slide 45
+
+\begin{frame}
+  \myheading{Module 6.6 : PCA : Interpretation 3}
+\end{frame}
+
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{1.2cm}
+    \begin{itemize}\justifying
+      \item<1-> We started off with the following wishlist
+      \item<2-> We are interested in representing the data using fewer dimensions such that
+            \begin{itemize}\justifying
+              \item<3-> the dimensions have low covariance
+              \item<4-> the dimensions have high variance
+            \end{itemize}
+      \item<5-> So far we have paid a lot of attention to the covariance
+      \item<6-> It has indeed played a central role in all our analysis
+      \item<7-> But what about variance? Have we achieved our stated goal of high variance along dimensions?
+      \item<8-> To answer this question we will see yet another interpretation of PCA
+    \end{itemize}
+  \end{overlayarea}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 46
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{-0.25cm}
+    \onslide<1->{
+      The $i^{th}$ dimension of the transformed data $\hat{X}$ is given by
+      \begin{center}
+        $\hat{X}_i = X{p_i}$
+      \end{center}
+    }
+    \vspace{-0.1cm}
+    \onslide<2->{
+      The variance along this dimension is given by
+      \vspace{-0.3cm}
+      \begin{align*}
+        \begin{split}
+          \onslide<3->{ \frac{\hat{X}_i^T \hat{X}_i}{m} &= \frac{1}{m} p_i^T \underbrace{ X^T X p_i}} \\
+          \onslide<4->{             &= \frac{1}{m} p_i^T \lambda_i p_i \qquad \qquad [\because p_i \textnormal{ is the eigen vector of } X^TX ]}\\
+          \onslide<5->{            &= \frac{1}{m} \lambda_i \underbrace{p_i^T p_i}_{=1} }\\
+          \onslide<6->{          &= \frac{\lambda_i}{m} }
+        \end{split}
+      \end{align*}
+    }\vspace{-0.3cm}
+    \begin{itemize}\justifying
+      \item<7-> Thus the variance along the $i^{th}$ dimension ($i^{th}$ eigen vector of $X^T X$) is given by the corresponding (scaled) eigen value.
+      \item<8-> Hence, we did the right thing by discarding the dimensions (eigenvectors) corresponding to lower eigen values!
+    \end{itemize}
+
+  \end{overlayarea}
+\end{frame}
+
+%----------------------------------------------------------------------------------------------------------
+% Slide 47
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{0.9cm}
+    \begin{block}{A Quick Summary}
+      We have seen 3 different interpretations of PCA
+      \begin{itemize}\justifying
+        \item<2-> It ensures that the covariance between the new dimensions is minimized
+        \item<3-> It picks up dimensions such that the data exhibits a high variance across these dimensions
+        \item<4-> It ensures that the data can be represented using less number of dimensions
+      \end{itemize}
+    \end{block}
+  \end{overlayarea}
+\end{frame}

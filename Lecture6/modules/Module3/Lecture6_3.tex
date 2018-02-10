@@ -1,0 +1,245 @@
+\begin{frame}
+  \myheading{Module 6.3 : Eigenvalue Decomposition}
+\end{frame}
+
+% Slide 17
+\begin{frame}
+  \begin{center}
+    \textit{Before proceeding let's do a quick recap of eigenvalue decomposition.}
+  \end{center}
+\end{frame}
+
+% Slide 18
+\begin{frame}
+  \only<1->{
+    \begin{itemize}\justifying
+      \item<1-> Let $u_1, u_2, \dots, u_n$ be the eigenvectors of a matrix $A$ and
+            let $\lambda_1, \lambda_2, \dots, \lambda_n$ be the corresponding
+            eigenvalues.
+      \item<2-> Consider a matrix $U$ whose columns are $u_1, u_2, \dots, u_n$.
+      \item<3-> Now
+            %\[
+            \onslide<3->{
+              \begin{equation*}
+                \begin{aligned}
+                  \onslide<3->{AU & =} \onslide<4->{A %\left[ 
+                    \begin{bmatrix}
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{u_1}}
+                      %\; \; % Add space between columns
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{u_2}}
+                      %\; \;
+                       &
+                      \dots
+                      %\; \;
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{u_n}}
+                    \end{bmatrix}}
+                  %          \right]
+                  %
+                  \onslide<5->{=  \begin{bmatrix}
+                      %\left[ 
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{Au_1}}
+                      %\; \;
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{Au_2}}
+                      %\; \;
+                       &
+                      \dots
+                      %\; \;
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{Au_n}}
+                      % \right] \\
+                    \end{bmatrix} \\}
+                  \onslide<6->{   & =                 %\left[ 
+                    \begin{bmatrix}
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{\lambda_1 u_1}}
+                      %\lambda_1 u_1
+                       & %\; \;
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{\lambda_2 u_2}}
+                      %\lambda_2 u_2
+                      %\; \;
+                       &
+                      \dots
+                      %\; \;
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{\lambda_n u_n}}
+                      %\lambda_n u_n
+                    \end{bmatrix} \\}
+                  % \right] \\
+                  \onslide<7->{   & =                 %\Bigg[ 
+                    \begin{bmatrix}
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{u_1}}
+                      %\; \;
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{u_2}}
+                      %\; \;
+                       &
+                      \dots
+                      %\; \;
+                       &
+                      \overset{\big\uparrow}{\underset{\big\downarrow}{u_n}}
+                    \end{bmatrix}}
+                  %\Bigg]
+                  \onslide<8->{\left[
+                      \begin{array}{ccccc}
+                        \lambda_1 & 0         & \dots    & 0         \\
+                              0   & \lambda_2 &          & \vdots         \\
+                           \vdots &           & \ddots   & 0         \\
+                              0   &   \hdots  &  0       & \lambda_n
+                      \end{array}
+                      \right]}
+                  \onslide<9->{   & = U\Lambda}
+                \end{aligned}
+              \end{equation*}
+            }
+      \item<10-> where $\Lambda$ is a diagonal matrix whose diagonal elements are the eigenvalues
+            of $A$.
+    \end{itemize}
+  }
+\end{frame}
+
+% Slide 19
+\begin{frame}
+  \begin{overlayarea}{\textwidth}{\textheight}
+    \only<1->{
+      \[
+        AU = U\Lambda
+      \]
+    }
+    \only<2->{
+      \begin{itemize}\justifying
+        \item<2-> If $U^{-1}$ exists, then we can write,
+              \begin{equation*}
+                \begin{aligned}
+                  A          & = U\Lambda U^{-1} & \text{ [eigenvalue decomposition]} \\
+                  U^{-1} A U & = \Lambda         & \text{[diagonalization of A]}
+                \end{aligned}
+              \end{equation*}
+        \item<3-> Under what conditions would $U^{-1}$ exist?
+              \begin{itemize}\justifying
+                \item<4-> If the columns of $U$ are linearly independent \textbf{[\href{https://www.youtube.com/watch?v=mTryd7gPHOQ}{See proof here}]}
+                \item<5-> \textit{i.e.} if $A$ has $n$ linearly independent eigenvectors.
+                \item<6-> \textit{i.e.} if $A$ has $n$ distinct eigenvalues \textbf{[sufficient condition,
+                            proof : Slide 19 Theorem 1]}
+              \end{itemize}
+      \end{itemize}
+    }
+  \end{overlayarea}
+\end{frame}
+
+% Slide 20
+\begin{frame}
+  \only<1->{
+    \begin{itemize}\justifying
+      \item<1-> If $A$ is symmetric then the situation is even more convenient.
+      \item<2-> The eigenvectors are orthogonal \textbf{[proof : Slide 19 Theorem 2]}
+      \item<3-> Further let's assume, that the eigenvectors have been normalized [ $u_{i}^{T}u_i = 1$]
+            \[
+              Q = U^TU = \left[ \begin{array}{c}
+                  % \begin{bmatrix}
+                  \leftarrow{u_1}\rightarrow \\
+                  \leftarrow{u_2}\rightarrow \\
+                  \dots                      \\
+                  \leftarrow{u_n}\rightarrow
+                  % \end{bmatrix}
+                \end{array} \right]
+              %\left[ %\begin{array}{c}{cccc}
+              \begin{bmatrix}
+                \overset{\big\uparrow}{\underset{\big\downarrow}{u_1}}
+                 & %\; \;
+                \overset{\big\uparrow}{\underset{\big\downarrow}{u_2}}
+                 & %\; \;
+                \dots
+                 & %\; \;
+                \overset{\big\uparrow}{\underset{\big\downarrow}{u_n}}
+                %\end{array} 
+                %\right]
+              \end{bmatrix}
+            \]
+      \item<4-> Each cell of the matrix, $Q_{ij}$ is given by $u_i^Tu_j$
+            \begin{equation*}
+              \begin{aligned}
+                Q_{ij} & = u_i^Tu_j & = 0 & \textrm{ if } i \neq j \\
+                       &            & = 1 & \textrm{ if } i = j
+              \end{aligned}
+            \end{equation*}
+            \[
+              \therefore U^TU = \mathbb{I} \text{ (the identity matrix)}
+            \]
+      \item<5-> $U^T$ is the inverse of $U$ (very convenient to calculate)
+    \end{itemize}
+  }
+\end{frame}
+
+% Slide 21
+\begin{frame}
+  \visible<1->{
+    \begin{block}{Something to think about}
+      \begin{itemize}\justifying
+        \item<1-> Given the EVD, $A = U \Sigma U^T$,
+              \newline
+              what can you say
+              about the sequence $x_0, Ax_0, A^2x_0, \dots$ in terms of the eigen
+              values of $A$.
+              \newline
+              (Hint: You should arrive at the same conclusion we saw earlier)
+      \end{itemize}
+    \end{block}
+  }
+\end{frame}
+
+% Slide 22
+\begin{frame}
+  \begin{block}{Theorem (one more important property of eigenvectors)}
+    If $A$ is a square symmetric $N\times N$ matrix, then the solution to the following
+    optimization problem is given by the eigenvector corresponding to the largest eigenvalue of $A$.
+    \begin{equation*}
+      \begin{aligned}
+        \underset{x}{\text{max  }} & x^T A x   \\
+        \text{s.t }                & \|x\| = 1
+      \end{aligned}
+    \end{equation*}
+    and the solution to
+    \begin{equation*}
+      \begin{aligned}
+        \underset{x}{\text{min  }} & x^T A x   \\
+        \text{s.t }                & \|x\| = 1
+      \end{aligned}
+    \end{equation*}
+    is given by the eigenvector corresponding to the smallest eigenvalue of $A$.
+    \newline
+    \textbf{Proof:} Next slide.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+  \item<1-> This is a constrained optimization problem that can be solved using Lagrange Multipliers:
+  \begin{align*}
+    L &= x^T A x - \lambda (x^T x - 1)\\
+    \frac{\partial L}{\partial x} &= 2Ax -\lambda(2x) = 0 => Ax = \lambda x
+  \end{align*}
+  \item<2-> Hence x must be an eigenvector of A with eigenvalue $\lambda$.
+  \item<3-> Multiplying by $x^T$:
+  $$x^T A x = \lambda x^T x = \lambda (\text{since }x^T x = 1)$$
+  \item<4-> Therefore, the critical points of this constrained problem are the eigenvalues of A.
+  \item<5-> The maximum value is the largest eigenvalue, while the minimum value is the smallest eigenvalue.
+\end{itemize}
+
+\end{frame}
+% Slide 23
+\begin{frame}
+  \only<1->{
+    \begin{block}{The story so far...}
+      \begin{itemize}\justifying
+        \item<2-> The eigenvectors corresponding to different eigenvalues are
+              linearly independent.
+        \item<3-> The eigenvectors of a square symmetric matrix are orthogonal.
+        \item<4-> The eigenvectors of a square symmetric matrix can thus
+              form a convenient basis.
+        \item<5-> We will put all of this to use.
+      \end{itemize}
+    \end{block}
+  }
+\end{frame}

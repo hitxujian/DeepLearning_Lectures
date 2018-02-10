@@ -1,0 +1,29 @@
+\begin{tikzpicture}[scale=1]
+  \draw [thick, black, ->] (-2,0) -- (4, 0);
+  \draw [thick, red, ->] (0,0) -- (0.866,0.5)
+  node [above, black] {$u_1$};
+  \draw [thick, black, ->] (0,-0.1) -- (0, 3);
+  \draw [thick, red, ->] (0,0) -- (-0.4,0.6928);
+  \draw (-0.6, 0.75)
+  node [above] {$u_2$};
+  \draw [thick, red, ->] (0,0) -- (1,1.732);
+  \draw (1.5,2)
+  node [above] {$
+      z = \left[ \begin{array}{c}
+          a \\
+          b
+        \end{array} \right]
+    $};
+  \draw [dotted, black] (0.866,0.5) -- (1.5,0.866);
+  \draw [dotted, black] (-0.25,0.433) -- (-0.5, 0.866);
+  \draw [dotted, black] (1,1.732) -- (1.5,0.866);
+  \draw [dotted, black] (-0.5, 0.866) -- (1,1.732);
+  \draw (0.25,.144) arc (30:60:.32cm);
+  \draw (0.35,.144)
+  node [above, black] {$\theta$};
+  \node [rotate=60] at (0.3,1.25) {$ |\overset{\rightarrow}{z}| $};
+  \node [rotate=30] at (1,0.166) {$\alpha_1$};
+  \node [rotate=120] at (-0.4, 0.066) {$\alpha_2$};
+  \draw [decorate, decoration={brace, raise=3pt, mirror}] (0,0) -- (1.5, 0.866);
+  \draw [decorate, decoration={brace, raise=3pt}] (0,0) -- (-0.5, 0.866);
+\end{tikzpicture}
