@@ -1,0 +1,13 @@
+\begin{tikzpicture} 
+  \tkzInit[xmin=-1,xmax=4.5,ymax=6]
+  \tkzClip[space=1]
+    \tkzAxeXY
+    \tkzFct[domain=.1:5,samples=200,id=ln,line width=0.5pt,color=red]{x**2 + 1} 
+%    \tkzDrawTangentLine[kl=1,kr=5](1)
+	\only<2->{\draw[domain=-1:2.2,smooth,variable=\x,red]  plot ({\x}, {\x*\x + 1}); }
+    \tkzText[draw=red,fill = red!20](2.75, 6){$f(x)=x^2+1$}
+    \only<3->{\derivative{1}{2}{$\Delta x_1$}{$\Delta y_1$}{above}}
+    \only<3->{\draw[domain=-1:2.2,smooth,variable=\x,red]  plot ({\x}, {\x*\x + 1}); }
+    \only<4->{\derivative{0}{1}{$\Delta x_2$}{$\Delta y_2$}{below}}   
+  	
+\end{tikzpicture} 

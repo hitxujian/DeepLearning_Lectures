@@ -1,0 +1,61 @@
+\begin{frame}
+	\myheading{Module 5.8 : Line Search}
+\end{frame}
+
+\begin{frame}
+	\fontsize{16pt}{7.2}\selectfont
+	\textit{Just one last thing before we move on to some other algorithms ...}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> In practice, often a line search is done to find a relatively better value of $\eta$
+				\item<3-> Update $w$ using different values of $\eta$
+				\item<4-> Now retain that updated value of $w$ which gives the lowest loss
+				\item<5-> Esentially at each step we are trying to use the best $\eta$ value from the available choices
+				\item<6-> What's the flipside? \onslide<7->{We are doing many more computations in each step}
+				\item<8-> We will come back to this when we talk about second order optimization methods
+			\end{itemize}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\includegraphics<2->[scale=0.3]{images/module8/pseudo_code_line_search_sgd_crop.png}
+			\end{figure}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.57\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Let us see line search in action
+				\item<17-> Convergence is faster than vanilla gradient descent 
+				\item<18-> We see some oscillations, \onslide<19->{but note that these oscillations are different from what we see in momentum and NAG} 
+			\end{itemize}
+		\end{overlayarea}
+		
+		\column{0.43\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\foreach \n in {0,...,20} {%
+					\begin{tikzpicture}
+						\sbox0{\includegraphics[scale=0.38]{images/module8/line_search_gd0/2d_path\n.png}}% get width and height
+						\only<\n>{\node[above right,inner sep=0pt] at (0,0)  {\usebox{0}}};
+						\only<\n>{\node[red,font=\small](w) at (0.5\wd0,0.23\ht0) {w}};
+						\only<\n>{\node[red,font=\small](b) at (0,0.67\ht0) {b}};
+						\only<\n>{\draw[->, line width=0.2mm](w)--(0.6\wd0,0.23\ht0)};
+						\only<\n>{\draw[->, line width=0.2mm](b)--(0,0.8\ht0)};
+					\end{tikzpicture}
+				}
+			\end{figure}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

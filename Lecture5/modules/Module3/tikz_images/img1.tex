@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+\begin{axis}[axis lines=left, ticks=none,xmax=0.5,ymax=0.5,x label style={at={(axis description cs:0.5,0)},anchor=north},
+xlabel={$\theta$}, ylabel={error}]
+\addplot[thick,black, no markers, samples=200, domain=-5:0] {-x*exp(x)};
+\only<2->{\draw[dashed] (axis cs:-1.88,0.31) -- (axis cs:-0.0,0.31)} ;
+\only<2->{\draw[dashed] (axis cs:-2.68,0.21) -- (axis cs:-0.0,0.21)} ;
+
+\end{axis}
+\end{tikzpicture}
