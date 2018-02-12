@@ -1,0 +1,34 @@
+\begin{tikzpicture}
+	\onslide<3->{\draw (-2,-1.6) rectangle (7,4.5);} %} node[left =2,below=2] 
+	\onslide<10->{\node at (2.4,-1.9) {label $= 2$};}
+	\onslide<4->{\draw (-1.5,2.5) rectangle (0.5,4.3); %node[left=2,below=2] 
+		\node[inner sep=0pt] (russell) at (-0.5,3.45)
+		{\includegraphics[scale=1.5,angle=20]{images/two.jpg}};
+		\node at (-0.5,2.2) { rotated by $20^{\circ}$}; }
+						
+	\onslide<5->{\draw (1.5,2.5) rectangle (3.5,4.3);% node[below=2] 
+		\node[inner sep=0pt] (russell) at (2.5,3.45)
+		{\includegraphics[scale=1.5,angle=65]{images/two.jpg}};
+		\node at (2.6,2.2) { rotated  by $65^{\circ}$}; }
+						
+	\onslide<6->{\draw (4.5,2.5) rectangle (6.5,4.3); %node[below=2] 
+		\node[inner sep=0pt] (russell) at (5.5,3.15)
+		{\includegraphics[scale=1.5]{images/two.jpg}};
+		\node at (5.5,2.2) { shifted vertically};  }
+						
+	\onslide<7->{\draw (-1.5,-1) rectangle (0.5,1); % node[below=2] 
+		\node[inner sep=0pt] (russell) at (-0.8,0)
+		{\includegraphics[scale=1.5]{images/two.jpg}};
+		\node at (-0.4,-1.3) {shifted horizontally};}
+						
+	\onslide<8->{\draw (1.5,-1) rectangle (3.5,1); %  node[below=2] 
+								
+		\node[inner sep=0pt] (russell) at (2.5,0)
+		{\includegraphics[scale=1.5]{images/two_blurred.jpg}};
+		\node at (2.5,-1.3) { blurred};  }
+						
+	\onslide<9->{\draw (4.5,-1) rectangle (6.5,1); % node[below=2] 
+		\node[inner sep=0pt] (russell) at (5.5,0)
+		{\includegraphics[scale=1.5]{images/two_colored.jpg}};
+	\node at (5.2,-1.3) {changed some pixels}; }
+\end{tikzpicture}

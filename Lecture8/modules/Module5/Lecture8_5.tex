@@ -1,0 +1,54 @@
+\begin{frame}
+	\myheading{Module 8.5 : Dataset augmentation}
+\end{frame}
+
+\begin{frame}
+\vspace{4em}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{block}{Different forms of regularization}
+			\begin{itemize}
+				\item $L2$ regularization
+				\item \textcolor<2->{red}{Dataset augmentation}
+				\item Parameter Sharing and tying
+				\item Adding Noise to the inputs 
+				\item Adding Noise to the outputs 
+				\item Early stopping
+				\item Ensemble methods
+				\item Dropout
+			\end{itemize}
+		\end{block}
+	\end{overlayarea}
+\end{frame}
+\begin{frame}
+	\begin{columns}
+		\column{0.3\textwidth}
+		\begin{center}
+			\input{modules/Module5/tikz_images/data}
+		\end{center}
+		\onslide<2->{\hspace{1em}[given training data]\\}
+		\onslide<12->{We exploit the fact that certain transformations to the image do not change the label of the image.}
+					
+		\column{0.7\textwidth}
+		\onslide<3->{
+			\hspace{2em}
+			\vspace{2em}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\input{modules/Module5/tikz_images/shifted}
+				\onslide<11->{[augmented data = created using some knowledge of the task]}
+			\end{overlayarea}}
+	\end{columns}    
+\end{frame}
+		
+\begin{frame}
+	\vspace{4em}    
+	\begin{overlayarea}{\textwidth}{\textheight}
+						
+		\begin{itemize}
+			\item <1-> Typically, More data = better learning
+			\item <2->  Works well for image classification / object recognition tasks
+			\item <3->  Also shown to work well for speech
+			\item <4->  For some tasks it may not be clear how to generate such data
+		\end{itemize}
+						
+	\end{overlayarea}
+\end{frame}

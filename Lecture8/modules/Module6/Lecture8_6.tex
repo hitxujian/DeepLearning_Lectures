@@ -1,0 +1,56 @@
+\begin{frame}
+	\myheading{Module 8.6 : Parameter Sharing and tying}
+\end{frame}
+
+\begin{frame}
+	\vspace{4em}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{block}{Other forms of regularization}
+			\begin{itemize}
+				\item $L2$ regularization
+				\item Dataset augmentation
+				\item \textcolor<2->{red}{Parameter Sharing and tying}
+				\item Adding Noise to the inputs 
+				\item Adding Noise to the outputs 
+				\item Early stopping
+				\item Ensemble methods
+				\item Dropout
+			\end{itemize}
+		\end{block}
+	\end{overlayarea}
+\end{frame}
+		
+		
+% %% 1- frame is remaining here
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\vspace{1em}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\hspace{2em}
+			\vspace{1em}
+			\input{modules/Module6/tikz_images/image}								
+			\begin{block}<2->{Parameter Sharing}
+				\begin{itemize}
+					\item<3-> Used in CNNs
+					\item<4-> Same filter applied at different positions of the image
+					\item<5-> Or same weight matrix acts on different input neurons
+				\end{itemize}
+			\end{block}
+		\end{overlayarea}
+						
+		\column{0.5\textwidth}
+		\vspace{-0.6em}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<6->{
+				\input{modules/Module6/tikz_images/autoencoder}
+				\vspace{-1em}
+				\begin{block}<7->{Parameter Tying}
+					\begin{itemize}
+						\item<8-> Typically used in autoencoders
+						\item<9-> The encoder and decoder weights are tied.
+					\end{itemize}
+				\end{block}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
