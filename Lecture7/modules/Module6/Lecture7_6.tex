@@ -1,0 +1,159 @@
+
+\begin{frame}
+    \myheading{Module 7.6: Contractive Autoencoders }
+\end{frame}
+
+% Module 6: Contractive autoencoders starts here (Slide 46 to 51) 
+
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{itemize}[]\justifying
+            \item<1-> A contractive autoencoder also tries to prevent an overcomplete autoencoder from learning the identity function.
+            \item<2-> It does so by adding the following regularization term to the loss function\\
+            \[
+                \Omega(\theta) = \|J_{\textbf{x}}(\mathbf{h})\|_F^2
+            \]
+            \item<3->[] where $J_{\textbf{x}}(\mathbf{h})$ is the Jacobian of the encoder.
+            \item<4-> Let us see what it looks like.
+        \end{itemize}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \only<1->{
+            \hspace{-0.3cm}
+            % \include{over-complete}
+            \input{modules/Module6/tikz_images/over-complete.tex}
+        }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{itemize}\justifying
+            \item<1-> If the input has $n$ dimensions and the hidden layer has $k$ dimensions then
+            \item<3-> In other words, the $(j,l)$ entry of the Jacobian captures the variation in the output of the $l^{th}$ neuron with a small variation in the $j^{th}$ input.
+        \end{itemize}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<2->{
+        \[
+            J_{\textbf{x}}(\mathbf{h}) = \begin{bmatrix}
+                \frac{\partial{h_1}}{\partial{x_1}} & \dots & \dots & \dots &  \frac{\partial{h_1}}{\partial{x_n}} \\
+                \frac{\partial{h_2}}{\partial{x_1}} & \dots & \dots & \dots & \frac{\partial{h_2}}{\partial{x_n}} \\
+                \vdots & & \ddots & & \vdots \\
+                \frac{\partial{h_k}}{\partial{x_1}} & \dots & \dots & \dots & \frac{\partial{h_k}}{\partial{x_n}}
+            \end{bmatrix}
+        \]
+    }
+    \only<4->{
+        \[ 
+            \|J_{\textbf{x}}(\mathbf{h})\|_F^2 = \sum_{j=1} ^n \sum_{l=1} ^k \bigg(\frac{\partial{h_l}}{\partial{x_j}}\bigg)^2
+        \]
+    }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+\vspace{0.5cm}
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<1->{
+    \begin{itemize}\justifying
+    \item<1-> What is the intuition behind this ?
+    \item<2-> Consider $\frac{\partial h_1}{\partial x_1}$, what does it mean if 
+          $\frac{\partial h_1}{\partial x_1} = 0$
+    \item<3-> It means that this neuron is not very sensitive to variations in the 
+          input $x_1$.
+    \item<4-> But doesn't this contradict our other goal of minimizing $\mathcal{L} (\theta)$
+          which requires $\mathbf{h}$ to capture variations in the input.
+    \end{itemize}
+    }
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \[
+        \| J_{\textbf{x}}(\mathbf{h}) \|^2_F = \sum_{j=1}^{n} \sum_{l=1}^{k} 
+                              \Big( \frac{\partial h_l}{\partial x_j} \Big)^2
+    \]
+    % \include{ae-approach}
+    \input{modules/Module6/tikz_images/ae-approach.tex}
+    \end{overlayarea}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\vspace{0.5cm}
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<1->{
+    \begin{itemize}\justifying
+    \item<1-> Indeed it does and that's the idea
+    \item<2-> By putting these two contradicting objectives against each other
+          we ensure that $\textbf{h}$ is sensitive to only very important variations
+          as observed in the training data.
+    \item<3-> $\mathcal{L} (\theta)$ - capture important variations in data
+    \item<4-> $\Omega (\theta)$ - do not capture variations in data
+    \item<5-> Tradeoff - capture only very important variations in the data
+    \end{itemize}
+    }
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \[
+        \| J_{\textbf{x}}(\mathbf{h}) \|^2_F = \sum_{j=1}^{n} \sum_{l=1}^{k} 
+                              \Big( \frac{\partial h_l}{\partial x_j} \Big)^2
+    \]
+    % \include{ae-approach}
+    \input{modules/Module6/tikz_images/ae-approach.tex}
+    \end{overlayarea}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+Let us try to understand this with the help of an illustration.
+\end{block}
+\end{frame}
+\begin{frame}
+
+\begin{columns}
+    \column{0.5\textwidth}
+       \begin{overlayarea}{\textwidth}{\textheight}
+       		\input{modules/Module6/tikz_images/tikz3.tex}
+    	\end{overlayarea}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<2->{
+    \begin{itemize}\justifying
+    \item<2-> Consider the variations in the data along directions $\mathbf{u}_1$
+          and $\mathbf{u}_2$
+    \item<3-> It makes sense to maximize a neuron to be sensitive to variations
+          along $\mathbf{u}_1$
+    \item<4-> At the same time it makes sense to inhibit a neuron from being sensitive to
+          variations along $\mathbf{u}_2$ (as there seems to be small noise and unimportant for
+          reconstruction)
+    \item<5-> By doing so we can balance between the contradicting goals of good reconstruction
+          and low sensitivity.
+    \item<6-> What does this remind you of ?
+    \end{itemize}
+    }
+    \end{overlayarea}
+\end{columns}
+\end{frame}
+
+% Module 6: ends here (Slide 46 to 51)
+

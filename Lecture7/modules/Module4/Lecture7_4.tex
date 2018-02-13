@@ -1,0 +1,312 @@
+
+% Module 4: starts Denoising autoencoders (Slide 28 to 39)
+\begin{frame}
+    \myheading{Module 7.4: Denoising Autoencoders }
+\end{frame}
+
+\begin{frame}
+    %\begin{overlayarea}{\textwidth}{\textheight}
+        \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+        % \include{denoise}
+        \vspace{10pt}
+        \input{modules/Module4/tikz_images/denoise.tex}
+        \end{overlayarea}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+                \begin{itemize}\justifying
+            \item<1-> A denoising encoder simply corrupts the input data using a probabilistic process ($P(\widetilde{x}_{ij} | x_{ij})$) before feeding it to the network
+            \item<2-> A simple $P(\widetilde{x}_{ij} | x_{ij})$ used in practice is the following
+            \begin{align*}
+                \onslide<3->{P(\widetilde{x}_{ij} = 0 | x_{ij}) &= q }\\ 
+                \onslide<4->{P(\widetilde{x}_{ij} = x_{ij} | x_{ij}) &= 1-q}
+            \end{align*}
+            \item<5-> In other words, with probability $q$ the input is flipped to 0 and with probability $(1-q)$ it is retained as it is 
+        \end{itemize}
+        \end{overlayarea}
+        \end{columns}
+    %\end{overlayarea}
+\end{frame}
+
+\begin{frame}
+    %\begin{overlayarea}{\textwidth}{\textheight}
+
+                \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+        % \include{denoise}
+        \vspace{10pt}
+        \input{modules/Module4/tikz_images/denoise.tex}
+        \vspace{-0.2in}
+        \onslide<5->{\normalsize{For example, it will have to learn to reconstruct a corrupted $x_{ij}$ correctly by relying on its interactions with other elements of $\textbf{x}_{i}$}}
+        \end{overlayarea}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{itemize}\justifying
+            \item<1-> How does this help ?
+            \item<2-> This helps because the objective is still to reconstruct the original (uncorrupted) $\textbf{x}_{i}$ 
+            \vspace{-0.1in}
+            \begin{align*}
+                \underset{\theta}{\arg \min} \frac{1}{m}\sum\limits_{i=1}^m\sum\limits_{j=1}^n(\hat{x}_{ij}-x_{ij})^2
+                % Expand loss function from module 3
+            \end{align*}
+            
+            \vspace{-0.1in}
+            \item<3-> It no longer makes sense for the model to copy the corrupted $\widetilde{\textbf{x}_i}$ into $h(\widetilde{\textbf{x}_i})$ and then into $\hat{\textbf{x}}_{i}$ (the objective function will not be minimized by doing so)
+            \item<4-> Instead the model will now have to capture the characteristics of the data correctly.
+        \end{itemize}
+        \end{overlayarea}
+        \end{columns}
+    %\end{overlayarea}
+\end{frame}
+
+\begin{frame}
+    \begin{block}{}
+     We will now see a practical application in which AEs are used and then compare Denoising Autoencoders with regular autoencoders
+    \end{block}
+\end{frame}
+
+\begin{frame}  
+\begin{columns}
+    \column{0.4\textwidth}
+
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{0.2in}
+    \textbf{\large{Task: Hand-written digit recognition}}
+        \begin{figure}
+            \includegraphics[scale= 0.25]{images/mnist.png}
+        \caption{MNIST Data}
+    \end{figure}
+    \end{overlayarea}
+
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+
+        \begin{figure}
+            %\input{mnist-image-1}
+             \input{modules/Module4/tikz_images/mnist-image-1.tex}
+            \caption{Basic approach(we use raw data as input features)}
+        \end{figure}
+
+    \end{overlayarea}
+
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{columns}
+    \column{0.4\textwidth}
+
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{0.2in}
+        \textbf{\large{Task: Hand-written digit recognition}}
+        \begin{figure}
+            \includegraphics[scale= 0.25]{images/mnist.png}
+        \caption{MNIST Data}
+        \end{figure}
+    \end{overlayarea}
+
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \begin{figure}
+            \hspace{2cm}
+			\input{modules/Module4/tikz_images/tikz1.tex}
+            \vspace{0.3cm}
+        \caption{\small{AE approach (first learn important characteristics of data)}} 
+    \end{figure}
+ 
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \begin{columns}
+    \column{0.4\textwidth}
+
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{0.2in}
+        \textbf{\large{Task: Hand-written digit recognition}}
+        \begin{figure}
+            \includegraphics[scale= 0.25]{images/mnist.png}
+        \caption{MNIST Data}
+        \end{figure}
+    \end{overlayarea}
+
+      \column{0.6\textwidth}
+      
+    \begin{overlayarea}{\textwidth}{\textheight}
+
+            \begin{figure}
+        \hspace{2cm}
+        % \include{p29}
+        \input{modules/Module4/tikz_images/p29.tex}
+        % \vspace{-0.4in}
+        \caption{\small{AE approach (and then train a classifier on top of this hidden representation) }}
+    \end{figure}
+   
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \begin{block}{}
+        We will now see a way of visualizing AEs and use this visualization to compare different AEs
+    \end{block}
+\end{frame}
+
+\begin{frame}
+  \begin{columns}
+    \column{0.4\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{figure}
+            % \include{ae-approach}
+            \input{modules/Module4/tikz_images/ae-approach.tex}
+            % \vspace{-1.5cm}
+        \end{figure}
+
+    \footnotesize{
+    \onslide<5->{
+    \begin{block}{}
+    \begin{align*}
+        \underset{\textbf{x}_i}{\max} \hspace{0.1in} & \{W_{1}^{T}\textbf{x}_{i}\}\\
+         s.t.\hspace{0.1in}  ||\textbf{x}_{i}||^{2} &= \textbf{x}_{i}^{T}\textbf{x}_{i} = 1\\
+        \onslide<6->{\text{Solution:}\hspace{0.1in}  \textbf{x}_{i} &= \frac{W_{1}}{\sqrt{W_1^TW_1}}}                             
+    \end{align*}
+    \end{block}}}
+
+
+    %$\underset{x}{\arg \max} ~ W^{T}*x ~ s.t. ~ \|{x}\|^2  =  x^T*x = 1$ \\
+
+    %$Solution: x = \frac{W_{1}}{\sqrt{W_1^{T}W_{1}}}$
+
+    \end{overlayarea}
+
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \only <1-> {
+            \begin{itemize}\justifying
+                  \item <1-> We can think of each neuron as a filter which will fire (or get maximally) activated for a certain input configuration $\textbf{x}_{i}$ 
+                  \item <2-> For example, \\
+                     \[\textbf{h}_{1} = \sigma(W_{1}^{T}\textbf{x}_{i}) ~ [ignoring ~ bias ~ b]\]
+                     Where $W_{1}$ is the trained vector of weights connecting the input to the first hidden neuron 
+                  \item <3-> What values of $\textbf{x}_i$ will cause $\textbf{h}_1$ to be maximum (or maximally activated)
+                  \item <4-> Suppose we assume that our inputs are normalized so that $\|{\textbf{x}_i}\| = 1$      
+            \end{itemize}
+        }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \begin{columns}
+    \column{0.4\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{figure}
+            % \include{ae-approach}
+            \input{modules/Module4/tikz_images/ae-approach.tex}
+            % \vspace{-1.5cm}
+        \end{figure}
+
+    \footnotesize{
+    \begin{block}{}
+    \begin{align*}
+        \underset{\textbf{x}_i}{\max} \hspace{0.1in} & \{W_{1}^{T}\textbf{x}_{i}\}\\
+         s.t.\hspace{0.1in}  ||\textbf{x}_i ||^{2} &= \textbf{x}_{i}^{T}\textbf{x}_{i} = 1\\
+        \text{Solution:}\hspace{0.1in}  \textbf{x}_{i} &= \frac{W_{1}}{\sqrt{W_1^TW_1}}                               
+    \end{align*}
+    \end{block}}
+    \end{overlayarea}
+
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{itemize}\justifying
+            \item<1-> Thus the inputs \\
+             \[ \textbf{x}_{i} =  \frac{W_{1}}{\sqrt{W_1^{T}W_{1}}}, \frac{W_{2}}{\sqrt{W_2^{T}W_{2}}}, \dots \frac{W_{n}}{\sqrt{W_n^{T}W_{n}}}  \]
+            will respectively cause hidden neurons $1$ to $n$ to maximally fire    
+        
+            \item<2-> Let us plot these images ($\textbf{x}_{i}$'s) which maximally activate the first $k$ neurons  of the hidden representations learned by a vanilla autoencoder and different denoising autoencoders
+   
+            \item<3-> These $\textbf{x}_{i}$'s are computed by the above formula using the weights $(W_{1}, W_{2} \dots W_{k})$ learned by the respective autoencoders
+        \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+    \minipage{0.25\textwidth}
+        \includegraphics[width=\linewidth,height=3cm]{images/cross-entropy-loss.png}
+        \label{fig:awesome_image1}
+        \caption{Vanilla AE (No noise)}
+    \endminipage\hfill
+    \minipage{0.25\textwidth}
+        \includegraphics[width=\linewidth, height=3cm]{images/25_edited2.png}
+        \label{fig:awesome_image2}
+        \caption{25\% Denoising AE (q=0.25)}
+    \endminipage\hfill
+    \minipage{0.25\textwidth}%
+        \includegraphics[width=\linewidth,height=3cm]{images/50.png}
+        \label{fig:awesome_image3}
+        \caption{50\% Denoising AE (q=0.5)}
+    \endminipage
+    \end{figure}
+
+    \begin{itemize}\justifying
+        \item<1-> The vanilla AE does not learn many meaningful patterns
+        \item<2-> The hidden neurons of the denoising AEs seem to act like pen-stroke detectors (for example, in the highlighted neuron the black region is a stroke that you would expect in a '0' or a '2' or a '3' or a '8' or a '9')  
+        \item<3-> As the noise increases the filters become more wide because the neuron has to rely on more adjacent pixels to feel confident about a stroke
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+
+  \begin{columns}
+    \column{0.4\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            % \include{denoise}
+            \input{modules/Module4/tikz_images/denoise.tex}
+        \end{overlayarea}
+
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{itemize}\justifying
+            \item<1-> We saw one form of $P(\widetilde{x}_{ij} | x_{ij})$ which flips a fraction $q$ of the inputs to zero
+            \item<2-> Another way of corrupting the inputs is to add a Gaussian noise to the input \\
+            \[\widetilde{x}_{ij} = x_{ij} + \mathscr{N}(0,1)\]
+            \item<3-> We will now use such a denoising AE on a different dataset and see their performance
+        \end{itemize}
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+    \minipage{0.25\textwidth}
+        \includegraphics[width=\linewidth]{images/data.png}
+        \label{fig:awesome_image1}
+        \caption{Data}
+    \endminipage\hfill
+    \minipage{0.25\textwidth}
+        \includegraphics[width=\linewidth]{images/ae-filters.png}
+        \label{fig:awesome_image2}
+        \caption{AE filters}
+    \endminipage\hfill
+    \minipage{0.25\textwidth}%
+        \includegraphics[width=\linewidth]{images/weight-decay.png}
+        \label{fig:awesome_image3}
+        \caption{Weight decay filters}
+    \endminipage
+    \label{pics:blablabla}
+    \end{figure}
+
+    \begin{itemize}\justifying
+        \item<1-> The hidden neurons essentially behave like edge detectors
+        \item<2-> PCA does not give such edge detectors
+        % \item<3-> Also note that even though the noise process (adding Gaussian noise) is similar to weight decay penalty the results are very different (in particular with weight decay we do not see any meaningful patterns)   
+    \end{itemize}
+\end{frame}
+
+% Slide 39 Module 4 ends

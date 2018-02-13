@@ -4,6 +4,7 @@
 
 %\StartShownPreambleCommands
 \usepackage{amsmath,esint}
+\usepackage{amssymb}
 \usepackage[british]{babel}
 \usepackage{multicol}
 \usetheme{Warsaw}
@@ -16,10 +17,10 @@
 \usepackage{pgfplots}
 
 \usepackage{ mathrsfs }
+\usepackage{hyperref}
 
 \usepackage{gensymb}
 \usepackage{color}
-
 \usepackage{tkz-euclide}
 \usetkzobj{all}
 \usepackage{tkz-fct}  
@@ -28,16 +29,12 @@
 \usepackage[ruled]{algorithm2e}
 \usepackage{tikz}
 \usepackage{animate}
-\usepackage{dtklogos}
 \usepackage{adjustbox}
 \usepackage[labelformat=empty]{caption}
 \usepackage{blindtext}
-%%%%%%% 3.2 packages
-\newcommand{\highlight}[1]{\colorbox{yellow}{$\displaystyle #1$}}
-\newcommand\Fontvi{\fontsize{9.5}{1}\selectfont}
-%%%%%%%
-\newcommand{\msout}[1]{\text{\sout{\ensuremath{#1}}}}
-\pgfplotsset{compat=1.8}
+
+\usepackage{utils/dtklogos}
+\usepackage{utils/style}
 
 \makeatletter
 
@@ -52,12 +49,6 @@
     \insertframenumber/\inserttotalframenumber
 }
 
-\newcommand\myheading[1]{%
-\par\bigskip
-{\Large\bfseries#1}\par\smallskip}
-
-\makeatletter
-\newcommand\titlegraphicii[1]{\def\inserttitlegraphicii{#1}}
 \titlegraphicii{}
 \setbeamertemplate{title page}
 {
@@ -90,10 +81,10 @@
 %\author{Anirban Laha and Preksha Nema \\\vspace{0.2in} Presented By: Mitesh M. Khapra}
 %\author{Anirban Laha and Preksha Nema \\\vspace{0.2in} Presented By: Mitesh M. Khapra}
 \author{Mitesh M. Khapra}
-\title{CS7015 (Deep Learning) : Lecture 9}
+\title{CS7015 (Deep Learning) : Lecture 8}
 \subtitle{Regularization: Bias Variance Tradeoff, L2 regularization, Early stopping, Dataset augmentation, Parameter sharing and tying, Injecting noise at input, Ensemble methods, Dropout}
 \institute{Department of Computer Science and Engineering\\ Indian Institute of Technology Madras}
-\date{February 10, 2017}
+\date{}
 \titlegraphic{\includegraphics[height=1cm,width=2cm]{images/iitm_logo.png}}
 
 

@@ -1,0 +1,108 @@
+\begin{frame}
+    \myheading{Module 7.3: Regularization in autoencoders (Motivation)}
+\end{frame}
+
+
+%\begin{frame}
+%    \begin{columns}
+%        \column{0.5\textwidth}
+%        \begin{overlayarea}{\textwidth}{\textheight}
+%            %\vspace{-0.2in}
+%            \footnotesize{
+%            \input{modules/Module3/tikz_images/under-complete-pca.tex}
+%            \vspace{-2pt}
+%            \onslide<6->
+%            {
+%                \begin{align*}
+%                    \textit{For example,} \quad h(\mathbf{x_1}) &= 1 \quad f(h(\mathbf{x_1})) &=\mathbf{x_1}\\
+%                    \onslide<7->{h(\mathbf{x_2}) &=2 \quad f(h(\mathbf{x_2})) &=\mathbf{x_2}\\}
+%                    \onslide<8->{\text{  .. and so on} \\}
+%                \end{align*}
+%            }
+%            \vspace{-30pt}
+%            \begin{itemize}
+%            \item<9-> This may not hold true for the sigmoid or $\tanh$ non-linearity but theoretically, the argument holds for some complex non-linearity
+%            \end{itemize}
+%            }
+%        \end{overlayarea}
+%
+%        \column{0.5\textwidth}
+%        \begin{overlayarea}{\textwidth}{\textheight}
+%            \footnotesize
+%            {
+%                \begin{itemize}\justifying
+%                    \item<2-> We saw that under certain conditions the linear encoder of an autoencoder is equivalent to PCA (i.e. the encoder matrix $W$ learns the principal components of the data as a side effect)
+%                    \item<3-> Intuitively, if we use a non-linear encoder and decoder we should be able to extract even better characteristics
+%                    \item<4-> Theoretically, we could argue that even a very undercomplete autoencoder (say $|\mathbf{h}| =1$) can also learn to perfectly reconstruct the data
+%                    \item<5-> By using a highly non-linear encoder and a highly non-linear decoder we could simply learn a mapping function which maps the input to an index $\in \mathbb{R}$ and then memorises the output to be recovered from this index
+%                    \item<10-> Such an autoencoder will obviously not generalize well
+%                \end{itemize}
+%            }
+%        \end{overlayarea}
+%    \end{columns}
+%\end{frame}
+
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \vspace{5pt}
+        \input{modules/Module3/tikz_images/over-complete.tex}
+        \end{overlayarea}
+    
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}\justifying
+                \item<2-> While poor generalization could happen even in undercomplete autoencoders it is an even more serious problem for overcomplete auto encoders
+                \item<3-> Here, (as stated earlier) the model can simply learn to copy $\mathbf{x_i}$ to $\mathbf{h}$ and then $\mathbf{h}$ to $\mathbf{\hat{x}_i}$
+                \item<4-> To avoid poor generalization, we need to introduce regularization
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \vspace{5pt}
+        \input{modules/Module3/tikz_images/over-complete.tex}
+        \end{overlayarea}
+    
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}\justifying
+                \item<1-> The simplest solution is to add a L$_2$-regularization term to the objective function
+                %\item<3-> 
+                \begin{align*}
+                    \min\limits_{\theta,w,w^*,\mathbf{b},\mathbf{c}} \hspace{0.3mm}
+                    \frac{1}{m}\sum\limits_{i=1}^m\sum\limits_{j=1}^n(\hat{x}_{ij}-x_{ij})^2 + \lambda \|\theta\|^2
+                \end{align*}
+                \item<2-> This is very easy to implement and just adds a term $\lambda W$ to the gradient $\frac{\partial \mathscr{L(\theta)}}{\partial W}$ (and similarly for other parameters)
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+
+%%Ditty's slides end
+
+%%Ayesha's slides begin
+
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \vspace{5pt}
+            \input{modules/Module3/tikz_images/over-complete.tex}
+        \end{overlayarea}
+
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}\justifying
+                \item<1-> Another trick is to tie the weights of the encoder and decoder \pause i.e., $W^*=W^{T}$
+                \item<3->  This effectively reduces the capacity of Autoencoder and acts as a regularizer
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}

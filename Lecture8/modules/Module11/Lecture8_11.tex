@@ -7,7 +7,7 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		\begin{block}{Other forms of regularization}
 			\begin{itemize}
-				\item $L2$ regularization
+				\item $L_2$ regularization
 				\item Dataset augmentation
 				\item Parameter Sharing and tying
 				\item Adding Noise to the inputs
@@ -402,7 +402,7 @@
 				\item<1->  Typically model averaging(bagging ensemble) always helps
 				\item <2-> Training several large neural networks for making an ensemble is prohibitively expensive
 				\item<3->  Option 1: Train several neural networks having different architectures(obviously expensive)
-				\item<4->  Option 2: Train multiple instances of the same network using different training samples(again expensive)
+				\item<4->  Option 2: Train multiple instances of the same network using different training samples (again expensive)
 				\item<5->  Even if we manage to train with option 1 or option 2, combining several models at test time is infeasible in real time applications
 			\end{itemize}
 		\end{overlayarea}
@@ -1229,8 +1229,8 @@
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}\justifying
 				\item<2-> Here is an example of how dropout helps in ensuring redundancy and robustness
-				\item<3-> Suppose $h_i$ learns to detect a face by firing on detecting a noise
-				\item<4-> Dropping $h_i$ then corresponds to erasing the information that  a noise exists
+				\item<3-> Suppose $h_i$ learns to detect a face by firing on detecting a nose
+				\item<4-> Dropping $h_i$ then corresponds to erasing the information that  a nose exists
 				\item<5-> The model should then learn another $h_i$ which redundantly encodes the presence of a nose
 				\item<6-> Or the model should learn to detect the face using other features
 			\end{itemize}
@@ -1243,7 +1243,7 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		\begin{block}{Recap}
 			\begin{itemize}
-				\item $L2$ regularization
+				\item $L_2$ regularization
 				\item Dataset augmentation
 				\item Parameter Sharing and tying
 				\item Adding Noise to the inputs

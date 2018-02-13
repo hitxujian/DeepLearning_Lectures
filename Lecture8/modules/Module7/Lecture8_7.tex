@@ -7,7 +7,7 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		\begin{block}{Other forms of regularization}
 			\begin{itemize}
-				\item $L2$ regularization
+				\item $L_2$ regularization
 				\item Dataset augmentation
 				\item Parameter Sharing and tying
 				\item \textcolor<2->{red}{Adding Noise to the inputs }
@@ -101,7 +101,7 @@
 			\begin{itemize}
 				\justifying
 				\item<2-> We saw this in Autoencoder
-				\item<3-> We can show that for a simple input output neural network, adding Gaussian noise to the input is equivalent to weight decay ($L2$ normalizaton)
+				\item<3-> We can show that for a simple input output neural network, adding Gaussian noise to the input is equivalent to weight decay ($L_2$ regularisation)
 				\item<4-> Can be viewed as data augmentation
 			\end{itemize}
 									
@@ -163,8 +163,8 @@
 				\onslide<9->{                                    & = E\left[\left(  \Big(\widehat{y} - y \Big)+ \Big(\sum_{i=1}^{n}w_i \varepsilon_i \Big) \right)^2\right] \\}
 				\onslide<10->{                                   & = E\left[(\widehat{y} - y)^2\right] + E\left[2(\widehat{y}-y) \sum_{i=1}^{n}w_i \varepsilon_i\right] + E\left[ \Big( \sum_{i=1}^{n}w_i \varepsilon_i \Big)^2\right] \\}
 				\onslide<11->{                                   & = E\left[(\widehat{y} - y)^2\right] + 0 + E\left[\sum_{i=1}^{n}w_i^2 \varepsilon_i^2\right] \\
-				                                                 & \text{($\because  \varepsilon_i$ is independent of $\varepsilon_j$ and $\varepsilon_i$ is independent of ($\widehat{y}$-y) )} \\}
-				\onslide<12->{                                   & = (E\left[(\widehat{y} - y)^2\right] + \highlight{\sigma^2\sum_{i=1}^{n}w_i^2} \hspace{1em} \text{(same as L2 norm penalty)}}
+				                                                 & \text{($\because  \varepsilon_i$ is independent of $\varepsilon_j$ and $\varepsilon_i$ is independent of ($\widehat{y}$-$y$) )} \\}
+				\onslide<12->{                                   & = (E\left[(\widehat{y} - y)^2\right] + \highlight{\sigma^2\sum_{i=1}^{n}w_i^2} \hspace{1em} \text{(same as }L_2 \text{ norm penalty)}}
 			\end{align*}
 		\end{overlayarea}
 	\end{columns}

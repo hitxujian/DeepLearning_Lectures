@@ -1,0 +1,51 @@
+
+\tikzstyle{input_neuron}=[circle,draw=red!50,fill=red!10,thick,minimum size=6mm]
+\tikzstyle{hidden_neuron}=[circle,draw=blue!50,fill=cyan!10,thick,minimum size=6mm]
+\tikzstyle{output_neuron}=[circle,draw=green!50,fill=green!10,thick,minimum size=6mm]
+\tikzstyle{cpy_neuron}=[circle,draw=green!50,fill=green!50,thick,minimum size=6mm]
+\tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=6mm]
+
+\begin{center}
+\begin{tikzpicture}
+
+%\node [input_neuron] (neuron00) at (6.5,6) {} ;
+\node [input_neuron] (neuron01) at (7.5,6) {} ;
+\node [input_neuron] (neuron02) at (8.5,6)  {};
+\node [input_neuron] (neuron03) at (9.5,6)  {};
+\node [input_neuron] (neuron04) at (10.5,6)  {};
+%\node [input_neuron] (neuron05) at (11.5,6)  {};
+\node [input_neuron] (neuron06) at (12.5,6)  {};
+%\node [input_neuron] (neuron07) at (13.5,6) {} ;
+
+\node [output_neuron] (neuron11) at (7.5,7.5)  {$0$};
+\node [output_neuron] (neuron12) at (8.5,7.5)  {$1$};
+\node [output_neuron] (neuron13) at (9.5,7.5)  {$2$};
+\node [cpy_neuron] (neuron14) at (10.5,7.5)  {$3$};
+\node [output_neuron] (neuron15) at (12.5,7.5)  {$9$};
+
+
+%\node[text width=0.01cm] at (12.2,4.5) {$x$};
+%\node[text width=0.01cm] at (13.2,6) {$h(x)$};
+%\node[text width=0.01cm] at (12.2,7.5) {$\hat{x}$};
+
+\draw[red!100,thick,solid,rounded corners=15pt] (7,5.5) rectangle (13,6.5);
+%\draw[red!100,thick,solid,rounded corners=15pt] (8,7) rectangle (12,8);
+
+\node[] at (10.2,5) {$|x| = 784 = 28 \times 28$};
+
+\node[text width=0.5cm] at (10.2,4) 
+ {\includegraphics[width=.9\textwidth]{three.jpeg}};
+\draw[black, thick] (9.7,3.5) rectangle (10.7,4.5);
+\node[] at (10.2,3.2) {28*28};
+
+\draw[->] (10.5,6.5) -- (neuron14);
+\draw[->] (9.5,6.5) -- (neuron13);
+\draw[->] (8.5,6.5) -- (neuron12);
+\draw[->] (7.5,6.5) -- (neuron11);
+\draw[->] (12.5,6.5) -- (neuron15);
+
+\draw[red!20,dashed,line width=2pt] (neuron04) -- (neuron06);
+\draw[green!20,dashed,line width=2pt] (neuron14) -- (neuron15);
+
+\end{tikzpicture}
+\end{center}

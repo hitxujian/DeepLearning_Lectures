@@ -1,0 +1,57 @@
+
+% Module 7: Summary starts here (Slide 53-54) 
+
+\begin{frame}
+    \myheading{Module 7.7 : Summary }
+\end{frame}
+
+\begin{frame}
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<1->{
+        \begin{figure}
+        \input{modules/Module6/tikz_images/under-complete-pca.tex}
+        \end{figure}
+    }
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \only<2->{
+    \[
+        \min_\theta \| X - \underbrace{H W^*}_{\substack{ U \Sigma V^T \\ \text{(SVD)}}} \|^2_F
+    \]
+    }
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    % \include{denoise}
+    \vspace{5pt}
+    \input{modules/Module7/tikz_images/denoise.tex}
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{1cm}
+        \onslide<2->{
+        \begin{center}
+            \underline{Regularization}
+        \end{center}
+        }
+        \begin{equation*}
+            \footnotesize{
+            \begin{split}
+                \onslide<3-> {\Omega(\theta) &= \lambda \|\theta \|^2  \;\;\; \framebox{Weight decaying}} \\
+                \onslide<4-> {\Omega(\theta) &= \sum_{l=1}^{k} \rho \log \frac{\rho}{\hat{\rho}_l} + (1 - \rho) \log \frac{1 - \rho}{1 - \hat{\rho}_l} \;\;\; \framebox{Sparse}} \\
+                \onslide<5-> {\Omega(\theta) &= \sum_{j=1}^{n} \sum_{l=1}^{k} \Big( \frac{\partial h_l}{\partial x_j} \Big)^2 \;\;\; \framebox{Contractive}}
+            \end{split}
+            }
+        \end{equation*}
+    \end{overlayarea}
+\end{columns}
+\end{frame}
+% Module 7: Summary ends here (Slide 53-54) 

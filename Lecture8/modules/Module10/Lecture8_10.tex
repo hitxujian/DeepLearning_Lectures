@@ -7,7 +7,7 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		\begin{block}{Other forms of regularization}
 			\begin{itemize}
-				\item $L2$ regularization
+				\item $L_2$ regularization
 				\item Dataset augmentation
 				\item Parameter Sharing and tying
 				\item Adding Noise to the inputs
@@ -177,9 +177,12 @@
 						\draw [->] (in11) -- (out2);
 						\draw [->] (out2) -- (output4);
 						\draw [->] (8,3) -- (output5);
-						\node [below] (head) at (4.75,-0.5)  {$Logistic$ $Regression$} ;
-						\node [below] (head) at (8,-0.5)  {$Logistic$ $Regression$} ;
-						\node [below] (head) at (1.5,-0.5)  {$Logistic$ $Regression$} ;
+						\node [below] (head) at (4.75,-0.5)  {$Logistic$ } ;
+						\node [below] (head) at (8,-0.5)  {$Logistic$ } ;
+						\node [below] (head) at (1.5,-0.5)  {$Logistic$ } ;
+						\node [below] (head) at (4.75,-0.85)  {$Regression$} ;
+						\node [below] (head) at (8,-0.85)  { $Regression$} ;
+						\node [below] (head) at (1.5,-0.85)  { $Regression$} ;
 											
 						\node (output3) at (4.75,5)  {$y_{final}$} ;
 						\draw (0,4.25) -- (9.5,4.25);
@@ -209,7 +212,6 @@
 				\justifying
 				\item <7-> The error made by the average prediction of all the models is $\frac{1}{k}\sum_{i}\varepsilon_i$.
 				\item <8-> The expected squared error is given by:
-				%\NewEnviron{myequation}{
 				\scalebox{0.9}{\parbox{\linewidth}{%
 					\begin{align*}
 				 		%DeclareMathSizes{10}{10}{10}{10}
@@ -230,7 +232,7 @@
 			\begin{itemize}
 				\justifying
 				\item<1->  When would bagging work?
-				\item<2-> Consider a set of k LR models
+				\item<2-> Consider a set of $k$ LR models
 				\item<3->  Suppose that each model makes an error $\varepsilon_i$ on a test example
 				\item<4->  Let $\varepsilon_i$ be drawn from a zero mean multivariate normal distribution
 				\item<5->  $ Variance = E[\varepsilon_i^{2}]=V$

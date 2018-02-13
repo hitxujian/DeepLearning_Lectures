@@ -1,0 +1,181 @@
+\begin{frame}
+    \myheading{Module 7.2: Link between PCA and Autoencoders}
+\end{frame}
+
+
+
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}
+        %\vspace{1cm}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \input{modules/Module2/tikz_images/under-complete-pca.tex}
+        \end{overlayarea}
+
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}\justifying
+                \item We will now see that the encoder part of an autoencoder is equivalent to PCA if we
+                \begin{itemize}\justifying
+                    \item<2-> use a linear encoder
+                    \item<3-> use a linear decoder
+                    \item<4-> use squared error loss function
+                    \item<5-> normalize the inputs to 
+                    \begin{align*}
+                         \hat{x}_{ij} = \frac{1}{\sqrt{m}}\Bigg(x_{ij}-\frac{1}{m}\sum\limits_{k=1}^mx_{kj}\Bigg) 
+                    \end{align*}
+                \end{itemize}
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    %\vspace{0.1in}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \input{modules/Module2/tikz_images/under-complete-pca.tex}
+        \end{overlayarea}
+
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}\justifying
+                \item<1-> First let us consider the implication of normalizing the inputs to
+                \begin{align*}
+                    \hat{x}_{ij} = \frac{1}{\sqrt{m}}\Bigg(x_{ij}-\frac{1}{m}\sum\limits_{k=1}^mx_{kj}\Bigg) 
+                \end{align*}
+                \vspace{-0.2in}
+                
+                \item<2-> The operation in the bracket ensures that the data now has 0 mean along each dimension $j$ (we are subtracting the mean)
+                \item<3-> Let $X^{'}$ be this zero mean data matrix then what the above normalization gives us is $X= \frac{1}{\sqrt{m}}X^{'}$
+                \item<4-> Now $(X)^TX =\frac{1}{m}(X')^TX'$ is the covariance matrix (recall that covariance matrix plays an important role in PCA)
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \input{modules/Module2/tikz_images/under-complete-pca.tex}
+        \end{overlayarea}
+
+
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}\justifying
+                \item<2-> First we will show that if we use linear decoder and a squared error loss function then
+                \item<3->The optimal solution to the following objective function 
+                    \begin{align*}
+                      \onslide<4-> {\frac{1}{m}\sum\limits_{i=1}^{m}\sum\limits_{j=1}^n(x_{ij}-\hat{x}_{ij})^2}
+                    \end{align*}
+                    \onslide<5->{is obtained when we use a linear encoder.}
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+
+\begin{frame}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \small{
+        \begin{equation} \label{equ:1}
+            \min\limits_\theta\sum\limits_{i=1}^m\sum\limits_{j=1}^n(x_{ij}-\hat{x}_{ij})^2    
+        \end{equation}
+        \vspace{-0.1in}
+
+        \begin{itemize}\justifying
+            \vspace{-0.2in}
+            \item <2-> This is equivalent to 
+            \vspace{-0.2in}
+            \begin{align*}
+                \onslide<3->{\min\limits_{W^*H}(\|X-HW^*\|_F)^2 \hspace{0.2in} \hspace{0.5in}} 
+                \onslide<4->{\|A\|_F = \sqrt{\sum\limits_{i=1}^m\sum\limits_{j=1}^na_{ij}^2}}
+            \end{align*}
+        
+            \onslide<5->{(just writing the expression (\ref{equ:1}) in matrix form and using the definition of $||A||_F$) (we are ignoring the biases)}
+
+            \item<6->From SVD we know that optimal solution to the above problem is given by 
+            \begin{align*}
+                HW^* = U_{.\hspace{0.01in},\leq k}\Sigma_{k,k}V_{.\hspace{0.01in},\leq k}^T
+            \end{align*}
+        
+            \item<7-> By matching variables one possible solution is
+            \begin{align*}
+                H &=U_{.\hspace{0.01in},\leq k}\Sigma_{k,k} \\
+                W^* &= V_{.\hspace{0.01in},\leq k}^T
+            \end{align*} 
+        \end{itemize}}
+    \end{overlayarea}
+\end{frame}
+
+
+\begin{frame}
+    \small
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{5pt}
+        We will now show that $H$ is a linear encoding and find an expression for the encoder weights $W$
+        \begin{align*}
+            \onslide<2->{H  &= U_{.\hspace{0.01in},\leq k}\Sigma_{k,k}\\}
+            \onslide<3->{      &= (XX^T)(XX^T)^{-1}U_{.\hspace{0.01in}, \leq K}\Sigma_{k,k} &\quad \textit{(pre-multiplying $(XX^T)(XX^T)^{-1} = I$)} \\}
+            \onslide<4->{      &= (XV\Sigma^TU^T)(U\Sigma V^TV\Sigma^TU^T)^{-1}U_{.\hspace{0.01in},\leq k}\Sigma_{k,k} &\quad \textit{(using $X=U\Sigma V^T$)} \\}
+            \onslide<5->{      &= XV\Sigma^TU^T(U\Sigma\Sigma^TU^T)^{-1}U_{.\hspace{0.01in}, \leq k}\Sigma_{k,k} &\quad (V^TV = I)\\} 
+            \onslide<6->{      &= XV\Sigma^TU^TU(\Sigma\Sigma^T)^{-1}U^TU_{.\hspace{0.01in}, \leq k}\Sigma_{k,k} &\quad ((ABC)^{-1} = C^{-1}B^{-1}A^{-1})\\}
+            \onslide<7->{      &= XV\Sigma^T(\Sigma\Sigma^T)^{-1}U^TU_{.\hspace{0.01in}, \leq k}\Sigma_{k,k} &\quad (U^TU = I)\\}
+            \onslide<8->{      &= XV\Sigma^T\Sigma^{T^{-1}}\Sigma^{-1}U^TU_{.\hspace{0.01in}, \leq k}\Sigma_{k,k} &\quad ((AB)^{-1} = B^{-1}A^{-1})\\}
+            \onslide<9->{      &= XV\Sigma^{-1}I_{.\hspace{0.01in}, \leq k}\Sigma_{k,k} &\quad (U^TU_{.\hspace{0.01in}, \leq k} = I_{.\hspace{0.01in}, \leq k})\\}
+            \onslide<10->{     &=XVI_{.\hspace{0.01in}, \leq k} &\quad (\Sigma^{-1}I_{.\hspace{0.01in}, \leq k}=\Sigma_{k,k}^{-1})\\}
+            \onslide<11->{H &=XV_{.\hspace{0.01in},\leq k}}
+        \end{align*}
+        \only<12->{Thus $H$ is a linear transformation of $X$ and $W=V_{.\hspace{0.01in},\leq k}$}
+    \end{overlayarea}
+\end{frame}
+
+
+\begin{frame}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \begin{itemize}\justifying
+            \item<1-> We have encoder $W=V_{.\hspace{0.01in},\leq k}$
+            \item<2-> From SVD, we know that $V$ is the matrix of eigen vectors of $X^TX$
+            \item<3-> From PCA, we know that $P$ is the matrix of the eigen vectors of the covariance matrix
+            \item<4-> We saw earlier that, if entries of $X$ are normalized by
+        \end{itemize}
+        \only<5->
+        {
+            \begin{align*}
+                         \hat{x}_{ij} = \frac{1}{\sqrt{m}}\Bigg(x_{ij}-\frac{1}{m}\sum\limits_{k=1}^mx_{kj}\Bigg) 
+            \end{align*}
+            
+        }
+        \only<6->
+        {
+            then $X^TX$ is indeed the covariance matrix
+        }
+        \begin{itemize}
+            \item<7-> Thus, the encoder matrix for linear autoencoder($W$) and the projection matrix($P$) for PCA could indeed be the same. Hence proved
+        \end{itemize}
+    \end{overlayarea}
+\end{frame}
+
+\begin{frame}
+
+    \begin{block}{Remember}
+        The encoder of a linear autoencoder is equivalent to PCA if we 
+        \begin{itemize}\justifying
+            \item<2-> use a linear encoder
+            \item<3-> use a linear decoder
+            \item<4-> use a squared error loss function
+            \item<5-> and normalize the inputs to 
+        \end{itemize}
+        \onslide<6->
+        {
+            \begin{align*}
+                         \hat{x}_{ij} = \frac{1}{\sqrt{m}}\Bigg(x_{ij}-\frac{1}{m}\sum\limits_{k=1}^mx_{kj}\Bigg) 
+            \end{align*}            
+        }
+    \end{block}
+\end{frame}

@@ -84,22 +84,38 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-	\begin{multicols}{2}
-		\begin{itemize}
-			\justifying
-			\setlength\itemsep{1em}
-			\item<1-> Let D=$\{x_i,y_i\}_{i=1}^{m+n}$, then for any point $(x,y)$ we have,\linebreak\\
-			$y_i=f(x_i)+
-			\varepsilon_i$
-			\item<2->which means that $y_i$ is related to $x_i$ by some true function $f$ but there is also some noise $\varepsilon$ in the relation
-			\item<3->For simplicity, we assume $\varepsilon\sim\mathcal{N}(0,\sigma^2)$ \onslide<4->{and of course we do not know $f$}
-			\item<5-> Further we use $\hat{f}$ to approximate $f$ and estimate the parameters using T $\subset$ D such that\\
-			$y_i=\hat{f}(x_i)$
-			\item<6-> We are interested in knowing $E[(\hat{f}(x_i)-f(x_i))^2]$\\ \onslide<7->{but we cannot estimate this directly because we do not know $f$}
-			\item<8-> We will see how to estimate this empirically using the observation $y_i$ \& prediction $\hat{y}_i$
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}\justifying
+				\setlength\itemsep{1em}
+				\item<1-> Let D=$\{x_i,y_i\}_{i=1}^{m+n}$, then for any point $(x,y)$ we have,
+				\begin{align*}
+					y_i=f(x_i)+\varepsilon_i
+				\end{align*}
+				\item<2->which means that $y_i$ is related to $x_i$ by some true function $f$ but there is also some noise $\varepsilon$ in the relation
+				\item<3->For simplicity, we assume 
+				\begin{align*}
+					\varepsilon\sim\mathcal{N}(0,\sigma^2)
+				\end{align*}
+				\onslide<4->{and of course we do not know $f$}
+			\end{itemize}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}\justifying
+				\item<5-> Further we use $\hat{f}$ to approximate $f$ and estimate the parameters using T $\subset$ D such that
+				\begin{align*}
+					y_i=\hat{f}(x_i)
+				\end{align*}
+				\item<6-> We are interested in knowing 
+				\begin{align*}
+				E[(\hat{f}(x_i)-f(x_i))^2] 
+				\end{align*}
+				\onslide<7->{but we cannot estimate this directly because we do not know $f$}
+				\item<8-> We will see how to estimate this empirically using the observation $y_i$ \& prediction $\hat{y}_i$
 									
-		\end{itemize}
-	\end{multicols}
+			\end{itemize}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 
@@ -132,11 +148,11 @@
 		\justifying
 		\setlength\itemsep{1em}
 		\item<1-> Suppose we have observed the goals scored($z$) in $k$ matches as \\$z_1=2$, $z_2=1$, $z_3=0$, ... $z_k=2$
-		\item<2-> Now we can empirically estimate $E[z]$ i.e. the expected number of goals scored as\\
+		\item<2-> Now we can empirically estimate $E[z]$ i.e. the expected number of goals scored as
 		\begin{align*}
 			E[z]=\frac{1}{k}\sum_{i=1}^{k}z_i 
 		\end{align*}
-		\item<3-> Analogy with our derivation: We have a certain number of observations $y_i$ \& predictions $\hat{y_i}$ using which we can estimate\\
+		\item<3-> Analogy with our derivation: We have a certain number of observations $y_i$ \& predictions $\hat{y_i}$ using which we can estimate
 		\begin{align*}
 			E[(\hat{y_i}-y_i)^2]= \onslide<4->{\frac{1}{m}\sum_{i=1}^{m}(\hat{y_i}-y_i)^2} 
 		\end{align*}
@@ -169,7 +185,7 @@
 					\onslide<3->{ & \underbrace{	E[(\hat{f}(x_i)-f(x_i))^2]}_{true\hspace{0.05cm} error}}
 					\onslide<4->{ & =\underbrace{\frac{1}{m}\sum_{i=n+1}^{n+m}(\hat{y_i}-y_i)^2}_{empirical\hspace{0.05cm}estimation\hspace{0.09cm}of\hspace{0.09cm}error}-} 
 					\onslide<5->{\underbrace{\frac{1}{m}\sum_{i=n+1}^{n+m}\varepsilon_i^2}_{small\hspace{0.05cm}constant}} 
-					\onslide<6->{+\ \underbrace{2E[\ \varepsilon_i (\hat{f}(x_i)-f(x_i))\ ]}_{
+					\onslide<6->{+\ 2\underbrace{E[\ \varepsilon_i (\hat{f}(x_i)-f(x_i))\ ]}_{
 					= \hspace{0.09cm}\textcolor{red}{covariance\hspace{0.05cm}(\varepsilon_i,\hat{f}(x_i)-f(x_i))}
 					}}	
 				\end{align*}
@@ -190,7 +206,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 	\onslide<1->\begin{align*}
-	&\underbrace{	E[(\hat{f}(x_i)-f(x_i))^2]}_{true\hspace{0.09cm} error}\\&=\underbrace{\frac{1}{m}\sum_{i=n+1}^{n+m}(\hat{y_i}-y_i)^2}_{empirical\hspace{0.09cm}estimation\hspace{0.09cm}of\hspace{0.09cm}error}-\underbrace{\frac{1}{m}\sum_{i=n+1}^{n+m}\varepsilon_i^2}_{small\hspace{0.09cm}constant}\ +\ \underbrace{2E[\ \varepsilon_i (\hat{f}(x_i)-f(x_i))\ ]}_{= \hspace{0.09cm}covariance\hspace{0.05cm}(\varepsilon_i,\hat{f}(x_i)-f(x_i))}
+	&\underbrace{	E[(\hat{f}(x_i)-f(x_i))^2]}_{true\hspace{0.09cm} error}\\&=\underbrace{\frac{1}{m}\sum_{i=n+1}^{n+m}(\hat{y_i}-y_i)^2}_{empirical\hspace{0.09cm}estimation\hspace{0.09cm}of\hspace{0.09cm}error}-\underbrace{\frac{1}{m}\sum_{i=n+1}^{n+m}\varepsilon_i^2}_{small\hspace{0.09cm}constant}\ +\ 2\underbrace{E[\ \varepsilon_i (\hat{f}(x_i)-f(x_i))\ ]}_{= \hspace{0.09cm}covariance\hspace{0.05cm}(\varepsilon_i,\hat{f}(x_i)-f(x_i))}
 	\end{align*}
 	\begin{itemize}
 		\justifying
@@ -215,7 +231,7 @@
 		\justifying
 		\setlength\itemsep{1em}
 		\item[]<1-> \textbf{Case 2}: Using training observations\begin{align*}
-			&\underbrace{	E[(\hat{f}(x_i)-f(x_i))^2]}_{true\hspace{0.09cm} error}\\&=\underbrace{\frac{1}{n}\sum_{i=1}^{n}(\hat{y_i}-y_i)^2}_{empirical\hspace{0.09cm}estimation\hspace{0.09cm}of\hspace{0.09cm}error}\ -\ \underbrace{\frac{1}{n}\sum_{i=1}^{n}\varepsilon_i^2}_{small\hspace{0.09cm}constant}\ +\ \underbrace{2E[\ \varepsilon_i (\hat{f}(x_i)-f(x_i))\ ]}_{= \hspace{0.09cm}covariance\hspace{0.05cm}(\varepsilon_i,\hat{f}(x_i)-f(x_i))}
+			&\underbrace{	E[(\hat{f}(x_i)-f(x_i))^2]}_{true\hspace{0.09cm} error}\\&=\underbrace{\frac{1}{n}\sum_{i=1}^{n}(\hat{y_i}-y_i)^2}_{empirical\hspace{0.09cm}estimation\hspace{0.09cm}of\hspace{0.09cm}error}\ -\ \underbrace{\frac{1}{n}\sum_{i=1}^{n}\varepsilon_i^2}_{small\hspace{0.09cm}constant}\ +\ 2\underbrace{E[\ \varepsilon_i (\hat{f}(x_i)-f(x_i))\ ]}_{= \hspace{0.09cm}covariance\hspace{0.05cm}(\varepsilon_i,\hat{f}(x_i)-f(x_i))}
 		\end{align*}
 		\item[]<2->Now, $\varepsilon\not\perp\hat{f}$(x) because $\varepsilon$ was used for estimating the parameters of $\hat{f}(x)$
 		\begin{align*}

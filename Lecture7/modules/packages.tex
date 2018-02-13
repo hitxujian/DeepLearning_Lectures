@@ -1,0 +1,50 @@
+\PassOptionsToClass{}{beamer}
+\documentclass[serif, aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,esint}
+\usepackage[british]{babel}
+\usetheme{Warsaw}
+\usecolortheme{rose}
+\usepackage{comment}
+\usepackage{pgfplots}
+\usepackage{ mathrsfs }
+\usepackage{gensymb}
+\usepackage{color}
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage{tkz-fct}  
+\usetikzlibrary{calc}
+\usepackage[ruled]{algorithm2e}
+\usepackage{tikz}
+\usepackage{animate}
+\usepackage{ragged2e}
+\usepackage{mwe}
+\DeclareMathOperator*{\minimize}{minimize}
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\makeatletter
+\newcommand\titlegraphicii[1]{\def\inserttitlegraphicii{#1}}
+\titlegraphicii{}
+
+\def\alpha{8} 
+
+\newcommand\myheading[1]{%
+\par\bigskip
+{\Large\bfseries#1}\par\smallskip}
+
+
+\newcommand\derivative[5]{%
+    \tkzDefPointByFct[draw](#1) \tkzGetPoint{start}
+  \tkzDefPointByFct[draw](#2) \tkzGetPoint{end}
+  \draw[thin,|-|,yshift=-3pt] (start) -- node[black,fill=white,#5] {#3}(start-|end);  
+  \draw[thin,|-|,xshift=3pt] (start-|end) -- node[black,fill=white,right] {#4}(end); 
+  %\draw[thin] (start) --(end); 
+}
+
+\begin{document}

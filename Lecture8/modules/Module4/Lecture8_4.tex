@@ -1,5 +1,5 @@
 \begin{frame}
-	\myheading{Module 8.4 : $L2$ regularization}
+	\myheading{Module 8.4 : $L_2$ regularization}
 \end{frame}
 
 \begin{frame}
@@ -7,7 +7,7 @@
 	\begin{overlayarea}{\textwidth}{\textheight}
 		\begin{block}{Different forms of regularization}
 			\begin{itemize}
-				\item \textcolor{red}{$L2$ regularization}
+				\item \textcolor{red}{$L_2$ regularization}
 				\item Dataset augmentation
 				\item Parameter Sharing and tying
 				\item Adding Noise to the inputs 
@@ -29,7 +29,7 @@
 		\vspace{2em}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}
-				\item<1-> For L2 regularization we have,
+				\item<1-> For $L_2$ regularization we have,
 				\begin{align*} 
 					\widetilde{J}(w) = J(w) + \frac{\alpha}{2} \|w\|^2
 				\end{align*}
@@ -53,10 +53,8 @@
 	\begin{columns}
 		\column{\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			\vspace{2em}
 			\begin{itemize}
-				\item<1-> Assume $w^*$ is the optimal solution for $J(w)$ [not $\widetilde{J}(w)$] i.e. the solution in the absence of regularization ($w^*$ optimal $\rightarrow$ $\nabla J(w^*) = 0$)
-									
+				\item<1-> Assume $w^*$ is the optimal solution for $J(w)$ [not $\widetilde{J}(w)$] i.e. the solution in the absence of regularization $(w^* \text{ optimal }\rightarrow \nabla J(w^*) = 0)$
 				\item<2-> Using Taylor series approximation (upto $2^{nd}$ order)
 				\begin{align*}
 					J(w)                       & = J(w^*) + (w - w^*)^T \nabla J(w^*) + \frac{1}{2} (w - w^*)^T H(w - w^*) \\ 
@@ -67,7 +65,6 @@
 				\end{align*}  
 									
 				\item<6-> Now,
-				\vspace{-3em}
 				\begin{align*}
 					\onslide<6->{\nabla \widetilde{J}(w) & = \nabla J(w) + \alpha w \\ }
 					\onslide<7->{                        & = H(w - w^*) + \alpha w} 
@@ -96,9 +93,9 @@
 					\end{align*}}
 				\vspace{-1em}
 				\begin{align*}
-					\onslide<3->{H(\widetilde{w} - w^*) + \alpha \widetilde{w} & = 0                                      \\}
-					\onslide<4->{(H + \alpha \mathbb{I} )\widetilde{w}         & = H w^*                                  \\}    
-					\onslide<5->{\widetilde{w}                                 & =  (H + \alpha \mathbb{I} ) ^{-1} H w^*} 
+					\onslide<3->{&H(\widetilde{w} - w^*) + \alpha \widetilde{w} = 0                                      \\}
+					\onslide<4->{\therefore &(H + \alpha \mathbb{I} )\widetilde{w}         = H w^*                                  \\}    
+					\onslide<5->{\therefore &\widetilde{w}                                 =  (H + \alpha \mathbb{I} ) ^{-1} H w^*} 
 				\end{align*}
 									
 				\item<6->    Notice that if $\alpha \rightarrow 0$ then $\widetilde{w} \rightarrow w^*$ [no regularization] 
@@ -116,6 +113,7 @@
 			\vspace{2em}
 			\begin{itemize}
 				\item<1-> If H is symmetric Positive Semi Definite
+				\vspace{-4mm}
 				\onslide<2->{\hspace{4em}\begin{align*}
 					H = Q \Lambda Q^T  \text{\hspace{2em} [$Q$ is orthogonal, $QQ^T = Q^T Q = \mathbb{I}$] }  
 					\end{align*}
@@ -129,7 +127,7 @@
 					\onslide<7->{              & = Q^{T^{-1}} ( \Lambda + \alpha \mathbb{I})^{-1} Q^{-1} Q \Lambda Q^T  w^* \\}
 					\onslide<8->{              & = Q (\Lambda +\alpha \mathbb{I})^{-1} \Lambda Q^T w^*                      
 					\text{\hspace{2em}($\because  Q^{T^{-1}} = Q$)} \\}
-					\onslide<9->{\widetilde{w} & = Q D Q^T w^* }                                                            
+					\onslide<9->{\widetilde{w} & = Q D Q^T w^* }
 				\end{align*} 
 									
 									
@@ -197,10 +195,10 @@
 				\onslide<1->{D &= ( \Lambda + \alpha \mathbb{I})^{-1} \Lambda\\}
 				\onslide<1->{( \Lambda + \alpha \mathbb{I})^{-1} \Lambda & = 
 				\begin{bmatrix}
-				\onslide<1->{\frac{\lambda_1}{\lambda_1 +  \alpha_1} &                                         &        &                                          \\}
-				\onslide<1->{                                        & \frac{\lambda_2}{\lambda_2 +  \alpha_2} &        &                                          \\}
+				\onslide<1->{\frac{\lambda_1}{\lambda_1 +  \alpha} &                                         &        &                                          \\}
+				\onslide<1->{                                        & \frac{\lambda_2}{\lambda_2 +  \alpha} &        &                                          \\}
 				\onslide<1->{                                        &                                         & \ddots &                                          \\}
-				\onslide<1->{                                        &                                         &        & \frac{\lambda_n}{\lambda_n +  \alpha_n}} 
+				\onslide<1->{                                        &                                         &        & \frac{\lambda_n}{\lambda_n +  \alpha}} 
 				\end{bmatrix}}  
 			\end{align*}
 		\end{overlayarea}

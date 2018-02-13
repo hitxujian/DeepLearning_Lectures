@@ -1,0 +1,64 @@
+        \tikzstyle{input_neuron}=[circle,draw=red!50,fill=red!10,thick,minimum size=6mm]
+		\tikzstyle{hidden_neuron}=[circle,draw=blue!50,fill=cyan!10,thick,minimum size=6mm]
+		\tikzstyle{output_neuron}=[circle,draw=green!50,fill=green!10,thick,minimum size=6mm]
+		\tikzstyle{cpy_neuron}=[circle,draw=red!50,fill=red!50,thick,minimum size=6mm]
+		\tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=6mm]
+
+\begin{center}
+
+\begin{tikzpicture}
+
+		\node [input_neuron] (neuron00) at (7.5,4.5) {};
+        \node [input_neuron] (neuron01) at (8.5,4.5) {};
+		\node [input_neuron] (neuron02) at (9.5,4.5){};
+		\node [input_neuron] (neuron03) at (10.5,4.5) {};
+		%\node [input_neuron] (neuron04) at (11.5,4.5) {};
+		\node [input_neuron] (neuron05) at (12.5,4.5) {};
+		
+		%\node [hidden_neuron] (neuron51) at (7.5,6) {} ;
+		\node [hidden_neuron] (neuron52) at (8.5,6)  {};
+		\node [hidden_neuron] (neuron53) at (9.5,6)  {};
+		%\node [hidden_neuron] (neuron54) at (10.5,6)  {};
+		\node [hidden_neuron] (neuron55) at (11.5,6)  {};
+		%\node [hidden_neuron] (neuron56) at (12.5,6)  {};
+		
+		\node [output_neuron] (neuron10) at (7.5,7.5)  {$0$};
+		\node [output_neuron] (neuron11) at (8.5,7.5)  {$1$};
+		\node [output_neuron] (neuron12) at (9.5,7.5)  {$2$};
+		\node [output_neuron] (neuron13) at (10.5,7.5)  {$3$};
+		%\node [output_neuron] (neuron14) at (11.5,7.5)  {};
+		\node [output_neuron] (neuron14) at (12.5,7.5)  {$9$};
+		
+		\draw[red!100,thick,solid,rounded corners=15pt] (7,4) rectangle (13,5);
+		\draw[red!100,thick,solid,rounded corners=15pt] (8,5.5) rectangle (12,6.5);
+		%\draw[red!100,thick,solid,rounded corners=15pt] (7,7) rectangle (13,8);
+		
+		%\draw[black!50,thick,solid] (7,5) -- (8,5.5);
+		%\draw[black!50,thick,solid] (13,5) -- (12,5.5);
+		%\draw[black!50,thick,solid] (8,6.5) -- (7,7);
+		%\draw[black!50,thick,solid] (12,6.5) -- (13,7);		
+		%\draw[thick,->] (10,5) -- (10,5.5);
+		%\draw[thick,->] (10,6.5) -- (10,7);
+		
+		\foreach \x in {neuron10,neuron11,neuron12,neuron13,neuron14}
+			\draw[thick,->] (10,6.5) -- (\x);
+		
+		%\node[] at (7.4,6) {\textbf{h}};		
+		
+		\draw[thick,->] (10,5) -- (10,5.5);
+		
+		
+		\draw[red!20,dashed,line width=2pt] (neuron03) -- (neuron05);
+		\draw[blue!20,dashed,line width=2pt] (neuron53) -- (neuron55);
+		\draw[green!20,dashed,line width=2pt] (neuron13) -- (neuron14);        
+		
+		\node[] at (10,3.5) {$|\textbf{x}_i| = 784 = 28 \times 28$};
+		%\node[] at (13.5,8) {$\hat{x} \in \mathbb{R}^{784}$};
+		\node[] at (13,6) {$\textbf{h} \in \mathbb{R}^{d}$};		
+		\node[text width=0.5cm] at (10,2.5) 
+ 			{\includegraphics[width=.9\textwidth]{images/three.jpeg}};
+		\draw[black, thick] (9.5,2) rectangle (10.5,3);				
+		
+\end{tikzpicture}
+
+\end{center}
