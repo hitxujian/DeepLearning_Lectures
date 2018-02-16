@@ -1,0 +1,85 @@
+\begin{tikzpicture}[scale=.4, transform shape,cross/.style={path picture={ 
+		\draw[black]
+		(path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east);
+	}}]]
+						
+						
+	\node [input_neuron] (in0) at (4,4) {};
+	\node [input_neuron] (in1) at (5,4) {};
+	\node [input_neuron] (in2) at (6,4) {} ;
+						
+	\node [hidden_neuron] (hi0) at (3,5)  {} ;
+	\node [hidden_neuron] (hi1) at (4,5)  {};
+	\node [hidden_neuron] (hi2) at (5,5)  {} ;
+	\node [hidden_neuron] (hi3) at (6,5)  {} ;
+	\node [hidden_neuron] (hi4) at (7,5)  {};
+						
+	\node [hidden_neuron] (hi01) at (3,6)  {} ;
+	\node [hidden_neuron] (hi11) at (4,6)  {};
+	\node [hidden_neuron] (hi21) at (5,6)  {} ;
+	\node [hidden_neuron] (hi31) at (6,6)  {} ;
+	\node [hidden_neuron] (hi41) at (7,6)  {};
+						
+	\node [output_neuron] (out0) at (4,7)  {} ;
+	\node [output_neuron] (out1) at (5,7)  {} ;
+	\node [output_neuron] (out2) at (6,7)  {} ;
+						
+						
+	\draw [->] (in0) -- (hi0);
+	\draw [->] (in0) -- (hi1);
+	\draw [->] (in0) -- (hi2);
+	\draw [->] (in0) -- (hi3);
+	\draw [->] (in0) -- (hi4);
+	\draw [->] (in1) -- (hi0);
+	\draw [->] (in1) -- (hi1);
+	\draw [->] (in1) -- (hi2);
+	\draw [->] (in1) -- (hi3);
+	\draw [->] (in1) -- (hi4);
+	\draw [->] (in2) -- (hi0);
+	\draw [->] (in2) -- (hi1);
+	\draw [->] (in2) -- (hi2);
+	\draw [->] (in2) -- (hi3);
+	\draw [->] (in2) -- (hi4);
+						
+	\draw [->] (hi0) -- (hi01);
+	\draw [->] (hi0) -- (hi11);
+	\draw [->] (hi0) -- (hi21);
+	\draw [->] (hi0) -- (hi31);
+	\draw [->] (hi0) -- (hi41);
+	\draw [->] (hi1) -- (hi01);
+	\draw [->] (hi1) -- (hi11);
+	\draw [->] (hi1) -- (hi21);
+	\draw [->] (hi1) -- (hi31);
+	\draw [->] (hi1) -- (hi41);
+	\draw [->] (hi2) -- (hi01);
+	\draw [->] (hi2) -- (hi11);
+	\draw [->] (hi2) -- (hi21);
+	\draw [->] (hi2) -- (hi31);
+	\draw [->] (hi2) -- (hi41);
+	\draw [->] (hi3) -- (hi01);
+	\draw [->] (hi3) -- (hi11);
+	\draw [->] (hi3) -- (hi21);
+	\draw [->] (hi3) -- (hi31);
+	\draw [->] (hi3) -- (hi41);
+	\draw [->] (hi4) -- (hi01);
+	\draw [->] (hi4) -- (hi11);
+	\draw [->] (hi4) -- (hi21);
+	\draw [->] (hi4) -- (hi31);
+	\draw [->] (hi4) -- (hi41);
+						
+	\draw [->] (hi01) -- (out0);
+	\draw [->] (hi01) -- (out1);
+	\draw [->] (hi01) -- (out2);
+	\draw [->] (hi11) -- (out0);
+	\draw [->] (hi11) -- (out1);
+	\draw [->] (hi11) -- (out2);
+	\draw [->] (hi21) -- (out0);
+	\draw [->] (hi21) -- (out1);
+	\draw [->] (hi21) -- (out2);
+	\draw [->] (hi31) -- (out0);
+	\draw [->] (hi31) -- (out1);
+	\draw [->] (hi31) -- (out2);
+	\draw [->] (hi41) -- (out0);
+	\draw [->] (hi41) -- (out1);
+	\draw [->] (hi41) -- (out2);
+\end{tikzpicture}
