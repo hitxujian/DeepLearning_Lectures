@@ -5,7 +5,7 @@
 	\tikzstyle{mynode} = [draw,shape=circle]
 	\tikzstyle{mycross} = [draw,shape=circle,cross]
 	\node[input_neuron,mynode] (a0) at (0, 0) {};
-	\node[input_neuron,mynode] (a1) at (1, 0) {};
+	\node[mycross] (a1) at (1, 0) {};
 	\node[input_neuron,mynode] (a2) at (2, 0) {};
 	\node[input_neuron,mynode] (a3) at (3, 0) {};
 	\node[input_neuron,mynode] (a4) at (4, 0) {};
@@ -20,7 +20,7 @@
 	\node[mycross] (c3) at (3, 2) {};
 	\node[hidden_neuron,mynode] (c4) at (4, 2) {};
 	\node[output_neuron,mynode] (d2) at (2, 3) {};
-	\foreach \from in {a0,a1,a2,a3,a4}
+	\foreach \from in {a0,a2,a3,a4}
 		\foreach \to in {b1,b4}
 			\draw [->] (\from) -- (\to);
 	\foreach \from in {b1,b4}

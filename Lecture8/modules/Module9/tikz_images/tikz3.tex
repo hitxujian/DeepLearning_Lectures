@@ -1,0 +1,21 @@
+
+\begin{tikzpicture}[scale=0.8]
+	\tiny
+	\draw[thick,->] (0,0) -- (8,0) node [below] {Steps};
+	\draw[thick,->] (0,0) -- (0,5) node [above] {Error};
+	\draw[thick,blue] (0.2,5) to [out=270,in=172] (2.6,0.4);
+	\draw[thick,blue] (2.6,0.4) to [out=350.5,in=178] (7,0.1);
+	\node [right] at (7,0.4) {$Training$ $error$};
+	\draw[thick,red] (0.3,5) to [out=280,in=150] (2,2.1);
+	\draw[thick,red] (2,2.1) to [out=330,in=200] (7,2);
+	%\draw[snake=sn[red]e]  (2,2.1) -- (7,2);
+	\node [right] at (7,2.3) {$Validation$ $error$};
+	\draw[thick,dashed] (4.5,0) node[below]{$k-p$}--(4.5,1.6);
+	\draw[thick,dashed] (7,0) node[below]{$k$}--(7,2.2);
+	\node [right] at (6.7,-0.5) {$stop$};
+	\node [right] at (3,-0.5) {$return$ $this$ $model$};
+	%\draw (0,2) to [out=340,in=200] (7,1.8);
+	%\node [right] at (7,1.8) {$AVC$};
+	%\draw (0,2) to [out=315,in=240] (7,5);
+	%\node [right] at (7,5) {$MC$};
+\end{tikzpicture}

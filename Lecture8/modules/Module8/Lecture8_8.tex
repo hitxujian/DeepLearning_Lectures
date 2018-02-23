@@ -25,43 +25,8 @@
 		\column{\textwidth}
 		\vspace{1em}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			\begin{tikzpicture}
-				\draw (-0.2,7.8) rectangle (1.3,9.3);
-				\node[inner sep=0pt] (russell) at (0.55,8.55)
-				{\includegraphics[scale=1.5]{images/two.jpg}};
-										
-				\draw (1.6,8.1) rectangle (11.6,8.9);
-				\node at (12.7,8.5) {Hard targets}; 
-				\foreach \x in {1.6,...,10.6}
-				\draw (\x,8.1)--(\x,8.9);
-				\node at(2.1,8.5) {$0$};
-				\node at(3.1,8.5) {$0$};
-				\node at(4.1,8.5) {$1$};
-				\node at(5.1,8.5) {$0$};
-				\node at(6.1,8.5) {$0$};
-				\node at(7.1,8.5) {$0$};
-				\node at(8.1,8.5) {$0$};
-				\node at(9.1,8.5) {$0$};
-				\node at(10.1,8.5) {$0$};
-				\node at(11.1,8.5) {$0$};
-				% \foreach \x in {1.5,...,10}
-				% \draw (\x,7)--(\x,7.8);
-				% \node at(0.5,7.4) {$0$};
-				% \node at(1.5,7.4) {$0$};
-				% \node at(2.5,7.4) {$1$};
-				% \node at(3.5,7.4) {$0$};
-				% \node at(4.5,7.4) {$0$};
-				% \node at(5.5,7.4) {$0$};
-				% \node at(6.5,7.4) {$0$};
-				% \node at(7.5,7.4) {$0$};
-				% \node at(8.5,7.4) {$0$};
-				% \node at(9.5,7.4) {$0$};
-				% \foreach \x [count = \xi] in {a,...,c,f,...,z}
-				% {\node at (\xi,0) {$\x$};}
-			\end{tikzpicture}
-			% \onslide<2->{\hspace{3.5cm} minimize : $\sum_{i = 0}^{9} p_i \log q_i$\\}
-			% \onslide<3->{\hspace{3.5cm}$p_i = \left \{0,0,1,0,0,0,0,0,0,0 \right \} = $ true distribution\\}
-			% \onslide<4->{\hspace{3.5cm}$q_i = $ estimated distribution}
+
+			\input{modules/Module8/tikz_images/hard_targets}
 			\begin{align*}
 				\onslide<2->{ \text{minimize}              & : \sum_{i = 0}^{9} p_i \log q_i             \\}
 				\onslide<3->{ \text{true distribution}     & : p = \left \{0,0,1,0,0,0,0,0,0,0 \right \} \\}
@@ -84,61 +49,9 @@
 		\column{\textwidth}
 		% \vspace{1em}
 		\begin{overlayarea}{\textwidth}{\textheight}
-			% \begin{tikzpicture}
-			% \draw (-0.2,7.8) rectangle (1.3,9.3);
-			% \node[inner sep=0pt] (russell) at (0.55,8.55)
-			%      {\includegraphics[scale=1.5]{two.jpg}};
-										
-			% \draw (1.6,8.1) rectangle (11.6,8.9);
-			%  \node at (12.7,8.5) {Hard targets}; 
-			% \foreach \x in {1.6,...,10.6}
-			% \draw (\x,8.1)--(\x,8.9);
-			% \node at(2.1,8.5) {$0$};
-			% \node at(3.1,8.5) {$0$};
-			% \node at(4.1,8.5) {$1$};
-			% \node at(5.1,8.5) {$0$};
-			% \node at(6.1,8.5) {$0$};
-			% \node at(7.1,8.5) {$0$};
-			% \node at(8.1,8.5) {$0$};
-			% \node at(9.1,8.5) {$0$};
-			% \node at(10.1,8.5) {$0$};
-			% \node at(11.1,8.5) {$0$};
-			% \end{tikzpicture}
+
 			\onslide<1->{
-				\begin{tikzpicture}
-					\draw (-0.2,7.8) rectangle (1.3,9.3);
-					\node[inner sep=0pt] (russell) at (0.55,8.55)
-					{\includegraphics[scale=1.5]{images/two.jpg}};
-																			
-					\draw (1.6,8.1) rectangle (11.6,8.9);
-					\node at (12.7,8.5) {Soft targets}; 
-					\foreach \x in {1.6,...,10.6}
-					\draw (\x,8.1)--(\x,8.9);
-					\node at(2.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(3.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(4.1,8.5) {$1-\varepsilon$};
-					\node at(5.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(6.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(7.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(8.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(9.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(10.1,8.5) {$\frac{\varepsilon}{9}$};
-					\node at(11.1,8.5) {$\frac{\varepsilon}{9}$};
-					% \foreach \x in {1.5,...,10}
-					% \draw (\x,7)--(\x,7.8);
-					% \node at(0.5,7.4) {$0$};
-					% \node at(1.5,7.4) {$0$};
-					% \node at(2.5,7.4) {$1$};
-					% \node at(3.5,7.4) {$0$};
-					% \node at(4.5,7.4) {$0$};
-					% \node at(5.5,7.4) {$0$};
-					% \node at(6.5,7.4) {$0$};
-					% \node at(7.5,7.4) {$0$};
-					% \node at(8.5,7.4) {$0$};
-					% \node at(9.5,7.4) {$0$};
-					% \foreach \x [count = \xi] in {a,...,c,f,...,z}
-					% {\node at (\xi,0) {$\x$};}
-				\end{tikzpicture}
+				\input{modules/Module8/tikz_images/soft_targets}
 			}
 			\begin{align*}
 				\onslide<2->{ \varepsilon                      & = \text{small positive constant}                                                                              \\}

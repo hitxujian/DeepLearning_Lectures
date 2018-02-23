@@ -10,7 +10,7 @@
 	\tikzstyle{mycross} = [draw,shape=circle,cross]
 	\node[input_neuron,mynode] (a0) at (0, 0) {};
 	\node[input_neuron,mynode] (a1) at (1, 0) {};
-	\node[input_neuron,mynode] (a2) at (2, 0) {};
+	\node[mycross] (a2) at (2, 0) {};
 	\node[input_neuron,mynode] (a3) at (3, 0) {};
 	\node[input_neuron,mynode] (a4) at (4, 0) {};
 	\node[hidden_neuron,mynode] (b0) at (0, 1) {};
@@ -24,7 +24,7 @@
 	\node[hidden_neuron,mynode] (c3) at (3, 2) {};
 	\node[mycross] (c4) at (4, 2) {};
 	\node[output_neuron,mynode] (d2) at (2, 3) {};
-	\foreach \from in {a0,a1,a2,a3,a4}
+	\foreach \from in {a0,a1,a3,a4}
 		\foreach \to in {b0,b2,b4}
 			\draw [->] (\from) -- (\to);
 	\foreach \from in {b0,b2,b4}
@@ -38,7 +38,7 @@
 	\foreach \from in {b0,b2,b4}
 		\foreach \to in {c1,c3}
 			\draw<3-> [thick,red,->] (\to) -- (\from);
-	\foreach \from in {a0,a1,a2,a3,a4}
+	\foreach \from in {a0,a1,a3,a4}
 		\foreach \to in {b0,b2,b4}
 			\draw<3-> [thick,red,->] (\to) -- (\from);
 
