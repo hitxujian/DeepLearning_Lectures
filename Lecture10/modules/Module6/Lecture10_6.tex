@@ -1,0 +1,72 @@
+\begin{frame}
+	\myheading{Module 10.6: Contrastive estimation}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module6/tikz_images/sg_1}
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{
+				\textbf{Some problems}
+				\begin{itemize}\justifying
+					\item Same as bag of words
+					\item The softmax function at the output is computationally expensive
+					\item Solution 1: Use negative sampling
+					\item \textcolor<1->{red}{Solution 2: Use contrastive estimation}
+					\item Solution 3: Use hierarchical softmax
+				\end{itemize}
+			}
+		\end{overlayarea}
+
+
+	\end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1in}
+			\justifying
+			\large{\textbf{Positive}: \textit{He sat \textcolor{blue}{on} a chair}}
+			\onslide<2->{\include{modules/Module6/tikz_images/neg_samp}}
+			\vspace{-0.1in}
+
+			\onslide<3->{\footnotesize{\begin{block}{}
+						\begin{itemize}\justifying
+							\item<3-> We would like $s_c$ to be greater than $s$
+							\item<4-> Okay, so let us try to maximize $s-s_c$
+							\item<5-> But we would like the difference to be at least $m$
+						\end{itemize}
+					\end{block}}  }
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1in}
+			\justifying
+			\large{\textbf{Negative}: \textit{He sat \textcolor{red}{abracadabra} a chair}}
+
+			\onslide<2->{\include{modules/Module6/tikz_images/neg_samp_1}}
+			\vspace{-0.1in}
+			\onslide<6->{\footnotesize{\begin{block}{}
+						\begin{itemize}\justifying
+							\item<6-> So we can maximize $s - (s_c + m)$
+							\item<7-> What if $s > s_c\ +\ m$ \onslide<8->{\textit{(don't do any thing)}}
+							      \onslide<9->{
+								      \begin{align*}
+									      \text{maximize }\ max(0, s-(s_c + m))
+								      \end{align*}
+							      }
+						\end{itemize}
+					\end{block}}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

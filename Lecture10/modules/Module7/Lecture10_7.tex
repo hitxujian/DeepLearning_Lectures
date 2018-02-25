@@ -1,0 +1,142 @@
+\begin{frame}
+	\myheading{Module 10.7: Hierarchical softmax}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module7/tikz_images/sg_1}
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{
+				\textbf{Some problems}
+				\begin{itemize}\justifying
+					\item Same as bag of words
+					\item The softmax function at the output is computationally expensive
+					\item Solution 1: Use negative sampling
+					\item Solution 2: Use contrastive estimation
+					\item \textcolor<1->{red}{Solution 3: Use hierarchical softmax}
+				\end{itemize}
+			}
+		\end{overlayarea}
+
+
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module7/tikz_images/hier_soft}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}
+					\justifying
+					\item<1-> Construct a binary tree such that there are $|V|$ leaf nodes each corresponding
+					      to one word in the vocabulary
+					\item<3-> There exists a unique path from the root node to a leaf node.
+					\item<4-> Let $l(w_1),\ l(w_2),\ ...,\ l(w_p)$ be the nodes on the path from root to $w$
+					\item<5-> Let $\pi(w)$ be a binary vector such that:
+					      \footnotesize{\begin{align*}
+							      \pi(w)_k & = 1 \quad \text{{path branches left at node }} l(w_k) \\
+							               & = 0 \quad otherwise
+						      \end{align*}}
+					\item<6-> Finally each internal node is associated with a vector $u_i$
+					\item<7-> So the parameters of the module are $\mathbf{W}_{context}$ and $u_1, u_2, \dots, u_v$ (in effect, we have the same number of parameters as before)
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module7/tikz_images/hier_soft_1}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1-4>{
+				\footnotesize{\begin{itemize}
+						\justifying
+						\item<1-> For a given pair $(w,c)$ we are interested in the probability $p(w|v_c)$
+						\item<2-> We model this probability as
+						      \begin{align*}
+							      p(w|v_c) = \prod\limits_{k}(\pi(w_k)|v_c)
+						      \end{align*}
+						\item <3-> For example
+						      \begin{align*}
+							      P(on|v_{sat}) = P(\pi(on)_1 = 1| v_{sat}) &   \\
+							      * P(\pi(on)_2 = 0 | v_{sat})              &   \\
+							      * P(\pi(on)_3 = 0| v_{sat})               &
+						      \end{align*}
+						\item<4-> In effect, we are saying that the probability of predicting a word is the same as predicting the correct unique path from the root node to that word
+					\end{itemize}}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module7/tikz_images/hier_soft_1}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}
+					\justifying
+						\item<1-> We model
+						    \begin{align*}
+							    P(\pi(on)_i = 1) & = \frac{1}{1 + e^{-v_c^{T}u_i}} \\
+							    P(\pi(on)_i = 0) & = 1 - P(\pi(on)_i = 1)          \\
+							    P(\pi(on)_i = 0) & = \frac{1}{1 + e^{v_c^{T}u_i}}
+						    \end{align*}
+
+					\item<2-> The above model ensures that the representation
+					      of a context word $v_c$ will have a high(low) similarity
+					      with the representation of the node $u_i$ if $u_i$ appears
+					      and the path branches to the left(right) at $u_i$
+					\item<3-> Again, transitively the representations of contexts
+					      which appear with the same words will have high similarity
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module7/tikz_images/hier_soft_1}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1in}
+			\begin{align*}
+				P(w|v_c) = \prod\limits_{k=1}^{|\pi(w)|}P(\pi(w_k)|v_c)
+			\end{align*}
+			\begin{itemize}
+				\justifying
+				\item<2-> Note that $p(w|v_c)$ can now be computed using
+				      $|\pi(w)|$ computations instead of $|V|$ required by softmax
+				\item<3-> How do we construct the binary tree?
+				\item<4-> Turns out that even a random arrangement of the
+				      words on leaf nodes does well in practice
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

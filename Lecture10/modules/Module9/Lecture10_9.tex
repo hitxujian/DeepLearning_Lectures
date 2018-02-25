@@ -1,0 +1,91 @@
+\begin{frame}
+	\myheading{Module 10.9: Evaluating word representations}
+\end{frame}
+
+\begin{frame}
+	How do we evaluate the learned word representations ?
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{align*}
+			\onslide<2->{S_{human}(cat, dog) & =0.8}                                                                                       \\
+			\onslide<3->{S_{model}(cat, dog) & = \frac{v_{cat}^{T}v_{dog}}{\parallel v_{cat} \parallel \parallel v_{dog} \parallel} = 0.7}
+		\end{align*}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{\textbf{Semantic Relatedness}}
+			\begin{itemize}\justifying
+				      \onslide<2->{\item Ask humans to judge the relatedness between a pair of words }
+				      \onslide<3->{\item Compute the cosine similarity between the corresponding word vectors learned by the model}
+				      \onslide<4->{\item Given a large number of such word pairs, compute the correlation between $S_{model}$ $\&$ $S_{human}$, and compare different models}
+				      \item<5-> Model 1 is better than Model 2 if 
+				      	\begin{align*}
+				      		&correlation(S_{model1},S_{human})\\
+				      		&>correlation(S_{model2},S_{human})
+				      	\end{align*}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.6in}
+			\onslide<2->{
+				\begin{align*}
+					\mathbf{Term}       & :\text{ levied}                           \\
+					\mathbf{Candidates} & :\ \{\text{unposed,}                      \\
+					                    & \text{believed, requested, correlated} \}
+				\end{align*}
+			}
+			\onslide<3->{
+				\begin{align*}
+					\mathbf{Synonym:} = \underset{c \in C}{argmax}\ cosine(v_{term},v_c)
+				\end{align*}}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{\textbf{Synonym Detection}}
+			\begin{itemize}\justifying
+				      \onslide<2->{\item Given: a term and four candidate synonyms}
+				      \onslide<3->{\item Pick the candidate which has the largest cosine similarity with the term}
+				      \onslide<4->{\item Compute the accuracy of different models and compare}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\onslide<2->{brother : sister :: grandson : ?} \\
+		\onslide<3->{work : works :: speak : ?}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{\textbf{Analogy }}
+			\begin{itemize}\justifying
+				      \onslide<2->{\item Semantic Analogy: Find nearest neighbour of $v_{brother} - v_{sister} + v_{grandson}$ }
+				      \onslide<3->{\item Syntactic Analogy: Find nearest neighbour of   $V_{work} - v_{works} + v_{speak}$ }
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+
+		\begin{block}{}
+			\onslide<1-3>{
+				\begin{itemize}\justifying
+					\item<1-> So which algorithm gives the best result ?
+					\item<2-> Boroni et.al [2014] showed that predict models consistently outperform count models in all tasks.
+					\item<3-> Levy et.al [2015] do a much more through analysis (IMO) and show that good old SVD does better than prediction based models on similarity tasks but not on analogy tasks.
+				\end{itemize}}
+		\end{block}
+	\end{overlayarea}
+\end{frame}

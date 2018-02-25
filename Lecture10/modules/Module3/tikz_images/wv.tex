@@ -1,0 +1,63 @@
+\begin{tikzpicture}
+\onslide<3->{\node (R)[text width=\textwidth] at (0,3) {\footnotesize{\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+0 & 1 & 0 & ... & 0 & 0 & 0\\
+\hline
+\end{tabular}
+\caption*{\textit{sat}}
+\end{table}}
+};
+\node (H) [text width=\textwidth] at ($ (R) + (0,2) $) {\begin{table}
+\begin{tabular}{l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l}
+\hline
+\rowcolor{blue!50}
+ .&.&.&.&.&.&.&.&.&.\\
+\hline
+\end{tabular}
+\end{table}
+};
+}
+\onslide<2->{\node(V) [text width=\textwidth] at ($ (H) + (0,1.5) $) {\large{\begin{table}
+\begin{tabular}{l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l}
+\hline
+\rowcolor{red!50}
+ .&.&.&.&.&.&.&.&.&.&.&.\\
+\hline
+\end{tabular}
+\end{table}}
+};
+
+\node[text width=0.15\textwidth, rotate=90] at ($(V) + (-3,0.9)$ ) {\tiny{$P(he|sat)$}};
+\node[text width=0.15\textwidth, rotate=90] at ($(V) + (-2.5,0.9)$ ) {\tiny{$P(chair|sat)$}};
+\node[text width=0.15\textwidth, rotate=90] at ($(V) + (-2.0,0.9)$ ) {\tiny{$P(man|sat)$}};
+\draw[line width=0.5, color = blue!50] [->] ($(V) + (-2.0,0.2)$) -- ($(V) + (-2.0, 0.4)$);
+\draw[line width=0.5, color = blue!50] [->] ($(V) + (-2.5,0.2)$) -- ($(V) + (-2.5, 0.4)$);
+\draw[line width=0.5, color = blue!50] [->] ($(V) + (-3.0,0.2)$) -- ($(V) + (-3.0, 0.4)$);
+\node[text width=0.15\textwidth, rotate=90] at ($(V) + (1.4,0.9)$ ) {\tiny\textcolor{red}{{$P(on|sat)$}}};
+\draw[line width=0.5, color = blue!50] [->] ($(V) + (1.4,0.2)$) -- ($(V) + (1.4, 0.4)$);
+
+\node[text width=0.1\textwidth, ] at ($(V) + (-1.0,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (-0.5,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (0,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (0.5,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (1.1,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (2,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (2.5,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (3.0,0.9)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (3.5,0.9)$ ) {.};
+}
+
+\onslide<3->{
+%\draw[line width=1][->] (0,1.6) -- (0,2.75);
+\node[text width=0.3\textwidth, ] at ($(H) + (3.8,0)$ ) {\tiny{$\mathbf{h} \in \mathbb{R}^{k}$}};
+\node[text width=0.3\textwidth, ] at ($(H) + (0.3,0.7)$ ) {\tiny{$W_{word} \in \mathbb{R}^{k\times |V|}$}};
+\node[text width=0.3\textwidth, ] at ($(R) + (3.3,0.4)$ ) {\tiny{$\mathbf{x} \in \mathbb{R}^{|V|}$}};
+\node[text width = 0.3\textwidth] at (0.3, 4.2){\tiny{$W_{context} \in \mathbb{R}^{k\times |V|}$}};
+\draw[line width=0.8,color=blue!50] (-2.15,3.7) -- (-2.7,4.7);
+\draw[line width=0.8,color=blue!50] (2.15,3.7) -- (2.7,4.7);
+
+\draw[line width=0.8,color=red!50] (-2.67,5.21) -- (-3.29,6.21);
+\draw[line width=0.8,color=red!50] (2.67,5.21) -- (3.29,6.21);
+}
+\end{tikzpicture}

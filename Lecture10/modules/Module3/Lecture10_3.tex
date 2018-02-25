@@ -1,0 +1,538 @@
+\begin{frame}
+	\myheading{Module 10.3: SVD for learning word representations}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5in}
+			\footnotesize{
+				\begin{align*}
+					\begin{split}
+						&\begin{bmatrix}
+							  &   &   &   &   \\
+							  &   &   &   &   \\
+							  &   & X &   &   \\
+							  &   &   &   &
+						\end{bmatrix}_{m \times n} = \\
+						&\begin{bmatrix}
+							\uparrow   & \cdots & \uparrow   \\
+							           &        &            \\
+							u_1        & \cdots & u_k        \\
+							\downarrow & \cdots & \downarrow
+						\end{bmatrix}_{m \times k}
+						\begin{bmatrix}
+							\sigma_1 &        &          \\
+							         & \ddots &          \\
+							         &        & \sigma_k
+						\end{bmatrix}_{k \times k}\begin{bmatrix}
+							\leftarrow & v_1^T    & \rightarrow \\
+							           & \vdots &             \\
+							\leftarrow & v_k^T    & \rightarrow
+						\end{bmatrix}_{k \times n}
+					\end{split} \\
+				\end{align*}
+			}
+		\end{overlayarea}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1-3>{
+				\begin{itemize}\justifying
+					\item<1-> Singular Value Decomposition gives a rank $k$ approximation of the original matrix
+					      \begin{align*}
+						      X = {X_{\footnotesize{PPMI}}}_{m \times n} = U_{m \times k} \Sigma_{k \times k} V^T_{k \times n}
+					      \end{align*}
+
+					      $X_{PPMI}$ (simplifying notation to $X$) is the co-occurrence matrix with PPMI values
+					\item<2-> SVD gives the best rank-$k$ approximation of the original data ($X$)
+					\item<3-> Discovers latent semantics in the corpus (let us examine this with the help of an example)
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5in}
+			\footnotesize{
+				\begin{align*}
+					\begin{split}
+						&\begin{bmatrix}
+							  &   &   &   &   \\
+							  &   &   &   &   \\
+							  &   & X &   &   \\
+							  &   &   &   &
+						\end{bmatrix}_{m \times n} = \\
+						&\begin{bmatrix}
+							\uparrow   & \cdots & \uparrow   \\
+							           &        &            \\
+							u_1        & \cdots & u_k        \\
+							\downarrow & \cdots & \downarrow
+						\end{bmatrix}_{m \times k}
+						\begin{bmatrix}
+							\sigma_1 &        &          \\
+							         & \ddots &          \\
+							         &        & \sigma_k
+						\end{bmatrix}_{k \times k}\begin{bmatrix}
+							\leftarrow & v_1^T    & \rightarrow \\
+							           & \vdots &             \\
+							\leftarrow & v_k^T    & \rightarrow
+						\end{bmatrix}_{k \times n}
+					\end{split} \\
+					\vspace{1cm}
+					& \hspace{2cm}= \sigma_1 u_1 v_1^T + \sigma_2 u_2 v_2^T + \cdots + \sigma_k u_k v_k^T
+				\end{align*}
+			}
+		\end{overlayarea}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Notice that the product can be written as a sum of $k$ rank-1 matrices
+				\item<2-> Each $\sigma_i u_i v_i^T \in \mathbb{R}^{m\times n}$ because it is a product of a $m \times 1$ vector with a $1 \times n$ vector
+				\item<3-> If we truncate the sum at $\sigma_1 u_1 v_1^T$ then we get the best rank-1 approximation of $X$ \onslide<4-> {(By SVD theorem! But what does this mean? We will see on the next slide)}
+				\item<5-> If we truncate the sum at $\sigma_1 u_1 v_1^T + \sigma_2 u_2 v_2^T$ then we get the best rank-2 approximation of $X$ and so on
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5in}
+			\footnotesize{
+				\begin{align*}
+					\begin{split}
+						&\begin{bmatrix}
+							  &   &   &   &   \\
+							  &   &   &   &   \\
+							  &   & X &   &   \\
+							  &   &   &   &
+						\end{bmatrix}_{m \times n} = \\
+						&\begin{bmatrix}
+							\uparrow   & \cdots & \uparrow   \\
+							           &        &            \\
+							u_1        & \cdots & u_k        \\
+							\downarrow & \cdots & \downarrow
+						\end{bmatrix}_{m \times k}
+						\begin{bmatrix}
+							\sigma_1 &        &          \\
+							         & \ddots &          \\
+							         &        & \sigma_k
+						\end{bmatrix}_{k \times k}\begin{bmatrix}
+							\leftarrow & v_1^T    & \rightarrow \\
+							           & \vdots &             \\
+							\leftarrow & v_k^T    & \rightarrow
+						\end{bmatrix}_{k \times n}
+					\end{split} \\
+					\vspace{1cm}
+					& \hspace{2cm}= \sigma_1 u_1 v_1^T + \sigma_2 u_2 v_2^T + \cdots + \sigma_k u_k v_k^T
+				\end{align*}
+			}
+		\end{overlayarea}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> What do we mean by approximation here?
+				\item<2-> Notice that $X$ has $m\times n$ entries
+				\item<3-> When we use he rank-1 approximation we are using only $ n + m + 1$ entries to reconstruct [$u \in \mathbb{R}^{m}, v\in\mathbb{R}^n, \sigma\in \mathbb{R}^1$]
+				\item<4-> But SVD theorem tells us that $u_1$,$v_1$ and $\sigma_1$ store the most information in $X$ (akin to the principal components in $X$)
+				\item<5-> Each subsequent term ($ \sigma_2 u_2 v_2^T$, $\sigma_3 u_3 v_3^T$, $\dots$) stores less and less important information 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-3>{\begin{table}[]
+				\centering
+				\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{very light}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\hline
+				0 & 0 & 0 & 1 & 1 & 0 & 1 & 1\\
+				\hline
+				\end{tabular}
+				\end{table}
+			\begin{table}[]
+				\centering
+				\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{light}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\hline
+				0 & 0 & 1 & 0 & 1 & 0 & 1 & 1\\
+				\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[]
+				\centering
+				\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{dark}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\hline
+				0 & 1 & 0 & 0 & 1 & 0 & 1 & 1\\
+				\hline
+				\end{tabular}
+			\end{table}
+			\begin{table}[]
+				\centering
+				\begin{tabular}{|l|l|l|l|l|l|l|l|}
+				\multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{very dark}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\hline
+				1 & 0 & 0 & 0 & 1 & 0 & 1 & 1\\
+				\hline
+				\end{tabular}
+			\end{table}
+			}
+			\only<4->{\begin{table}[]
+				\centering
+				\begin{tabular}{llll|l|l|l|l|}
+				\multicolumn{4}{c}{$\color{gray!50}\overbrace{\color{black}\rule{2.2cm}{0pt}}^{\textcolor{gray!40}{very light}}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\cline{5-8}
+				{\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 1} & 1 & 0 & 1 & 1 \\ \cline{5-8} 
+				\end{tabular}
+			\end{table}
+			\begin{table}[]
+				\centering
+				\begin{tabular}{llll|l|l|l|l|}
+				\multicolumn{4}{c}{$\color{gray!50}\overbrace{\color{black}\rule{2.2cm}{0pt}}^{\textcolor{gray!40}{light}}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\cline{5-8}
+				{\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 1} & {\color[HTML]{C0C0C0} 0} & 1 & 0 & 1 & 1 \\ \cline{5-8} 
+				\end{tabular}
+			\end{table}
+			\begin{table}[]
+				\centering
+				\begin{tabular}{llll|l|l|l|l|}
+				\multicolumn{4}{c}{$\color{gray!50}\overbrace{\color{black}\rule{2.2cm}{0pt}}^{\textcolor{gray!40}{dark}}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\cline{5-8}
+				{\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 1} & {\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 0} & 1 & 0 & 1 & 1 \\ \cline{5-8} 
+				\end{tabular}
+			\end{table}
+			\begin{table}[]
+				\centering
+				\begin{tabular}{llll|l|l|l|l|}
+				\multicolumn{4}{c}{$\color{gray!50}\overbrace{\color{black}\rule{2.2cm}{0pt}}^{\textcolor{gray!40}{very dark}}$} & \multicolumn{4}{c}{$\overbrace{\rule{2.2cm}{0pt}}^{green}$}\\
+				\cline{5-8}
+				{\color[HTML]{C0C0C0} 1} & {\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 0} & {\color[HTML]{C0C0C0} 0} & 1 & 0 & 1 & 1 \\ \cline{5-8} 
+				\end{tabular}
+			\end{table}
+			}
+		\end{overlayarea}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}\justifying
+					\item<1-> As an analogy consider the case when we are using 8 bits to represent colors
+					\item<2-> The representation of very light, light, dark and very dark green would look different
+					\item<3-> But now what if we were asked to compress this into 4 bits? (akin to compressing $m\times m$ values into $m+m+1$ values on the previous slide)
+					\item<4-> We will retain the most important 4 bits and now the previously (slightly) latent similarity between the colors now becomes very obvious
+					\item<5-> Something similar is guaranteed by SVD (retain the most important information and discover the latent similarities between words)
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{0.7\textheight}
+			\vspace{0.6in}
+			\tiny{\begin{table}
+					\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.35cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.35cm}|}
+						\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+
+						\hline
+						\textbf{human}   & 0              & 2.944                       & 0               & 2.25         & ... & \textcolor{red}{\textbf{0}} \\
+						\textbf{machine} & 2.944          & 0                           & 0               & 2.25         & ... & 0                           \\
+						\textbf{system}  & 0              & \textcolor{red}{\textbf{0}} & 0               & 1.15         & ... & 1.84                        \\
+						\textbf{for}     & 2.25           & 2.25                        & 1.15            & 0            & ... & 0                           \\
+						.                & .              & .                           & .               & .            & .   & .                           \\
+						.                & .              & .                           & .               & .            & .   & .                           \\
+						.                & .              & .                           & .               & .            & .   & .                           \\
+						\textbf{user}    & 0              & 0                           & 1.84            & 0            & ... & 0                           \\
+						\hline
+					\end{tabular}
+					\caption*{Co-occurrence Matrix (X)}
+				\end{table}}
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{0.7\textheight}
+			\vspace{0.6in}
+			\tiny{\begin{table}
+					\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+						\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+						\hline
+						\textbf{human}   & 2.01           & 2.01                            & 0.23            & 2.14         & ... & \textcolor{blue}{\textbf{0.43}} \\
+						\textbf{machine} & 2.01           & 2.01                            & 0.23            & 2.14         & ... & 0.43                            \\
+						\textbf{system}  & 0.23           & \textcolor{blue}{\textbf{0.23}} & 1.17            & 0.96         & ... & 1.29                            \\
+						\textbf{for}     & 2.14           & 2.14                            & 0.96            & 1.87         & ... & -0.13                           \\
+						.                & .              & .                               & .               & .            & .   & .                               \\
+						.                & .              & .                               & .               & .            & .   & .                               \\
+						.                & .              & .                               & .               & .            & .   & .                               \\
+						\textbf{user}    & 0.43           & 0.43                            & 1.29            & -0.13        & ... & 1.71                            \\
+						\hline
+					\end{tabular}
+					\caption*{Low rank $X$ $\rightarrow$ Low rank $\hat{X}$}
+				\end{table}}
+		\end{overlayarea}
+	\end{columns}
+	
+	\begin{itemize}
+		\item<1-> Notice that after low rank reconstruction with SVD, the latent co-occurrence between $\{system, machine\}$ and $\{human, user\}$ has become visible
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1>{ \tiny{\begin{table}
+						\caption*{$X = $}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\textbf{human}   & 0              & 2.944            & 0               & 2.25         & ... & 0             \\
+							\textbf{machine} & 2.944          & 0                & 0               & 2.25         & ... & 0             \\
+							\textbf{system}  & 0              & 0                & 0               & 1.15         & ... & 1.84          \\
+							\textbf{for}     & 2.25           & 2.25             & 1.15            & 0            & ... & 0             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+
+							\textbf{user}    & 0              & 0                & 1.84            & 0            & ... & 0             \\
+							\hline
+						\end{tabular}
+					\end{table}}}
+			\only<2->{ \tiny{\begin{table}
+						\caption*{$X = $}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\rowcolor{red!40}
+							\textbf{human}   & 0              & 2.944            & 0               & 2.25         & ... & 0             \\
+							\textbf{machine} & 2.944          & 0                & 0               & 2.25         & ... & 0             \\
+							\textbf{system}  & 0              & 0                & 0               & 1.15         & ... & 1.84          \\
+							\textbf{for}     & 2.25           & 2.25             & 1.15            & 0            & ... & 0             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							\rowcolor{red!40}
+							\textbf{user}    & 0              & 0                & 1.84            & 0            & ... & 0             \\
+							\hline
+						\end{tabular}
+					\end{table}}
+				\vspace{-0.2in}
+				\tiny{\begin{table}
+						\caption*{$XX^{T} = $}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+
+							\textbf{human}   & 32.5           & 23.9             & 7.78            & 20.25        & ... & \cellcolor{red!40}{7.01} \\
+							\textbf{machine} & 23.9           & 32.5             & 7.78            & 20.25        & ... & 7.01                     \\
+							\textbf{system}  & 7.78           & 7.78             & 0               & 17.65        & ... & 21.84                    \\
+							\textbf{for}     & 20.25          & 20.25            & 17.65           & 36.3         & ... & 11.8                     \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							\textbf{user}    & 7.01           & 7.01             & 21.84           & 11.8         & ... & 28.3                     \\
+							\hline
+						\end{tabular}
+					\end{table}}
+			}
+
+			\onslide<2->{\footnotesize{\begin{align*}
+						cosine\_sim(human, user) = 0.21
+					\end{align*}}}
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}
+					\justifying
+					\item<1-> Recall that earlier each row of the original matrix $X$ served as the representation of a word
+					\item<2-> Then $XX^T$ is a matrix whose $ij$-th entry is the dot product between the representation of word $i$ ($X[i:]$) and word $j$ ($X[j:]$)
+					\begin{align*}
+						\onslide<3->{&\begin{array}[c]{@{}l@{}l}
+							\vphantom{0} \text{$X[i:]$} \hspace{-2cm}\\
+							\vphantom{0} \\
+					    	\vphantom{0} \text{$X[j:]$} \hspace{-2cm}\\
+						\end{array}}
+						\onslide<4->{\underbrace{\left[\begin{array}{ccc}
+							\rowcolor{red!50}
+							1 & 2 & 3\\
+							2 & 1 & 0\\
+							\rowcolor{red!50}
+							1 & 3 & 5
+						\end{array}\right]}_{X}}
+						\onslide<5->{\underbrace{\left[\begin{array}{cc>{\columncolor{red!50}}c}
+							1 & 2 & 1\\
+							2 & 1 & 3\\
+							3 & 0 & 5
+						\end{array}\right]}_{X^T}}\\
+						\onslide<6->{& = \underbrace{\begin{bmatrix}
+							. & . & 22\\
+							. & . & .\\
+							. & . & .
+						\end{bmatrix}}_{XX^T}}
+					\end{align*}
+					\item<7-> The $ij$-th entry of $XX^T$ thus (roughly) captures the cosine similarity between $word_i, word_j$
+				\end{itemize}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<2->{\tiny{\begin{table}
+						\caption*{$\hat{X}=$}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\rowcolor{red!40}
+							\textbf{human}   & 2.01           & 2.01             & 0.23            & 2.14         & ... & 0.43  \\
+							\textbf{machine} & 2.01           & 2.01             & 0.23            & 2.14         & ... & 0.43  \\
+							\textbf{system}  & 0.23           & 0.23             & 1.17            & 0.96         & ... & 1.29  \\
+							\textbf{for}     & 2.14           & 2.14             & 0.96            & 1.87         & ... & -0.13 \\
+							.                & .              & .                & .               & .            & .   & .     \\
+							.                & .              & .                & .               & .            & .   & .     \\
+							.                & .              & .                & .               & .            & .   & .     \\
+							\rowcolor{red!40}
+							\textbf{user}    & 0.43           & 0.43             & 1.29            & -0.13        & ... & 1.71  \\
+							\hline
+						\end{tabular}
+					\end{table}}
+			}
+			\vspace{-0.2in}
+			\onslide<3->{ \tiny{\begin{table}
+						\caption*{$\hat{X} \hat{X}^{T}=$}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\textbf{human}   & 25.4           & 25.4             & 7.6             & 21.9         & ... & \cellcolor{red!40}{6.84} \\
+							\textbf{machine} & 25.4           & 25.4             & 7.6             & 21.9         & ... & 6.84                     \\
+							\textbf{system}  & 7.6            & 7.6              & 24.8            & 18.03        & ... & 20.6                     \\
+							\textbf{for}     & 21.9           & 21.9             & 0.96            & 24.6         & ... & 15.32                    \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							\textbf{user}    & 6.84           & 6.84             & 20.6            & 15.32        & ... & 17.11                    \\
+							\hline
+						\end{tabular}
+					\end{table}}
+			}
+			\onslide<3->{\footnotesize{\begin{align*}
+						cosine\_sim(human, user) = 0.33
+					\end{align*}}}
+
+
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1-4>{
+				\begin{itemize}
+					\justifying
+					\item<1-> Once we do an SVD what is a good choice for the representation of $word_i?$
+					\item<2-> Obviously, taking the $i$-th row of the reconstructed matrix does not make sense because it is still high dimensional
+					\item<3-> But we saw that the reconstructed matrix $\hat{X}=U\Sigma V^T$ discovers latent semantics and its word representations are more meaningful
+					\item<4-> \textbf{Wishlist:} We would want representations of words (i, j) to be of smaller dimensions but still have the same similarity (dot product) as the corresponding rows of $\hat{X}$
+				\end{itemize}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<1->{\tiny{\begin{table}
+						\caption*{$\hat{X}=$}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\rowcolor{red!40}
+							\textbf{human}   & 2.01           & 2.01             & 0.23            & 2.14         & ... & 0.43          \\
+							\textbf{machine} & 2.01           & 2.01             & 0.23            & 2.14         & ... & 0.43          \\
+							\textbf{system}  & 0.23           & 0.23             & 1.17            & 0.96         & ... & 1.29          \\
+							\textbf{for}     & 2.14           & 2.14             & 0.96            & 1.87         & ... & -0.13         \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							\rowcolor{red!40}
+							\textbf{user}    & 0.43           & 0.43             & 1.29            & -0.13        & ... & 1.71          \\
+							\hline
+						\end{tabular}
+					\end{table}}
+			}
+			\vspace{-0.2in}
+			\onslide<1->{ \tiny{\begin{table}
+						\caption*{$\hat{X}\hat{X}^{T}=$}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.55cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.55cm}|}
+							\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\textbf{human}   & 25.4           & 25.4             & 7.6             & 21.9         & ... & \cellcolor{red!40}{6.84} \\
+							\textbf{machine} & 25.4           & 25.4             & 7.6             & 21.9         & ... & 6.84                     \\
+							\textbf{system}  & 7.6            & 7.6              & 24.8            & 18.03        & ... & 20.6                     \\
+							\textbf{for}     & 21.9           & 21.9             & 0.96            & 24.6         & ... & 15.32                    \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							.                & .              & .                & .               & .            & .   & .                        \\
+							\textbf{user}    & 6.84           & 6.84             & 20.6            & 15.32        & ... & 17.11                    \\
+							\hline
+						\end{tabular}
+					\end{table}}
+			}
+			\onslide<1->{\footnotesize{\begin{align*}
+						similarity = 0.33
+					\end{align*}}}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}
+					\justifying
+					\onslide<1->{\item Notice that the dot product between the rows of the the matrix $W_{word}=U\Sigma$ is the same as the dot product between the rows of $\hat{X}$}
+					      \begin{align*}
+						      \onslide<1->{\hat{X}\hat{X}^T & = (U\Sigma V^T)(U \Sigma V^T)^T\\}
+						      \onslide<2->{     & = (U\Sigma V^T)(V \Sigma U^T) \\}
+						      \onslide<3->{     & = U\Sigma \Sigma^TU^T \quad(\because V^TV = I)\\}
+						      \onslide<4->{     & = U\Sigma (U\Sigma)^T = W_{word} W_{word}^T  }
+					      \end{align*}
+
+					      \onslide<5->{\item Conventionally,
+					      \begin{align*}
+						      W_{word} & = U\Sigma \in \mathbb{R}^{m \times k}
+					      \end{align*}
+					      is taken as the representation of the $m$ words in the vocabulary and
+					      }
+					      \onslide<5->{
+						      \begin{align*}
+							      W_{context} = V
+						      \end{align*}
+						      is taken as the representation of the context words}
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

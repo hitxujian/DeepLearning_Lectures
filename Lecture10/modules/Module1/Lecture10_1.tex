@@ -1,0 +1,122 @@
+\begin{frame}
+	\myheading{Module 10.1: One-hot representations of words}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.2in}
+			\begin{tikzpicture}
+				\onslide<3->{\node (plot) at (0.1,5.5) {\includegraphics[width=1.2cm, height=1.2cm]{images/thumbs_up.png}};}
+				\onslide<3->{\draw [line width=1.5] [->] (0.1,4) -- (0.1,5);}
+				\onslide<3->{\draw [line width=1, fill=black!50](-1.4,4) rectangle (1.5,2 ) node[pos=0.5] {Model};}
+				\onslide<3>{\draw[line width=1.5][->](0.1,0) -- (0.1,2);}
+
+				\onslide<4->{\draw[line width=1.5][->](0.1,1.5) -- (0.1,2);
+					\node [text width=\textwidth] at (0,1.5){\begin{center}\footnotesize{[5.7, 1.2, 2.3, -10.2, 4.5, ..., 11.9, 20.1, -0.5, 40.7]}\end{center}};
+					\draw [line width=1.5][->] (0.1,0) -- (0.1,1.1);}
+				\onslide<2->{\node[text width=\textwidth, fill=yellow] at (0,0){\footnotesize{This is by far AAMIR KHAN's best one. Finest casting and terrific acting by all.} };}
+			\end{tikzpicture}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Let us start with a very simple motivation for why we are interested in vectorial representations of words}
+				      \onslide<2->{\item Suppose we are given an input stream of words (sentence, document, etc.) and we are interested in learning some function of it (say, $\hat{y} = sentiments(words)$)}
+				      \onslide<3->{\item Say, we employ a machine learning algorithm (some mathematical model) for learning such a function ($\hat{y} = f(\mathbf{x}))$}
+				      \onslide<4->{\item We first need a way of converting the input stream (or each word in the stream) to a vector $\mathbf{x}$ (a mathematical quantity)}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1in}
+			\onslide<2->{
+				\large{\textbf{Corpus:}} \\
+				\footnotesize{\begin{itemize}
+						\item Human machine interface for computer applications\\
+						\item User opinion of computer system response time\\
+						\item User interface management system\\
+						\item System engineering for improved response time\\
+					\end{itemize}
+				}
+				\vspace{0.1in}
+				\onslide<4->{$\mathbf{V}=\ $ [human,machine, interface, for, computer, applications, user, opinion, of, system, response, time,
+							interface, management, engineering, improved]
+				}
+				\onslide<6->{\begin{table}
+						\begin{tabular}{c|c|c|c|c|c|c|c|}
+							\cline{2-8}
+							\hspace{-0.6in}\textbf{machine}: & 0 & 1 & 0 & ... & 0 & 0 & 0 \\
+							\cline{2-8}
+						\end{tabular}
+					\end{table}}
+			}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Given a corpus, \onslide<3->{consider the set $V$ of all unique words across all input streams (\textit{i.e.}, all sentences or documents)}}
+				      \onslide<4->{\item $V$ is called the \textbf{vocabulary} of the corpus (\textit{i.e.}, all sentences or documents)}
+				      \onslide<5->{\item We need a representation for every word in $V$}
+				      \onslide<6->{\item One very simple way of doing this is to use one-hot vectors of size $|V|$}
+				      \onslide<7->{\item The representation of the $i$-th word will have a 1 in the $i$-th position and a $0$ in the remaining $|V| - 1$ positions}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{table}
+				\begin{tabular}{c|c|c|c|c|c|c|c|}
+					\cline{2-8}
+					\hspace{-0.6in}cat: & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+					\cline{2-8}
+				\end{tabular}\\
+				\vspace{0.1in}
+				\begin{tabular}{c|c|c|c|c|c|c|c|}
+
+					\cline{2-8}
+					\hspace{-0.6in}dog: & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+					\cline{2-8}
+				\end{tabular}\\
+				\vspace{0.1in}
+				\begin{tabular}{c|c|c|c|c|c|c|c|}
+					\cline{2-8}
+					\hspace{-0.8in}truck: & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+					\cline{2-8}
+				\end{tabular}
+			\end{table}
+			\noindent \begin{align*}
+				\onslide<4->{euclid\_dist(\mathbf{cat}, \mathbf{dog}) & = \sqrt{2}                          \\
+				euclid\_dist(\mathbf{dog}, \mathbf{truck})            & = \sqrt{2}\\}
+				\vspace{0.1in}
+				\onslide<5->{cosine\_sim(\mathbf{cat}, \mathbf{dog})  & = 0                                 \\
+				cosine\_sim(\mathbf{dog}, \mathbf{truck})             & = 0}
+			\end{align*}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Problems:}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item $V$ tends to be very large (for example, 50K for PTB, 13M for Google 1T corpus)}
+				      \onslide<2->{\item These representations do not capture any notion of similarity}
+				      \onslide<3->{\item Ideally, we would want the representations of cat and dog (both domestic animals) to be closer to each other than the representations of cat and truck}
+				      \onslide<4->{\item However, with 1-hot representations, the Euclidean distance between \textbf{any two words} in the vocabulary in $\sqrt{2}$}
+				      \onslide<5->{\item And the cosine similarity between \textbf{any two words} in the vocabulary is $0$}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

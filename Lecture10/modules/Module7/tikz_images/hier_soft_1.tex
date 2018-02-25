@@ -1,0 +1,110 @@
+\begin{tikzpicture}
+\node (R) [text width=\textwidth] at (0,1) {\footnotesize{\begin{table}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+0 & 1 & 0 & ... & 0 & 0 & 0\\
+\hline
+\end{tabular}
+\caption*{\textit{sat}}
+\end{table}}
+};
+
+\node (H) [text width=\textwidth] at ($ (R) + (0,2) $) {\begin{table}
+\begin{tabular}{l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l}
+\hline
+\rowcolor{blue!50}
+ .&.&.&.&.&.&.&.&.&.\\
+\hline
+\end{tabular}
+\end{table}
+};
+
+\onslide<1->{
+\node(V) [text width=\textwidth] at ($ (H) + (0,1.5) $) {\large{\begin{table}
+\begin{tabular}{l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l!{\color{white}\vrule}l}
+\hline
+\rowcolor{black!10}
+ .&.&.&1&.&.&.&.&.&.&.&.\\
+\hline
+\end{tabular}
+\end{table}}
+};
+
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (A) at ($(V) + (-3.2,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (B) at ($(V) + (-2.6,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (C) at ($(V) + (-2.0,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (D) at ($(V) + (-1.4,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (W) at ($(V) + (1.4,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (X) at ($(V) + (2.0,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (Y) at ($(V) + (2.6,0.6)$ ) {};
+\node [circle,line width=1,draw=red!40, minimum size=2mm] (Z) at ($(V) + (3.2,0.6)$ ) {};
+
+
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (AB) at ($(V) + (-2.9,1.4)$ ) {};
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (CD) at ($(V) + (-1.7,1.4)$ ) {};
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (WX) at ($(V) + (1.7,1.4)$ ) {};
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (YZ) at ($(V) + (2.9,1.4)$ ) {};
+
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (WXYZ) at ($(V) + (2.3,2.3)$ ) {};
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (ABCD) at ($(V) + (-2.3,2.3)$ ) {};
+
+\node [circle,line width=1,draw=blue!40, minimum size=2mm] (AL) at ($(V) + (0,3.3)$ ) {};
+
+
+\draw[line width=0.8] (A) -- (AB);
+\draw[line width=0.8] (B) -- (AB);
+
+\draw[line width=0.8] (C) -- (CD);
+\draw[line width=0.8] (D) -- (CD);
+\draw[line width=0.8] (W) -- (WX);
+\draw[line width=0.8] (X) -- (WX);
+\draw[line width=0.8] (Y) -- (YZ);
+\draw[line width=0.8] (Z) -- (YZ);
+
+\draw[line width=0.8] (WX) -- (WXYZ);
+\draw[line width=0.8] (YZ) -- (WXYZ);
+
+\draw[line width=0.8] (AB) -- (ABCD);
+\draw[line width=0.8] (CD) -- (ABCD);
+
+\draw[line width=0.8] (ABCD) -- (AL);
+\draw[line width=0.8] (WXYZ) -- (AL);
+\node[text width=0.1\textwidth, ] at ($(V) + (-0.8,0.5)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (-0.2,0.5)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (0.4,0.5)$ ) {.};
+\node[text width=0.1\textwidth, ] at ($(V) + (1,0.5)$ ) {.};
+}
+\onslide<1->{\node [circle,line width=1,draw=red!40, minimum size=2mm, fill=red!60] (D) at ($(V) + (-1.4,0.6)$ ) {};
+\node [circle,line width=1,draw=blue!40, minimum size=2mm, fill=blue!60] (CD) at ($(V) + (-1.7,1.4)$ ) {};
+\node [circle,line width=1,draw=blue!40, minimum size=2mm,  fill=blue!60] (ABCD) at ($(V) + (-2.3,2.3)$ ) {};
+
+\node [circle,line width=1,draw=blue!40, minimum size=2mm, fill=blue!60] (AL) at ($(V) + (0,3.3)$ ) {};
+
+
+}
+
+\onslide<1->{
+	\node[text width=0.2\textwidth, ] at ($(AL) + (-0.8,0)$ ) {\textcolor{blue!50}{\tiny{$\pi(on)_1=1$}}};
+	\node[text width=0.2\textwidth, ] at ($(ABCD) + (-0.8,0)$) {\textcolor{blue!50}{\tiny{$\pi(on)_2=0$}}};
+	\node[text width=0.2\textwidth, ] at ($(CD) + (1,0)$ ) {\textcolor{blue!50}{\tiny{$\pi(on)_3=0$}}};
+}
+
+\onslide<1->{
+	\draw [color=black!50, fill=black!40]  ($(AL) + (0.4,-0.1)$) rectangle ($(AL) + (1.1,0.1)$);
+	\draw [color=black!50, fill=black!40]  ($(ABCD) + (0.4,-0.1)$) rectangle ($(ABCD) + (1.1,0.1)$);
+	\draw [color=black!50,fill=black!40]  ($(YZ) + (0.4,-0.1)$) rectangle ($(YZ) + (1.1,0.1)$);
+	\node[text width=0.2\textwidth, ] at ($(AL) + (1.8,0)$ ) {\textcolor{black}{\tiny{$u_1$}}};
+	\node[text width=0.2\textwidth, ] at ($(ABCD) + (1.8,0)$) {\textcolor{black}{\tiny{$u_2$}}};
+	\node[text width=0.2\textwidth, ] at ($(YZ) + (1.5,-0.2)$ ) {\textcolor{black}{\tiny{$u_V$}}};
+}
+
+
+\node[text width=0.1\textwidth, ] at ($(V) + (-1.1,-0.5)$ ) {\textcolor{red!40}{\footnotesize{\textit{on}}}};
+\node[text width=0.2\textwidth, ] at ($(H) + (3.5,0)$) {\textcolor{black}{\footnotesize{$h=v_c$}}};
+
+\draw[line width=0.8,color=blue!50] (-2.15,1.6) -- (-2.7,2.7);
+\draw[line width=0.8,color=blue!50] (2.15,1.6) -- (2.7,2.7);
+
+\draw[line width=0.8,color=red!50] (-2.67,3.21) -- (-3.29,4.21);
+\draw[line width=0.8,color=red!50] (2.67,3.21) -- (3.29,4.21);
+\end{tikzpicture}

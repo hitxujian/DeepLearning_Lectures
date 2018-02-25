@@ -1,0 +1,241 @@
+\begin{frame}
+	\myheading{Module 10.2: Distributed Representations of words}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.55\textwidth}
+		A \textcolor{blue}{bank} is a \textbf{financial} institution that accepts \textbf{deposits} from the public and creates \textbf{credit}. \\~\\~\\
+		\onslide<4->{The idea is to use the accompanying words (financial, deposits, credit) to represent bank}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item \textit{You shall know a word by the company it keeps - Firth, J. R. 1957:11}}
+				      \onslide<2->{\item Distributional similarity based representations}
+				      \onslide<3->{\item This leads us to the idea of co-occurrence matrix}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\large{\textbf{Corpus:}} \\
+			\footnotesize{\begin{itemize}\justifying
+					\item Human machine interface for computer applications\\
+					\item User opinion of computer system response time\\
+					\item User interface management system\\
+					\item System engineering for improved response time\\
+				\end{itemize}}
+			\onslide<4->{\tiny{\begin{table}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.25cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.4cm}|}
+							\hline
+							                 & \textbf{human} & \textbf{machine} & \textbf{system} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\textbf{human}   & 0              & 1                & 0               & 1            & ... & 0             \\
+							\textbf{machine} & 1              & 0                & 0               & 1            & ... & 0             \\
+							\textbf{system}  & 0              & 0                & 0               & 1            & ... & 2             \\
+							\textbf{for}     & 1              & 1                & 1               & 0            & ... & 0             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							\textbf{user}    & 0              & 0                & 2               & 0            & ... & 0             \\
+							\hline
+						\end{tabular}
+						\caption*{Co-occurence Matrix}
+					\end{table}}}
+		\end{overlayarea}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item A co-occurrence matrix is a  $\textbf{terms} \times \textbf{terms}$  matrix which captures the number of times a term appears in the context of another term}
+				      \onslide<2->{\item The context is defined as a window of $k$ words around the terms }
+				      \onslide<3->{\item Let us build a co-occurrence matrix for this toy corpus with $k$ = 2 }
+				      \onslide<4->{\item This is also known as a $\textbf{word} \times \textbf{context}$ matrix}
+				      \onslide<5->{\item You could choose the set of \textbf{words} and \textbf{contexts} to be same or different}
+				      \onslide<6->{\item Each row (column) of the co-occurrence matrix gives a vectorial representation of the corresponding word (context)}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5in}
+			\begin{center}
+				\only<1>{\tiny{\begin{table}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.25cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.4cm}|}
+							\hline
+							                 & \textbf{human} & \textbf{machine} & \textbf{system} & \textbf{for} & ... & \textbf{user} \\
+								\hline
+								\textbf{human}   & 0              & 1                & 0               & 1            & ... & 0             \\
+								\textbf{machine} & 1              & 0                & 0               & 1            & ... & 0             \\
+								\textbf{system}  & 0              & 0                & 0               & 1            & ... & 2             \\
+								\textbf{for}     & 1              & 1                & 1               & 0            & ... & 0             \\
+								.                & .              & .                & .               & .            & .   & .             \\
+								.                & .              & .                & .               & .            & .   & .             \\
+								.                & .              & .                & .               & .            & .   & .             \\
+								\textbf{user}    & 0              & 0                & 2               & 0            & ... & 0             \\
+								\hline
+							\end{tabular}
+						\end{table}}}
+				\only<2>{
+					\tiny{\begin{table}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.4cm}|}
+							\hline
+							                 & \textbf{human} & \textbf{machine} & \textbf{system} & ... & \textbf{user} \\
+								\hline
+								\textbf{human}   & 0              & 1                & 0               & ... & 0             \\
+								\textbf{machine} & 1              & 0                & 0               & ... & 0             \\
+								\textbf{system}  & 0              & 0                & 0               & ... & 2             \\
+								.                & .              & .                & .               & .   & .             \\
+								.                & .              & .                & .               & .   & .             \\
+								.                & .              & .                & .               & .   & .             \\
+								\textbf{user}    & 0              & 0                & 2               & ... & 0             \\
+								\hline
+							\end{tabular}
+						\end{table}}
+				}
+				\only<3->{\tiny{\begin{table}
+						\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.25cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.4cm}|}
+							\hline
+							                 & \textbf{human} & \textbf{machine} & \textbf{system} & \textbf{for} & ... & \textbf{user} \\
+								\hline
+								\textbf{human}   & 0              & 1                & 0               & x            & ... & 0             \\
+								\textbf{machine} & 1              & 0                & 0               & x            & ... & 0             \\
+								\textbf{system}  & 0              & 0                & 0               & x            & ... & 2             \\
+								\textbf{for}     & x              & x                & x               & x            & ... & x             \\
+								.                & .              & .                & .               & .            & .   & .             \\
+								.                & .              & .                & .               & .            & .   & .             \\
+								.                & .              & .                & .               & .            & .   & .             \\
+								\textbf{user}    & 0              & 0                & 2               & x            & ... & 0             \\
+								\hline
+							\end{tabular}
+						\end{table}}}
+			\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
+			\textbf{Some (fixable) problems}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Stop words (a, the, for, etc.) are very frequent $\rightarrow$ these counts will be very high}
+				      \onslide<2->{\item Solution 1: Ignore very frequent words}
+				      \onslide<3->{\item Solution 2: Use a threshold t (say, t = 100)
+				      \begin{align*}
+					      X_{ij} & = min(count(w_i, c_j), t),
+				      \end{align*}
+				      where $w$ is word and $c$ is context.
+				      }
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5in}
+			\onslide<3->{
+				\tiny{\begin{table}
+					\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.35cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.35cm}|}
+						\hline
+  			                  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+							\hline
+							\textbf{human}   & 0              & 2.944            & 0               & 2.25         & ... & 0             \\
+							\textbf{machine} & 2.944          & 0                & 0               & 2.25         & ... & 0             \\
+							\textbf{system}  & 0              & 0                & 0               & 1.15         & ... & 1.84          \\
+							\textbf{for}     & 2.25           & 2.25             & 1.15            & 0            & ... & 0             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							.                & .              & .                & .               & .            & .   & .             \\
+							\textbf{user}    & 0              & 0                & 1.84            & 0            & ... & 0             \\
+							\hline
+						\end{tabular}
+
+					\end{table}}
+			}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\textbf{Some (fixable) problems}
+			\begin{itemize}
+				\footnotesize{
+				\onslide<1->{\item Solution 3: Instead of $count(w, c)$ use  $PMI(w, c)$
+				      \onslide<2->{
+					      \begin{align*}
+						      PMI(w, c) & = \log \frac{p(c|w)}{p(c)}                       \\
+						      %&= \log \frac{\frac{count(w, c)}{N}}{\frac{count(c)}{N} \frac{count(c)}{N}} \\
+						                & = \log \frac{count(w, c)*N}{count(c) * count(w)}
+					      \end{align*}
+
+					      \textit{$N$ is the total number of words}
+				      }}
+				      \onslide<4->{\item If $count(w, c) = 0$, $PMI(w, c) = -\infty$ \\
+				      \vspace{0.1in}
+				      \onslide<5->{
+					      Instead use,
+					      \begin{align*}
+						      PMI_0(w,c) & = PMI (w,c) & if\ count(w, c) > 0 \\
+						                 & = 0               & otherwise
+					      \end{align*}
+				      }
+				      \onslide<6->{
+					      or
+					      \begin{align*}
+						      PPMI (w,c) & = PMI (w,c)  & if\ PMI(w, c) > 0 \\
+						                 & = 0          & otherwise
+					      \end{align*}
+				      }}}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5in}
+			\tiny{\begin{table}
+					\begin{tabular}{|>{\centering\arraybackslash}p{0.9cm}|>{\centering\arraybackslash}p{0.7cm}|>{\centering\arraybackslash}p{0.87cm}|>{\centering\arraybackslash}p{0.68cm}|>{\centering\arraybackslash}p{0.35cm}|>{\centering\arraybackslash}p{0.2cm}|>{\centering\arraybackslash}p{0.35cm}|}
+						\hline
+							  & \textbf{human} & \textbf{machine} & \textbf{system\hspace{0.2cm}} & \textbf{for} & ... & \textbf{user} \\
+						\hline
+						\textbf{human}   & 0              & 2.944            & 0               & 2.25         & ... & 0             \\
+						\textbf{machine} & 2.944          & 0                & 0               & 2.25         & ... & 0             \\
+						\textbf{system}  & 0              & 0                & 0               & 1.15         & ... & 1.84          \\
+						\textbf{for}     & 2.25           & 2.25             & 1.15            & 0            & ... & 0             \\
+						.                & .              & .                & .               & .            & .   & .             \\
+						.                & .              & .                & .               & .            & .   & .             \\
+						.                & .              & .                & .               & .            & .   & .             \\
+						\textbf{user}    & 0              & 0                & 1.84            & 0            & ... & 0             \\
+						\hline
+					\end{tabular}
+
+				\end{table}}\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
+			\textbf{Some (severe) problems}
+			\onslide<1-4>{
+				\begin{itemize}\justifying
+					\item<1-> Very high dimensional ($|V|$)
+					\item<2-> Very sparse
+					\item<3-> Grows with the size of the vocabulary
+					\item<4-> \textbf{Solution:} Use dimensionality reduction (SVD)
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

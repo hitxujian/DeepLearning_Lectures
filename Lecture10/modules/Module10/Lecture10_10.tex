@@ -1,0 +1,49 @@
+\begin{frame}
+	\myheading{Module 10.10: Relation between SVD \& word2Vec}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{The story ahead ...}
+		\onslide<1->{
+			\begin{itemize}\justifying
+				\item Continuous bag of words model
+				\item Skip gram model with negative sampling (the famous word2vec)
+				\item GloVe word embeddings
+				\item Evaluating word embeddings
+				\item \textcolor<1->{red}{Good old SVD does just fine!!}
+			\end{itemize}}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\include{modules/Module10/tikz_images/sg_1}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{\begin{itemize} \justifying
+					\onslide<1->{\item Recall that SVD does a matrix factorization of the co-occurrence matrix}
+					      \onslide<2->{\item Levy et.al [2015] show that word2vec also implicitly does a matrix factorization}
+					      \onslide<3->{\item What does this mean ?}
+					      \onslide<4->{\item Recall that word2vec gives us $W_{context}$  $\&$  $W_{word}$ }.
+					      \onslide<5->{\item Turns out that we can also show that
+					      \vspace{-0.1in}
+					      \begin{align*}
+						      M = W_{context}*W_{word}
+					      \end{align*}
+					      where
+					      \begin{align*}
+						      M_{ij} & = PMI(w_i,c_i)-log(k)               \\
+						      k      & = \text{number of negative samples}
+					      \end{align*}
+					      }
+					      \vspace{-0.1in}
+					      \onslide<6->{\item So essentially, word2vec factorizes a matrix M which is related to the PMI based co-occurrence matrix (very similar to what SVD does)}
+
+				\end{itemize}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
