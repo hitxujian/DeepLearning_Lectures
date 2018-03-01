@@ -1,0 +1,16 @@
+\begin{tikzpicture}
+	\begin{axis}[
+			xmin=-2.5, xmax=2.5,
+			ymin=-0.1, ymax=1.1,
+			axis lines=center,
+			axis on top=true,
+			%domain=-2.5:2.5,
+			ylabel=$y$,
+			xlabel=$x$,
+		]
+		
+		\addplot [smooth,mark=none,draw=blue,] {1/(1+exp(-2.5*\x)};
+		%% Add the asymptotes
+		\draw [blue, dotted, thick] (axis cs:4,+1)-- (axis cs:0,+1);
+	\end{axis}
+\end{tikzpicture}

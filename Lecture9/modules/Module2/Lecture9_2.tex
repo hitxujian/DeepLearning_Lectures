@@ -1,0 +1,370 @@
+\begin{frame}
+	\myheading{Module 9.2 : Unsupervised pre-training}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	
+	\begin{block}{}
+		\begin{itemize}
+			\justifying
+			\item<1-> What has changed now? How did Deep Learning become so popular despite this problem with training large networks?
+			\item<2-> Well, until 2006 it wasn't so popular
+			\item<3-> The field got revived after the seminal work of Hinton and Salakhutdinov in 2006
+		\end{itemize}
+	\end{block}
+	
+	\footnotetext[1]{G. E. Hinton and R. R. Salakhutdinov. Reducing the dimensionality of data with neural networks. Science, 313(5786):504–507, July 2006.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	Let's look at the idea of unsupervised pre-training introduced in this paper ... \onslide<2->{(note that in this paper they introduced the idea in the context of RBMs but we will discuss it in the context of Autoencoders)}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.3\textwidth}
+		%\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{1cm}
+				
+		\only<1->{
+			\begin{center}
+				\input{modules/Module2/tikz_images/dnn_box.tex}
+			\end{center}
+		}
+						
+		\column{0.3\textwidth}
+
+		
+		\only<4-7>{
+			\begin{center}
+				\input{modules/Module2/tikz_images/one_layer_ae.tex}
+				\begin{align*}
+					\min {\hspace{.3mm}} \frac{1}{m}\sum_{i=1}^{m}\sum_{j=1}^{n} (\hat{x}_{ij} - x_{ij})^{2} 
+				\end{align*}
+			\end{center}
+			
+		}
+		
+		
+		\only<8->{
+			
+			\begin{center}
+				\input{modules/Module2/tikz_images/two_layer_ae.tex}
+				\begin{align*}
+					\min {\hspace{.3mm}} \frac{1}{m}\sum_{i=1}^{m}\sum_{j=1}^{n} (\hat{h}_{{1}_{ij}} - h_{{1}_{ij}})^{2}
+				\end{align*}
+				
+			\end{center}
+		}
+		
+		
+		%\end{overlayarea}
+		
+		\column{0.5\textwidth}
+		\only<1-6>{
+			\begin{itemize}[<+(0)->]
+				\justifying 
+				\item Consider the deep neural network shown in this figure
+				\item Let us focus on the first two layers of the network ($x$ and $h_1$) 
+				\item We will first train the weights between these two layers using an \textbf{unsupervised objective}
+				\item Note that we are trying to reconstruct the input ($x$) from the hidden representation ($h_1$)
+				\item We refer to this as an unsupervised objective because it does not involve the output label ($y$) and only uses the input data ($x$)
+				      %\item Now,fix the weights for the first layer and repeat the autoencoder training for the second layer
+				      %\item Continue till the last hidden layer (i.e. the layer before the output layer)
+			\end{itemize}
+		}
+		
+		
+		\only<7->{
+			\begin{itemize}[<+(6)->]
+				\justifying     
+				\item At the end of this step, the weights in layer 1 are trained such that $h_1$ captures an abstract representation of the input $x$ 
+				\item We now fix the weights in layer 1 and repeat the same process with layer 2
+				\item At the end of this step, the weights in layer 2 are trained such that $h_2$ captures an abstract representation of $h_1$
+				\item We continue this process till the last hidden layer (\textit{i.e.,} the layer before the output layer) so that each successive layer captures an abstract representation of the previous layer
+				      %\item Now,fix the weights for the first layer and repeat the autoencoder training for the second layer
+				      %\item Continue till the last hidden layer (i.e. the layer before the output layer)
+			\end{itemize}
+		}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+						
+			\begin{center}
+				\input{modules/Module2/tikz_images/dnn.tex}
+			\end{center}
+			\vspace{-1em}
+			\begin{align*}
+				\min_{\theta} \hspace{.3mm}\frac{1}{m} \sum_{i=1}^{m} (y_{i} - f(x_i))^{2} 
+			\end{align*}
+			
+			
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		
+		\begin{itemize}[<+(0)->]
+			\justifying
+			%\item At the end of this process the weights of all the layers have been initialised such that the network now has a better class-independent representation of the data (class independent because we have not used the class labels $y$ anywhere)
+			\item After this layerwise pre-training, we add the output layer and train the whole network using the task specific objective
+			\item Note that, in effect we have initialized the weights of the network using the greedy unsupervised objective and are now fine tuning these weights using the supervised objective 
+		\end{itemize}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{flushleft}
+		Why does this work better?\pause
+	\end{flushleft}
+	\vspace{-1em}
+	\begin{itemize}
+		\justifying
+		\item<2-> Is it because of better optimization?
+		\item<3-> Is it because of better regularization?\pause
+	\end{itemize}
+	\onslide<4->{\begin{flushleft}
+				Let's see what these two questions mean and try to answer them based on some (among many) existing studies$^{1,2}$
+			\end{flushleft}	
+	}
+	
+	\onslide<4->{\footnotetext[1]{The difficulty of training deep architectures and effect of unsupervised pre-training - Erhan et al,2009}}
+	\onslide<4->{\footnotetext[2]{Exploring Strategies for Training Deep Neural Networks, Larocelle et al,2009}}
+	
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{flushleft}
+	Why does this work better?
+\end{flushleft}
+	\vspace{-1em}
+	\begin{itemize}
+		\justifying
+		\item \textcolor {red}{Is it because of better optimization?}
+		\item Is it because of better regularization?
+	\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{itemize}
+		\justifying
+		\item What is the optimization problem that we are trying to solve?
+		      \onslide<2->{
+		      	\begin{align*}
+		      		\text{minimize} \hspace{0.65em} \displaystyle\mathscr{L(\theta)}=\frac{1}{m}\sum_{i=1}^{m} (y_{i} - f(x_{i}))^{2} 
+		      	\end{align*}
+		      }
+		      \item<3-> Is it the case that in the absence of unsupervised pre-training we are not able to drive $\displaystyle\mathscr{L (\theta)}$ to 0 even for the training data (hence poor optimization) ?
+		      \item<4-> Let us see this in more detail ... 
+	\end{itemize}
+	
+\end{frame}    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{figure}
+				\includegraphics[scale= 0.4]{images/surface_.jpeg}
+			\end{figure}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}[<+->]
+				\justifying
+				\item The error surface of the supervised objective of a Deep Neural Network is highly non-convex
+				\item With many hills and plateaus and valleys 
+				\item Given that large capacity of DNNs it is still easy to land in one of these 0 error regions
+				\item Indeed Larochelle et.al.$^1$ show that if the last layer has large capacity then $\displaystyle\mathscr{L (\theta)}$ goes to 0 even without pre-training
+				\item However, if the capacity of the network is small, unsupervised pre-training helps
+			\end{itemize}    
+			
+		\end{column}
+		
+	\end{columns}
+	\footnotetext[1]{Exploring Strategies for Training Deep Neural Networks, Larocelle et al,2009}
+\end{frame}
+
+\begin{frame}
+\begin{flushleft}
+	Why does this work better?
+\end{flushleft}
+	\vspace{-1em}
+	\begin{itemize}
+		\justifying
+		\item Is it because of better optimization?
+		\item \textcolor{red}{Is it because of better regularization?}
+	\end{itemize}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{center}
+				\onslide<3->{ \includegraphics[scale= 0.2]{images/l1_l2.png}
+				}
+				    
+				
+			\end{center}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> What does regularization do? \onslide<2-> {It constrains the weights to certain regions of the parameter space}
+				\item<3-> L-1 regularization: constrains most weights to be 0 
+				\item<4-> L-2 regularization: prevents most weights from taking large values 
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	\footnotetext[1]{Image Source:The Elements of Statistical Learning-T. Hastie, R. Tibshirani, and J. Friedman, Pg 71 }
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				
+				\begin{itemize}
+					\justifying
+					\item<3-> \textbf{Unsupervised objective:}
+					
+					\only<3->{
+						\begin{align*}
+							\Omega(\theta) = \frac{1}{m}\sum_{i=1}^{m} \sum_{j=1}^{n}(x_{ij} - \hat{x}_{ij})^{2} 
+						\end{align*}
+					}
+					
+					\item<4-> We can think of this unsupervised objective as an additional constraint on the optimization problem
+					\item<5-> \textbf{Supervised objective:}
+					
+					\only<5->{
+						\begin{align*}
+							\mathscr{L}(\theta) = \frac{1}{m}\sum_{i=1}^{m} (y_{i} - f(x_{i}))^{2} 
+						\end{align*}
+					}
+					
+				\end{itemize}
+			\end{overlayarea}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				
+				\begin{itemize}
+					\justifying
+					\item<1-> Indeed, pre-training constrains the weights to lie in only certain regions of the parameter space
+					\item<2-> Specifically, it constrains the weights to lie in regions where the characteristics of the data are captured well (as governed by the unsupervised objective)
+					\item<5-> This unsupervised objective ensures that that the learning is not greedy w.r.t. the supervised objective (and also satisfies the unsupervised objective)
+				\end{itemize}
+			\end{overlayarea}
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{center}
+				\onslide<2->{ \includegraphics[scale= 0.23]{images/erhan09_slide8.png} }
+				
+			\end{center}
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\begin{itemize}[<+->]
+				\justifying
+				\item Some other experiments have also shown that pre-training is more robust to random initializations
+				\item One accepted hypothesis is that pre-training leads to better weight initializations (so that the layers capture the internal characteristics of the data)
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	\footnotetext[1]{The difficulty of training deep architectures and effect of unsupervised pre-training - Erhan et al,2009}
+		
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\if 0
+\begin{frame}
+	\begin{columns}
+				
+		\column{0.5\textwidth}
+		\begin{itemize}[<+(1)->]
+			\justifying
+			\item What makes deep neural networks powerful?
+			\item Imagine if we replace the sigmoids in each layer by a simple linear transformation
+			\item We will be constrained to learning linear decision boundaries and cannot learn arbitrary decision boundaries
+			\item The power of NNs come from the ???Missing here ?
+		\end{itemize}
+		
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+						
+			\begin{center}
+				\input{modules/Module2/tikz_images/dnn_2.tex}
+			\end{center}
+						
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		So what has happened since 2006-2009?
+		
+	\end{center}
+	    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{Deep Learning has evolved}
+		\begin{itemize}[<+->]
+			\justifying
+			\item \textcolor{gray}{Better optimization algorithms}
+			\item \textcolor{gray}{Better regularization methods}
+			\item Better activation functions
+			\item Better weight initialization strategies
+		\end{itemize}
+		
+	\end{block}
+\end{frame}

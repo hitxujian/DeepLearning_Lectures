@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+
+	\begin{axis}[
+			%xmin=-2.5, xmax=2.5,
+			%ymin=-1.5, ymax=1.5,
+			axis lines=center,
+			axis on top=true,
+			%domain=-2.5:2.5,
+			ylabel=$y$,
+			xlabel=$x$,
+		]
+		
+		\addplot [smooth,mark=none,draw=blue,] {tanh(\x)};
+		%% Add the asymptotes
+		\draw [blue, dotted, thick] (axis cs:-2.5,-1)-- (axis cs:0,-1);
+		\draw [blue, dotted, thick] (axis cs:+2.5,+1)-- (axis cs:0,+1);
+		\node(text) at (axis cs:0.2,-0.1) {0};
+	\end{axis}
+	
+\end{tikzpicture}

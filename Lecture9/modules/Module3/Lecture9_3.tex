@@ -1,0 +1,664 @@
+\begin{frame}
+	\myheading{Module 9.3 : Better activation functions}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{Deep Learning has evolved}
+		\begin{itemize}
+			\justifying
+			\item \textcolor{gray}{Better optimization algorithms}
+			\item \textcolor{gray}{Better regularization methods}
+			\item \textcolor{red}{Better activation functions}
+			\item Better weight initialization strategies
+		\end{itemize}
+		
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{itemize}
+		\justifying
+		\item Before we look at activation functions, let's try to answer the following question: ``What makes Deep Neural Networks powerful ?''
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-6>{
+				\begin{center}
+					\input{modules/Module3/tikz_images/deep_thin_1.tex}
+				\end{center}
+			}
+			\onslide<7->{
+				\begin{figure}[H]
+					%\centering
+					%\includegraphics[width=6 cm]{images/non_linear.png}
+					\includegraphics<3->[scale=0.20]{images/gaussian_3d.png}
+					
+					%\caption{Accuracy of sigmoid kerenel plotted against gamma, for different values of cost \textit{c}}
+				\end{figure}
+			}
+			
+		\end{overlayarea}
+		
+		\vspace{-.2in}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			%\only<1->{
+				\begin{itemize}
+					\justifying
+					\only<1-6>{
+					\onslide<1-6>{\item Consider this deep neural network }
+					\onslide<2-6>{ \item Imagine if we replace the sigmoid in each layer by a simple linear transformation}
+					\onslide<3-6>{
+						\begin{align*}
+							y=(w_{4}*(w_{3}*(w_{2}*(w_{1}x)))) \\
+						\end{align*}
+						
+						\onslide<4-6>{\item Then we will just learn $y$ as a linear transformation of $x$}
+					}
+					\onslide<5-6>{\item  In other words we will be constrained to learning linear decision boundaries}
+					\onslide<6>{\item  We cannot learn arbitrary decision boundaries}
+					}
+					\only<7->{\item  In particular, a deep linear neural network cannot learn such boundaries}
+					\only<8->{\item  But a deep non linear neural network can indeed learn such boundaries (recall Universal Approximation Theorem)}
+				\end{itemize}
+			%}
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{itemize}
+		\justifying
+		\item Now let's look at some non-linear activation functions that are typically used in deep neural networks (Much of this material is taken from Andrej Karpathy's lecture notes \footnote{http://cs231n.github.io})
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{center}
+					
+					\onslide<2->{\includegraphics[scale = 0.45]{images/sigmoid.jpeg}
+						
+						Sigmoid
+					}
+				\end{center}
+			\end{overlayarea}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}
+					\justifying
+					\item<1-> $\sigma(x) = \frac{1}{1+e^{-x}}$
+					\item<2-> As is obvious, the sigmoid function compresses all its inputs to the range [0,1]
+					\item<3-> Since we are always interested in gradients, let us find the gradient of this function
+					\only<4->{
+						\begin{align*}
+							\frac{\partial \sigma(x)}{\partial x} = \sigma(x) (1- \sigma (x)) 
+						\end{align*}
+						\textit{(you can easily derive it)}
+					}
+					
+					\item<5-> Let us see what happens if we use sigmoid in a deep network
+				\end{itemize}
+				
+			\end{overlayarea}
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.3\textwidth}
+			\begin{center}
+				\input{modules/Module3/tikz_images/deep_thin_2.tex}
+			\end{center}
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			$a_3=w_2 h_2$
+			
+			$h_3=\sigma(a_3)$
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<2-> While calculating $\nabla w_{2}$ at some point in the chain rule we will encounter 
+				\only<2->{
+					\begin{align*}
+						\frac{\partial h_{3}}{\partial a_{3}} =\frac{\partial\sigma(a_{3})}{\partial a_{3}} = \sigma(a_{3}) (1- \sigma (a_{3})) 
+					\end{align*} 
+				}
+				
+				\item<3->{What is the consequence of this ?}
+				\item<4->{To answer this question let us first understand the concept of saturated neuron ?}
+				
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			
+			\begin{center}
+				\input{modules/Module3/tikz_images/sigmoid.tex}
+			\end{center}
+			\onslide<4->{\textcolor{red}{Saturated neurons thus cause the gradient to vanish.}}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> A sigmoid neuron is said to have saturated when $\sigma(x)=1$ or $\sigma(x)=0$
+				\item<2-> What would the gradient be at saturation?
+				\item<3-> Well it would be 0 (you can see it from the plot or from the formula that we derived)
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\onslide<1->{\textcolor{red}{Saturated neurons thus cause the gradient to vanish.}}
+			
+			\begin{center}
+				\input{modules/Module3/tikz_images/neuron_4.tex}
+			\end{center}
+			
+			\begin{center}
+				$\sigma(\sum_{i=1}^{4}w_{i}x_{i})$
+			\end{center}
+			
+			\begin{center}
+				 \input{modules/Module3/tikz_images/sigmoid_small.tex}
+			\end{center}		
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> But why would the neurons saturate ?
+				\item<2-> Consider what would happen if we use sigmoid neurons and initialize the weights to very high values ?
+				\item<3-> The neurons will saturate very quickly
+				\item<4-> The gradients will vanish and the training will stall (more on this later)	
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1cm}
+			 
+			\begin{itemize}
+				\justifying
+				\item Saturated neurons cause the gradient to vanish
+				      \item<2-> \textcolor{red}{Sigmoids are not zero centered}
+			\end{itemize}
+			 
+			\vspace{0.01cm}
+			\begin{itemize}
+				\justifying
+				\vspace{0.01cm}
+				\onslide<5-8>{\item Consider the gradient w.r.t. $w_1$ and $w_2$}
+				\vspace{-1em}
+				\onslide<5-8>
+				{
+					\begin{align*}
+						\nabla w_1 &= \textcolor{red}{\frac{\partial{  \mathscr{L}(\textbf{w})  }}{\partial{y}} \frac{\partial{y}}{h_3} \frac{\partial{h_3}}{\partial{a_3}}} \only<5>{\textcolor{blue}{\frac{\partial{a_3}}{\partial{w_1}}}}  \hspace{0.2cm}\only<6-8>{\textcolor{cyan!100}{h_{21}}} \\
+						\nabla w_2 &= \textcolor{red}{\frac{\partial{  \mathscr{L}(\textbf{w})  }}{\partial{y}} \frac{\partial{y}}{h_3} \frac{\partial{h_3}}{\partial{a_3}}} \only<5>{\textcolor{blue}{\frac{\partial{a_3}}{\partial{w_2}}}}  \hspace{0.2cm}\only<6-8>{\textcolor{cyan!100}{h_{22}}}
+						% \textcolor{red}{\frac{\partial{h}}{\partial{y}} \frac{\partial{y}}{h_3} \frac{\partial{h_3}}{\partial{a_3}}} \only<5>{\textcolor{blue}{\frac{\partial{a_3}}{\partial{w_3}}}}  \hspace{0.2cm}\only<6-8>{\textcolor{cyan!100}{h_{23}}}
+					\end{align*}
+					   
+				}
+				
+				\onslide<6-8>{\item Note that $\textcolor{cyan!100}{h_{21}}$ and $\textcolor{cyan!100}{h_{22}}$ are between $[0,1]$ (\textit{i.e.}, they are both positive)}
+				\onslide<7-8>{\item So if the first common term (in red) is positive (negative) then both $\nabla w_1$ and $\nabla w_2$ are positive (negative)}
+				%\onslide<8-9>{\item And if the first common term (in red) is negative then both $\nabla w_1$ and $\nabla w_2$ are negative}
+				
+				 
+			\end{itemize}
+			 
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			 
+			\vspace{0.1cm}
+			\onslide<3-8>{\begin{itemize}
+				\justifying
+				\item Why is this a problem??
+				\end{itemize}}
+			
+			\vspace{-0.2in}
+			
+			\begin{center}
+				\only<4-8>{
+					\input{modules/Module3/tikz_images/dnn_1.tex}
+				}
+			\end{center}		
+			
+			%%error free from here
+			\vspace{-0.2in}
+			\begin{itemize}
+				\justifying
+				\onslide<8>{\item Essentially, either all the gradients at a layer are positive or all the gradients at a layer are negative}
+				% Same holds for gradients at layers $h_2$ and $h_1$ also
+			\end{itemize}
+		\end{overlayarea}
+		
+		
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{ \textheight}
+			\vspace{0.1cm}
+			\begin{itemize}
+				\justifying
+				\item Saturated neurons cause the gradient to vanish
+				\item \textcolor{red}{Sigmoids are not zero centered}
+			\end{itemize}
+		\end{overlayarea}
+		 
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1cm}
+			\begin{itemize}
+				\justifying
+				\item This restricts the possible update directions
+			\end{itemize}
+			   
+			\input{modules/Module3/tikz_images/quadrant.tex}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1cm}
+			\begin{itemize}
+				\justifying
+				\item Saturated neurons cause the gradient to vanish
+				\item \textcolor<1-7>{red}{Sigmoids are not zero centered}
+				      \only<8>{\item \textcolor{red}{And lastly, sigmoids are computationally expensive (because of \begin{math}\exp{(x)}\end{math})}}
+			\end{itemize}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+  			\input{modules/Module3/tikz_images/quadrant_zigzag.tex}
+		\end{overlayarea}
+		  
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column {0.5\textwidth}
+		tanh(x)
+		\begin{center}
+			\input{modules/Module3/tikz_images/tanh.tex}
+		\end{center}
+		
+		\begin{center}
+			f(x) = tanh(x)
+		\end{center}
+				
+		%\end{column}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\begin{itemize}
+				\justifying
+				\item<1-> Compresses all its inputs to the range [-1,1]
+				\item<2-> \textcolor{green}{Zero centered} 
+				\item<3-> What is the derivative of this function?
+				\onslide<4->{
+					\begin{align*}
+						\frac{\partial tanh(x)}{\partial x} = (1 - tanh^{2}(x)) 
+					\end{align*}  
+				}
+				\item<5-> \textcolor{red}{The gradient still vanishes at saturation}
+				\item<6-> \textcolor{red}{Also computationally expensive}
+			\end{itemize}
+		\end{overlayarea}
+		%\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			ReLU
+			\begin{center}
+				
+				\begin{figure}
+					\includegraphics<1-2>[scale=0.2]{images/relu_1.png}
+					\includegraphics<3->[scale=0.2]{images/relu_sigm.png}
+				\end{figure}
+				
+			\end{center}
+			
+			\begin{center}
+				\onslide<1-2>{
+					\begin{math}
+						f(x) = max(0,x)
+					\end{math}
+				}
+				\onslide<3->{
+					\begin{math}
+						f(x) = max(0,x+1) - max(0, x-1)
+					\end{math}
+				}
+			\end{center}
+			
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> Is this a non-linear function?
+				\item<2-> Indeed it is!
+				\item<3-> In fact we can combine two ReLU units to recover a piecewise linear approximation of the sigmoid function
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+	    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			ReLU
+			
+			\begin{center}
+				\begin{figure}
+					\includegraphics[scale=0.2]{images/relu_1.png}
+				\end{figure}
+			\end{center}
+			\begin{center}
+				\begin{math}
+					f(x) = max(0,x)
+				\end{math}
+				
+			\end{center}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Advantages of ReLU
+			\begin{itemize}
+				\justifying
+				\item<1-> Does not saturate in the positive region
+				\item<2-> Computationally efficient
+				\item<3-> In practice converges much faster than $sigmoid/tanh^1$ 
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	\footnotetext[1]{ImageNet Classification with Deep Convolutional Neural Networks- Alex Krizhevsky
+	Ilya Sutskever, Geoffrey E. Hinton, 2012}
+	    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.4\textwidth}
+			\begin{center}
+				\input{modules/Module3/tikz_images/dnn_relu.tex}
+			\end{center}
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> In practice there is a caveat
+				\item<2-> Let's see what is the derivative of ReLU(x)\\
+				%\begin{comment}
+				\begin{align*}
+					\frac{\partial ReLU(x)}{\partial x} & = 0 \quad {if \quad x < 0} \\
+					                                    & = 1 \quad {if \quad x > 0} 
+				\end{align*}
+				
+				%\end{comment}  
+
+				\item<3-> Now consider the given network 
+				\item<4-> What would happen if at some point a large gradient causes the bias $b$ to be updated to a large negative value?
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\begin{column} {0.4\textwidth}
+			\begin{center}
+				\input{modules/Module3/tikz_images/dnn_relu.tex}
+			\end{center}
+		\end{column}
+		
+		\begin{column}{0.6\textwidth}
+			\vspace{-0.2in}
+			
+			\begin{align*}
+				w_{1}x_{1} +w_{2}x_{2} + b < 0 \quad [if \quad b<<0]
+			\end{align*}
+			\vspace{-0.2in}
+			
+			\begin{itemize}
+				\justifying
+				\item<1-> The neuron would output 0 [dead neuron]
+				\item<2-> Not only would the output be 0 but during backpropagation even the gradient $\frac{\partial h_{1}}{\partial a_{1}}$ would be zero
+				\item<3-> The weights $w_{1}$, $w_{2}$ and b will not get updated [$\because$ there will be a zero term in the chain rule]
+				
+				\begin{align*}
+					\nabla w_1 =\frac{\partial\mathscr{L}(\theta)}{\partial y}.\frac{\partial y}{\partial a_{2}}.\frac{\partial a_{2}}{\partial h_{1}}.\frac{\partial h_{1}}{\partial a_{1}}.\frac{\partial a_{1}}{\partial w_{1}}
+				\end{align*}
+				
+				\item<4-> The neuron will now stay dead forever!!
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{center}
+				\input{modules/Module3/tikz_images/dnn_relu.tex}
+			\end{center}
+				
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> In practice a large fraction of ReLU units can die if the learning rate is set too high
+				\item<2-> It is advised to initialize the bias to a positive value (0.01)
+				\item<3-> Use other variants of ReLU (as we will soon see)
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			Leaky ReLU
+			\begin{center}
+				\input{modules/Module3/tikz_images/leaky_relu.tex}
+			\end{center}
+			
+			\begin{center}
+				f(x) = max(0.01x,x)
+			\end{center}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> No saturation
+				\item<2-> Will not die ($0.01 x$ ensures that at least a small gradient will flow through)
+				\item<3-> Computationally efficient
+				\item<4-> Close to zero centered ouputs
+			\end{itemize}
+			
+			\onslide<5->{
+				\begin{align*}
+					\textbf{Parametric ReLU}                                      \\
+					f(x) = \max(\alpha x , x)                                     \\
+					\alpha \quad \textit{is a parameter of the model}             \\
+					\alpha \quad \textit{will get updated during backpropagation} \\
+				\end{align*}
+			}
+		\end{column}
+		
+	\end{columns}    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{flushleft}
+Exponential Linear Unit
+\end{flushleft}
+	
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			\begin{center}
+				\input{modules/Module3/tikz_images/elu.tex}
+			\end{center}
+			
+			\begin{align*}
+				f(x) & = x \quad {if \quad x > 0}           \\
+				     & = a e^{x} - 1 \quad {if \quad x \leq 0} 
+			\end{align*}
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> All benefits of ReLU
+				\item<2-> $a e^{x} - 1$ ensures that at least a small gradient will flow through 
+				\item<3-> Close to zero centered outputs
+				\item<4-> Expensive (requires computation of exp(x))
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{flushleft}
+Maxout Neuron
+\end{flushleft}
+	
+	\begin{columns}
+		\begin{column} {0.5\textwidth}
+			
+			
+			\begin{equation*}
+				max (w_1^T x + b_1, w_2^T x+b_2)
+			\end{equation*}
+			
+			
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\item<1-> Generalizes ReLU and Leaky ReLU
+				\item<2-> No saturation! No death!
+				\item<3-> \textcolor{red}{Doubles the number of parameters}
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{Things to Remember}
+		\begin{itemize}[<+->]
+			\justifying
+			\item Sigmoids are bad 
+			\item ReLU is more or less the standard unit for Convolutional Neural Networks
+			\item Can explore Leaky ReLU/Maxout/ELU 
+			\item tanh sigmoids are still used in LSTMs/RNNs (we will see more on this later)          
+		\end{itemize}
+		
+	\end{block}
+\end{frame}

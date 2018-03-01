@@ -1,0 +1,295 @@
+\begin{frame}
+	\myheading{Module 9.1 : A quick recap of training deep neural networks}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	
+	\begin{columns}
+		\column{0.35\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\begin{center}
+				
+				\only<1-10>
+				{
+					\input{modules/Module1/tikz_images/neuron_single_input.tex}
+				}
+				
+				\only<6-10>{
+					\vspace{.65in}
+					\input{modules/Module1/tikz_images/neuron_three_inputs.tex}
+				}
+			\end{center}
+		\end{overlayarea}
+		
+		
+		\column{0.65\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-10>{
+				\begin{itemize}
+					\justifying
+					\onslide<2->{\item 
+						We already saw how to train this network
+						\vspace{-0.1in}
+						\begin{align*}
+							\onslide<3->{ w       & = w - \eta \nabla w \hspace{3 mm} where,}                        \\
+							\onslide<4->{\nabla w & = \frac{\partial\mathscr{L}(\textbf{w})}{\partial w} }           \\
+							\onslide<5->{         & = (f(\mathbf{x}) - y) * f(\mathbf{x}) * (1- f(\mathbf{x})) * x } \\
+						\end{align*}
+					}
+					
+					\only<6->{
+						\onslide<6->{\item What about a wider network with more inputs:}
+						\vspace{-0.1in}
+						\begin{align*}
+							\onslide<7->{ w_{1}               & = w_{1} - \eta \nabla w_{1}                                                         \\} 
+							\onslide<8->{ w_{2}               & = w_{2} - \eta \nabla w_{2}                                                         \\}
+							\onslide<9->{w_{3}                & = w_{3} - \eta \nabla w_{3}                                                         \\ } 
+							\onslide<10->{where, \nabla w_{i} & = (f(\mathbf{x}) - y) * f(\mathbf{x}) * (1- f(\mathbf{x})) * \textcolor{red}{x_{i}} \\}
+						\end{align*}
+					}
+					
+				\end{itemize}
+			}
+			
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	
+	\begin{columns}
+		\column{0.35\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\input{modules/Module1/tikz_images/deep_thin_net.tex}
+			\end{center}
+			
+			\vspace{-0.4in}
+			\begin{align*}
+				a_{i} & =w_{i}h_{i-1}; h_{i}=\sigma{(a_{i})} \\
+				a_1   & = w_1 * x = w_1 * h_0                \\
+				%\frac{\partial a_{1}}{\partial w_{1}}=x
+			\end{align*}
+			
+		\end{overlayarea}
+		
+		
+		\column{0.65\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1->{
+				\begin{itemize}
+					\justifying
+					\item What if we have a deeper network ?
+					      \item<2-> We can now calculate $\nabla{w_{1}}$ using chain rule:
+					      \vspace{-0.1in}
+					      \begin{align*}
+					      	\onslide<3->{\frac{\partial\mathscr{L}(\textbf{w})}{\partial w_{1}} & =\frac{\partial\mathscr{L}(\textbf{w})}{\partial y}.\frac{\partial y}{\partial a_{3}}.\frac{\partial a_{3}}{\partial h_{2}}.\frac{\partial h_{2}}{\partial a_{2}}.\frac{\partial a_{2}}{\partial h_{1}}.\frac{\partial h_{1}}{\partial a_{1}}.\frac{\partial a_{1}}{\partial w_{1}} \\}
+					      	%\onslide<20->{\therefore \nabla{w_{1}}&=\frac{\partial\mathscr{L}(\textbf{w})}{\partial w_{1}}\\}
+					      	\onslide<4->{                                                       & =\frac{\partial\mathscr{L}(\textbf{w})}{\partial y}*...............*h_0}                                                                                                                                                                                                                                                  
+					      \end{align*}
+					      
+					      \item<5-> In general, 
+					      \begin{align*}
+					      	\onslide<5->{\nabla{w_{i}} & = \frac{\partial\mathscr{L}(\textbf{w})}{\partial y}*...............*\textcolor{red}{h_{i-1}} } 
+					      \end{align*}
+					      
+					      \item<6-> Notice that $\nabla{w_{i}}$ is proportional to the corresponding input $\textcolor{red}{h_{i-1}}$  \only<7->{(we will use this fact later)}
+					      
+				\end{itemize}
+			}
+			
+			
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\if 0
+	\begin{frame}
+		
+		\begin{columns}
+			\column{0.35\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}				
+							
+				\begin{center}
+					\input{modules/Module1/tikz_images/deep_thin_net_2.tex}
+				\end{center}
+				
+				\vspace{-0.4in}
+				\begin{align*}
+					\only<8-12>{a_{1}  & =w_{1}h_{0};} \only<10-12>{h_{1}=\sigma{(a_{1})} \\}
+					\only<13-16>{a_{2} & =w_{2}h_{1};} \only<15-16>{h_{2}=\sigma{(a_{2})} \\}
+					\only<17->{a_{i}   & =w_{i}h_{i-1};} \only<17->{h_{i}=\sigma{(a_{i})} \\}
+					\only<20->{a_1     & = w_1 * x = w_1 * h_0                            \\}
+					%\frac{\partial a_{1}}{\partial w_{1}}=x
+				\end{align*}
+				
+			\end{overlayarea}
+			
+			
+			\column{0.65\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\only<1-17>{
+					\begin{itemize}
+						\justifying
+						\item What if we have a deeper network:
+						      \begin{align*}
+						      	\onslide<1->{ w_{1} & = w_{1} - \eta \nabla w_{1}} \\
+						      	\onslide<2->{ w_{2} & = w_{2} - \eta \nabla w_{2}} \\
+						      	\onslide<3->{w_{3}  & = w_{3} - \eta \nabla w_{3}} \\ 
+						      \end{align*}
+						      
+						      \onslide<4->{\item  But what does $\nabla{w_{1}}$ look like now?}
+						      \onslide<5->{\item  Let's define some notations before answering this!}
+					\end{itemize}
+				}
+				
+				\only<18->{
+					\begin{itemize}
+						\justifying
+						\only<18->{
+							\item<18-> We can now calculate $\nabla{w_{1}}$ using chain rule:
+							\vspace{-0.1in}
+							\begin{align*}
+								\onslide<19->{\frac{\partial\mathscr{L}(\textbf{w})}{\partial w_{1}} & =\frac{\partial\mathscr{L}(\textbf{w})}{\partial y}.\frac{\partial y}{\partial h_{3}}.\frac{\partial h_{3}}{\partial a_{3}}.\frac{\partial a_{3}}{\partial h_{2}}.\frac{\partial h_{2}}{\partial a_{2}}.\frac{\partial a_{2}}{\partial h_{1}}.\frac{\partial h_{1}}{\partial a_{1}}.\frac{\partial a_{1}}{\partial w_{1}} \\}
+								%\onslide<20->{\therefore \nabla{w_{1}}&=\frac{\partial\mathscr{L}(\textbf{w})}{\partial w_{1}}\\}
+								\onslide<20->{                                                       & =\frac{\partial\mathscr{L}(\textbf{w})}{\partial y}*...............*h_0}                                                                                                                                                                                                                                                  
+							\end{align*}
+							
+							\item<21-> In general, 
+							\begin{align*}
+								\onslide<21->{\nabla{w_{i}} & = \frac{\partial\mathscr{L}(\textbf{w})}{\partial y}*...............*\textcolor{red}{h_{i-1}} } 
+							\end{align*}
+							
+							\item<22-> Notice that $\nabla{w_{i}}$ is proportional to the corresponding input $\textcolor{red}{h_{i-1}}$  \only<23->{(we will use this fact later)}
+						}
+					\end{itemize}
+				}
+				
+				
+			\end{overlayarea}
+			
+		\end{columns}
+	\end{frame}
+\fi 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	
+	\begin{columns}
+		\column{0.35\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}	
+			\input{modules/Module1/tikz_images/deep_wide_net.tex}	
+		\end{overlayarea}
+		
+		\column{0.65\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\begin{itemize}
+				\justifying
+				\item<1-> What happens if we have a network which is deep and wide?		
+				\item<2-> How do you calculate $\nabla{w_{2}}=?$
+				\item<3-> It will be given by chain rule applied across multiple paths \only<7->{(We saw this in detail when we studied \textbf{back propagation})}
+			\end{itemize}
+			
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\vspace{.35in}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{block}{Things to remember}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Training Neural Networks is a \textit{\textbf{Game of Gradients}} (played using any of the existing gradient based approaches that we discussed)}
+				\onslide<2->{\item The gradient tells us the responsibility of a parameter towards the loss}
+				\onslide<3->{\item The gradient w.r.t. a parameter is proportional to the input to the parameters (recall the ``$.....*x$" term or the ``$....*h_{i}$" term in the formula for $\nabla{w_i}$) }
+			\end{itemize}
+		\end{block}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}
+			\begin{center}		
+				\input{modules/Module1/tikz_images/deep_wide_net_2.tex}
+			\end{center}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.1cm}
+			\includegraphics[width=4cm,height=3cm]{images/BackProp_paper.png}
+			\begin{itemize}[<+(1)->]
+				\justifying
+				\item Backpropagation was made popular by Rumelhart et.al in 1986
+				\item However when used for really deep networks it was not very successful
+				\item In fact, till 2006 it was very hard to train very deep networks
+				      %\item Let us see one intuitive reason for why this was the case
+				\item Typically, even after a large number of epochs the training did not converge
+			\end{itemize}
+			
+		\end{overlayarea}
+	\end{columns}
+	
+\end{frame}
+
+\if 0
+	\begin{frame}
+		\begin{columns}
+			\column{0.35\textwidth}
+			\begin{center}
+				\input{modules/Module1/tikz_images/deep_wide_net_3.tex}
+			\end{center}
+			
+			\column{0.65\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\vspace{0.1cm}
+				
+				%$\frac{\partial h(w)}{\partial w_1} = \frac{\partial h(w)}{\partial y}\frac{\partial y}{\partial h_5} \hspace{0.3 cm} {\Sigma_{i=1}^{5} }\frac{\partial h_i}{\partial a_i}  \frac{\partial a_i }{\partial h_{i-1}}$
+				
+				\begin{align*}
+					\frac{\partial \mathscr{L}(\textbf{w})} {\partial w_1} = \frac{\partial h(w)}{\partial y} \frac{\partial y}{\partial h_5} {\prod_{i=1}^{5} }\frac{\partial h_i}{\partial a_i}  \frac{\partial a_i }{\partial h_{i-1}} 
+				\end{align*}
+				
+				
+				
+				\begin{itemize}[<+(1)->]
+					\justifying
+					\item If each term in the product is $\textless$ 1 then the multiplicative effect will cause 
+					      $\frac{\partial \mathscr{L}(\textbf{w})} {\partial w_1}$   $\rightarrow$ 0   
+					\item In other words, the gradient $\nabla w $ will vanish
+					      \begin{align*}
+					      	w & = w-\eta\nabla w                    \\ 
+					      	  & =w \quad (if \nabla w\rightarrow 0) 
+					      \end{align*}
+					\item Hence $w$ will not change much from its initial random value and the network will not train
+				\end{itemize}
+				
+				
+			\end{overlayarea}
+		\end{columns}
+		
+	\end{frame}
+\fi
