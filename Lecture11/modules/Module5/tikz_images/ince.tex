@@ -1,0 +1,137 @@
+
+	\begin{tikzpicture}[scale=0.4,transform shape]
+		
+		\pgfsetxvec{\pgfpoint{1cm}{0cm}}
+		\pgfsetyvec{\pgfpoint{0cm}{1cm}}
+		\pgfsetzvec{\pgfpoint{-.5cm}{-.866cm}}
+		
+		\def\cuboid#1#2#3#4#5#6{
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\op{#6}
+			\draw[black,fill=\mycolor, fill opacity=\op] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) -- ++(0,0,\width) -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		\def\cuboidlabel#1#2#3#4#5#6#7#8{
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\depthlabel{#6}
+			\edef\heightlabel{#7}
+			\edef\widthlabel{#8}
+			\draw[draw=black,fill=red, fill opacity=0.4] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) node[pos=0.5,below] {\small \depthlabel} -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) node[pos=0.5,right] {\small \heightlabel} -- ++(0,0,\width)  node[pos=0.5,below,right] {\small \widthlabel} -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		\def\kernel#1#2#3#4#5#6{
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\draw[black,fill=\mycolor, fill opacity=1] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) -- ++(0,0,\width) -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			
+			\draw[dotted] #1 -- #6 #1++(0,0,-\width) -- #6 #1++(0,-\height,0) -- #6 #1++(0,-\height,-\width) -- #6;
+			
+			\end{scope}
+		}
+		
+		\def\kernellabel#1#2#3#4#5#6#7#8#9{
+			%#6 is target pixel
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\depthlabel{#7}
+			\edef\heightlabel{#8}
+			\edef\widthlabel{#9}
+			\draw[draw=black,fill=\mycolor, fill opacity=1] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) node[pos=0.5,below] {\tiny \depthlabel} -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) node[pos=0.5,right] {\tiny \heightlabel} -- ++(0,0,\width)  node[pos=0.5,below,right] {\tiny \widthlabel} -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		\def\kernellabell#1#2#3#4#5#6#7#8#9{
+			%#6 is target pixel
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\depthlabel{#7}
+			\edef\heightlabel{#8}
+			\edef\widthlabel{#9}
+			\draw[draw=black,fill=\mycolor, fill opacity=1] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) node[pos=0.5,below] {} -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) node[pos=0.5,right] {} -- ++(0,0,\width)  node[pos=0.5,below,right] {} -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		
+		\onslide<1->{
+				\pgfmathsetmacro{\seedx}{-3}
+				\pgfmathsetmacro{\seedy}{1.5}
+				 /
+
+				\node [rectangle, text width=3cm, fill=purple!10, minimum height=4mm, minimum width=10mm] (C) at (2,2){\footnotesize $1 \times 1$ convolutions (dimensionality reduction)};
+				\kernel{(-4.75,-1.5,-4)}{blue!50}{1.4}{0.5}{0.5}{(0.4,2,0)}
+
+
+		}
+
+		\onslide<1>{
+
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm] (G) at (6,2){\footnotesize $3 \times 3$ convolutions (on reduced input)};
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm] (H) at ($(G) + (0,-2)$){\footnotesize $5 \times 5$ convolutions (on reduced input)};
+				\draw [->](C)--(G);
+				\draw [->](C)--(H);
+
+		}
+		\onslide<2->{
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm] (G) at (6,2){\footnotesize $3 \times 3$ convolutions (on reduced input)};
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm] (H) at ($(G) + (0,-2)$){\footnotesize $5 \times 5$ convolutions (on reduced input)};
+				\node [rectangle, text width=3cm, fill=purple!10, minimum height=4mm, minimum width=10mm] (D) at ($(C) + (0,-2)$){\footnotesize $1 \times 1$ convolutions (dimensionality reduction)};
+				\draw[->](C)--(G);
+				\draw[->](D)--(H);
+				\kernel{(-4.5,-2.5,-3)}{blue!50}{1.4}{0.5}{0.5}{(0.4,0,0)}
+
+		}
+		\onslide<3->{
+		\node [rectangle, text width=3cm,fill=yellow!50, minimum height=4mm, minimum width=10mm] (E) at ($(D) + (0,-2)$){\footnotesize $3 \times 3$ Maxpooling (dimensionality reduction)};
+				\node [rectangle, text width=3cm, fill=purple!10, minimum height=16mm, minimum width=10mm, align=center] (I) at ($(H) + (0,-2)$){\footnotesize $1 \times 1$ convolutions};
+				\kernel{(-3.5,-2.5,-1)}{yellow}{1.4}{0.8}{0.8}{(0.4,-2,0)}
+					\draw[->](E)--(I);
+
+		}
+
+		\onslide<4->{
+					\node [rectangle, text width=3cm, fill=purple!10, minimum height=4mm, minimum width=10mm] (D) at ($(C) + (0,-2)$){\footnotesize $1 \times 1$ convolutions (dimensionality reduction)};
+				\kernel{(-4.5,-2.5,-3)}{blue!50}{1.4}{0.5}{0.5}{(0.4,0,0)}
+		
+				\kernel{(-3.75,0.2,-4.1)}{blue!50}{1.4}{0.5}{0.5}{(5,4,0)}
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm, align=center] (B) at (6,4){\footnotesize  {$1 \times 1$ convolutions} };
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm] (G) at ($(B) + (0,-2)$){\footnotesize $3 \times 3$ convolutions (on reduced input)};
+				\node [rectangle, text width=3cm, fill=blue!50, minimum height=16mm, minimum width=10mm] (H) at ($(G) + (0,-2)$){\footnotesize $5 \times 5$ convolutions (on reduced input)};
+				\node [rectangle, text width=3cm, fill=purple!10, minimum height=16mm, minimum width=10mm, align=center] (I) at ($(H) + (0,-2)$){\footnotesize $1 \times 1$ convolutions};
+				\draw[->](C)--(G);
+				\draw[->](D)--(H);
+
+		}	
+		\onslide<5->{
+				\node [rectangle, text width=3cm, fill=green!20, minimum height=16mm, minimum width=10mm, align=center] (L) at (12,1){Filter\ \ \ \ \ \ \ \ \ \ \ \ \ \ concatenation};
+				\draw [->](B)--(L);
+				\draw [->](G)--(L);
+				\draw [->](H)--(L);
+				\draw [->](I)--(L);
+		}
+
+		\onslide<1->{
+
+				\cuboidlabel{(0+\seedx,0+\seedy,0)}{red}{1.4}{4.5}{4.5}{256}{28}{28}
+
+		}
+		\end{tikzpicture}
+		

@@ -1,0 +1,11 @@
+\begin{tikzpicture}[overlay,remember picture]
+	\node (xt) [below of = xa, node distance = 3 em, anchor=west]{\footnotesize \textsf{input}};
+	\draw[<-, in=90, out=-90] (x.south)++(.25em,-.5ex) to (xt.north);
+	
+	\node (start) [below of = ab, node distance = 4 em, anchor=west] {\footnotesize \textsf{convolution}};
+	\draw[<-, in=90, out=-90] (star.south)++(.25em,-.5ex) to (start.north);
+	
+	\node (wt) [below of = cd, node distance = 3 em, anchor=west] {\footnotesize \textsf{filter}};
+	\draw[<-, in=90, out=-90] (w.south)++(.25em,-.5ex) to (wt.north);
+
+\end{tikzpicture}

@@ -1,0 +1,73 @@
+\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+	\onslide<3->{
+		\onslide<3->{   \foreach \i in {1,...,16}
+			{
+                   
+				\pgfmathtruncatemacro{\label}{\i};
+				\node[square,draw=red!50,fill=orange!10,thick,minimum size=.2mm] (\label) at (-1*\i*0.5+1.2,-3) {};
+			}
+			%\end{axis}
+              
+			\draw [
+				thick,
+				decoration={
+					brace,
+					raise=0.5cm
+				},
+				decorate
+			] (1) -- (16) 
+			node [pos=0.5,anchor=south,yshift=-1.1cm] {16}; }
+		%\end{tikzpicture}
+         
+		%\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+		%% Grid 4
+		\onslide<3->{\draw[step=0.5cm,gray,very thin] (-4,-7) grid (-2,-5);
+			\node[](img) at (-4+1,-7-0.4) {4x4 Image};
+		}
+         
+         
+		%% first row
+		\onslide<3->{   \node[circle,fill=orange,inner sep=0pt,minimum size=5.5pt](A) at (-3.75,-5.25   ) {};
+			\node[circle,fill=orange,inner sep=0pt,minimum size=5.5pt](B) at (-3.75+0.5,-5.25   ) {};
+              
+              
+			%% second row
+			\node[circle,fill=orange,inner sep=0pt,minimum size=5.5pt](F) at (-3.75+0.5,-5.25-0.5   ) {};
+			\node[circle,fill=orange,inner sep=0pt,minimum size=5.5pt](E) at (-3.75,-5.25-0.5   ) {};
+		}
+         
+		\onslide<3->{   
+			%% 3rd row
+			\node[circle,fill=magenta,inner sep=0pt,minimum size=5.5pt](K) at (-3.75+2*0.5,-5.25-2*0.5  ) {};
+			\node[circle,fill=magenta,inner sep=0pt,minimum size=5.5pt](L) at (-3.75+3*0.5,-5.25-2*0.5  ) {};
+              
+			%% 4th row
+              
+			\node[circle,fill=magenta,inner sep=0pt,minimum size=5.5pt](O) at (-3.75+3*0.5,-5.25-3*0.5  ) {};
+			\node[circle,fill=magenta,inner sep=0pt,minimum size=5.5pt](P) at (-3.75+2*0.5,-5.25-3*0.5  ) {};
+		}
+		\onslide<3->{   \node[circle,fill=orange,inner sep=0pt,minimum size=5.5pt](O) at (-6.75,-5.25-0.3   ) {};
+			\node[](O) at (-6.75+1,-5.25-0.3    ) {\small{Kernel 1}};}
+         
+		\onslide<3->{   \node[circle,fill=magenta,inner sep=0pt,minimum size=5.5pt](O) at (-6.75,-5.25-1.5  ) {};
+			\node[](O) at (-6.75+1,-5.25-1.5    ) {\small{Kernel 2}};}
+         
+         
+		\onslide<3->{   \node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (11a) at (-5.5,-1.5) {};
+              
+			\foreach \i in {16,15,12,11}
+			{
+				\draw [-,thick,draw=orange] (\i) -- (11a);
+			}
+		}
+		\onslide<3->{   \node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (12a) at (-0.5,-1.5) {};
+              
+			\foreach \i in {1,2,5,6}
+			{
+				\draw [-,thick,draw=magenta] (\i) -- (12a);
+			}
+		}
+	}
+    
+    
+\end{tikzpicture}

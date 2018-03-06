@@ -1,0 +1,438 @@
+\begin{center}
+\hspace*{-1.1cm}
+        \begin{tikzpicture}[scale=0.25]
+       
+    \onslide<1->{   \renewcommand{\forefillColor}{black!50!white}
+        \renewcommand{\borderColor}{white}
+        \renewcommand{\toprsidefillcolor}{red}
+        %% input layer
+        \handmadecube{0}{5.5}{3.5}{-1}{0}
+        \renewcommand{\toprsidefillcolor}{green}
+                                
+        \handmadecube{0}{5.5}{3.5}{-1+0.2}{0}
+\renewcommand{\toprsidefillcolor}{blue!60!white}
+                        
+        \handmadecube{0}{5.5}{3.5}{-1+0.4}{0}
+        \node[scale=0.6] at (1-0.6*2.6-0.1,0-4.8-1){\tiny{Input}};
+        \node [scale=0.5, rotate=53] at (1-0.6*2.6+0.6,0.2) {\tiny{229}};
+        \node [scale=0.5, rotate=90] at (1-0.6*2.6+0.2,-2) {\tiny{229}};
+        
+       
+        }
+        %% convolution 
+        \onslide<2->{  
+             \renewcommand{\forefillColor}{red!50!white}
+            \renewcommand{\borderColor}{white}
+            \renewcommand{\toprsidefillcolor}{red!50!white!50}
+        
+                \pgfmathsetmacro{\seedx}{1+0.8}
+                \pgfmathsetmacro{\seedy}{0}
+                \pgfmathsetmacro{\anim}{1}
+                \foreach \xct in {1,...,1}
+               {
+                    
+                   \pgfmathparse{int(\anim+\xct)}
+                    \onslide<\pgfmathresult->{
+                       \pgfmathsetmacro{\xcti}{\seedx+\xct*0.5}
+                    \pgfmathsetmacro{\ycti}{\seedy}
+                    \handmadecube{0.5}{4.5}{2.5}{\xcti}{\ycti}
+                   }
+                
+                
+                
+               }
+                \onslide<2->{\node[scale=0.6] at (1+1,0-4.8){\tiny{Conv}};}
+                \onslide<2->{\node [scale=0.5, rotate=53] at (1-0.6*2.6-1+3.2+1.2,0.2) {\tiny{112}};
+                \node [scale=0.5, rotate=90] at (1-0.6*2.6+0.2-1+2.6+1.2,-2) {\tiny{112}};
+                \node[scale=0.5] at (1+0.725+0.32,0-4.2){\tiny{64}};}
+              }
+              
+              \onslide<3->{
+              \renewcommand{\forefillColor}{blue!50!white}
+                                  \renewcommand{\borderColor}{white}
+                                  \renewcommand{\toprsidefillcolor}{blue!50!white!50}
+                                  \pgfmathsetmacro{\seedx}{3.9}
+                                  \pgfmathsetmacro{\seedy}{0}
+                                                
+                                  \foreach \xct/\yct in {1}
+                                  {
+                                      
+                                      \pgfmathsetmacro{\xcti}{\seedx+\xct*0.5}
+                                      \pgfmathsetmacro{\ycti}{\seedy}
+                                      \handmadecube{0.5}{3.8}{1.8}{\xcti}{\ycti}
+                                  }
+                                  \node[scale=0.6] at (1+2.8,0-4.2){\tiny{maxpool}};
+                                  \node [scale=0.5, rotate=53] at (1+3.7+0.2,0.2) {\tiny{56}};
+                                  \node [scale=0.5, rotate=90] at (1+3.3+0.2,-2+0.5) {\tiny{56}};
+                                  \node[scale=0.5] at (1+2.85+0.3,0-3.5){\tiny{64}};
+                                  
+              }
+              
+              \onslide<4->{
+               \renewcommand{\forefillColor}{red!50!white}
+                                 \renewcommand{\borderColor}{white}
+                                 \renewcommand{\toprsidefillcolor}{red!50!white!50}
+                                 \pgfmathsetmacro{\seedx}{5.5}
+                                 \pgfmathsetmacro{\seedy}{0}
+                                 \pgfmathsetmacro{\anim}{4}
+                                 \foreach \xct in {1,...,1}
+                                 {
+                                     
+                                     
+                                     \pgfmathsetmacro{\xcti}{\seedx+\xct}
+                                     \pgfmathsetmacro{\ycti}{\seedy}
+                                     \handmadecube{0.95}{3.8}{1.8}{\xcti}{\ycti}
+                                 }   
+                             \node[scale=0.6] at (1+5.25-0.5,0-4.2){\tiny{Conv}};
+                             \node [scale=0.5, rotate=53] at (1+6.7-0.6,0.2) {\tiny{56}};
+                             \node [scale=0.5, rotate=90] at (1+6.4-0.6-0.1,-1.5) {\tiny{56}};
+                             \node[scale=0.5] at (1+5.65-0.6,0-3.5){\tiny{192}};
+              
+              }
+               \onslide<5->{       \renewcommand{\forefillColor}{blue!50!white}
+                                      \renewcommand{\borderColor}{white}
+                                      \renewcommand{\toprsidefillcolor}{blue!50!white!50}
+                                      \pgfmathsetmacro{\shiftx}{1}
+                                      \pgfmathsetmacro{\shifty}{0}
+                                                                            
+                                      \pgfmathsetmacro{\seedx}{8.1}
+                                      \pgfmathsetmacro{\seedy}{0}
+                                      
+                                      \foreach \xct/\yct in {1}
+                                      {
+                                          \pgfmathsetmacro{\xcti}{\seedx+\xct*0.5}
+                                          \pgfmathsetmacro{\ycti}{\seedy}
+                                          \handmadecube{0.95}{3.3}{1.3    }{\xcti}{\ycti}
+                                      }   
+                                  
+                                      \node[scale=0.6] at (1+7.8-0.7,0-3.6){\tiny{maxpool}};
+                                      \node [scale=0.5, rotate=49] at (1+8.7-0.6,0.1) {\tiny{28}};
+                                      \node [scale=0.5, rotate=90] at (1+8.5-0.7,-1.35) {\tiny{28}};
+                                      \node[scale=0.5] at (1+7.8-0.7,0-3){\tiny{192}};
+                                      
+                                      }
+                                      
+                                      \onslide<6->{
+                                      \renewcommand{\forefillColor}{orange!50!white}
+                                                              \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{orange!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{10}
+                                                              \pgfmathsetmacro{\seedy}{0}
+                                                              \pgfmathsetmacro{\anim}{7}
+                                                              \foreach \xct/\yct in {1,...,1}
+                                                              {
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+1.35*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{1.9}{3.3}{1.3}{\xcti}{\ycti}
+                                                              
+                                                              }
+                                                              
+                                                                \node[scale=0.6] at (1+11.2-2+0.2,0-3.6){\tiny{Inception}};
+                                                                 \node [scale=0.5, rotate=49] at (1+13.625-2.8,0.1) {\tiny{28}};
+                                                                  \node [scale=0.5, rotate=90] at (1+13.425-2.8,-1.35) {\tiny{28}};
+                                                                  \node[scale=0.5] at (1+12.6-3.2,0-3){\tiny{256}};
+                                                                  \node[scale=0.5] at (1+12.6-3.2,0-3+1.5){\small{\textbf{3a}}};
+                                                              
+                                      }
+                                      
+                                      \onslide<7->{
+															  \renewcommand{\forefillColor}{orange!50!white}
+                                                              \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{orange!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{13.2}
+                                                              \pgfmathsetmacro{\seedy}{0}
+                                                              \pgfmathsetmacro{\anim}{7}
+                                                              \foreach \xct/\yct in {1,...,1}
+                                                              {
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+1.35*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{2.4}{3.3}{1.3}{\xcti}{\ycti}
+                                                              
+                                                              }
+                                                              
+                                                                \node[scale=0.6] at (1+11.2-2+0.2+2.9,0-3.6){\tiny{Inception}};
+                                                                 \node [scale=0.5, rotate=49] at (1+13.625+0.3,0.1) {\tiny{28}};
+                                                                  \node [scale=0.5, rotate=90] at (1+13.425+0.3,-1.35) {\tiny{28}};
+                                                                  \node[scale=0.5] at (1+12.6-3.2+3,0-3){\tiny{480}};
+                                                                  \node[scale=0.5] at (1+12.6-3.2+3,0-3+1.5){\small{\textbf{3b}}};
+                                      }
+                                      \onslide<8->{
+                                      \renewcommand{\forefillColor}{blue!50!white}
+                                      \renewcommand{\borderColor}{white}
+                                      \renewcommand{\toprsidefillcolor}{blue!50!white!50}
+                                      \pgfmathsetmacro{\seedx}{17.25}
+                                      \pgfmathsetmacro{\seedy}{-0.2}
+                                                                                      
+                                      \foreach \xct/\yct in {1}
+                                      {
+                                                                            
+                                      \pgfmathsetmacro{\xcti}{\seedx+\xct*0.5}
+                                      \pgfmathsetmacro{\ycti}{\seedy}
+                                      \handmadecube{2.4}{2.8}{1.2}{\xcti}{\ycti}
+                                      }
+                                      \node[scale=0.6] at (1+2.8+12.6,0-4.2+0.8){\tiny{maxpool}};
+                                      \node [scale=0.5, rotate=53] at (1+3.7+0.2+13.5-0.4,0.2-0.4) {\tiny{14}};
+                                      \node [scale=0.5, rotate=90] at (1+3.3+0.2+13.5,-2+0.5) {\tiny{14}};
+                                      \node[scale=0.5] at (1+2.85+0.3+12.5,0-3.5+1-0.2){\tiny{480}};
+                                                                        
+                                                    }
+                                                    
+% %                                                    \onslide<9->{
+                                      \renewcommand{\forefillColor}{orange!50!white}
+                                                          \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{orange!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{21.3}
+                                                              \pgfmathsetmacro{\seedy}{-0.2}
+                                                              \pgfmathsetmacro{\anim}{9}
+                                                              \foreach \xct/\yct in {0,...,2}
+                                                              {
+                                                                   \pgfmathparse{int(\anim+\xct)}
+                                                                                              \onslide<\pgfmathresult->{
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{2.8}{2.8}{1.2}{\xcti}{\ycti}}
+                                                              
+                                                              }
+                                                              
+                                                               \onslide<9->{ \node[scale=0.6] at (1+11.2-2+0.2+12.5,0-4.2+0.8){\tiny{Inception}};
+                                                               \node[scale=0.5] at (1+12.6-3.2+9.6,0-3+1.5){\small{\textbf{4a}}};
+                                                               }
+                                                                 \onslide<11->{\node [scale=0.5, rotate=49] at (1+13.625-2.8+15.5,0) {\tiny{14}};
+                                                                  \node [scale=0.5, rotate=90] at (1+13.425-2.8+15.5,-2+0.5) {\tiny{14}};
+                                                                  \node[scale=0.5] at (1+12.6-3.2+15,0-3.5+1-0.2){\tiny{512}};}
+                                                                  % %4a
+
+                                                                  % %4b
+                                                                  \onslide<10->{\node[scale=0.5] at (1+12.6-3.2+10+2.5-0.2,0-3+1.5){\small{\textbf{4b}}};}
+                                                                  % %4c
+                                                                  \onslide<11->{\node[scale=0.5] at (1+12.6-3.2+10+5,0-3+1.5){\small{\textbf{4c}}};}
+                                              % %     } % % % % % % % % % % % % %
+                                              \onslide<12->{
+ \renewcommand{\forefillColor}{orange!50!white}
+                                                          \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{orange!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{30.6}
+                                                              \pgfmathsetmacro{\seedy}{-0.2}
+                                                              \pgfmathsetmacro{\anim}{12}
+                                                              \foreach \xct/\yct in {0}
+                                                              {
+                                                                   \pgfmathparse{int(\anim+\xct)}
+                                                                                              \onslide<\pgfmathresult->{
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{3}{2.8}{1.2}{\xcti}{\ycti}}
+                                                              
+                                                              }
+                                                              
+														\node[scale=0.6] at (1+11.2-2+0.2+18.6,0-4.2+0.8){\tiny{Inception}};
+                                                               
+\node [scale=0.5, rotate=49] at (1+13.625-2.8+17.6+1.5,0) {\tiny{14}};
+                                                                  \node [scale=0.5, rotate=90] at (1+13.425-2.8+17.5+1.6,-2+0.5) {\tiny{14}};
+                                                                  \node[scale=0.5] at (1+12.6-3.2+17+1.7,0-3.5+1-0.2){\tiny{528}};
+                                                                  % %4a
+
+                                                                  % %4b
+                                                                  
+                                                                  
+                                                                  \node[scale=0.5] at (1+12.6-3.2+10+5+3+0.6,0-3+1.5){\small{\textbf{4d}}};
+                                              }
+\onslide<13->{
+ \renewcommand{\forefillColor}{orange!50!white}
+                                                          \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{orange!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{34.75}
+                                                              \pgfmathsetmacro{\seedy}{-0.2}
+                                                              \pgfmathsetmacro{\anim}{12}
+                                                              \foreach \xct/\yct in {0}
+                                                              {
+                                                                   \pgfmathparse{int(\anim+\xct)}
+                                                                   \onslide<\pgfmathresult->{
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{3.5}{2.8}{1.2}{\xcti}{\ycti}}
+                                                              
+                                                              }
+                                                              
+														\node[scale=0.6] at (1+11.2-2+0.2+18.5+4.3,0-4.2+0.8){\tiny{Inception}};
+                                                               
+\node [scale=0.5, rotate=49] at (1+13.625-2.8+17.6+1.5+4.3,0) {\tiny{14}};
+\node [scale=0.5, rotate=90] at (1+13.425-2.8+17.5+1.6+4.3,-2+0.5) {\tiny{14}};
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4,0-3.5+1-0.2){\tiny{832}};
+                                                                  % %4a
+
+                                                                  % %4b
+                                                                  
+                                                                  
+                                                                  \node[scale=0.5] at (1+12.6-3.2+10+5+3+4.6,0-3+1.5){\small{\textbf{4e}}};
+                                              }  
+                                              
+                                              \onslide<14->{
+
+ \renewcommand{\forefillColor}{blue!50!white}
+                                                          \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{blue!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{38.9}
+                                                              \pgfmathsetmacro{\seedy}{-0.45}
+                                                              \pgfmathsetmacro{\anim}{12}
+                                                              \foreach \xct/\yct in {0}
+                                                              {
+                                                                   \pgfmathparse{int(\anim+\xct)}
+                                                            blue       \onslide<\pgfmathresult->{
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{3.5}{2}{1}{\xcti}{\ycti}}
+                                                              
+                                                              }
+                                                              
+														\node[scale=0.6] at (1+11.2-2+0.2+18.5+4.3+4,0-4.2+0.8+0.4){\tiny{maxpool}};
+                                                               
+\node [scale=0.5, rotate=49] at (1+13.625-2.8+17.6+1.5+4.3+4,-0.4) {\tiny{7}};
+\node [scale=0.5, rotate=90] at (1+13.425-2.8+17.5+1.6+4.3+4,-1.5) {\tiny{7}};
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4,0-3.5+1+0.35){\tiny{832}};
+                                                                  % %4a
+
+                                                                  % %4b
+                                                                  
+   
+                                              }
+                                              
+                                              \onslide<15->{
+ \renewcommand{\forefillColor}{orange!50!white}
+                                                          \renewcommand{\borderColor}{white}
+                                                              \renewcommand{\toprsidefillcolor}{orange!50!white!50}
+                                                              \pgfmathsetmacro{\seedx}{43}
+                                                              \pgfmathsetmacro{\seedy}{-0.45}
+                                                              \pgfmathsetmacro{\anim}{12}
+                                                              \foreach \xct/\yct in {0}
+                                                              {
+                                                                   \pgfmathparse{int(\anim+\xct)}
+                                                                   \onslide<\pgfmathresult->{
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{3.5}{2}{1}{\xcti}{\ycti}}
+                                                              
+                                                              }
+                                                              
+														\node[scale=0.6] at (1+11.2-2+0.2+18.5+4.3+4+4,0-4.2+0.8+0.4){\tiny{Inception}};
+                                                               
+\node [scale=0.5, rotate=49] at (1+13.625-2.8+17.6+1.5+4.3+4+4,-0.4) {\tiny{7}};
+\node [scale=0.5, rotate=90] at (1+13.425-2.8+17.5+1.6+4.3+4+4.1,-1.5) {\tiny{7}};
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4,0-3.5+1+0.35){\tiny{832}};    
+\node[scale=0.5] at (1+12.6-3.2+10+5+3+0.6+12.15,0-3+1.6){\small{\textbf{5a}}};                                         
+                                              }                                            
+                                      \onslide<16->{
+ \renewcommand{\forefillColor}{orange!50!white}
+\renewcommand{\borderColor}{white}
+\renewcommand{\toprsidefillcolor}{orange!50!white!50}
+\pgfmathsetmacro{\seedx}{47.5}
+ \pgfmathsetmacro{\seedy}{-0.45}
+                                                              \pgfmathsetmacro{\anim}{12}
+                                                              \foreach \xct/\yct in {0}
+                                                              {
+                                                                   \pgfmathparse{int(\anim+\xct)}
+                                                                   \onslide<\pgfmathresult->{
+                                                                  \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                  \pgfmathsetmacro{\ycti}{\seedy}
+                                                                  \handmadecube{3.95}{2}{1}{\xcti}{\ycti}}
+                                                              
+                                                              }
+                                                              
+														\node[scale=0.6] at (1+11.2-2+0.2+18.5+4.3+4+4+4.5,0-4.2+0.8+0.4){\tiny{Inception}};
+                                                               
+\node [scale=0.5, rotate=0] at (1+13.625-2.8+17.6+1.5+4.3+4+4+4.5,-0.4) {\tiny{7}};
+\node [scale=0.5, rotate=90] at (1+13.425-2.8+17.5+1.6+4.3+4+4.1+4.5,-1.5) {\tiny{7}};
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5,0-3.5+1+0.35){\tiny{1024}};    
+\node[scale=0.5] at (1+12.6-3.2+10+5+3+0.6+12.15+4.5,0-3+1.6){\small{\textbf{5b}}};                                         
+                                      }
+                                      
+                                      \onslide<17->{ \renewcommand{\forefillColor}{blue!50!white}
+                                      \renewcommand{\borderColor}{white}
+                                      \renewcommand{\toprsidefillcolor}{blue!50!white!50}
+                                      \pgfmathsetmacro{\seedx}{52}
+                                       \pgfmathsetmacro{\seedy}{-0.7}
+ \pgfmathsetmacro{\anim}{12}
+\foreach \xct/\yct in {0}
+                                                                                                    {
+                                                                                                         \pgfmathparse{int(\anim+\xct)}
+                                                                                                         
+                                                                                                        \pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+                                                                                                        \pgfmathsetmacro{\ycti}{\seedy}
+                                                                                                        \handmadecube{3.95}{1}{0.5}{\xcti}{\ycti}
+                                                                                                    
+                                                                                                    }
+                                                                                                    
+\node[scale=0.6] at (1+11.2-2+0.2+18.5+4.3+4+4+4.5+4.4,0-4.2+0.8+1.35){\tiny{avgpool}};
+                                                                                                     
+                                      \node [scale=0.4, rotate=0] at (1+13.625-2.8+17.6+1.5+4.3+4+4+4.5+4.3,-0.66) {\tiny{1}};
+                                      \node [scale=0.4, rotate=0] at (1+13.425-2.8+17.5+1.6+4.3+4+4.1+4.5+4.4,-1.1) {\tiny{1}};
+                                      \node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5+4.5,0-3.5+1+1.1){\tiny{1024}};
+                                      }
+                                      \onslide<18->{
+  \renewcommand{\forefillColor}{purple!50!white}
+                                        \renewcommand{\borderColor}{white}
+                                        \renewcommand{\toprsidefillcolor}{purple!50!white!50}
+                                        \pgfmathsetmacro{\seedx}{56.3}
+                                         \pgfmathsetmacro{\seedy}{-0.7}
+   \pgfmathsetmacro{\anim}{12}
+  \foreach \xct/\yct in {0}
+{
+\pgfmathparse{int(\anim+\xct)}
+                                                                                                           
+\pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+\pgfmathsetmacro{\ycti}{\seedy}
+                                                                                                          \handmadecube{3.95}{1}{0.5}{\xcti}{\ycti}
+                                                                                                      
+                                                                                                      }
+                                                                                                      
+  \node[scale=0.6] at (1+11.2-2+0.2+18.5+4.3+4+4+4.5+4.4+4.5,0-4.2+0.8+1.35){\tiny{dropout(40\%)}};
+                                                                                                       
+                                        \node [scale=0.4, rotate=0] at (1+13.625-2.8+17.6+1.5+4.3+4+4+4.5+4.5+4.25,-0.66) {\tiny{1}};
+                                        \node [scale=0.4, rotate=0] at (1+13.425-2.8+17.5+1.6+4.3+4+4.1+4.4+4.45+4.19,-1.1) {\tiny{1}};
+                                        \node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5+4.5+4.4,0-3.5+1+1.1){\tiny{1024}};                                    
+                                      }
+                                      
+\onslide<19->{
+\renewcommand{\forefillColor}{purple!50!white!50}
+\renewcommand{\borderColor}{white}
+\renewcommand{\toprsidefillcolor}{purple!50!white!50}
+\pgfmathsetmacro{\seedx}{58.5}
+\pgfmathsetmacro{\seedy}{1.7}
+ 
+\foreach \xct/\yct in {0}
+{
+
+\pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+\pgfmathsetmacro{\ycti}{\seedy}
+\handmadecube{0.95}{5}{0.2}{\xcti}{\ycti}
+}
+                                                                                                      
+
+
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5+4.5+4.4+2+1.5,0-3.5+1+1.1-1.6){\tiny{1000}}; 
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5+4.5+4.4+2+1.5,0-3.5+1+1.1-2.2){\tiny{fc}};
+}
+           
+\onslide<20-> {                         
+\renewcommand{\forefillColor}{white!50!white}
+\renewcommand{\borderColor}{black}
+\renewcommand{\toprsidefillcolor}{white!50!white!50}
+\pgfmathsetmacro{\seedx}{59.7+1}
+\pgfmathsetmacro{\seedy}{1.7}
+ 
+\foreach \xct/\yct in {0}
+{
+
+                                                                                                           
+\pgfmathsetmacro{\xcti}{\seedx+2.8*\xct}
+\pgfmathsetmacro{\ycti}{\seedy}
+\handmadecube{0.95}{5}{0.01}{\xcti}{\ycti}
+}
+                                                                                                      
+
+
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5+4.5+4.4+3+1.7+1,0-3.5+1+1.1-1.6){\tiny{1000}};                                     
+\node[scale=0.5] at (1+12.6-3.2+17+1.7+4+4+4+4.5+4.5+4.4+3+1.7+1,0-3.5+1+1.1-2.2){\tiny{softmax}};                                      
+                                      }
+
+\end{tikzpicture}
+\end{center}

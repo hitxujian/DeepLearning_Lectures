@@ -1,0 +1,134 @@
+\begin{center}
+	\begin{tikzpicture}[scale=0.8,transform shape]
+		
+		\pgfsetxvec{\pgfpoint{1cm}{0cm}}
+		\pgfsetyvec{\pgfpoint{0cm}{1cm}}
+		\pgfsetzvec{\pgfpoint{-.5cm}{-.866cm}}
+		
+		\def\cuboid#1#2#3#4#5#6{
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\op{#6}
+			\draw[black,fill=\mycolor, fill opacity=\op] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) -- ++(0,0,\width) -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		\def\cuboidlabel#1#2#3#4#5#6#7#8{
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\depthlabel{#6}
+			\edef\heightlabel{#7}
+			\edef\widthlabel{#8}
+			\draw[draw=black,fill=yellow!60!white] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) node[pos=0.5,below] {\small \depthlabel} -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) node[pos=0.5,right] {\small \heightlabel} -- ++(0,0,\width)  node[pos=0.5,below,right] {\small \widthlabel} -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		\def\kernel#1#2#3#4#5#6{
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\draw[black,fill=\mycolor, fill opacity=1] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) -- ++(0,0,\width) -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			
+			\draw[dotted] #1 -- #6 #1++(0,0,-\width) -- #6 #1++(0,-\height,0) -- #6 #1++(0,-\height,-\width) -- #6;
+			
+			\end{scope}
+		}
+		
+		\def\kernellabel#1#2#3#4#5#6#7#8#9{
+			%#6 is target pixel
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\depthlabel{#7}
+			\edef\heightlabel{#8}
+			\edef\widthlabel{#9}
+			\draw[draw=black,fill=\mycolor, fill opacity=1] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) node[pos=0.5,below] {\tiny \depthlabel} -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) node[pos=0.5,right] {\tiny \heightlabel} -- ++(0,0,\width)  node[pos=0.5,below,right] {\tiny \widthlabel} -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		\def\kernellabell#1#2#3#4#5#6#7#8#9{
+			%#6 is target pixel
+			\begin{scope}
+			\edef\mycolor{#2}
+			\edef\depth{#3}
+			\edef\height{#4}
+			\edef\width{#5}
+			\edef\depthlabel{#7}
+			\edef\heightlabel{#8}
+			\edef\widthlabel{#9}
+			\draw[draw=black,fill=\mycolor, fill opacity=1] #1 -- ++(-\depth,0,0) -- ++(0,-\height,0) -- ++(\depth,0,0) node[pos=0.5,below] {} -- cycle #1 -- ++(0,0,-\width) -- ++(0,-\height,0) node[pos=0.5,right] {} -- ++(0,0,\width)  node[pos=0.5,below,right] {} -- cycle  #1 -- ++(-\depth,0,0) -- ++(0,0,-\width) -- ++(\depth,0,0) -- cycle;
+			\end{scope}
+		}
+		
+		
+		\onslide<2->{
+				\pgfmathsetmacro{\seedx}{-4}
+				\pgfmathsetmacro{\seedy}{-3.5}
+				 
+				/
+				\cuboidlabel{(0+\seedx,0+\seedy,0)}{orange!20!white}{1.4}{1.4}{2}{7}{7}{1024}
+				}
+
+				
+				
+		\onslide<2-6>{
+		\node[rectangle,minimum height=4mm, minimum width=65mm, fill=yellow!60!white,draw=black] (D) at (-3,1.5, 2){};
+		\node[]at ($(D) + (4.4,0,0)$){ $7\times 7 \times 1024$};
+						\draw[->, line width=2, color=blue](-3.5,-1.5,1)--(D);				
+				\node[] at (-2.5, 0.5,2) {\footnotesize \it{flatten}};
+		}	
+		\onslide<3->{
+				\node[rectangle,minimum height=4mm, minimum width=30mm, fill=blue!50, draw=black] (B) at (-3,3, 2){};
+				\node[]at ($(B) + (1.9,0,0)$){ $1000$};
+				
+		}
+		\onslide<3-6>{
+			\draw ($(B) + (-1.5,-0.2,0)$)-- ($(D) + (-3.2,0.2,0)$);
+				\draw ($(B) + (1.5,-0.2,0)$)-- ($(D) + (3.2,0.2,0)$);
+		}
+		\onslide<4-6>{
+						\node[] at (-3,2.25,2){\footnotesize $W \in \mathbb{R}^{50176 \times 1000}$};
+		}
+
+		\onslide<5->{
+			\draw[step=1mm,very thin] (-5.4,-4.9) grid (-4,-3.5);
+
+			\fill[red]  (-5.2,-4.5) rectangle (-5.1,-4.4);
+
+			\node[] at (-1.5,-2.25,1){\footnotesize pick average};
+			\onslide<5-6>{\node[rectangle, minimum size=2mm, fill=red, draw=black] at (-1.4,-2.75,1){};}
+
+
+		}
+		\onslide<6->{
+
+				\draw[->, line width=1.5, color=black](-3.5,-1.5,1.9) -- (-3.5,-1.5, 1.3);
+				\node[rectangle, minimum height=4mm, draw=black, minimum width=32mm, fill=red] at (0,-2.75,1){};
+				\node[] at (2.2,-2.75,1){$1024$};	
+		}
+
+
+		\onslide<7->{
+			\node[] at (-3,2.25,2){\footnotesize $W \in \mathbb{R}^{1024 \times 1000}$};
+				\node[rectangle,minimum height=4mm, minimum width=32mm, fill=red,draw=black] (D) at (-3,1.5, 2){};
+				\draw[->, line width=2, color=blue](-3.5,-1.5,1)--(D);				
+				\node[] at (-2.5, 0.5,2) {\footnotesize \it{flatten}};
+
+				\node[]at ($(D) + (2.2,0,0)$){ $1024$};
+				\draw ($(B) + (-1.5,-0.2,0)$)-- ($(D) + (-1.6,0.2,0)$);
+				\draw ($(B) + (1.5,-0.2,0)$)-- ($(D) + (1.6,0.2,0)$);
+		}
+
+		\end{tikzpicture}
+		\end{center}
+		

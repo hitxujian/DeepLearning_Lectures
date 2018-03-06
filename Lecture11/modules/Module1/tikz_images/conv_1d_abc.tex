@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+	\tikzset{
+		mstyle/.style={column sep=-\pgflinewidth,nodes={draw},font=\footnotesize},
+		window/.style={draw,very thick,blue},
+	}
+	\matrix(m)[matrix of nodes,ampersand replacement=\&,mstyle]{
+		A \& B \& C \& B \& A \& B \& C \\
+	};
+	\foreach \j/\k [count=\i] in {3/2,4/3,5/4,6/5,7/6}{
+		\onslide<\k>{
+			\draw[window](m-1-\i.north west)rectangle(m-1-\j.south east);
+	}}
+\end{tikzpicture}

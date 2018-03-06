@@ -1,0 +1,484 @@
+\begin{frame}
+	\myheading{Module 11.1 : The convolution operation}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}<1->
+        \begin{overlayarea}{\textwidth}{\textheight}
+                \vspace{3mm}
+            
+                \onslide<1->{\begin{minipage}[t]{0.25\textwidth}
+                \includegraphics[width=\textwidth]{images/spaceship.jpg}
+                \end{minipage}}
+                \onslide<2->{\begin{minipage}[t]{0.25\textwidth}
+                \includegraphics[width=\textwidth]{images/spaceship.jpg}
+                \end{minipage}}
+                \onslide<3->{\begin{minipage}[t]{0.25\textwidth}
+                \includegraphics[width=\textwidth]{images/spaceship.jpg}
+                \end{minipage}}
+                
+                \onslide<1->{\begin{minipage}[t]{0.25\textwidth}
+                \hspace{4mm}$x_0$
+                \end{minipage}}
+                \onslide<2->{\begin{minipage}[t]{0.25\textwidth}
+                \hspace{4mm}$x_1$
+                \end{minipage}}
+                \onslide<3->{\begin{minipage}[t]{0.25\textwidth}
+                \hspace{4mm}$x_2$
+                \end{minipage}}
+                \hspace{3mm}
+                \onslide<7-9>{\begin{minipage}[t]{0.25\textwidth}
+                \begin{equation*}
+                    s_t= \onslide<7->{\sum_{a=0}^{\infty}x_{t-a}\tikzmark{xa} w_{-a}\tikzmark{ab}} = \onslide<8->{(\tikzmark{x}x \tikzmark{star}\ast \tikzmark{w}w)_t\tikzmark{cd}}
+                \end{equation*}
+                \onslide<9->{
+                		\input{modules/Module1/tikz_images/conv_eqn_symbols.tex}
+
+                \end{minipage}
+                }}
+        \end{overlayarea}
+        
+        \column{0.5\textwidth}<1->
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \begin{itemize}
+                \justifying
+                \item<1-> Suppose we are tracking the position of an aeroplane using a laser sensor at discrete time intervals
+                \item<4-> Now suppose our sensor is noisy
+                \item<5-> To obtain a less noisy estimate we would like to average several measurements
+                \item<6-> More recent measurements are more important so we would like to take a weighted average
+            \end{itemize}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{minipage}[t]{0.25\textwidth}
+				\onslide<1->{
+					\begin{equation*}
+						s_t=\sum_{a=0}^{6}x_{t-a} w_{-a}
+					\end{equation*}
+				}
+				\vspace{1cm}
+			\end{minipage}
+			           
+			\begin{minipage}[t]{0.25\textwidth}
+				           
+				
+				\only<3>{
+					\begin{table}[h]
+						%\small
+						\renewcommand{\arraystretch}{1.5}
+						\renewcommand{\tabcolsep}{1mm}
+						\resizebox{4.6\textwidth}{!}{%
+							\begin{tabular}{p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}}
+								                  
+								                     &                       & $w_{-6}$                  & $w_{-5}$                  & $w_{-4}$                  & $w_{-3}$                  & $w_{-2}$                  & $w_{-1}$                                         & $w_{0}$                                          &                                                  &                                                  &                                                  &                                                  &                                                  \\ \cline{8-9}
+								\cline{3-9}
+								W                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.02} & \multicolumn{1}{c|}{0.02} & \multicolumn{1}{c|}{0.04} & \multicolumn{1}{c|}{0.4}                         & \multicolumn{1}{c|}{0.5}                         &                                                  &                                                  &                                                  &                                                  &                                                  \\ \cline{3-9}
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\ \cline{3-14} 
+								X                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{1.00} & \multicolumn{1}{c|}{1.10} & \multicolumn{1}{c|}{1.20} & \multicolumn{1}{c|}{1.40} & \multicolumn{1}{c|}{1.70} & \multicolumn{1}{c|}{1.80}                        & \multicolumn{1}{c|}{1.90}                        & \multicolumn{1}{c|}{2.10}                        & \multicolumn{1}{c|}{2.20}                        & \multicolumn{1}{c|}{2.40}                        & \multicolumn{1}{c|}{2.50}                        & \multicolumn{1}{c|}{2.70}                        \\ \cline{3-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\  \cline{9-14} 
+								S                    &                       &                           &                           &                           &                           &                           & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.80}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} \\ \cline{9-14} 
+							\end{tabular}
+						}
+					\end{table}
+					
+				}
+				           
+				\only<4>{
+					\begin{table}[h]
+						%\scriptsize
+						\renewcommand{\arraystretch}{1.5}
+						\renewcommand{\tabcolsep}{1mm}
+						\resizebox{4.6\textwidth}{!}{%
+							\begin{tabular}{p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}}
+								                  
+								                     &                       &                           & $w_{-6}$                  & $w_{-5}$                  & $w_{-4}$                  & $w_{-3}$                  & $w_{-2}$                                         & $w_{-1}$                                         & $w_{0}$                                          &                                                  &                                                  &                                                  &                                                  \\ \cline{8-10}
+								\cline{4-10}
+								W                    &                       & \multicolumn{1}{c|}{}     & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.02} & \multicolumn{1}{c|}{0.02} & \multicolumn{1}{c|}{0.04}                        & \multicolumn{1}{c|}{0.4}                         & \multicolumn{1}{c|}{0.5}                         &                                                  &                                                  &                                                  &                                                  \\ \cline{4-10}
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\ \cline{3-14} 
+								X                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{1.00} & \multicolumn{1}{c|}{1.10} & \multicolumn{1}{c|}{1.20} & \multicolumn{1}{c|}{1.40} & \multicolumn{1}{c|}{1.70} & \multicolumn{1}{c|}{1.80}                        & \multicolumn{1}{c|}{1.90}                        & \multicolumn{1}{c|}{2.10}                        & \multicolumn{1}{c|}{2.20}                        & \multicolumn{1}{c|}{2.40}                        & \multicolumn{1}{c|}{2.50}                        & \multicolumn{1}{c|}{2.70}                        \\ \cline{3-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\  \cline{9-14} 
+								S                    &                       &                           &                           &                           &                           &                           & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.80}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.96}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} \\ \cline{9-14} 
+							\end{tabular}
+						}
+					\end{table}
+				}
+				\only<5>{
+					\begin{table}[h]
+						%\scriptsize
+						\renewcommand{\arraystretch}{1.5}
+						\renewcommand{\tabcolsep}{1mm}
+						\resizebox{4.6\textwidth}{!}{%
+							\begin{tabular}{p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}}
+								                  
+								                     &                       &                           &                           & $w_{-6}$                  & $w_{-5}$                  & $w_{-4}$                  & $w_{-3}$                                         & $w_{-2}$                                         & $w_{-1}$                                         & $w_{0}$                                          &                                                  &                                                  &                                                  \\ \cline{8-11}
+								\cline{5-11}
+								W                    &                       &                           & \multicolumn{1}{c|}{}     & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.02} & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.04}                        & \multicolumn{1}{c|}{0.4}                         & \multicolumn{1}{l|}{0.5}                         &                                                  &                                                  &                                                  \\ \cline{5-11}
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\ \cline{3-14} 
+								X                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{1.00} & \multicolumn{1}{c|}{1.10} & \multicolumn{1}{c|}{1.20} & \multicolumn{1}{c|}{1.40} & \multicolumn{1}{c|}{1.70} & \multicolumn{1}{c|}{1.80}                        & \multicolumn{1}{c|}{1.90}                        & \multicolumn{1}{c|}{2.10}                        & \multicolumn{1}{c|}{2.20}                        & \multicolumn{1}{c|}{2.40}                        & \multicolumn{1}{c|}{2.50}                        & \multicolumn{1}{c|}{2.70}                        \\ \cline{3-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\  \cline{9-14} 
+								S                    &                       &                           &                           &                           &                           &                           & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.80}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.96}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.11}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} \\ \cline{9-14} 
+							\end{tabular}
+						}
+					\end{table}
+				}
+				\only<6>{
+					\begin{table}[h]
+						%\scriptsize
+						\renewcommand{\arraystretch}{1.5}
+						\renewcommand{\tabcolsep}{1mm}
+						\resizebox{4.6\textwidth}{!}{%
+							\begin{tabular}{p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}}
+								                  
+								                     &                       &                           &                           &                           & $w_{-6}$                  & $w_{-5}$                  & $w_{-4}$                                         & $w_{-3}$                                         & $w_{-2}$                                         & $w_{-1}$                                         & $w_{0}$                                          &                                                  &                                                  \\ \cline{8-12}
+								\cline{6-12}
+								W                    &                       &                           &                           & \multicolumn{1}{c|}{}     & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.04}                        & \multicolumn{1}{l|}{0.4}                         & \multicolumn{1}{l|}{0.5}                         &                                                  &                                                  \\ \cline{6-12}
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\ \cline{3-14} 
+								X                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{1.00} & \multicolumn{1}{c|}{1.10} & \multicolumn{1}{c|}{1.20} & \multicolumn{1}{c|}{1.40} & \multicolumn{1}{c|}{1.70} & \multicolumn{1}{c|}{1.80}                        & \multicolumn{1}{c|}{1.90}                        & \multicolumn{1}{c|}{2.10}                        & \multicolumn{1}{c|}{2.20}                        & \multicolumn{1}{c|}{2.40}                        & \multicolumn{1}{c|}{2.50}                        & \multicolumn{1}{c|}{2.70}                        \\ \cline{3-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  &                                                  &                                                  &                                                  \\  \cline{9-14} 
+								S                    &                       &                           &                           &                           &                           &                           & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.80}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.96}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.11}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.16}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} \\ \cline{9-14} 
+							\end{tabular}
+						}
+					\end{table}
+				}
+				\only<7>{
+					\begin{table}[h]
+						%\scriptsize
+						\renewcommand{\arraystretch}{1.5}
+						\renewcommand{\tabcolsep}{1mm}
+						\resizebox{4.6\textwidth}{!}{%
+							\begin{tabular}{p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}}
+								                  
+								                     &                       &                           &                           &                           &                           & $w_{-6}$                  & $w_{-5}$                                         & $w_{-4}$                                         & $w_{-3}$                                         & $w_{-2}$                                         & $w_{-1}$                                         & $w_{0}$                                          &                                                  \\ \cline{8-13}
+								\cline{7-13}
+								W                    &                       &                           &                           &                           & \multicolumn{1}{c|}{}     & \multicolumn{1}{c|}{0.01} & \multicolumn{1}{c|}{0.01}                        & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.04}                        & \multicolumn{1}{c|}{0.4}                         & \multicolumn{1}{c|}{0.5}                         &                                                  \\ \cline{7-13}
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  \\ \cline{3-14} 
+								X                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{1.00} & \multicolumn{1}{c|}{1.10} & \multicolumn{1}{c|}{1.20} & \multicolumn{1}{c|}{1.40} & \multicolumn{1}{c|}{1.70} & \multicolumn{1}{c|}{1.80}                        & \multicolumn{1}{c|}{1.90}                        & \multicolumn{1}{c|}{2.10}                        & \multicolumn{1}{c|}{2.20}                        & \multicolumn{1}{c|}{2.40}                        & \multicolumn{1}{c|}{2.50}                        & \multicolumn{1}{c|}{2.70}                        \\ \cline{3-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                  \\  \cline{9-14} 
+								S                    &                       &                           &                           &                           &                           &                           & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.80}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.96}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.11}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.16}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.28}} & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} \\ \cline{9-14} 
+								
+							\end{tabular}
+						}
+					\end{table}
+				}
+				
+				\only<8->{
+					\begin{table}[h]
+						%\scriptsize
+						\renewcommand{\arraystretch}{1.5}
+						\renewcommand{\tabcolsep}{1mm}
+						\resizebox{4.6\textwidth}{!}{%
+							\begin{tabular}{p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}p{0.1cm}}
+								                     &                       &                           &                           &                           &                           &                           & $w_{-6}$                                         & $w_{-5}$                                         & $w_{-4}$                                         & $w_{-3}$                                         & $w_{-2}$                                         & $w_{-1}$                                         & $w_{0}$                                           \\ \cline{8-14}
+								\cline{8-14}
+								W                    &                       &                           &                           &                           &                           & \multicolumn{1}{c|}{}     & \multicolumn{1}{c|}{0.01}                        & \multicolumn{1}{c|}{0.01}                        & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.02}                        & \multicolumn{1}{c|}{0.04}                           & \multicolumn{1}{c|}{0.4}                         & \multicolumn{1}{l|}{0.5}                          \\ \cline{8-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                   \\ \cline{3-14} 
+								X                    & \multicolumn{1}{l|}{} & \multicolumn{1}{c|}{1.00} & \multicolumn{1}{c|}{1.10} & \multicolumn{1}{c|}{1.20} & \multicolumn{1}{c|}{1.40} & \multicolumn{1}{c|}{1.70} & \multicolumn{1}{c|}{1.80}                        & \multicolumn{1}{c|}{1.90}                        & \multicolumn{1}{c|}{2.10}                        & \multicolumn{1}{c|}{2.20}                        & \multicolumn{1}{c|}{2.40}                        & \multicolumn{1}{c|}{2.50}                        & \multicolumn{1}{c|}{2.70}                         \\ \cline{3-14} 
+								\multicolumn{1}{l}{} &                       & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}      & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             & \multicolumn{1}{l}{}                             &                                                   \\ \cline{9-14} 
+								
+								S                    &                       &                           &                           &                           &                           &                           & \multicolumn{1}{c|}{{\color[HTML]{FFFFFF} 0.00}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.80}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 1.96}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.11}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.16}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.28}} & \multicolumn{1}{c|}{{\color[HTML]{333333} 2.42 }} \\ \cline{9-14}  
+							\end{tabular}
+						}
+					\end{table}
+				}
+			\end{minipage}
+			\onslide<3->{
+				\footnotesize{
+					\begin{align*}
+						s_6 = x_6w_0 + x_5w_{-1} + x_4w_{-2} + x_3w_{-3} + x_4w_{-4} + x_5w_{-5} + x_6w_{-6} 
+					\end{align*}}
+			}
+		\end{overlayarea}
+		       
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\small{
+				\begin{itemize}
+					\justifying
+					\item<1-> In practice, we would only sum over a small window
+					\item<2-> The weight array ($\mathbf{w}$) is known as the filter
+					\item<3-> We just slide the filter over the input and compute the value of $s_t$ based on a window around $x_t$
+					\item<9-> Here the input (and the kernel) is one dimensional
+					\item<10-> Can we use a convolutional operation on a 2D input also?
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{10mm}
+			\hspace{5mm}
+			\begin{minipage}[t]{0.5\textwidth}
+				\includegraphics[width=\textwidth]{images/taj_mahal.jpg}
+			\end{minipage}
+			            
+			\begin{minipage}[t]{0.15\textwidth}
+				\footnotesize{
+					%\begin{align*}
+					%   \begin{split}
+					%     \onslide<3> {S_{ij} &=\left ( I \ast K \right )_{ij} = \sum_{m} \sum_{n} I_{i-m,j-n} K_{m,n}} \\
+					%     \onslide<5> {S_{ij} &=\left ( I \ast K \right )_{ij} = \sum_{m} \sum_{n} I_{i+m,j+n} K_{m,n}}
+					%   \end{split}
+					%\end{align*}
+					\onslide<3->{
+						\begin{equation*}
+							{S_{ij} =\left ( I \ast K \right )_{ij} = \sum\limits_{a=0}^{m-1} \sum\limits_{b=0}^{n-1} \only<3,4>{I_{i-a,j-b} K_{a,b}}}\only<5>{I_{i+a,j+b} K_{a,b}}
+						\end{equation*}}
+				}
+			\end{minipage}
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> We can think of images as 2D inputs
+				\item<2-> We would now like to use a 2D filter ($m \times n$)
+				\item<3-> First let us see what the 2D formula looks like
+				\item<4-> This formula looks at all the preceding neighbours $(i-a,j-b)$
+				\item<5-> In practice, we use the following formula which looks at the succeeding neighbours
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\onslide<2->{
+				\input{modules/Module1/tikz_images/conv_2d.tex}
+			}
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> Let us apply this idea to a toy example and see the results
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{minipage}[t]{0.25\textwidth}
+				\onslide<2->{\footnotesize{
+					\begin{equation*}
+						{S_{ij} =\left ( I \ast K \right )_{ij} = \sum_{a=\left \lfloor -\frac{m}{2} \right \rfloor}^{\left \lfloor \frac{m}{2} \right \rfloor} \sum_{b=\left \lfloor -\frac{n}{2} \right \rfloor}^{\left \lfloor \frac{n}{2} \right \rfloor} {I_{i-a,j-b} K_{\frac{m}{2}+a,\frac{n}{2}+b}}}
+					\end{equation*}
+					}
+				}
+			\end{minipage}
+			        
+			\begin{minipage}[t]{0.25\textwidth}
+				\onslide<3->{
+					\input{modules/Module1/tikz_images/conv_grid.tex}
+				}
+			\end{minipage}
+			        
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> For the rest of the discussion we will use the following formula for convolution
+				\item<3-> In other words we will assume that the kernel is centered on the pixel of interest
+				\item<4-> So we will be looking at both preceeding and succeeding neighbors 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		Let us see some examples of 2D convolutions applied to images
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\onslide<1->{
+			\vspace{2cm}
+			\begin{centering}
+				\begin{tabular}{ccc}
+					\parbox[c]{9em}{\includegraphics[width=0.25\textwidth]{images/taj_mahal.jpg}} & \begin{tabular}{ccccc}
+					       & 1 & 1 & 1 &   \\
+					$\ast$ & 1 & 1 & 1 & = \\
+					       & 1 & 1 & 1 &   \\
+				\end{tabular}& \parbox[c]{9em}{\only<1>{\includegraphics[width=0.25\textwidth]{images/dummy.jpg} } \only<2>{\includegraphics[width=0.25\textwidth]{images/taj_mahal_blur.jpg}}} \\
+				& & \only<2>{blurs the image}
+				
+				\end{tabular}
+			\end{centering}
+		}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\onslide<1->{
+			\vspace{2cm}
+			\begin{centering}
+				\begin{tabular}{ccc}
+					\parbox[c]{9em}{\includegraphics[width=0.25\textwidth]{images/taj_mahal.jpg}} & \begin{tabular}{ccccc}
+					       & 0  & -1 & 0  &   \\
+					$\ast$ & -1 & 5  & -1 & = \\
+					       & 0  & -1 & 0  &   \\
+				\end{tabular}& \parbox[c]{9em}{\only<1>{\includegraphics[width=0.25\textwidth]{images/dummy.jpg} } \only<2>{\includegraphics[width=0.25\textwidth]{images/taj_mahal_sharpen.jpg}}} \\
+				& & \only<2>{sharpens the image}
+				
+				\end{tabular}
+			\end{centering}
+		}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\onslide<1->{
+			\vspace{2cm}
+			\begin{centering}
+				\begin{tabular}{ccc}
+					\parbox[c]{9em}{\includegraphics[width=0.25\textwidth]{images/taj_mahal.jpg}} & \begin{tabular}{ccccc}
+					       & 1 & 1  & 1 &   \\
+					$\ast$ & 1 & -8 & 1 & = \\
+					       & 1 & 1  & 1 &   \\
+				\end{tabular}& \parbox[c]{9em}{\only<1>{\includegraphics[width=0.25\textwidth]{images/dummy.jpg} } \only<2>{\includegraphics[width=0.25\textwidth]{images/taj_mahal_detectedges.jpg}}} \\
+				& & \only<2>{detects the edges}
+				
+				\end{tabular}
+			\end{centering}
+		}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		We will now see a working example of 2D convolution.
+	\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module1/tikz_images/conv_taj_mahal.tex}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> We just slide the kernel over the input image
+				\item<2-> Each time we slide the kernel we get one value in the output
+				\item<20-> The resulting output is called a feature map.
+				\item<21-> We can use multiple filters to get multiple feature maps.
+				
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\small{
+				\begin{block}{Question}
+					\begin{itemize}
+						\justifying
+						\item<1-> In the 1D case, we slide a one dimensional filter over a one dimensional input
+						\item<7-> In the 2D case, we slide a two dimenstional filter over a two dimensional output
+						\item<14-> What would happen in the 3D case?
+					\end{itemize}
+				\end{block}
+			}
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<2->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			        
+			        
+			\begin{minipage}[t]{0.25\textwidth}
+				\only<2-6>{
+					\hspace{6mm}
+					\vspace{6mm}
+					\input{modules/Module1/tikz_images/conv_1d_abc.tex}  
+				}
+			\end{minipage}
+			\only<8-13>{
+				\vspace{1mm}
+				\hspace{6mm}
+				\begin{minipage}[t]{0.25\textwidth} 
+					\input{modules/Module1/tikz_images/conv_2d_abc.tex}  
+				\end{minipage}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module1/tikz_images/conv_3d_rgb.tex}
+		\end{overlayarea}
+		
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
+			\begin{itemize}
+				\justifying
+				\item<1-> What would a 3D filter look like?
+				\item<2-> It will be 3D and we will refer to it as a volume
+				\item<3-> Once again we will slide the volume over the 3D input and compute the convolution operation
+				\item<15-> Note that in this lecture we will assume that the filter always extends to the depth of the image
+				\item<16-> In effect, we are doing a 2D convolution operation on a 3D input (because the filter moves along the height and the width but not along the depth)
+				\item<17-> As a result the output will be 2D (only width and height, no depth)
+				\item<18-> Once again we can apply multiple filters to get multiple feature maps
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

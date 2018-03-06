@@ -1,0 +1,373 @@
+\begin{frame}
+	\myheading{Module 11.2 : Relation between input size, output size and filter size}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
+			\begin{itemize}
+				\item So far we have not said anything explicit about the dimensions of the 
+				      \begin{enumerate}
+				      	\item<2-> inputs
+				      	\item<3-> filters
+				      	\item<4-> outputs
+				      \end{enumerate}
+				      \onslide<5->{and the relations between them}
+				      \item<6-> We will see how they are related but before that we will define a few quantities
+			\end{itemize}
+			
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module2/tikz_images/cnn_3d_dim.tex}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
+			\begin{itemize}
+			\justifying
+				\item We first define the following quantities
+				      \item<2-> Width ($W_1$), \onslide<3->{ Height ($H_1$) \onslide<4->{ and Depth ($D_1$) of the original input}}
+				      \item<5-> The Stride $S$ (We will come back to this later)
+				      \item<7-> The number of filters $K$ 
+				      \item<8-> The spatial extent ($F$) of each filter (the depth of each filter is same as the depth of each input)
+				      \item<9-> The output is $W_2 \times H_2 \times D_2$ (we will soon see a formula for computing $W_2$, $H_2$ and $D_2$)
+			\end{itemize}
+			
+			
+			
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{minipage}[t]{0.5\textwidth}
+				
+				%\resizebox{1\textwidth}{1\textwidth}{%
+				\input{modules/Module2/tikz_images/cnn_2d_grid.tex}
+				%}
+			\end{minipage}
+			\begin{minipage}[t]{0.5\textwidth}
+				\vspace{30mm}
+				%\tiny{
+				%\begin{align*}
+				%\begin{split}
+				%    \onslide<11->{
+				%        W_2=\frac{W_1-F}{S}+1 \\
+				%        H_2=\frac{H_1-F}{S}+1
+				%        }
+				%\end{split}
+				%\end{align*}
+				%}
+			\end{minipage}
+			              
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}
+					\justifying
+					\item<1-> Let us compute the dimension ($W_2, H_2$) of the output
+					\item<8-> Notice that we can't place the kernel at the corners as it will cross the input boundary
+					\item<10-> This is true for all the shaded points (the kernel crosses the input boundary)
+					\item<11-> This results in an output which is of smaller dimensions than the input
+				\end{itemize}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+          \begin{minipage}[t]{0.5\textwidth}
+
+%\resizebox{1\textwidth}{1\textwidth}{%
+    		\input{modules/Module2/tikz_images/cnn_2d_grid_ex.tex}
+%}
+  \end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+\vspace{30mm}
+%\tiny{
+\begin{align*}
+    %\begin{split}
+    \onslide<8->{
+        \textit{In general, }
+        W_2=W_1-F+1 \\
+        H_2=H_1-F+1 \\
+        \textit{We will refine this formula further}
+        }
+    %\end{split}
+\end{align*}
+%}
+\end{minipage}
+              
+        \end{overlayarea}
+        
+        \column{0.5\textwidth}<1->
+        \begin{overlayarea}{\textwidth}{\textheight}
+            \footnotesize{
+            \begin{itemize}
+                \justifying
+                \item<1-> Let us compute the dimension ($W_2, H_2$) of the output
+                \item<1-> Notice that we can't place the kernel at the corners as it will cross the input boundary
+                \item<1-> This is true for all the shaded points (the kernel crosses the input boundary)
+                \item<1-> This results in an output which is of smaller dimensions than the input
+                \item<1-> As the size of the kernel increases, this becomes true for even more pixels 
+                \item<2-> For example, let's consider a 5 $\times$ 5 kernel
+                \item<3-> We have an even smaller output now 
+            \end{itemize}}
+        \end{overlayarea}
+    \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{minipage}[t]{0.15\textwidth}
+				\vspace{2mm}
+				%\resizebox{7\textwidth}{5\textwidth}{%
+				\input{modules/Module2/tikz_images/conv_2d_padding.tex}
+				%}
+			\end{minipage}
+			
+			\begin{minipage}[t]{0.15\textwidth}
+				%\tiny{\hspace{1mm}
+				\begin{align*}
+					\begin{split}                                
+					\onslide<9->{                                
+					\textit{We now have,}                        \\
+					W_2=W_1-F+2P+1                               \\
+					H_2=H_1-F+2P+1                               \\
+					\textit{We will refine this formula further} 
+					}                                            
+					\end{split}                                  
+				\end{align*}
+				%}
+			\end{minipage}
+			              
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}
+					\justifying
+					\item<1-> What if we want the output to be of same size as the input?
+					\item<2-> We can use something known as padding
+					\item<3-> Pad the inputs with appropriate number of 0 inputs so that you can now apply the kernel at the corners
+					\item<4-> Let us use pad P = 1 with a 3 $\times$ 3 kernel
+					\item<5-> This means we will add one row and one column of 0 inputs at the top, bottom, left and right
+					% \item<8-> For example, $P=1$
+					% \tiny{
+					% \begin{align*}
+					% W_2 &= \frac{W_1-F+2P}{S}+1 \\
+					%     &= \frac{W_1 -3 + 2}{1} + 1 = W_1 
+					% \end{align*}
+					% \begin{align*}
+					%     H_2 &= \frac{H_1-F+2P}{S}+1 \\
+					%         &= \frac{H_1 -3 + 2}{1} + 1 = H_1 
+					% \end{align*}
+					% }
+					% \item <9-> \textbf{Question:} Suppose $F=5$, what should be the value of $P$ be so that $W_2 = W_1$ and $H_2 = H_1$ ? \onslide<10->{\textbf{$P=2$}}
+				\end{itemize}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\only<3->{
+				\begin{minipage}[t]{0.15\textwidth}
+					%\resizebox{7\textwidth}{5\textwidth}{%
+					\input{modules/Module2/tikz_images/conv_2d_stride.tex}
+					%}
+				\end{minipage}
+			}
+			%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			% \only<8->{
+			%           \begin{minipage}[t]{0.15\textwidth}
+			% \resizebox{7\textwidth}{5\textwidth}{%
+			%     \begin{tikzpicture}
+			%               \tikzset{
+			%                 mstyle/.style={column sep=-\pgflinewidth,row sep=-\pgflinewidth,font=\footnotesize,},
+			%                 window/.style={draw,very thick,blue},
+			%               }
+			              
+			%               \matrix(convmat1)[matrix of nodes,ampersand replacement=\&,column sep=-\pgflinewidth,row sep=-\pgflinewidth,nodes in empty cells,
+			%                 nodes={draw,rectangle, font=\tiny,minimum height=4mm,minimum width=4mm,anchor=south}]{
+			%                    0\&  0\&  0\&  0\&  0\& 0\& 0\&0\\ 
+			%  0\&  \&  \&  \&  \&  \&  \&0\\ 
+			%  0\&  \&  \&  \&  \&  \&  \&0\\ 
+			%  0\&  \&  \&  \&  \&  \&  \&0\\ 
+			%  0\&  \&  \&  \&  \&  \&  \&0\\ 
+			%  0\&  \&  \&  \&  \&  \&  \&0\\ 
+			%  0\&  \&  \&  \&  \&  \&  \&0\\ 
+			%  0\&  0\&  0\&  0\&  0\&   0\& 0\&0\\
+			%               };
+			
+			 
+			%   % \foreach \i/\j [count=\xi from 0] in {1/3,4/6,7/9,10/12,13/15,16/18,19/21,22/24,25/27}{
+			%   %   \foreach \k/\m [count=\yi from \xi*9+1] in {1/3,4/6,7/9,10/12,13/15,16/18,19/21,22/24,25/27}{
+			%   %    \onslide<\yi>{
+			%   %    \draw[window](convmat1-\i-\k.north west)rectangle(convmat1-\j-\m.south east);
+			     
+			%   %    }
+			%   %   }
+			%   % }
+			%   \draw[window](convmat1-27-27.north west)rectangle(convmat1-29-29.south east);
+			
+			              
+			              
+			%               \matrix(convmat2)[right of=convmat1,node distance=35em,matrix of nodes,ampersand replacement=\&,column sep=-\pgflinewidth,row sep=-\pgflinewidth,nodes in empty cells,
+			%                 nodes={draw,rectangle, font=\footnotesize,anchor=south,minimum height=4mm,minimum width=4mm}]{
+			%        \&  \&  \\
+			%        \&  \&  \\
+			%        \&  \&  \\
+			%     };
+			
+			%  \foreach \i  in {1,...,10}{
+			%               \foreach \j  in {1,...,10}{
+			    
+			%               \draw[fill=black] (convmat2-\i-\j)circle(1.5pt);
+			    
+			%               }
+			%               }
+			%   % \foreach \i [count=\xi from 0] in {1,...,10}{
+			%   %             \foreach \j [count=\yi from \xi*10+1] in {1,...,10}{
+			%   %   \onslide<\yi->{
+			%   %             \draw[fill=black] (convmat2-\i-\j)circle(1.5pt);
+			%   %   }
+			%   %             }
+			%   %             }
+			  
+			% \node(text)[left of = convmat2,node distance=12em, anchor=east]{\footnotesize \textsf{=}};   
+			%               \end{tikzpicture}
+			% }
+			%     \end{minipage}
+			% }
+			
+			
+			
+			\begin{minipage}[t]{0.15\textwidth}
+				\vspace{3mm}
+				%\tiny{
+				\begin{align*}
+					\begin{split}                                                              
+					\onslide<17->{        \textit{So what should our final formula look like,} \\}
+					\onslide<18->{                                                             
+					W_2=\frac{W_1-F+2P}{S}+1                                                   \\
+					H_2=\frac{H_1-F+2P}{S}+1                                                   
+					}                                                                          
+					\end{split}                                                                
+				\end{align*}
+				%}
+			\end{minipage}
+			              
+		\end{overlayarea}
+		        
+		\column{0.5\textwidth}<1->
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\item<1-> What does the stride S do?
+				\item<2-> It defines the intervals at which the filter is applied (here $S=2$)
+				\item<3-> Here, we are essentially skipping every 2nd pixel which will again result in an output which is of smaller dimensions
+				% \item<9-> For $S=3$
+				% \begin{align*}
+				%     W_2 &=\frac{W_1-F+2P}{S}+1\\
+				%         &= \frac{28 -3 + 2}{3} + 1 = 10
+				% \end{align*}
+				%  \begin{align*}
+				%     H_2 &=\frac{H_1-F+2P}{S}+1\\
+				%         &= \frac{28 -3 + 2}{3} + 1 = 10
+				%\end{align*}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module2/tikz_images/conv_3d_dim_formula.tex}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\justifying
+			\begin{itemize}
+				\justifying
+				\item<1-> Finally, coming to the depth of the output.
+				\item<2-> Each filter gives us one 2D output.
+				\item<3-> $K$ filters will give us $K$ such 2D outputs
+				\item<4-> We can think of the resulting output as $K\times W_2 \times H_2$
+				volume
+				\item<5-> Thus $D_2=K$
+				
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{\textwidth}
+		\centering
+		Let us do a few exercises
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module2/tikz_images/conv_3d_example_1.tex}
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\column{\textwidth}
+		\centering
+		Let us do a few exercises
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module2/tikz_images/conv_3d_example_2.tex}
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}

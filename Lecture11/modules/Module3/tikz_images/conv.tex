@@ -1,0 +1,60 @@
+        \begin{tikzpicture}[scale=1,transform shape]
+  \tikzset{
+    mstyle/.style={column sep=-\pgflinewidth,row sep=-\pgflinewidth,font=\footnotesize,},
+    window/.style={draw,very thick,blue},
+  }
+  \matrix(convmat)[matrix of nodes,ampersand replacement=\&,column sep=4\pgflinewidth,row sep=3\pgflinewidth,
+    nodes={draw,rectangle, minimum width=8mm, minimum height=8mm,font=\footnotesize,anchor=south}]{
+    b\& c \& d \\
+    e \& f \& g \\
+    h \& i \& j \\
+  };
+  \foreach \j/\k [count=\i] in {2/2,3/3}{
+    \onslide<\k>{
+    \draw[window](convmat-1-\i.north west)rectangle(convmat-2-\j.south east);
+  }}
+  \foreach \j/\k [count=\i] in {2/4,3/5}{
+    \onslide<\k>{
+    \draw[window](convmat-2-\i.north west)rectangle(convmat-3-\j.south east);
+  }}
+  \matrix(filterm)[draw,right of=convmat,node distance=8em,matrix of nodes,ampersand replacement=\&,column sep=4\pgflinewidth,row sep=3\pgflinewidth,
+    nodes={draw,rectangle, minimum width=8mm, minimum height=8mm,font=\footnotesize,anchor=south}]{
+    \textcolor{red}{w} \& \textcolor{blue}{x} \\
+    \textcolor{brown}{y} \& \textcolor{green}{z} \\
+  };
+  
+  \onslide<2>{
+  \matrix(result)[below left= 2em and -10em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+    nodes={draw,rectangle, minimum width=10mm, minimum height=10mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+    \textcolor{black}{$\ell$} \& \textcolor{white}{m}  \\
+    \textcolor{white}{n} \& \textcolor{white}{o}  \\  };
+  \node (text3) at ($(result) + (0,1.5)$) {\footnotesize \textsf{Output}};
+  }
+  \onslide<3>{
+  \matrix(result)[below left = 2em and -10em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+    nodes={draw,rectangle, minimum width=10mm, minimum height=10mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+       \textcolor{black}{$\ell$} \& \textcolor{black}{m}  \\
+    \textcolor{white}{n} \& \textcolor{white}{o}  \\  };
+  \node (text3) at ($(result) + (0,1.5)$) {\footnotesize \textsf{Output}};
+  }
+  \onslide<4>{
+  \matrix(result)[below left = 2em and -10em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+    nodes={draw,rectangle, minimum width=10mm, minimum height=10mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+    \textcolor{black}{$\ell$} \& \textcolor{black}{m}  \\
+    \textcolor{black}{n} \& \textcolor{white}{o}  \\ 
+  };
+  \node (text3) at ($(result) + (0,1.5)$) {\footnotesize \textsf{Output}};
+  }
+  \onslide<5>{
+  \matrix(result)[below left= 2em and -10em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+    nodes={draw,rectangle, minimum width=10mm, minimum height=10mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+    \textcolor{black}{$\ell$} \& \textcolor{black}{m}  \\
+     \textcolor{black}{n} \& \textcolor{black}{o}  \\   };
+   \node (text3) at ($(result) + (0,1.5)$) {\footnotesize \textsf{Output}}; }
+
+  
+  \node (text1) at ($(convmat) + (0,1.5)$){\footnotesize \textsf{Input}};
+  \node (text2) at ($(filterm) + (0,1.5)$){\footnotesize \textsf{Kernel}};
+  
+  %%%%%%%%%%%%%%%%%%%%%%%Draw arrows%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}

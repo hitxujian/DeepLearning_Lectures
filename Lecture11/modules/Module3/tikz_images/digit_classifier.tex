@@ -1,0 +1,82 @@
+\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+	\scriptsize
+	% % 16 nodes with labels (1 to 16)
+	\onslide<2->{
+	\foreach \i in {1,...,16}
+	{
+	
+	\pgfmathtruncatemacro{\label}{\i};
+	\node[square,draw=red!50,fill=orange!10,thick,minimum size=.2mm] (\label) at (-1*\i*0.5,-3) {};
+	}
+	% %Underbrace
+	\draw [
+	thick,
+	decoration={
+	brace,
+	raise=0.5cm
+	},
+	decorate
+	] (1) -- (16) 
+	node [pos=0.5,anchor=south,yshift=-1.1cm] {16}; }
+	
+	%%Grid
+	
+	\onslide<1->{\draw[step=0.25cm,gray,very thin] (-4.75,-5.5) grid (-3.75,-4.5);
+	\node[] at (-4.25,-5) {\Huge{2}};}
+	% % %
+	% % %  Layer 2
+	\onslide<4->{	\foreach \i in {17,...,28}
+	{
+	\pgfmathtruncatemacro{\x}{(\i-14)};
+	\pgfmathtruncatemacro{\label}{\i};
+	\node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (\label) at (-1*\x*0.5,-2) {};
+	}}
+	% % %
+	
+	% % % Layer 3
+	\onslide<5->{	\foreach \i in {29,...,36}
+	{
+		\pgfmathtruncatemacro{\x}{(\i-24)};
+		\pgfmathtruncatemacro{\label}{\i};
+		\node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (\label) at (-1*\x*0.5,-1) {};
+	}}
+	% % % 
+	\onslide<6->{	\path (-4.15,-0.9) -- (-4.15,0.9) node [red, font=\Huge, midway, sloped] {$\dots$};}
+	% % % Output Layer
+	\onslide<3->{
+		\foreach \i in {37,...,47}
+		{
+			\pgfmathtruncatemacro{\x}{(\i-35)};
+			\pgfmathtruncatemacro{\label}{\i};
+			\node[square,draw=green!50,fill=green!20,thick,minimum size=1mm] (\label) at (-1*\x*0.6,1) {};
+		}
+		% % %
+		\draw [
+		thick,
+		decoration={
+			brace,
+			mirror,
+			raise=0.5cm
+		},
+		decorate
+		] (37) -- (47) 
+		node [pos=0.5,anchor=north,yshift=1cm] {10 classes(digits)}; 
+	}
+	% %small circle h_11
+	\onslide<7->{	\node[draw,circle,minimum size=0.5cm,inner sep=0pt] (cir) at (-7,-2) {};
+	}
+	% % connections layer 1
+	\onslide<8->{	
+		\foreach \from in {1,...,16}
+		\foreach \to in {cir}
+		\draw [->,draw=black!50] (\from) -- (\to);}
+	
+	
+	\onslide<9->
+	{
+		\foreach \from in {17,...,28}
+		\foreach \to in {29,...,36}
+		\draw [->,draw=black!50] (\from) -- (\to);}
+	
+%\node[red,thick,dashed] (-7,-2) circle (0.3cm);
+\end{tikzpicture}

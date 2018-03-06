@@ -1,0 +1,195 @@
+\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+	%\begin{axis}[xlabel=x axis label,ylabel=y axis label]
+    
+	\onslide<1->{
+		\foreach \i in {1,...,9}
+		{
+              
+			\pgfmathtruncatemacro{\label}{\i};
+			\node[square,draw=red!50,fill=orange!10,thick,minimum size=.2mm] (\label) at (-1*\i*0.5,-3) {};
+		}
+		\node[square,draw=red!50,fill=orange!10,thick,minimum size=.2mm] (10) at (1,-3) {};
+		\path (1) -- node [red, font=\Huge, midway, sloped]{$\dots$} (10);
+		%\end{axis}
+         
+		\draw [
+			thick,
+			decoration={
+				brace,
+				mirror,
+				raise=0.5cm
+			},
+			decorate
+		] (9) -- (10)
+		node [pos=0.5,anchor=south,yshift=-1.1cm] {16};
+		%\end{tikzpicture}
+         
+		%\begin{tikzpicture}[square/.style={regular polygon,regular polygon sides=4}]
+		%% Grid 4
+		\begin{scope}[scale=2.5,transform shape]
+			\node[opacity=0.3] at (-1.17,-2.45) {\Huge{2}};
+		\end{scope}
+		\draw[step=0.5cm,gray,very thin] (-4,-7) grid (-2,-5);
+		\node[] at (-1.5,-6) {*};
+         
+		\draw[step=0.5cm,gray,very thin] (-1,-6.50) grid (0,-5.5) ;
+		\node[] at (0.5,-6) {=};
+		%   \node[] at (1,-5.5) {$h_{11}$};
+		\node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (1) at (1,-6) {};
+     
+		%% first row
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](A) at (-3.75,-5.25   ) {};
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](B) at (-3.75+0.5,-5.25   ) {};
+     
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](C) at (-3.75+2*0.5,-5.25    ) {};
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](D) at (-3.75+3*0.5,-5.25    ) {};
+     
+		%% second row
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](F) at (-3.75+0.5,-5.25-0.5   ) {};
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](E) at (-3.75,-5.25-0.5   ) {};
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](G) at (-3.75+2*0.5,-5.25-0.5    ) {};
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](H) at (-3.75+3*0.5,-5.25-0.5    ) {};
+     
+		%% 3rd row
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](J) at (-3.75+0.5,-5.25-2*0.5 ) {};
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](I) at (-3.75,-5.25-2*0.5 ) {};
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](K) at (-3.75+2*0.5,-5.25-2*0.5    ) {};
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](L) at (-3.75+3*0.5,-5.25-2*0.5    ) {};
+     
+		%% 4th row
+     
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](N) at (-3.75+0.5,-5.25-3*0.5 ) {};
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](M) at (-3.75,-5.25-3*0.5 ) {};
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](O) at (-3.75+3*0.5,-5.25-3*0.5    ) {};
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](P) at (-3.75+2*0.5,-5.25-3*0.5    ) {};
+     
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Ai) at (-0.75,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75+0.5,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75,-5.75-0.5    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75+0.5,-5.75-0.5    ) {};
+     
+	}
+
+
+
+
+	\onslide<3>{
+     
+		\renewcommand{\firstrowcolor}{red}
+		\renewcommand{\secondrowcolor}{black}
+		\renewcommand{\thirdrowcolor}{black}
+		\renewcommand{\fourrowcolor}{black}
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](A) at (-3.75,-5.25   ) {};
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](B) at (-3.75+0.5,-5.25   ) {};
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](F) at (-3.75+0.5,-5.25-0.5   ) {};
+		\node[circle,fill=\firstrowcolor,inner sep=0pt,minimum size=5.5pt](E) at (-3.75,-5.25-0.5   ) {};
+     
+		\node[] at (1,-5.5) {$h_{11}$};s
+     
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Ai) at (-0.75,-5.75    ) {};
+     
+		%% above animation
+     
+     
+	}
+
+	\onslide<3->{
+		\node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (11) at (-3.25,-1.5) {};
+     
+		\foreach \i in {9,8,5,4}
+		{
+			\draw [-,draw=black!50] (\i) -- (11);
+		}
+		\node[] at (-3.25,-1.1) {$h_{11}$};
+     
+     
+	}
+
+	\only<4>{
+     
+		\renewcommand{\firstrowcolor}{black}
+		\renewcommand{\secondrowcolor}{red}
+		\renewcommand{\thirdrowcolor}{black}
+		\renewcommand{\fourrowcolor}{black}
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](G) at (-3.75+2*0.5,-5.25-0.5    ) {};
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](H) at (-3.75+3*0.5,-5.25-0.5    ) {};
+     
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](C) at (-3.75+2*0.5,-5.25    ) {};
+		\node[circle,fill=\secondrowcolor,inner sep=0pt,minimum size=5.5pt](D) at (-3.75+3*0.5,-5.25    ) {};
+     
+		\node[] at (1,-5.5) {$h_{12}$};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Ai) at (-0.75,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75+0.5,-5.75    ) {};
+     
+		%% above animation
+     
+     
+     
+     
+		\node[] at (1,-5.5) {$h_{12}$};
+     
+     
+	}
+	\onslide<4->{
+		\node[] at (-2.25,-1.1) {$h_{12}$};
+		\node[square,draw=blue!50,fill=blue!10,thick,minimum size=1mm] (12) at (-2.25,-1.5) {};
+		\foreach \i in {7,6,3,2}
+		{
+			\draw [-,draw=black!50] (\i) -- (12);
+		}
+	}
+
+	\only<5>{
+     
+     
+		\renewcommand{\firstrowcolor}{black}
+		\renewcommand{\secondrowcolor}{black}
+		\renewcommand{\thirdrowcolor}{red}
+		\renewcommand{\fourrowcolor}{black}
+     
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](J) at (-3.75+0.5,-5.25-2*0.5 ) {};
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](I) at (-3.75,-5.25-2*0.5 ) {};
+     
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](N) at (-3.75+0.5,-5.25-3*0.5 ) {};
+		\node[circle,fill=\thirdrowcolor,inner sep=0pt,minimum size=5.5pt](M) at (-3.75,-5.25-3*0.5 ) {};
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Ai) at (-0.75,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75+0.5,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75,-5.75-0.5    ) {};
+		\node[] at (1,-5.5) {$h_{13}$};
+	}
+
+	\only<6->{
+     
+		\renewcommand{\firstrowcolor}{black}
+		\renewcommand{\secondrowcolor}{black}
+		\renewcommand{\thirdrowcolor}{black}
+		\renewcommand{\fourrowcolor}{red}
+     
+     
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](O) at (-3.75+3*0.5,-5.25-3*0.5    ) {};
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](P) at (-3.75+2*0.5,-5.25-3*0.5    ) {};
+     
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](K) at (-3.75+2*0.5,-5.25-2*0.5    ) {};
+		\node[circle,fill=\fourrowcolor,inner sep=0pt,minimum size=5.5pt](L) at (-3.75+3*0.5,-5.25-2*0.5    ) {};
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Ai) at (-0.75,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75+0.5,-5.75    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75,-5.75-0.5    ) {};
+     
+		\node[circle,fill=blue,inner sep=0pt,minimum size=5.5pt](Bi) at (-0.75+0.5,-5.75-0.5    ) {};
+     
+		\node[] at (1,-5.5) {$h_{14}$};
+	}
+	%% Grid 2
+
+\end{tikzpicture}

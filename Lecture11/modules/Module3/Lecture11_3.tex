@@ -1,0 +1,400 @@
+\begin{frame}
+	\myheading{Module 11.3 : Convolutional Neural Networks}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{columns}
+		
+		\column{\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{block}{Putting things into perspective}
+				\onslide<1->{
+					\begin{itemize}
+						\justifying
+						\item<1-> What is the connection between this operation (convolution) and neural networks?
+						\item<2-> We will try to understand this by considering the task of ``image classification''
+					\end{itemize}}
+			\end{block}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	
+	\begin{minipage}[t]{0.25\textwidth}
+		\input{modules/Module3/tikz_images/taj_mahal_raw_pixels.tex}
+	\end{minipage}
+	
+	\begin{minipage}[t]{0.25\textwidth}
+		\input{modules/Module3/tikz_images/taj_mahal_edge.tex}
+	\end{minipage}
+	
+	\begin{minipage}[t]{0.25\textwidth}
+		\input{modules/Module3/tikz_images/taj_mahal_sift_hog.tex}
+	\end{minipage}
+	
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{minipage}[t]{0.25\textwidth}
+			\input{modules/Module3/tikz_images/taj_mahal_detect_edges.tex}
+		\end{minipage}
+		
+		\begin{minipage}[t]{0.25\textwidth}
+			\input{modules/Module3/tikz_images/taj_mahal_conv_1.tex}
+		\end{minipage}
+		
+		\begin{minipage}[t]{\textwidth}
+			\onslide<1->{
+				\begin{itemize}
+					\justifying
+					\item \footnotesize{
+					            Instead of using handcrafted kernels such as edge detectors \textbf{can we learn meaningful kernels/filters in addition to learning the weights of the classifier?}
+					      }
+				\end{itemize}
+			}
+		\end{minipage}
+		
+	\end{overlayarea}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		
+		
+		\begin{minipage}[t]{0.25\textwidth}
+			\input{modules/Module3/tikz_images/taj_mahal_detect_edges_2.tex}
+		\end{minipage}
+		
+		\begin{minipage}[t]{0.25\textwidth}
+			\input{modules/Module3/tikz_images/taj_mahal_conv_2.tex}
+		\end{minipage}
+		
+		\begin{minipage}[t]{\textwidth}
+			\onslide<1->{
+				\vspace{-1.2em}
+				\begin{itemize}
+					\justifying
+					\item \footnotesize{\textbf{Even better:} Instead of using handcrafted kernels (such as edge detectors)\textbf{can we learn \textcolor{red}{multiple} meaningful kernels/filters in addition to learning the weights of the classifier?}}
+				\end{itemize}
+			}
+		\end{minipage}
+		
+	\end{overlayarea}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------------------------------------------------------------------------------------------------------------------------------------------------------------
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		
+		\begin{minipage}[t]{0.25\textwidth}
+			\vspace{3mm}
+			\input{modules/Module3/tikz_images/taj_mahal_conv_3.tex}
+		\end{minipage}
+		
+		\begin{minipage}[t]{\textwidth}
+			\vspace{6mm}
+			\small{
+				\begin{itemize}
+					\justifying
+					\item <1-> \textbf{Can we learn multiple \textcolor{red}{layers} of meaningful kernels/filters in addition to learning the weights of the classifier? }
+					\item <2-> Yes, we can ! 
+					\item <3-> Simply by treating these kernels as parameters and learning them in addition to the weights of the classifier (using back propagation)
+					\item <4-> Such a network is called a Convolutional Neural Network.
+				\end{itemize}
+			}
+			
+			    
+		\end{minipage}
+		
+	\end{overlayarea}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+	\begin{block}{}
+		\onslide<1-3>{
+			\begin{itemize}
+				\justifying
+				\item <1-> Okay, I get it that the idea is to learn the kernel/filters by just treating them as parameters of the classification
+				      model
+				      \item<2-> But how is this different from a regular feedforward neural network
+				      \item<3-> Let us see
+			\end{itemize}}
+	\end{block}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\input{modules/Module3/tikz_images/digit_classifier.tex}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			
+			\begin{itemize}
+				%\justifying
+				\setlength\itemsep{1em}
+				\item<10-> This is what a regular feed-forward neural network will look like
+				\item<11-> There are many dense connections here
+				\item<12-> For example all the 16 input neurons are contributing to the computation of $h_{11}$
+				\item<13-> Contrast this to what happens in the case of convolution
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{overprint}
+				\input{modules/Module3/tikz_images/cnn_sparse_conn.tex}
+			\end{overprint}
+			       
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\setlength\itemsep{1em}
+				\item<2-> Only a few local neurons participate in the computation of $h_{11}$
+				\item<3-> For example, only pixels 1, 2, 5, 6 contribute to $h_{11}$
+				\item<7-> The connections are much sparser
+				\item<8-> We are taking advantage of the structure of the image(interactions between neighboring pixels are more interesting)
+				\item<9-> This \textbf{sparse connectivity} reduces the number of parameters in the model
+			\end{itemize}
+		\end{column}
+		   
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		
+		\begin{column}{0.5\textwidth}
+			\onslide<3->{\begin{figure}
+				
+				\includegraphics[width=0.7\linewidth]{images/fig94.png}
+				\caption{}
+				\label{fig:fig94}
+				\end{figure}}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\setlength\itemsep{1em}
+				\item<1-> But is sparse connectivity really good thing ?
+				\item<2-> Aren't we losing information  (by losing interactions between some input pixels) 
+				\item<3-> Well, not really
+				\item<4-> The two highlighted neurons ($x_1$ \& $x_5$)$^*$\footnotetext{$^*$ Goodfellow-et-al-2016}  do not interact in $layer\ 1$
+				\item<5-> But they indirectly contribute to the computation of $g_{3}$ and hence interact indirectly
+			\end{itemize}
+		\end{column}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.6\textwidth}
+			\input{modules/Module3/tikz_images/cnn_weight_sharing.tex}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{itemize}
+				\justifying
+				\setlength\itemsep{1em}
+				\item<1-> Another characteristic of CNNs is \textbf{weight sharing}
+				\item<2-> Consider the following network
+				\item<4-> Do we want the kernel weights to be different for different portions of the image?
+				\item<5-> Imagine that we are trying to learn a kernel that detects edges
+				\item<6-> Shouldn't we be applying the same kernel at all the portions of the image?
+				                
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\input{modules/Module3/tikz_images/cnn_weight_sharing_2.tex}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\setlength\itemsep{1em}
+				\item<1-> In other words shouldn't the $orange$ and $pink$ kernels be the same 
+				\item<2-> Yes, indeed
+				\item<4-> This would make the job of learning easier(instead of trying to learn the same weights/kernels at different locations again and again)
+				\item<5-> But does that mean we can have only one kernel?
+				\item<6-> No, we can have many such kernels but the kernels will be shared by all locations in the image
+				\item<9-> This is called ``weight sharing''
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%\begin{frame}
+%    \begin{columns}
+%        \column{0.5\textwidth}
+%        \column{0.5\textwidth}
+%       \begin{overlayarea}{\textwidth}{\textheight}
+%           \begin{itemize}
+%               \justifying
+%               \setlength\itemsep{4em}
+%               \onslide<1->{\item Because of "sparse connectivity" and "parameter sharing", CNNs exhibit translation equivariance.}
+%               \onslide<2->{\item Even if the image is shifted right or left, the patterns will still be detected.}
+%           \end{itemize}
+%       \end{overlayarea}
+%   \end{columns}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\centering
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{block}{}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item So far, we have focused only on the convolution operation}
+				\onslide<2->{\item Let us see what a full convolutional neural network looks like}
+			\end{itemize}   
+		\end{block}
+	\end{overlayarea}
+\end{frame}
+
+%\begin{frame}
+%\begin{tikzpicture}
+%
+%\pgfmathsetmacro{\yfactor}{0.3}
+%\pgfmathsetmacro{\xfactor}{0.4}
+%
+%\draw [-,draw=green] (1,1) -- (1+\xfactor*0.5,1+\yfactor*0.5);
+%\draw [-,draw=blue] (-1,1) -- (1+\xfactor*0.5-2,1+\yfactor*0.5);
+%\draw [-,draw=blue] (1+\xfactor*0.5-2,1+\yfactor*0.5) -- (1+\xfactor*0.5,1+\yfactor*0.5);
+%\draw [-,draw=blue] (1+\xfactor*0.5,1+\yfactor*0.5) -- (1+\xfactor*0.5,1+\yfactor*0.5-2);
+%\draw [-,draw=blue] (1,1-2) -- (1+\xfactor*0.5,1+\yfactor*0.5-2);
+%% % square
+%\draw [-,draw=blue,name path = A] (-1,1) -- (1,1); % % x cahnge ->
+%\draw [-,draw=blue,name path = B] (1,1) -- (1,-1); % % y change   |
+%\draw [-,draw=blue,name path = C] (1,-1) -- (-1,-1); % % x change <-
+%\draw [-,draw=blue,name path = D] (-1,-1) -- (-1,1); % % y change  |
+%
+%
+%
+%
+%\end{tikzpicture}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\vbox{
+		\begin{minipage}[t][0.5\textheight][t]{\textwidth}
+			\centering
+			\input{modules/Module3/tikz_images/LENET1.tex}
+			
+		\end{minipage}
+		\vspace{100cm}
+		\begin{minipage}[t][0.5\textheight][t]{\textwidth}
+			\vspace{0.4in}
+			\begin{itemize}
+				\justifying
+				\item<2-> It has alternate convolution and pooling layers
+				\item<3-> What does a pooling layer do? 
+				\item<4-> Let us see
+			\end{itemize}
+		\end{minipage}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\input{modules/Module3/tikz_images/conv_max_pool.tex}	    
+	\begin{itemize}
+		\item<23-> Instead of max pooling we can also do average pooling
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{}
+		We will now see some case studies where convolution neural networks have been successful
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\Large{LeNet-5 for handwritten character recognition} 
+	\end{center}
+	\input{modules/Module3/tikz_images/lenet.tex}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{itemize}
+		\item How do we train a convolutional neural network ?
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\input{modules/Module3/tikz_images/conv.tex}
+		\vspace{-0.2in}
+		\begin{itemize}
+			\item <7-> We can thus train a convolution neural network using backpropagation by thinking of it as a feedforward neural network with sparse connections
+		\end{itemize}
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\input{modules/Module3/tikz_images/cnn_ff.tex}
+			\end{center}
+			\begin{center}
+				%\begin{block}{}
+				\begin{itemize}
+					\item <1-> A CNN can be implemented as a feedforward neural network
+					\item <2-> wherein only a few weights(in color) are active
+					\item <3-> the rest of the weights (in gray) are zero
+					      %\item <8-> we can thus train a convolution neural network using backpropagation by thinking of it as a feedforward neural network with sparse connections
+				\end{itemize}
+				%\end{block}
+			\end{center}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+

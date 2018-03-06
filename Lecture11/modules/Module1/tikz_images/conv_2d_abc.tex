@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+	\tikzset{
+		mstyle/.style={column sep=-\pgflinewidth,row sep=-\pgflinewidth,font=\footnotesize,},
+		window/.style={draw,very thick,blue},
+	}
+	\matrix(convmat)[matrix of nodes,ampersand replacement=\&,column sep=4\pgflinewidth,row sep=3\pgflinewidth,
+	nodes={draw,rectangle, minimum width=8mm, minimum height=8mm,font=\footnotesize,anchor=south}]{
+		a \& b \& c \& d \\
+		e \& f \& g \& h \\
+		i \& j \& k \& l \\
+	};
+	\foreach \j/\k [count=\i] in {2/8,3/9,4/10}{
+		\onslide<\k>{
+			\draw[window](convmat-1-\i.north west)rectangle(convmat-2-\j.south east);
+	}}
+	\foreach \j/\k [count=\i] in {2/11,3/12,4/13}{
+		\onslide<\k>{
+			\draw[window](convmat-2-\i.north west)rectangle(convmat-3-\j.south east);
+	}}
+\end{tikzpicture}

@@ -1,0 +1,125 @@
+\begin{tikzpicture}
+	\tikzset{
+		mstyle/.style={column sep=-\pgflinewidth,row sep=-\pgflinewidth,font=\footnotesize,},
+		window/.style={draw,very thick,blue},
+	}
+	\onslide<4->{
+		\matrix(convmat1)[matrix of nodes,ampersand replacement=\&,column sep=-\pgflinewidth,row sep=-\pgflinewidth,nodes in empty cells,
+		nodes={draw,rectangle, font=\tiny,minimum height=4mm,minimum width=4mm,anchor=south}]{
+			0\&  0\&  0\&  0\& 0\& 0\& 0\& 0\&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  0\&  0\&  0\&  0\& 0 \&  0\& 0\&0\\
+		};
+		
+		
+
+		% \foreach \i/\j [count=\xi from 0] in {1/3,2/4,3/5,4/6,5/7,6/8,7/9,8/10,9/11,10/12,11/13,12/14,13/15,14/16,15/17,16/18,17/19,18/20,19/21,20/22,21/23,22/24,23/25,24/26,25/27,26/28,27/29}{
+		%   \foreach \k/\m [count=\yi from \xi*27+1] in {1/3,2/4,3/5,4/6,5/7,6/8,7/9,8/10,9/11,10/12,11/13,12/14,13/15,14/16,15/17,16/18,17/19,18/20,19/21,20/22,21/23,22/24,23/25,24/26,25/27,26/28,27/29}{
+		%    \onslide<\yi>{
+		%    \draw[window](convmat1-\i-\k.north west)rectangle(convmat1-\j-\m.south east);
+
+		%    }
+		%   }
+		% }
+		
+		\foreach \i/\j [count=\xi from 4] in {1/3,2/4,3/5,4/6,5/7}{
+			\onslide<\xi>{
+				\draw[window](convmat1-1-\i.north west)rectangle(convmat1-3-\j.south east);
+			}
+
+		}              
+    
+		\matrix(convmat2)[right of=convmat1,node distance=10em,matrix of nodes,ampersand replacement=\&,column sep=-\pgflinewidth,row sep=-\pgflinewidth,nodes in empty cells,
+		nodes={draw,rectangle, font=\footnotesize,anchor=south,minimum height=4mm,minimum width=4mm}]{
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+		};
+		
+		
+
+		% \foreach \i [count=\xi from 0] in {1,...,28}{
+		%             \foreach \j [count=\yi from \xi*28+1] in {1,...,28}{
+		% \onslide<\yi->{
+		%             \draw[fill=black] (convmat2-\i-\j)circle(1.5pt);
+		% }
+		%             }
+		%             }
+		\foreach \i/\j [count=\xi from 4] in {1/1,2/2,3/3,4/4,5/5}{
+			\onslide<\xi->{
+				\draw[fill=black] (convmat2-1-\j)circle(1.5pt);
+			}
+			
+		}
+		
+		\node(text)[left of = convmat2,node distance=4em, anchor=east]{\footnotesize \textsf{=}};   
+	}%end of 2-6
+	\only<9->{
+		\matrix(convmat1)[matrix of nodes,ampersand replacement=\&,column sep=-\pgflinewidth,row sep=-\pgflinewidth,nodes in empty cells,
+		nodes={draw,rectangle, font=\tiny,minimum height=4mm,minimum width=4mm,anchor=south}]{
+			0\&  0\&  0\&  0\& 0\& 0\& 0\& 0\&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  \&  \&  \&  \&  \& \& \&0\\ 
+			0\&  0\&  0\&  0\&  0\& 0 \&  0\& 0\&0\\
+		};
+		
+		
+
+		% \foreach \i/\j [count=\xi from 0] in {1/3,2/4,3/5,4/6,5/7,6/8,7/9,8/10,9/11,10/12,11/13,12/14,13/15,14/16,15/17,16/18,17/19,18/20,19/21,20/22,21/23,22/24,23/25,24/26,25/27,26/28,27/29}{
+		%   \foreach \k/\m [count=\yi from \xi*27+1] in {1/3,2/4,3/5,4/6,5/7,6/8,7/9,8/10,9/11,10/12,11/13,12/14,13/15,14/16,15/17,16/18,17/19,18/20,19/21,20/22,21/23,22/24,23/25,24/26,25/27,26/28,27/29}{
+		%    \onslide<\yi>{
+		%    \draw[window](convmat1-\i-\k.north west)rectangle(convmat1-\j-\m.south east);
+
+		%    }
+		%   }
+		% }
+		\draw[window](convmat1-7-7.north west)rectangle(convmat1-9-9.south east);
+		
+    
+    
+		\matrix(convmat2)[right of=convmat1,node distance=10em,matrix of nodes,ampersand replacement=\&,column sep=-\pgflinewidth,row sep=-\pgflinewidth,nodes in empty cells,
+		nodes={draw,rectangle, font=\footnotesize,anchor=south,minimum height=4mm,minimum width=4mm}]{
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+			\&  \&  \&  \&  \&  \& \\ 
+		};
+		
+		
+
+		% \foreach \i [count=\xi from 0] in {1,...,28}{
+		%             \foreach \j [count=\yi from \xi*28+1] in {1,...,28}{
+		%   \onslide<\yi->{
+		%             \draw[fill=black] (convmat2-\i-\j)circle(1.5pt);
+		%   }
+		%             }
+		%             }
+		\foreach \i  in {1,...,7}{
+			\foreach \j  in {1,...,7}{
+
+				\draw[fill=black] (convmat2-\i-\j)circle(1.5pt);
+
+			}
+		}
+		\node(text)[left of = convmat2,node distance=4em, anchor=east]{\footnotesize \textsf{=}};   
+	}%end of 7
+	
+\end{tikzpicture}

@@ -1,0 +1,20 @@
+\begin{tikzpicture}[overlay,remember picture]
+	\matrix (mat) at (3,-3) [matrix of nodes,ampersand replacement=\&,
+	nodes={draw,rectangle, minimum width=4mm, minimum height=4mm},nodes in empty cells]
+	{
+		\&  \&  \& \& \\
+		\&  \&  \& \& \\
+		\&  \&  \& \& \\
+		\&  \&  \&  \& \\
+		\&  \&  \&  \& \\
+	};
+	\matrix (mat1) at (2.16,-2.16)  [matrix of nodes,ampersand replacement=\&,
+	nodes={draw=blue,rectangle, minimum width=4mm, minimum height=4mm,dashed},nodes in empty cells]
+	{
+		\&  \&  \\
+		\&  \&  \\
+		\&  \&  \\
+	};
+	\node (text) [above of = mat, node distance = 6 em, anchor=east]{\footnotesize \textsf{pixel of interest}};
+	\draw[<-, in=-90, out=90] (2.16,-2.16) to (text.south);
+\end{tikzpicture}

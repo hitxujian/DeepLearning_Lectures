@@ -1,0 +1,78 @@
+\begin{tikzpicture}
+	\tikzset{
+		mstyle/.style={column sep=-\pgflinewidth,row sep=-\pgflinewidth,font=\footnotesize,},
+		window/.style={draw,very thick,blue},
+	}
+	\matrix(convmat)[matrix of nodes,ampersand replacement=\&,column sep=4\pgflinewidth,row sep=3\pgflinewidth,
+	nodes={draw,rectangle, minimum width=8mm, minimum height=8mm,font=\footnotesize,anchor=south}]{
+		a \& b \& c \& d \\
+		e \& f \& g \& h \\
+		i \& j \& k \& $\ell$ \\
+	};
+	\foreach \j/\k [count=\i] in {2/2,3/3,4/4}{
+		\onslide<\k>{
+			\draw[window](convmat-1-\i.north west)rectangle(convmat-2-\j.south east);
+	}}
+	\foreach \j/\k [count=\i] in {2/5,3/6,4/7}{
+		\onslide<\k>{
+			\draw[window](convmat-2-\i.north west)rectangle(convmat-3-\j.south east);
+	}}
+	\matrix(filterm)[draw,right of=convmat,node distance=8em,matrix of nodes,ampersand replacement=\&,column sep=4\pgflinewidth,row sep=3\pgflinewidth,
+	nodes={draw,rectangle, minimum width=8mm, minimum height=8mm,font=\footnotesize,anchor=south}]{
+		w \& x \\
+		y \& z \\
+	};
+
+	\onslide<2>{
+		\matrix(result)[below left= 2em and -20em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+		nodes={draw,rectangle, minimum width=23mm, minimum height=14mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+			aw+bx+ey+fz \&  \&  \\
+			\&  \& \\  };
+		\node (text3) [above of = result, node distance = 4.5 em, anchor=east]{\footnotesize \textsf{Output}};
+	}
+	\onslide<3>{
+		\matrix(result)[below left= 2em and -20em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+		nodes={draw,rectangle, minimum width=23mm, minimum height=14mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+			aw+bx+ey+fz \& bw+cx+fy+gz \&  \\
+			\&  \& \\
+		};
+		\node (text3) [above of = result, node distance = 4.5 em, anchor=east]{\footnotesize \textsf{Output}};
+	}
+	\onslide<4>{
+		\matrix(result)[below left= 2em and -20em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+		nodes={draw,rectangle, minimum width=23mm, minimum height=14mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+			aw+bx+ey+fz \& bw+cx+fy+gz \& cw+dx+gy+hz \\
+			\&  \& \\
+		};
+		\node (text3) [above of = result, node distance = 4.5 em, anchor=east]{\footnotesize \textsf{Output}};
+	}
+	\onslide<5>{
+		\matrix(result)[below left= 2em and -20em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+		nodes={draw,rectangle, minimum width=23mm, minimum height=14mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+			aw+bx+ey+fz \& bw+cx+fy+gz \& cw+dx+gy+hz \\
+			ew+fx+iy+jz \&  \& \\
+		};
+		\node (text3) [above of = result, node distance = 4.5 em, anchor=east]{\footnotesize \textsf{Output}};
+	}
+	\onslide<6>{
+		\matrix(result)[below left= 2em and -20em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+		nodes={draw,rectangle, minimum width=23mm, minimum height=14mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+			aw+bx+ey+fz \& bw+cx+fy+gz \& cw+dx+gy+hz \\
+			ew+fx+iy+jz \& fw+gx+jy+kz \& \\
+		};
+		\node (text3) [above of = result, node distance = 4.5 em, anchor=east]{\footnotesize \textsf{Output}};
+	}
+	\onslide<7>{
+		\matrix(result)[below left= 2em and -20em of convmat,node distance=11em,matrix of nodes,ampersand replacement=\&,column sep=6\pgflinewidth,row sep=6\pgflinewidth,
+		nodes={draw,rectangle, minimum width=23mm, minimum height=14mm,font=\footnotesize,anchor=south},nodes in empty cells]{
+			aw+bx+ey+fz \& bw+cx+fy+gz \& cw+dx+gy+hz \\
+			ew+fx+iy+jz \& fw+gx+jy+kz \& gw+hx+ky+$\ell$z\\
+		};
+		\node (text3) [above of = result, node distance = 4.5 em, anchor=east]{\footnotesize \textsf{Output}};
+	}
+
+	\node (text1) [above of = convmat, node distance = 4 em, anchor=east]{\footnotesize \textsf{Input}};
+	\node (text2) [above of = filterm, node distance = 3 em, anchor=east]{\footnotesize \textsf{Kernel}};
+
+	%%%%%%%%%%%%%%%%%%%%%%%Draw arrows%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{tikzpicture}

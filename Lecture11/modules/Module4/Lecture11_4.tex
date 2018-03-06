@@ -1,0 +1,129 @@
+\begin{frame}
+	\myheading{Module 11.4 : CNNs (success stories on ImageNet)}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{ImageNet Success Stories(roadmap for rest of the talk)}
+		\onslide<1-3>{
+			\begin{itemize}
+				\justifying
+				\item <1-> AlexNet
+				\item <2-> ZFNet
+				\item <3-> VGGNet
+			\end{itemize}
+		}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	%\centering
+	\begin{flushleft}
+		\input{modules/Module4/tikz_images/cnn_timeline.tex}
+	\end{flushleft}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{ImageNet Success Stories(roadmap for rest of the talk)}
+		\onslide<1>{
+			\begin{itemize}
+				\justifying
+				\item <1-> \textcolor{red}{AlexNet}
+				\item <1-> ZFNet
+				\item <1-> VGGNet
+				      
+			\end{itemize}
+		}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\input{modules/Module4/tikz_images/alex_net.tex}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.3\textwidth}
+		\begin{itemize}
+			\justifying
+			\item <1-> Let us look at the connections in the fully connected layers in more detail
+			\item <2-> We will first stretch out the last conv or maxpool layer to make it a 1d vector
+			\item <3-> This 1d vector is then densely connected to other layers just as in a regular feedforward neural network 
+		\end{itemize}
+		
+		\column{0.7\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module4/tikz_images/full_conn.tex}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{ImageNet Success Stories(roadmap for rest of the talk)}
+		\onslide<1>{
+			\begin{itemize}
+				\justifying
+				\item <1-> \textcolor{red}{AlexNet}
+				\item <1-> \textcolor{red}{ZFNet}
+				\item <1-> VGGNet
+				      
+			\end{itemize}
+		}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\input{modules/Module4/tikz_images/zf_net.tex}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{block}{ImageNet Success Stories(roadmap for rest of the talk)}
+		\onslide<1>{
+			\begin{itemize}
+				\justifying
+				\item <1-> AlexNet
+				\item <1-> ZFNet
+				\item <1-> \textcolor{red}{VGGNet}
+				      
+			\end{itemize}
+		}
+	\end{block}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\noindent
+	 \input{modules/Module4/tikz_images/vgg_net.tex}      
+	       
+	\begin{itemize}
+		\justifying
+		\item<24-> Kernel size is $3 \times 3$ throughout
+		\item<25-> Total parameters in non FC layers = $\sim16M$
+		\item<26->
+		\footnotesize{
+			           
+			\onslide<26->{Total Parameters in FC layers =} \onslide<27->{$\ (512 \times 7 \times 7 \times 4096)$}\onslide<28->{ + $(4096 \times 4096)$} \onslide<29->{ + $(4096 \times 1024)$}\onslide<30->{ = $\sim122M$}
+		}
+		
+		\item<31-> Most parameters are in the first FC layer ($\sim$ 102M)
+		       
+	\end{itemize}
+\end{frame}
+

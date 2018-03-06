@@ -1,0 +1,150 @@
+\begin{tikzpicture}[scale=0.8,transform shape]
+
+\tikzstyle{input_neuron}=[circle,draw=red!50,fill=red!10,thick,minimum size=3mm]
+\tikzstyle{hidden_neuron}=[circle,draw=blue!50,fill=cyan!10,thick,minimum size=3mm]
+\tikzstyle{output_neuron}=[circle,draw=green!50,fill=green!10,thick,minimum size=4mm]
+\tikzstyle{bias_neuron}=[circle,draw=red!50,fill=red!10,thick,minimum size=2mm]
+\tikzstyle{bias_hidden_neuron}=[circle,draw=blue!50,fill=cyan!10,thick,minimum size=2mm]
+\tikzstyle{bias_hidden_neuron_hi}=[circle,draw=orange,fill=cyan!10,thick,minimum size=2mm]
+\tikzstyle{bias_hidden_neuron_hi_old}=[circle,draw=yellow,fill=cyan!10,thick,minimum size=2mm]
+\tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=6mm]
+
+\node [input_neuron] (B) at (-4.0,1){\tiny{b}};
+\node [input_neuron] (C) at (-3,1){\tiny{c}};
+\node [input_neuron] (D) at (-2,1){\tiny{d}};
+\node [input_neuron] (E) at (-1,1){\tiny{e}};
+\node [input_neuron] (F) at (0,1){\tiny{f}};
+\node [input_neuron] (G) at (1,1){\tiny{g}};
+\node [input_neuron] (H) at (2,1){\tiny{h}};
+\node [input_neuron] (I) at (3,1){\tiny{i}};
+\node [input_neuron] (J) at (4,1){\tiny{j}};
+
+\node [hidden_neuron] (O) at (2,3){\tiny{o}};
+\node [hidden_neuron] (N) at (1,3){\tiny{n}};
+\node [hidden_neuron] (M) at (-1,3){\tiny{m}};
+\node [hidden_neuron] (L) at (-2,3){\tiny{l}};
+
+\node [output_neuron] (T) at (0,4){};
+\onslide<1->{
+	
+	\draw [->] (B) -- (L);
+	\draw [->] (C) -- (L);
+	\draw [->,color=black] (D) -- (L);
+	\draw [->] (E) -- (L);
+	\draw [->,color=black] (F) -- (L);
+	\draw [->,color=black] (G) -- (L);
+	\draw [->,color=black] (H) -- (L);
+	\draw [->,color=black] (I) -- (L);
+	\draw [->,color=black] (J) -- (L);
+
+
+
+	
+	\draw [->] ($(B) + (0,-0.5)$) -- (B);
+	\draw [->] ($(C) + (0,-0.5)$) -- (C);
+	\draw [->] ($(D) + (0,-0.5)$) -- (D);
+	\draw [->] ($(E) + (0,-0.5)$) -- (E);
+	\draw [->] ($(F) + (0,-0.5)$) -- (F);
+	\draw [->] ($(G) + (0,-0.5)$) -- (G);
+	\draw [->] ($(H) + (0,-0.5)$) -- (H);
+	\draw [->] ($(I) + (0,-0.5)$) -- (I);
+	\draw [->] ($(J) + (0,-0.5)$) -- (J);
+
+	\draw [->,color=black] (B) -- (M);
+	\draw [->] (C) -- (M);
+	\draw [->] (D) -- (M);
+	\draw [->,color=black] (E) -- (M);
+	\draw [->] (F) -- (M);
+	\draw [->] (G) -- (M);
+	\draw [->,color=black] (H) -- (M);
+	\draw [->,color=black] (I) -- (M);
+	\draw [->,color=black] (J) -- (M);
+
+
+	\draw [->,color=black] (B) -- (N);
+	\draw [->,color=black] (C) -- (N);
+	\draw [->,color=black] (D) -- (N);
+	\draw [->] (E) -- (N);
+	\draw [->] (F) -- (N);
+	\draw [->,color=black] (G) -- (N);
+	\draw [->] (H) -- (N);
+	\draw [->] (I) -- (N);
+	\draw [->,color=black] (J) -- (N);
+
+
+	\draw [->,color=black] (B) -- (O);
+	\draw [->,color=black] (C) -- (O);
+	\draw [->,color=black] (D) -- (O);
+	\draw [->,color=black] (E) -- (O);
+	\draw [->] (F) -- (O);
+	\draw [->] (G) -- (O);
+	\draw [->,color=black] (H) -- (O);
+	\draw [->] (I) -- (O);
+	\draw [->] (J) -- (O);
+
+	\draw [->] (L) -- (T);
+	\draw [->] (M) -- (T);
+	\draw [->] (N) -- (T);
+	\draw [->] (O) -- (T);
+
+}
+\onslide<2->{
+	
+	\draw [->,color=red, line width=1.5] (B) -- (L);
+	\draw [->,color=blue, line width=1.5] (C) -- (L);
+	\draw [->,color=black!10] (D) -- (L);
+	\draw [->,color=brown, line width=1.5] (E) -- (L);
+	\draw [->,color=green, line width=1.5] (F) -- (L);
+	\draw [->,color=black!10] (G) -- (L);
+	\draw [->,color=black!10] (H) -- (L);
+	\draw [->,color=black!10] (I) -- (L);
+	\draw [->,color=black!10] (J) -- (L);
+
+
+}
+
+\onslide<3->{
+	
+	\draw [->,color=red, line width=1.5] (C) -- (M);
+	\draw [->,color=blue, line width=1.5] (D) -- (M);
+	\draw [->,color=black!10] (B) -- (M);
+	\draw [->,color=brown, line width=1.5] (F) -- (M);
+	\draw [->,color=green, line width=1.5] (G) -- (M);
+	\draw [->,color=black!10] (E) -- (M);
+	\draw [->,color=black!10] (H) -- (M);
+	\draw [->,color=black!10] (I) -- (M);
+	\draw [->,color=black!10] (J) -- (M);
+
+
+}
+
+\onslide<4->{
+	
+	\draw [->,color=red, line width=1.5] (E) -- (N);
+	\draw [->,color=blue, line width=1.5] (F) -- (N);
+	\draw [->,color=black!10] (B) -- (N);
+	\draw [->,color=brown, line width=1.5] (H) -- (N);
+	\draw [->,color=green, line width=1.5] (I) -- (N);
+	\draw [->,color=black!10] (C) -- (N);
+	\draw [->,color=black!10] (D) -- (N);
+	\draw [->,color=black!10] (I) -- (N);
+	\draw [->,color=black!10] (G) -- (N);
+
+
+}
+
+\onslide<5->{
+	
+	\draw [->,color=red, line width=1.5] (F) -- (O);
+	\draw [->,color=blue, line width=1.5] (I) -- (O);
+	\draw [->,color=black!10] (B) -- (O);
+	\draw [->,color=brown, line width=1.5] (G) -- (O);
+	\draw [->,color=green, line width=1.5] (J) -- (O);
+	\draw [->,color=black!10] (C) -- (O);
+	\draw [->,color=black!10] (D) -- (O);
+	\draw [->,color=black!10] (E) -- (O);
+	\draw [->,color=black!10] (H) -- (O);
+
+
+}
+\end{tikzpicture}
