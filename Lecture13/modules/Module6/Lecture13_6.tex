@@ -1,0 +1,152 @@
+\begin{frame}
+	\myheading{Module 13.6 : Optimization over images}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module6/tikz_images/input3.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\begin{itemize}
+				\justifying
+				\item<1-> Suppose we want to create an image which looks like a dumbell (or an ostrich, or a car, or just anything)
+				\item<2-> In other words we want to create an image such that if we pass it through a trained ConvNet
+				it should maximize the probability of the class dumbell
+				\item<3-> We could pose this as an optimization problem w.r.t $I\ (i_0,\ i_1,\ \dots,\ i_{mn})$ 
+				\onslide<4->{
+					\begin{align*}
+						\arg       & \max_{I}(S_c(I) - \lambda \Omega(I))         \\
+						S_c(I)=       & \text{ Score for class C before softmax}     \\
+						\Omega(I)= & \text{ Some regularizer to ensure that  } \\
+						           & \text{$I$ looks like an image}                   
+					\end{align*}}
+							
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module6/tikz_images/input3.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> We can essentially think of the image as a collection of parameters
+				\item<2->Keep the weights of trained convolutional neural network fixed
+				\item<3->Now adjust these parameters(image pixels) so that the score of a class is maximized
+				\item<4->Let us see how
+			\end{itemize}
+		\end{overlayarea}
+				
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\input{modules/Module6/tikz_images/as_4.tex}
+		\begin{enumerate}
+			\justifying
+			\onslide<1->{\item Start with a zero image}
+			\onslide<2->{\item Set the score vector to be $[0, 0, \ldots 1, 0, 0]$}
+			\onslide<3->{\item Compute the gradient $\frac{\partial S_c(I)}{\partial i_k}$ }
+			\onslide<4->{\item Now update the pixel
+				$i_k = i_k - \eta \frac{\partial S_c(I)}{\partial i_k}$
+			}
+			\onslide<5->{\item Now again do a forward pass through the network}
+			\onslide<6->{\item Go to step 2}
+		\end{enumerate}
+	\end{overlayarea}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\centering
+		\input{modules/Module6/tikz_images/AlexNet_Slide4.tex}
+				
+		\begin{itemize}
+			\justifying
+			\onslide<1->{\item Lets look at the images obtained for maximizing some class scores}
+		\end{itemize}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.7\textwidth}
+			\input{modules/Module6/tikz_images/AlexNet_Slide4_2.tex}
+			\column{0.3\textwidth}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item We can actually do this for any arbitrary neuron in the convnet}
+			\end{itemize}
+		\end{columns}
+		\textbf{Repeat:}
+		\begin{itemize}
+			\justifying
+			\onslide<1->{\item Feed an image through the network}
+			\onslide<2->{\item Set activation in layer of interest to all zero, except for a neuron of interest}
+			\onslide<3->{\item Backprop to image}
+			\onslide<4->{\item $i_k = i_k - \eta \frac{\partial A(I)}{\partial i_k} , \text{\quad A(I) is the activation of the }i^{th}\text{ neuron in some layer}$}
+		\end{itemize}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			
+			\onslide<1->{
+				\begin{figure}
+					\includegraphics[scale=0.2,trim={2cm 20cm 66cm 0cm},clip=true]{images/4_4_1.jpg}
+					\caption{Layer-8}
+				\end{figure}
+			}
+			\vspace{-1cm}
+			\onslide<5->{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.2,trim={2cm 0cm 66cm 20cm},clip=true]{images/4_4_1.jpg}
+					\caption{Layer-7}					
+				\end{figure}
+			}
+			
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Let us look at some ``updated'' images which excite certain neurons in some layer}
+				\onslide<2->{\item Starting with different initializations instead of using a zero image we can get different insights}
+				\onslide<3->{\item Each of these 4 images are obtained by focusing on one neuron in layer 8 and starting with different initializations}
+				\item<4-> We can do a similar analysis with other layers
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+	
+\end{frame}

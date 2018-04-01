@@ -1,0 +1,72 @@
+\begin{frame}
+	\myheading{Module 13.5 : Guided Backpropagation}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+			
+\begin{frame}
+	\begin{columns}
+		
+		
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		
+		\input{modules/Module5/tikz_images/fwd_pass.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item We feed an input to the CNN and do a forward pass}
+				\onslide<2->{\item We consider one neuron in some feature map at some layer}
+				\onslide<3->{\item We are interested in finding the influence of the input on this neuron}
+				\onslide<4->{\item We retain this neuron and set all other neurons in the layer to zero}
+			\end{itemize}
+			
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.5\textwidth}
+			\input{modules/Module5/tikz_images/back_pass.tex}
+				
+			\column{0.5\textwidth}
+			
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item We now backpropogate all the way to the inputs}
+				\onslide<2->{\item Recall that during forward pass relu activation allows only positive values to pass \& clamps $-ve$ values to zero}
+				\onslide<3->{\item Similarly during backward pass no gradient passes through the dead relu neurons}
+				\onslide<4->{\item In guided back propagation any -ve gradients flowing from the upper layer are also set to 0}
+			\end{itemize}
+					
+		\end{columns}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.5\textwidth}
+			\begin{center}
+				\input{modules/Module5/tikz_images/guide_bp.tex}
+			\end{center}
+			
+			\column{0.5\textwidth}
+			
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item \textbf{Intuition:} Neglect all the negative influences (gradients) and focus only on the positive influences (gradients)}				
+				\onslide<2->{\item This gives a better picture of the true influence of the input}			
+			\end{itemize}
+					
+		\end{columns}
+	\end{overlayarea}
+\end{frame}

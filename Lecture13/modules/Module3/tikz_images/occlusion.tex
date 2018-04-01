@@ -1,0 +1,22 @@
+\begin{tikzpicture}[scale=0.75, transform shape]
+	\tikzstyle{input_neuron}=[circle,draw=red!50,fill=red!10,thick,minimum size=2mm]
+	\tikzstyle{hidden_neuron}=[circle,draw=blue!50,fill=cyan!10,thick,minimum size=2mm]
+	\tikzstyle{output_neuron}=[circle,draw=green!50,fill=green!10,thick,minimum size=2mm]
+	\tikzstyle{cpy_neuron}=[circle,draw=red!50,fill=red!50,thick,minimum size=2mm]
+	\tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=2mm]
+	\node [text width = 7mm] at (10.9, 1.85){\footnotesize Softmax};
+	\node [text width = 25mm] at (13,2.6){\footnotesize pomeranian};
+	\node [text width = 25mm] at (15,2.6){\footnotesize wheel};
+	\node [text width = 25mm] at (18,2.6){\footnotesize hound};
+	\node [text width = 25mm] at (17,2.6){\footnotesize ...};
+	\node [text width = 25mm] at (16,2.6){};
+	\node [output_neuron] (neuron51) at (13,1.85) {};
+	\node [output_neuron] (neuron51) at (17,1.85) {};
+		
+	\node [output_neuron] (neuron52) at (14,1.85)  {};
+	\node [output_neuron] (neuron53) at (15,1.85)  {};
+	\node [output_neuron] (neuron54) at (16,1.85)  {};
+	\node [output_neuron] (neuron54) at (18,1.85)  {};
+	\draw[red!100,thick,solid] (12.5,1.5) rectangle (18.5,2.2);
+	\node [cpy_neuron] (neuron01) at (13,1.85) {};
+\end{tikzpicture}

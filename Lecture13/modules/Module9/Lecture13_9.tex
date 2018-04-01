@@ -1,0 +1,140 @@
+\begin{frame}
+	\myheading{Module 13.9 : Deep Art}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module9/tikz_images/deep_art.tex}
+	\end{center}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}	
+		\vspace{0.15cm}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module9/tikz_images/content_cnn.tex}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}	
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{
+				\item To design a network which can do this, we first define two quantities
+				}	
+				\onslide<2->{
+				\item \textbf{Content Targets} : The activations of all layers for the given content image
+				}	
+				\onslide<3->{
+				\item Ideally, we would want the new image to be such that \onslide<4->{it's activations are also close to those of the original content image }
+				}	
+				\onslide<5->{
+				\item Let $\vec{p},\vec{x}$ be the activations of the content image and the new image (to be generated) respectively
+				\begin{align*}
+				     	\mathscr{L}_{content}(\vec{p},\vec{x}) = \sum_{ijk}^{}(\vec{p}_{ijk} - \vec{x}_{ijk})^2 
+				\end{align*}
+				}		
+			\end{itemize}
+			
+		\end{overlayarea}
+	\end{columns}			
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}	
+		\hspace{-0.5cm}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module9/tikz_images/style_cnn.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}	
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{
+					\item Next we would want the style of the generated image to be the same as the style image				}	
+				\onslide<2->{
+		     		\item How do we capture the style of the image?
+		     	}	
+		     	\onslide<3->{
+		     		\item Turns out that if $V \in \mathbb{R}^{64 \times (256 \times 256)}$ is the activation at a layer then $V^{T}V \in$ $\mathbb{R}^{64\times64}$ captures the style of the image
+	     		}	
+	     		\onslide<4->{
+	     			\item The deeper layers capture more of this style information
+	   			}						
+	   		\end{itemize}
+	     					
+    	\end{overlayarea}
+	\end{columns}			
+	     	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+	\column{0.5\textwidth}	
+	\vspace{1cm}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\input{modules/Module9/tikz_images/content_cnn_2.tex}
+	\end{overlayarea}
+	\column{0.5\textwidth}	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{itemize}
+			\justifying
+			\onslide<1->{
+				\item To ensure that the style of the new image captured by layer $\ell$ matches the style of the style image, we can use the following objective function :
+				}	
+				\onslide<2->{
+					\begin{align*} 
+						E_{\ell} & = \sum_{ij}{}(G^{\ell}_j - A^{\ell}_{ij})^2 
+					\end{align*}
+					where $G^\ell$ and 
+					$A^\ell$ are the style gram matrices computed at layer $\ell$ for the style image and new image respectively.
+										
+				}	
+				\onslide<3->{
+					\vspace{-2em}
+					\begin{align*}
+						\mathscr{L}_{style}(\vec{a},\bar{x})=\sum_{\ell=0}^{L}w_{\ell} E_{\ell} 
+					\end{align*}
+				}	
+								
+								
+			\end{itemize}
+						
+		\end{overlayarea}
+	\end{columns}			
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}  
+	\hspace{-1cm} 
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\input{modules/Module9/tikz_images/content_style_cnn.tex}
+	\end{overlayarea}
+	\vspace{-1.7cm}
+	\begin{itemize}
+		\justifying
+		\onslide<3->{
+			\item The total loss is given by :-
+			\begin{align*}
+		      	\mathscr{L}_{total} (\vec{p},\vec{a},\vec{x}) = \alpha \mathscr{L}_{content}(\vec{p},\vec{x}) + \beta \mathscr{L}_{style}(\vec{a},\vec{x}) 
+			\end{align*}
+			              		
+		}   
+			        	
+			        	
+	\end{itemize}   
+\end{frame}   

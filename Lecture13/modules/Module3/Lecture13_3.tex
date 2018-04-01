@@ -1,0 +1,64 @@
+\begin{frame}
+	\myheading{Module 13.3 : Occlusion experiments}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			% \only<1>{
+			% 	\begin{figure}[hbtp]
+			% 	\includegraphics[scale=0.15,trim={0cm 0cm 72cm 0cm}, clip=true]{img/s1_4_1.pdf}
+			% 	\end{figure}
+			% 	}
+			% \only<2>{
+			% 	\begin{figure}[hbtp]
+			% 	\includegraphics[scale=0.15,trim={17.5cm 0cm 55cm 0cm}, clip=true]{img/s1_4_1.pdf}
+			% 	\end{figure}
+			% 	}
+			\only<1->{
+				\input{modules/Module3/tikz_images/occlusion.tex}
+			}
+			\vspace{-0.5cm}
+			\only<1>{
+				\begin{figure}
+					\includegraphics[scale=0.1,trim={0cm 31.5cm 72cm 0cm}, clip=true]{images/s1_4_1.pdf}
+				\end{figure}
+			}
+					
+			\only<2>{
+				\begin{figure}
+					\includegraphics[scale=0.1,trim={0cm 31.5cm 55cm 0cm}, clip=true]{images/s1_4_1.pdf}
+				\end{figure}
+			}
+			
+			\only<3>{
+				
+				\begin{figure}
+					\includegraphics[scale=0.1,trim={0cm 15.5cm 55cm 0cm}, clip=true]{images/s1_4_1.pdf}
+				\end{figure}
+			}
+			
+			\only<4>{
+				
+				\begin{figure}
+					\includegraphics[scale=0.1,trim={0cm 0cm 55cm 0cm}, clip=true]{images/s1_4_1.pdf}
+				\end{figure}
+			}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> Typically we are interested in understanding which portions of the image are responsible 
+				for maximizing the probability of a certain class
+				\item<2-> We could occlude (gray out) different patches in the image and see the effect on the predicted probability of the correct class
+				\item<3->For example this heat map shows that occluding the face of the dog causes a maximum drop in the prediction probability
+				\item<4-> Similar observations are made for other images
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+	
+\end{frame}

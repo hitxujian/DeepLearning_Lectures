@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+	\node at (+0.0,-0.0) (cat)  { \includegraphics[scale=0.17,trim={0 3.9cm 0 3cm},clip=true,height=3cm]{images/CatImage.jpg}};
+	\draw[step=0.5cm,color=gray] (-1.5,-1.5) grid (1.5,1.5);
+	\foreach \y in {+0.75,+0.25,-0.25,-0.75}
+	\foreach \x in {-0.75,-0.25,0.25,0.75}
+	\node at (\x,\y) {$\cdot$};
+			
+	\foreach \x in {-0.25,0.25,0.75,1.25}
+	\node at (\x,1.25) {$\cdot$};
+	
+	\foreach \x in {-1.25,-0.75,-0.25,0.25,0.75}
+	\node at (\x,-1.25) {$\cdot$};
+	
+	\foreach \y in {-0.75,-0.25,0.25,0.75}{
+		\node at (1.25,\y) {$\cdot$};
+		\node at (-1.25,\y) {$\cdot$};
+	}
+	\node at (-1.25,+1.25) {\footnotesize{$\frac{\partial h_i}{\partial x_0}$}};
+	\node at (-0.75,+1.25) {\footnotesize{$\frac{\partial h_i}{\partial x_1}$}};
+	\node at (+1.25,-1.25) {\footnotesize{$\frac{\partial h_i}{\partial x_{mn}}$}};
+			
+\end{tikzpicture}

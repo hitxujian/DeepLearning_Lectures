@@ -1,0 +1,330 @@
+\begin{frame}
+	\myheading{Module 13.8 : Deep Dream}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}	
+		
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{tikzpicture}
+				
+				\onslide<1->{
+					\node[inner sep=0pt] (B) at (-4.7,12.5){
+					\input{modules/Module8/tikz_images/as3.tex}
+					};
+				}	
+				
+				\onslide<2->{\node[inner sep=0pt] (A) at (-5,8.5) {\includegraphics[scale=0.35]{images/sky.JPG}};
+					
+					\draw[thick] (-8.5,9) -- (-7.9,9);
+					\draw[thick] (-8.5,9) -- (-8.5,11);
+					\draw[->] (-8.5,11) -- (-8.15,11);
+				}
+				\onslide<3->{	
+					\draw[blue] (-5.35,11.8) ellipse (0.05 and 0.09);		
+					\draw[blue] (-5.35,12.25) ellipse (0.05 and 0.09);		
+					\draw[blue] (-5.2,12.3) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.4,12.5) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.3,12.7) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.1,13.1) ellipse (0.05 and 0.09);				
+					\draw[blue] (-4.9,13.4) ellipse (0.05 and 0.09);				
+					\draw[blue] (-4.85,13.65) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.22,12.95) ellipse (0.05 and 0.09);	
+					\draw[blue] (-5.16,12.65) ellipse (0.05 and 0.09);	
+									
+					\draw[blue] (-5.25,12) ellipse (0.05 and 0.09);		
+					\draw[blue] (-5.05,12.25) ellipse (0.05 and 0.09);			
+					\draw[blue] (-5,12.5) ellipse (0.05 and 0.09);			
+					\draw[blue] (-5,12.8) ellipse (0.05 and 0.09);			
+					\draw[blue] (-4.9,13) ellipse (0.05 and 0.09);			
+					\draw[blue] (-4.8,12.6) ellipse (0.05 and 0.09);			
+					%	\draw[blue] (-2.35,9.85) ellipse (0.05 and 0.09);			
+				}
+			\end{tikzpicture}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}	
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{
+					\item Suppose instead of starting with a blank (zero) image we start with an actual image.
+					}	
+				\onslide<3->{
+					\item We focus on some layer and check the activations of the neurons 
+					}	
+				\onslide<4->{
+					\item We want to change the image so that these neurons fire even more
+					}	
+								
+			\end{itemize}
+			
+		\end{overlayarea}
+	\end{columns}			
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{columns}
+	\column{0.5\textwidth}	
+	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{tikzpicture}
+				
+			\onslide<1->{
+				\node[inner sep=0pt] (B) at (-4.7,12.5){
+				\input{modules/Module8/tikz_images/as3.tex}
+				};
+			}	
+				
+			\onslide<1->{\node[inner sep=0pt] (A) at (-5,8.5) {\includegraphics[scale=0.35]{images/sky.JPG}};
+						
+				\draw[thick] (-8.5,9) -- (-7.9,9);
+				\draw[thick] (-8.5,9) -- (-8.5,11);
+				\draw[->] (-8.5,11) -- (-8.15,11);
+			}
+			\onslide<1->{	
+				\draw[blue] (-5.35,11.8) ellipse (0.05 and 0.09);		
+				\draw[blue] (-5.35,12.25) ellipse (0.05 and 0.09);		
+				\draw[blue] (-5.2,12.3) ellipse (0.05 and 0.09);				
+				\draw[blue] (-5.4,12.5) ellipse (0.05 and 0.09);				
+				\draw[blue] (-5.3,12.7) ellipse (0.05 and 0.09);				
+				\draw[blue] (-5.1,13.1) ellipse (0.05 and 0.09);				
+				\draw[blue] (-4.9,13.4) ellipse (0.05 and 0.09);				
+				\draw[blue] (-4.85,13.65) ellipse (0.05 and 0.09);				
+				\draw[blue] (-5.22,12.95) ellipse (0.05 and 0.09);	
+				\draw[blue] (-5.16,12.65) ellipse (0.05 and 0.09);	
+						
+				\draw[blue] (-5.25,12) ellipse (0.05 and 0.09);		
+				\draw[blue] (-5.05,12.25) ellipse (0.05 and 0.09);			
+				\draw[blue] (-5,12.5) ellipse (0.05 and 0.09);			
+				\draw[blue] (-5,12.8) ellipse (0.05 and 0.09);			
+				\draw[blue] (-4.9,13) ellipse (0.05 and 0.09);			
+				\draw[blue] (-4.8,12.6) ellipse (0.05 and 0.09);			
+				
+			}
+			\onslide<3->{
+				\draw[draw=blue,fill=cyan!20] (-5,12.8) ellipse (0.05 and 0.09);	
+				\node at (-4.3,13.8) {$h_{ij}$};		
+				\draw[->] (-4.9,12.8) -- (-4.4,13.7);
+			}
+		\end{tikzpicture}
+	\end{overlayarea}
+	\column{0.5\textwidth}	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{itemize}
+			\justifying
+			\onslide<1->{
+				\item How would we achieve this? %(boost activations of neurons)
+			}	
+			\onslide<2->{
+				\item Suppose we want to boost the activation $h_{ij}$ (some neuron in some layer)
+			}	
+			\onslide<3->{
+				\item We can formulate this as the following optimization problem
+			}	
+			\onslide<4->{
+				\begin{align*}
+					\max_{I} \mathscr{L}(I)   \\
+					\mathscr{L}(I) = h^2_{ij} 
+				\end{align*}
+			}
+			\vspace{-0.3cm}
+			\onslide<5->{
+				\item Consider a pixel $i_{mn}$ in the image 
+						\begin{align*}
+				      	\frac{\partial \mathscr{L}(I)}{\partial i_{mn}} = \frac{\partial \mathscr{L}(I)}{\partial h_{ij}}\frac{\partial h_{ij}}{\partial i_{mn}} 
+					\end{align*}
+			}
+											
+			\end{itemize}
+						
+		\end{overlayarea}
+	\end{columns}			
+					
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+							
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}	
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{tikzpicture}
+					
+				\onslide<1->{
+					\node[inner sep=0pt] (B) at (-4.7,12.5){
+						\input{modules/Module8/tikz_images/as3.tex}
+					};
+				}	
+					
+				\onslide<1->{\node[inner sep=0pt] (A) at (-5,8.5) {\includegraphics[scale=0.35]{images/sky.JPG}};
+							
+					\draw[thick] (-8.5,9) -- (-7.9,9);
+					\draw[thick] (-8.5,9) -- (-8.5,11);
+					\draw[->] (-8.5,11) -- (-8.15,11);
+				}
+				\onslide<1->{	
+					\draw[blue] (-5.35,11.8) ellipse (0.05 and 0.09);		
+					\draw[blue] (-5.35,12.25) ellipse (0.05 and 0.09);		
+					\draw[blue] (-5.2,12.3) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.4,12.5) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.3,12.7) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.1,13.1) ellipse (0.05 and 0.09);				
+					\draw[blue] (-4.9,13.4) ellipse (0.05 and 0.09);				
+					\draw[blue] (-4.85,13.65) ellipse (0.05 and 0.09);				
+					\draw[blue] (-5.22,12.95) ellipse (0.05 and 0.09);	
+					\draw[blue] (-5.16,12.65) ellipse (0.05 and 0.09);	
+							
+					\draw[blue] (-5.25,12) ellipse (0.05 and 0.09);		
+					\draw[blue] (-5.05,12.25) ellipse (0.05 and 0.09);			
+					\draw[blue] (-5,12.5) ellipse (0.05 and 0.09);			
+					\draw[blue] (-5,12.8) ellipse (0.05 and 0.09);			
+					\draw[blue] (-4.9,13) ellipse (0.05 and 0.09);			
+					\draw[blue] (-4.8,12.6) ellipse (0.05 and 0.09);			
+					\onslide<2->{	\draw[draw=blue,fill=cyan!50] (-5,12.8) ellipse (0.05 and 0.09);	
+						\node at (-4.3,13.9) {$h_{ij}$};		
+						\draw[->]  (-4.4,13.7) --  (-4.9,12.8);
+					}	
+				}
+				\onslide<2->{
+					\draw[draw=blue,fill=cyan!20] (-5,12.8) ellipse (0.05 and 0.09);	
+						
+				}
+			\end{tikzpicture}
+		\end{overlayarea}
+		\column{0.5\textwidth}	
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{
+					\item Once the image is updated $\Big(i_{mn} = i_{mn} + \frac{\partial \mathscr{L}(I)}{\partial i_{mn}}\Big)$ we feed it back to the network
+				}	
+				\onslide<2->{
+					\item This time the target neurons should fire even more (because we have precisely modified the image to achieve this)
+				}	
+				\onslide<3->{
+					\item Doing this iteratively would make the image more and more like the patterns that cause the neuron to fire
+				}	
+				\onslide<4->{
+					\item Let us run this algorithm
+				}	
+								
+								
+			\end{itemize}
+						
+		\end{overlayarea}
+	\end{columns}			
+		
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\foreach \x in {0,...,99}
+	{
+		\only<\x>{
+			\centering
+			\includegraphics[scale=0.4]{images/Sky-Frames/0_\x.jpg}
+		}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\foreach \x in {0,...,99}
+	{
+		\only<\x>{
+			\centering
+			\includegraphics[scale=0.4]{images/Monsoon-Frames/0_\x.jpg}
+		}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\foreach \x in {0,...,99}
+	{
+		\only<\x>{
+			\centering
+			\includegraphics[scale=0.33]{images/Leonardo-frames/0_\x.jpg}
+		}
+	}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{columns}
+	\column{0.45\textwidth}	
+	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{tikzpicture}
+				
+			\onslide<1->{
+				\node[inner sep=0pt] (B) at (-4.7,12.5){
+					\input{modules/Module8/tikz_images/as3.tex}
+				};}	
+				
+			\onslide<1->{\node[inner sep=0pt] (A) at (-5,8.5) {\includegraphics[scale=0.35]{images/sky.JPG}};
+						
+				\draw[thick] (-8.5,9) -- (-7.9,9);
+				\draw[thick] (-8.5,9) -- (-8.5,11);
+				\draw[->] (-8.5,11) -- (-8.15,11);
+			}
+			\onslide<1->{	
+				\draw[draw=blue,fill=myblue1] (-5.35,11.8) ellipse (0.05 and 0.09);		
+				\draw[draw=blue,fill=myblue2] (-5.35,12.25) ellipse (0.05 and 0.09);		
+				\draw[draw=blue,fill=myblue3] (-5.2,12.3) ellipse (0.05 and 0.09);				
+				\draw[draw=blue,fill=myblue4] (-5.4,12.5) ellipse (0.05 and 0.09);				
+				\draw[draw=blue,fill=myblue1] (-5.3,12.7) ellipse (0.05 and 0.09);				
+				\draw[draw=blue,fill=myblue2] (-5.1,13.1) ellipse (0.05 and 0.09);				
+				\draw[draw=blue,fill=myblue3] (-4.9,13.4) ellipse (0.05 and 0.09);				
+				\draw[draw=blue,fill=myblue4] (-4.85,13.65) ellipse (0.05 and 0.09);			
+				\draw[draw=blue,fill=myblue1] (-5.22,12.95) ellipse (0.05 and 0.09);	
+				\draw[draw=blue,fill=myblue2] (-5.16,12.65) ellipse (0.05 and 0.09);	
+						
+				\draw[draw=blue,fill=myblue3] (-5.25,12) ellipse (0.05 and 0.09);		
+				\draw[draw=blue,fill=myblue4] (-5.05,12.25) ellipse (0.05 and 0.09);			
+				\draw[draw=blue,fill=myblue1] (-5,12.5) ellipse (0.05 and 0.09);			
+				\draw[draw=blue,fill=myblue2] (-5,12.8) ellipse (0.05 and 0.09);			
+				\draw[draw=blue,fill=myblue3] (-4.9,13) ellipse (0.05 and 0.09);			
+				\draw[draw=blue,fill=myblue4] (-4.8,12.6) ellipse (0.05 and 0.09);			
+						
+			}
+				
+		\end{tikzpicture}
+	\end{overlayarea}
+	
+			
+			
+	\column{0.55\textwidth}	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{itemize}
+			\justifying
+			\onslide<1->{
+				\item So what exactly is happening here?	
+			}	
+			\onslide<2->{
+				\item The network has been trained to detect certain patterns (dogs, cat, birds etc.) which appear frequently in the ImageNet data
+			}	
+			\onslide<3->{
+				\item It starts seeing these patterns even when they hardly exist
+			}	
+			\onslide<4->{
+				\item \it{If a cloud looks a little bit like a bird, the network will make it look more like a bird. This in turn will make the network recognize the bird even more strongly on the next pass and so forth, until a highly detailed bird appears seemingly out of nowhere. - Google$^*$\footnotetext{$^*$\url{research.googleblog.com/2015/06/inceptionism-}\\ \url{going-deeper-into-neural.html}}}}	
+			      				
+			      				
+		\end{itemize}
+					
+	\end{overlayarea}
+	\end{columns}			
+		
+\end{frame}

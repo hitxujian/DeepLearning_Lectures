@@ -1,0 +1,209 @@
+\begin{frame}
+	\myheading{Module 13.7 : Creating images from embeddings}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module7/tikz_images/AlexNet_Slide4_4.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item We could think of the fc7 layer as some kind of an embedding for the image}
+				\onslide<2->{\item \textbf{Question: }Given this embedding can we reconstruct the image?}
+				\onslide<3->{\item We can pose this as an optimization problem}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module7/tikz_images/AlexNet_Slide4_4.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Find an image such that }
+				\onslide<2->{\item Its embedding is similar to a given embedding}
+				\onslide<3->{\item It looks natural (some prior regularization)}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module7/tikz_images/AlexNet_Slide4_4.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item $\phi_0: $Embedding of an image of interest}
+				\onslide<2->{\item $X: $Random image (say zero image)}
+				\onslide<3->{\item Repeat
+					\begin{itemize}
+						\justifying
+						\onslide<4->{\item Forward pass using $X$ and compute $\phi(x).$}
+						\onslide<5->{\item Compute 
+							\begin{align*}
+								\mathscr{L}(i) = ||\phi(x) - \phi_{0} ||^2 + \lambda ||\phi(x) ||_6^6 
+							\end{align*}
+						}
+						\onslide<6->{\item  $i_k = i_k - \eta \frac{\mathscr{L}(i)}{\partial i_k} $}
+					\end{itemize}								
+				}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.5\textwidth}
+			\begin{figure}[hbtp]
+				\includegraphics[scale=0.5]{images/monkey/l01-orig.jpg}
+				\caption{Original Image}
+			\end{figure}
+			\column{0.5\textwidth}
+			\only<1>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l1-recon.jpg}
+					\caption{Conv-1}
+				\end{figure}
+			}
+			\only<2>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l2-recon.jpg}
+					\caption{Relu-1}
+				\end{figure}
+			}
+			\only<3>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l3-recon.jpg}
+					\caption{Mpool-1}
+				\end{figure}
+			}
+			\only<4>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l4-recon.jpg}
+					\caption{Norm-1}
+				\end{figure}
+			}
+			\only<5>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l5-recon.jpg}
+					\caption{Conv-2}
+				\end{figure}
+			}
+			\only<6>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l6-recon.jpg}
+					\caption{Relu-2}
+				\end{figure}
+			}
+			\only<7>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l7-recon.jpg}
+					\caption{Mpool-2}
+				\end{figure}
+			}
+			\only<8>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l8-recon.jpg}
+					\caption{Norm-2}
+				\end{figure}
+			}
+			\only<9>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l9-recon.jpg}
+					\caption{Conv-3}
+				\end{figure}
+			}
+			\only<10>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l10-recon.jpg}
+					\caption{Relu-3}
+				\end{figure}
+			}
+			\only<11>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l11-recon.jpg}
+					\caption{Conv-4}
+				\end{figure}
+			}
+			\only<12>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l12-recon.jpg}
+					\caption{Relu-4}
+				\end{figure}
+			}
+			\only<13>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l13-recon.jpg}
+					\caption{Conv-5}
+				\end{figure}
+			}
+			\only<14>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l14-recon.jpg}
+					\caption{Relu-5}
+				\end{figure}
+			}
+			\only<15>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l15-recon.jpg}
+					\caption{Mpool-5}
+				\end{figure}
+			}
+			\only<16>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l16-recon.jpg}
+					\caption{FC-6}
+				\end{figure}
+			}
+			\only<17>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l17-recon.jpg}
+					\caption{Relu-6}
+				\end{figure}
+			}
+			\only<18>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l18-recon.jpg}
+					\caption{FC-7}
+				\end{figure}
+			}
+			\only<19>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l19-recon.jpg}
+					\caption{Relu-7}
+				\end{figure}
+			}
+			\only<20>{
+				\begin{figure}[hbtp]
+					\includegraphics[scale=0.5]{images/monkey/l20-recon.jpg}
+					\caption{FC-8}
+				\end{figure}
+			}
+		\end{columns}
+	\end{overlayarea}
+\end{frame}

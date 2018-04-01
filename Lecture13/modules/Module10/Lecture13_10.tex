@@ -1,0 +1,257 @@
+\begin{frame}
+	\myheading{Module 13.10 : Fooling Deep Convolution Neural Networks}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}	
+	\vspace{1cm}
+	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{block}{}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{
+					\item Turns out that using this idea of optimizing over the input, we can also ``fool" ConvNets
+					}	
+					\onslide<2->{ 
+						\item Let us see how
+					}			
+			\end{itemize}
+		\end{block}		
+	\end{overlayarea}		
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+            \hspace{-0.8cm}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        %\include{temp}
+
+     \begin{tikzpicture}
+     \onslide<1->{\node[inner sep=0pt] (A) at (-4.8,4.8) {\includegraphics[scale=0.15]{images/bus.png}};
+     	%	\node at (-5,3.8){\small Content Image};
+     }
+     
+    \onslide<1->{\node[inner sep=0pt] (B) at (-1.1,4.8) {\input{modules/Module10/tikz_images/as3_12.tex}};
+     	\draw [->,thick] (-4.1,4.8) -- (-3.7,4.8);
+     }
+     
+         \onslide<2->{
+         	\node[inner sep=0pt] (A) at (2.1,4.8) {\includegraphics[scale=0.15]{images/classification.PNG}};
+   	     	\draw [->,thick] (1.5,4.8) -- (2,4.8);
+   	     	\node at (2.8,5.6) {\tiny ostrich};
+   	     	\node at (2.8,5.2) {\vdots};
+   	     	\node at (2.8,4.6) {\tiny bus};
+   	     	\node at (2.8,4.3) {\vdots};
+         	}
+     \end{tikzpicture}
+        
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<1->{
+        \begin{itemize}
+        	\justifying
+            \item<1-> Suppose we feed in an image to a Convnet.
+            \item<2-> Now instead of maximizing the log-likelihood of the correct class (bus) we set the objective to maximize some incorrect class (say, ostrich)
+            \item<3-> Turns out that with minimal changes to the image (using backprop) we can soon convince the Convnet that this is an ostrich.
+     	    \item<4-> Let us see some examples
+        \end{itemize}
+    }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \vspace{0.5cm}
+        \begin{overlayarea}{\textwidth}{\textheight}
+    
+		\begin{tikzpicture}
+		
+		\onslide<1->{
+		\node[inner sep=0pt] (A) at (-1,8)
+		     {\includegraphics[scale = 0.4]{images/1}};
+		     %\node at (-2,2.5) {correct};
+		     %\node at (0,2.5) {+distort};
+		     %\node at (2,2.5) {ostrich};
+		     }
+		     
+		\onslide<2->{
+		\node[inner sep=0pt] (A) at (-1,6)
+		     {\includegraphics[scale = 0.4]{images/2}};
+		     }
+		     
+		\onslide<3->{
+		\node[inner sep=0pt] (A) at (-1,4)
+		     {\includegraphics[scale = 0.4]{images/3}};
+		     }
+		     
+		     \onslide<4->{
+		\node[inner sep=0pt] (A) at (4,8)
+		     {\includegraphics[scale = 0.4]{images/4}};
+		     }
+		     %\node at (4,2.5) {correct};
+		     %\node at (6,2.5) {+distort};
+		     %\node at (8,2.5) {ostrich};
+		     
+		   \onslide<5->{
+		\node[inner sep=0pt] (A) at (4,6)
+		     {\includegraphics[scale = 0.4]{images/5}};
+		     }
+		     
+		     \onslide<6->{
+		\node[inner sep=0pt] (A) at (4,4)
+		     {\includegraphics[scale = 0.4]{images/6}};
+		     }
+		\end{tikzpicture}
+	\vspace{0.5cm}
+    \footnotetext{$^*$Intriguing properties of neural networks, Szegedy et al., 2013}    
+    \end{overlayarea}
+    \column{0.35\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{0.5cm}
+        \hspace{0.2cm}
+    \only<1->{
+        \begin{itemize}
+        	\justifying
+            \item<1-> Notice that the changes are so minimal that the two images are indistinguishable to humans
+            \item<2-> But the ConvNet thinks that the third image obtained by adding the first image to the second image is an ostrich 
+        \end{itemize}
+    }
+    \end{overlayarea}
+  \end{columns}
+  \vspace{-2cm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{0.5cm}
+\begin{tikzpicture}
+
+\onslide<1->{
+\node[inner sep=0pt] (A) at (-1,8)
+     {\includegraphics[scale = 0.4]{images/2_1}};
+     }
+     
+\onslide<2->{
+\node[inner sep=0pt] (A) at (1,8)
+     {\includegraphics[scale = 0.4]{images/2_2}};
+     }
+     
+\onslide<3->{
+\node[inner sep=0pt] (A) at (3,8)
+     {\includegraphics[scale = 0.4]{images/2_3}};
+     }
+     
+     \onslide<4->{
+\node[inner sep=0pt] (A) at (5,8)
+     {\includegraphics[scale = 0.4]{images/2_4}};
+     }
+     
+   \onslide<5->{
+\node[inner sep=0pt] (A) at (-1,5)
+     {\includegraphics[scale = 0.4]{images/2_5}};
+     }
+     
+     \onslide<6->{
+\node[inner sep=0pt] (A) at (1,5)
+     {\includegraphics[scale = 0.4]{images/2_6}};
+     }
+     
+     \onslide<7->{
+\node[inner sep=0pt] (A) at (3,5)
+     {\includegraphics[scale = 0.4]{images/2_7}};
+     }
+     
+     \onslide<8->{
+\node[inner sep=0pt] (A) at (5,5)
+     {\includegraphics[scale = 0.4]{images/2_8}};
+     }
+     
+\end{tikzpicture}
+		\vspace{0.5cm}
+        \footnotetext{$^*$Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images
+        Nguyen, Yosinski, Clune, 2014}
+    \end{overlayarea}
+
+    \column{0.4\textwidth}
+        \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{0.5cm}
+    \only<1->{
+        \begin{itemize}
+        	\justifying
+            \item<1-> We can also do this starting with random images and then optimizing them to predict some class.
+            \item<2-> In all these cases the classifier is $99.6\%$ confident of the class
+            \item<9-> Let us see an intuitive explanation of why this happens
+        \end{itemize}
+    }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \vspace{0.5cm}
+\begin{tikzpicture}
+
+\onslide<1->{
+\node[inner sep=0pt] (A) at (0,7)
+     {\includegraphics[scale = 0.4]{images/3_1}};
+}
+\onslide<6->{     
+	\draw[->] (0.1,8.25) -- (2.3,10);
+     \node[inner sep=0pt] (A) at (3.5,10)
+     {\includegraphics[scale = 0.2]{images/cheetah.jpeg}};
+     
+    }
+\onslide<7->{    
+	\draw[fill = black] (0.9,7.8) circle (0.07);
+}     
+\onslide<7->{     
+	\draw[->] (1,7.8) -- (2.5,8);
+	\node[inner sep=0pt] (A) at (3.5,8)
+	{\includegraphics[scale = 0.3]{images/2_2}};
+	
+}
+
+\end{tikzpicture}
+        
+    \end{overlayarea}
+
+    \column{0.5\textwidth}
+    \begin{overlayarea}{\textwidth}{\textheight}
+    \only<1->{
+        \begin{itemize}
+        	\justifying
+            \item<1-> Images are extremely high dimensional objects $(\mathcal{R}^{227\times227})$ 
+            \item<2-> There are many many many points in this high dimensional space
+     	    \item<3-> Of these only a few are images (of which we see some during training)
+            \item<4-> Using these training images we fit some decision boundaries
+            \item<5-> While doing so we also end up taking decisions about the  many many unseen points in this high dimensional space (Notice the large green and red regions which do not contain any training points)
+        \end{itemize}
+    }
+    \end{overlayarea}
+  \end{columns}
+\end{frame}
+
+
+
+

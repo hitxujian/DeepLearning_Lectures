@@ -1,0 +1,80 @@
+\begin{frame}
+	\myheading{Module 13.1 : Visualizing patches which maximally activate a neuron}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\input{modules/Module1/tikz_images/cnn_back_track.tex}
+			\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Consider some neurons in a given layer of a CNN}
+				\onslide<2->{\item We can feed in images to this CNN and identify the images which cause these neurons to fire}
+				\onslide<3->{\item We can then trace back to the patch in the image which causes these neurons to fire}
+				\onslide<6->{\item Let us look at the result of one of such experiment conducted by Grishick et al., 2014}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}			
+	\begin{itemize}
+		\justifying
+		\onslide<1->{\item They consider 6 neurons in the pool5 layer and find the image patches which cause these neurons to fire}
+		\only<1>{\item One neuron fires for people faces}
+		\only<2>{\item Another neuron fires for dog faces}
+		\only<3>{\item Another neuron fires for flowers}
+		\only<4>{\item Another neuron fires for numbers}
+		\only<5>{\item Another neuron fires for houses}
+		\only<6>{\item Another neuron fires for shiny surfaces}
+		
+	\end{itemize}
+	
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\only<1>{
+			\begin{figure}
+				\includegraphics[scale=0.25, trim={0 18.5cm 0 0 }, clip]{images/patch.png}
+			\end{figure}
+		}
+				
+		\only<2>{
+			\begin{figure}
+				\includegraphics[trim={0 15.5cm, 0 0 }, clip, scale=0.25]{images/patch.png}
+			\end{figure}
+		}
+				
+		\only<3>{
+			\begin{figure}
+				\includegraphics[scale=0.25, trim={0 12cm 0 0 }, clip]{images/patch.png}
+			\end{figure}
+		}
+				
+		\only<4>{
+			\begin{figure}
+				\includegraphics[scale=0.25, trim={0 9cm 0 0 }, clip]{images/patch.png}
+			\end{figure}
+		}
+				
+		\only<5>{
+			\begin{figure}
+				\includegraphics[scale=0.25, trim={0 6cm 0 0 }, clip]{images/patch.png}
+			\end{figure}
+		}
+				
+		\only<6>{
+			\begin{figure}
+				\includegraphics[scale=0.25, trim={0 3cm 0 0 }, clip]{images/patch.png}
+			\end{figure}
+		}
+	\end{overlayarea}	
+\end{frame}

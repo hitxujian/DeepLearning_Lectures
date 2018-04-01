@@ -1,0 +1,95 @@
+\begin{frame}
+	\myheading{Module 13.2 : Visualizing filters of a CNN
+	\textbf{}}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-3>{
+				\begin{figure}
+					\begin{center}
+						\input{modules/Module2/tikz_images/ae-approach.tex}
+					\end{center}
+					%\vspace{-1.5cm}
+				\end{figure}
+				
+			}
+			\footnotesize{
+				\begin{block}{}
+					\begin{align*}
+						\underset{x}{\max} \hspace{0.1in} & \{w^Tx\}                        \\
+						s.t.\hspace{0.1in}  ||x||^{2}     & = x^{T}x = 1                    \\
+						\text{Solution:}\hspace{0.1in}  x & = \frac{w_{1}}{\sqrt{w_1^Tw_1}} 
+					\end{align*}
+				\end{block}}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Recall that we had done something similar while discussing autoencoders}
+				\onslide<2->{\item We are interested in finding an input which maximally excites a neuron}
+				\onslide<3->{\item Turns out that the input which will maximally activate a neuron is $\frac{W}{\parallel W \parallel}$}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{overprint}
+				\input{modules/Module2/tikz_images/cnn_sparse_conn.tex}
+			\end{overprint}
+			       
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\setlength\itemsep{1em}
+				\item<1-> Now recall that we can think of a CNN also as a feed-forward network with sparse connections and weight sharing
+				\item<2-> Once again, we are interested in knowing what kind of inputs will cause a given neuron to fire 
+				\item<3-> The solution would be the same $(\frac{W}{\parallel W \parallel})$ where $W$ is the filter($2\times 2$, in this case)
+				\item<4-> We can thus think of these filters as pattern detectors
+			\end{itemize}
+		\end{column}
+		   
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\includegraphics[scale=0.15]{images/kfilter.png}
+			\end{figure}
+			\footnotesize{
+				\begin{block}{}
+					\begin{align*}
+						\underset{x}{\max} \hspace{0.1in} & \{w^Tx\}                        \\
+						s.t.\hspace{0.1in}  ||x||^{2}     & = x^{T}x = 1                    \\
+						\text{Solution:}\hspace{0.1in}  x & = \frac{w_{1}}{\sqrt{w_1^Tw_1}} 
+					\end{align*}
+				\end{block}
+			}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item We can simply plot the $K \times K$ weights (filters) as images \& visualize them as patterns}
+				\onslide<2->{\item The filters essentially detect these patterns (by causing the neurons to maximally fire)}
+				\onslide<3->{\item This is only interpretable for the filters in the first convolution layer \onslide<4->{(Why?)}}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
