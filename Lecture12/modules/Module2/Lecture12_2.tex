@@ -1,0 +1,310 @@
+\begin{frame}
+	\myheading{Module 12.2 : RCNN model for object detection}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/rp_flow.tex}
+	\end{center}
+	
+	\begin{columns}
+		\column{0.4\textwidth}
+		\vspace{-1cm}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<2>{
+				\begin{figure}[H]
+					\centering
+					\includegraphics[scale= 0.6]{images/CNN2_1_first.JPG}
+				\end{figure}}
+		    \only<3->{
+   				\begin{figure}[H]
+   					\centering
+   					\includegraphics[scale= 0.6]{images/CNN2_1.JPG}
+   				\end{figure}}
+		\end{overlayarea}
+		
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\begin{itemize}
+				\justifying
+				\item<2-> \textbf{Selective Search} for region proposals 
+				\item<3-> Does hierarchical clustering at different scales 
+				\item<4-> For example the figures from left to right show clusters of increasing sizes
+				\item<5-> Such a hierarchical clustering is important as we may find different objects at different scales 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/rp_flow_2.tex}
+	\end{center}
+
+	\vspace{-0.5cm}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\input{modules/Module2/tikz_images/shepherd_region.tex}
+			\end{center}
+			
+		\end{overlayarea}
+		
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5cm}
+			\begin{itemize}
+				\justifying
+				\item<2-> Proposed regions are cropped to form mini images
+				\item<3-> Each mini image is scaled to match the CNN's (feature extractor) input size 
+			\end{itemize}  
+		\end{overlayarea}     
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/fe_flow.tex}
+	\end{center}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\input{modules/Module2/tikz_images/fc7_shepherd.tex}
+			\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+				\vspace{-0.3cm}
+				\begin{itemize}
+					\justifying
+					\item<1-> For feature extraction any CNN trained for Image Classification can be used (AlexNet/ VGGNet etc.)
+					\item<2-> Outputs from fc7 layer are taken as features
+					\item<3-> CNN is fine tuned using ground truth (cropped) object images
+				\end{itemize}
+			\end{center}
+		\end{overlayarea}
+	\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/classifier_flow.tex}
+	\end{center}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{center}
+			\input{modules/Module2/tikz_images/animals.tex}	
+		\end{center}
+		\vspace{-0.5cm}
+		\begin{itemize}
+			\item<2->Linear models (SVMs) are used for classification \onslide<3->{(1 model per class)}
+		\end{itemize}
+		
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/bounding_box_flow.tex}
+	\end{center}
+	
+	\begin{columns}
+		\column{0.3\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{0.5cm}
+			\begin{center}
+				\input{modules/Module2/tikz_images/proposed_true_box.tex}
+			\end{center}
+		\end{overlayarea}
+		
+		\column{0.7\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{-0.3cm}
+			
+			\only<3-5>{ \color{white}{\[\min \sum_{i=1}^{N} \frac{x^* - x}{w} - w_1^Tz  \]}
+				\vspace{-0.5cm} 
+				\begin{itemize}
+					\justifying
+					\item<3-> The proposed regions may not be perfect  
+					\item<4-> We want to learn four regression models which will learn to predict $x^*$, $y^*$, $w^*,\ h^*$
+					\item<5-> We will see their respective objective functions
+				\end{itemize}
+			}
+			\only<6-10>{ \[\min \sum_{i=1}^{N} \Big(\frac{x^* - x}{w} - w_1^Tz\Big)^{2} \]
+				\vspace{-0.5cm} 
+				\begin{itemize}
+					\justifying
+					\item<7->  $\frac{x^* - x}{w}$ is the normalized difference between proposed $x$ and true $x^*$
+					\item<8-> If we can predict this difference we can compute $x^*$
+					\item<9-> The model predicts $w_1^Tz$ as this difference
+					\item<10-> The above objective function minimize the difference between the predicted and the actual value
+				\end{itemize}
+			}
+			
+			\only<11>{ \[\min \sum_{i=1}^{N} \Big( \frac{y^* - y}{h} - w_2^Tz \Big)^{2}\]
+				\vspace{-0.5cm} 
+				\begin{itemize}
+					\item<11>  Similarly for $y$
+				\end{itemize}
+			}
+			
+			\only<12>{ \[\min \sum_{i=1}^{N} \Big( \ln \Big( \frac{w^*}{w} \Big) - w_3^Tz \Big)^{2} \]
+				\vspace{-0.5cm} 
+				\begin{itemize}
+					\item<12>  Similarly for $w$
+				\end{itemize}
+			}
+			
+			
+			
+			\only<13>{ \[\min \sum_{i=1}^{N} \Big( \ln \Big( \frac{h^*}{h} \Big) - w_4^Tz \Big)^{2} \]
+				\vspace{-0.5cm} 
+				\begin{itemize}
+					\item<13>  Similarly for $h$
+ 
+				\end{itemize}
+			}
+
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/param_flow.tex}
+	\end{center}
+
+	\begin{overlayarea}{\textwidth}{\textheight}
+		
+		\only<1->{
+			\begin{itemize}
+				\justifying
+				\item<1-> What are the parameters of this model?
+				\item<3-> $W_{CONV}$ is taken as it is from a CNN trained for Image classification (say on ImageNet)
+				\item<4-> $W_{CONV}$ is then fine tuned using ground truth (cropped) object images
+				\item<5-> $W_{classifier}$ is learned using ground truth (cropped) object images
+				\item<6> $W_{regression}$ is learned using ground truth bounding boxes
+			\end{itemize}
+		}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{center}
+		\input{modules/Module2/tikz_images/time_flow.tex}
+	\end{center}
+
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{itemize}
+			\justifying
+			\item<1-> What is the computational cost for processing one image at test time?
+			\item<2-> Inference Time = Proposal Time + $\#$ Proposals $\times$ Convolution Time  +  $\#$ Proposals $\times$ classification + $\#$ Proposals $\times$ regression 
+		\end{itemize}
+
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\vspace{1cm}
+	\begin{columns}
+		\column{0.6\textwidth}	
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\begin{overprint}
+					\onslide<1>\centering\includegraphics[scale= 0.5]{images/33}\caption[Caption]{\hspace{-140pt} Source: \it{Ross Girshick}}
+					\onslide<2>\centering\includegraphics[scale= 0.5]{images/34}\caption[Caption]{\hspace{-140pt} Source: \it{Ross Girshick}}
+					\onslide<3>\centering\includegraphics[scale= 0.5]{images/35}\caption[Caption]{\hspace{-140pt} Source: \it{Ross Girshick}}
+					\onslide<4>\centering\includegraphics[scale= 0.5]{images/36}\caption[Caption]{\hspace{-140pt} Source: \it{Ross Girshick}}
+					\onslide<5>\centering\includegraphics[scale= 0.5]{images/37}\caption[Caption]{\hspace{-140pt} Source: \it{Ross Girshick}}
+					\onslide<6->\centering\includegraphics[scale= 0.5]{images/38}\caption[Caption]{\hspace{-140pt} Source: \it{Ross Girshick}}
+				\end{overprint}
+			\end{figure}
+		\end{overlayarea}
+		
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<2-> On average selective search gives 2K region proposal
+				\item<4-> Each of these pass through the CNN for feature extraction 
+				\item<5-> Followed by classification and regression 
+			\end{itemize}
+			
+		\end{overlayarea}
+		
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}  
+			\onslide<1->{\centering\includegraphics[scale= 0.2]{images/Picture1}}
+		\end{overlayarea}
+             
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}  
+			\begin{itemize}
+				\justifying
+				\item No joint learning 
+				\item<2-> Use ad hoc training objectives
+				\begin{itemize}
+			      	\justifying
+			      	\item<3-> Fine tune network with softmax classifier (log loss)
+			      	\item<4-> Train post-hoc linear SVMs (hinge loss)
+			      	\item<5-> Train post-hoc bounding-box regressors (squared loss)
+				\end{itemize}
+				\item<6-> Training ($\approx$ 3 days) and testing (47s per image) is slow\footnotemark.
+				\item<7-> Takes a lot of disk space
+			\end{itemize}
+		\end{overlayarea}
+        
+	\end{columns}
+	\vspace{-1cm}
+	\footnotetext{Source: \it{Ross Girshick} }
+	\footnotetext{Using VGG-Net} 
+	%\vspace{10pt}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module2/tikz_images/rcnn.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\item<1-> \textbf{Region Proposals:} Selective Search
+				\item<2-> \textbf{Feature Extraction:} CNNs
+				\item<3-> \textbf{Classifier:} Linear 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,67 @@
+\begin{tikzpicture}
+	\centering
+	
+	\draw (0,0) grid[xstep=0.5,ystep=0.5] (5,0.5);
+	\node (w) at (0.25,0.25) {\scriptsize $c$};
+	\node (h) at (0.75,0.25) {\scriptsize $w$};
+	\node (x) at (1.25,0.25) {\scriptsize $h$};
+	\node (y) at (1.75,0.25) {\scriptsize $x$};
+	\node (pc) at (2.25,0.25) {\scriptsize $y$};
+	\node (pd) at (2.75,0.75) {\scriptsize $P(cow)$};
+
+	\node (w) at (3.25,-0.25) {\scriptsize $P(dog)$};
+	\node (h) at (3.75,0.25) {$\cdot$};
+
+	\node (w) at (4.25,0.25) {$\cdot$};
+	\node (h) at (4.75,0.75) {\scriptsize $P(truck)$};
+
+
+
+	\node(img) at (2.5,-3){
+		\includegraphics[scale=0.4,trim={0cm 4.5cm 21.2cm 4cm},clip]{images/dog.pdf}
+	};
+
+
+	\draw (0,0) grid[xstep=0.5,ystep=0.5] (5,0.5);
+
+	\onslide<2->{
+		\pgfmathsetmacro\x{1.3}
+		\pgfmathsetmacro\y{-3.6}
+		\filldraw[fill=red!30!white, draw=black,opacity=0.6](\x,\y) rectangle (\x+0.5,\y+0.5);    
+	}
+	
+	\only<3>{
+		\filldraw[fill=green!40!white, draw=black](0,0) rectangle (0.5,0.5);    
+		\node (w) at (0.25,0.25) {\scriptsize $c$};
+	}
+
+	\only<4>{
+		\filldraw[fill=green!40!white, draw=black](0.5,0) rectangle (1,0.5);    
+		\node (h) at (0.75,0.25) {\scriptsize $w$};
+	}
+
+	\only<5>{
+		\filldraw[fill=green!40!white, draw=black](1,0) rectangle (1.5,0.5);    
+		\node (x) at (1.25,0.25) {\scriptsize $h$};
+	} 
+	
+	\only<6>{
+		\filldraw[fill=green!40!white, draw=black](1.5,0) rectangle (2,0.5);    
+		\node (y) at (1.75,0.25) {\scriptsize $x$};
+		\filldraw[fill=green!40!white, draw=black](2,0) rectangle (2.5,0.5);    
+		\node (x) at (2.25,0.25) {\scriptsize $y$};
+	} 
+
+	\onslide<7->{
+
+		\filldraw[fill=green!40!white, draw=black](2.5,0) rectangle (5,0.5);
+		\draw (0,0) grid[xstep=0.5,ystep=0.5] (5,0.5);
+		\node (pd) at (2.75,0.75) {\scriptsize $P(cow)$};
+
+		\node (w) at (3.25,-0.25) {\scriptsize $P(dog)$};
+		\node (h) at (3.75,0.25) {$\cdot$};
+
+		\node (w) at (4.25,0.25) {$\cdot$};
+		\node (h) at (4.75,0.75) {\scriptsize $P(truck)$};
+	}   
+\end{tikzpicture}

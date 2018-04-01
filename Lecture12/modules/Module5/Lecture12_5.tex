@@ -1,0 +1,155 @@
+\begin{frame}
+	\myheading{Module 12.5 : YOLO model for object detection}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module5/tikz_images/rpn.tex}
+		\end{overlayarea}     
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}    
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item The approaches that we have seen so far are two stage approaches }
+				\onslide<2->{\item They involve a region proposal stage and then a classification stage }
+				\onslide<4->{\item Can we have an end-to-end architecture which does both proposal and classification simultaneously ?}
+				\onslide<5->{\item This is the idea behind \textbf{YOLO-}You Only Look Once. }
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}  
+		\begin{columns}
+			\column{0.5\textwidth}
+			\vspace*{0.3\linewidth}
+			\input{modules/Module5/tikz_images/dog.tex}
+			\column{0.5\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}
+					\justifying
+					\onslide<1->{\item Divide an image into $S \times S$ grids (S=7)}
+					\onslide<2->{\item For each such cell we are interested in predicting $5+k$ quantities}
+					\onslide<3->{\item Probability (confidence) that this cell is indeed contained in a true bounding box}
+					\onslide<4->{\item Width of the bounding box}
+					\onslide<5->{\item Height of the bounding box}
+					\onslide<6->{\item Center (x,y) of the bounding box}
+					\onslide<7->{\item Probability of the object in the bounding box belonging to the $k^{th}$ class (k - values)}
+					\onslide<8->{\item The output layer thus contains $S \times S \times (5+k)$ elements}
+				\end{itemize}
+				
+			\end{overlayarea}
+		\end{columns}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\centering
+		\input{modules/Module5/tikz_images/dog2.tex}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\justifying
+			\onslide<1->{\item How do we interpret this $S \times S \times (5+k)$ dimensional output?}
+			\onslide<2->{\item For each cell, we are computing a bounding box, its confidence and the object in it}
+			\onslide<11->{\item We then retain the most confident bounding boxes and the corresponding object label}
+		\end{itemize}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+	\begin{columns} 
+		\column{0.5\textwidth}
+
+		\begin{overlayarea}{\textwidth}{\textheight}      
+			\input{modules/Module5/tikz_images/dog3.tex}
+		\end{overlayarea}     
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}  
+			%\scriptsize{   
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item How do we train this network ?}
+				\onslide<2->{\item Consider a cell such that the center of the true bonding box lies in it }
+				\onslide<3->{\item The network is initialized randomly and it will predict some values for $c,w,h,x,y$ \& $\ell$}
+				\onslide<4->{\item We can then compute the following losses}
+				\only<8>{\item $(x-\hat{x})^2$
+					%     \item       
+				}
+				\only<9>{\item $(y-\hat{y})^2$
+					%     \item       
+				}
+				\only<6>{\item $(\sqrt{w}-\sqrt{\hat{w}})^2$
+					%     \item       
+				}
+				\only<7>{\item $(\sqrt{h}-\sqrt{\hat{h}})^2$
+					%     \item       
+				}
+				\only<5>{\item $(1-\hat{c})^2$
+					%     \item       
+				}
+				\onslide<10->{\item $\sum_{i=1}^{k}(\ell_i-\hat{\ell_i})^2$
+					%     \item       
+				}
+				\onslide<11->{\item And train the network to minimize the sum of these losses}
+			\end{itemize}
+			% }
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}  
+		\begin{columns}
+			\column{0.5\textwidth}
+			\input{modules/Module5/tikz_images/dog4.tex}
+			\column{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Now consider a grid which does not contain any object}
+				\onslide<2->{\item For this grid we do not care about the predictions $w,h,x,y$ \& $\ell$}     
+				\onslide<3->{\item But we want the confidence to be low}
+				\onslide<4->{\item So we minimize only the following loss
+					\begin{equation*}
+						(0 - \hat{c})^2
+					\end{equation*}
+				}
+			\end{itemize}
+		\end{columns}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{table}
+		\begin{tabular}{ccc}
+			\hline
+			\textbf{Method}           & \textbf{Pascal 2007 mAP} & \textbf{Speed}                         \\
+			\hline
+			\onslide<1->{DPM v5}      & \onslide<1->{33.7}       & \onslide<1->{0.07 FPS | 14 sec/ image} \\ 
+			\onslide<2->{RCNN}        & \onslide<2->{66.0}       & \onslide<2->{0.05 FPS | 20 sec/ image} \\ 
+			\onslide<3->{Fast RCNN}   & \onslide<3->{70.0}       & \onslide<3->{0.5 FPS | 2 sec/ image}   \\ 
+			\onslide<4->{Faster RCNN} & \onslide<4->{73.2}       & \onslide<4->{7 FPS | 140 msec/ image}  \\ 
+			\onslide<5->{YOLO}        & \onslide<5->{69.0}       & \onslide<5->{45 FPS | 22 msec/ image}  \\ 
+			\hline
+		\end{tabular}
+	\end{table}
+	
+\end{frame}

@@ -1,0 +1,289 @@
+\begin{frame}
+	\myheading{Module 12.4 : Faster RCNN model for object detection}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}[t]
+				\centering
+				\includegraphics<2->[width=1.0\linewidth]{images/model}
+			\end{figure}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> So far the region proposals were being made using Selective Search algorithm
+				\item<2-> \textbf{Idea:} Can we use a CNN for making region proposals also?
+				\item<3-> How? Well it's slightly tricky 
+				\item<4-> We will illustrate this using \textbf{VGGNet}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.5\textwidth}
+			% \vspace*{1cm}
+			\input{modules/Module4/tikz_images/vgg_cube.tex}
+			\column{0.5\textwidth}
+			
+			%\begin{footnotesize}
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item Consider the output of the last convolutional layer of VGGNet }
+				\onslide<2->{\item Now consider one cell in one of the $512$ feature maps }
+				\onslide<3->{\item If we apply a $3 \times 3$ kernel around this cell then we will get a 1D representation for this cell}
+				\onslide<5->{\item If we repeat this for all the $512$ feature maps then we will get a $512$ dimensional representation for this position}
+				\onslide<6->{\item We use this process to get a $512$ dimensional representation for each of the $w \times h$ positions}
+			\end{itemize}
+			
+			%\end{footnotesize}
+		\end{columns}
+		
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.25\textwidth}
+			\input{modules/Module4/tikz_images/net_anchor_box_1.tex}		
+			\column{0.25\textwidth}
+			\input{modules/Module4/tikz_images/anchor_boxes_1.tex}
+			\column{0.5\textwidth}
+			\begin{itemize}
+				\justifying
+				\onslide<2->{\item We now consider $k$ bounding boxes (called anchor boxes) of different sizes \& aspect ratio}
+				\onslide<3->{\item We are interested in the following two questions: }
+				\onslide<4->{\item Given the $512d$ representation of a position, what is the probability that a given anchor box centered at this position contains an object?}
+				
+				\onslide<5->{
+					(Classification)
+				}
+				\onslide<6->{\item How do you predict the true bounding box from this anchor box?}
+				\onslide<7->{
+					(Regression)
+				}
+				%\onslide<5->{\item }
+				%\onslide<6->{\item }
+			\end{itemize}
+		\end{columns}
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+
+			\column{0.3\textwidth}
+			\input{modules/Module4/tikz_images/net_anchor_box_2.tex}			
+			\column{0.25\textwidth}
+			\input{modules/Module4/tikz_images/anchor_boxes_2.tex}
+			\column{0.5\textwidth}
+
+			\begin{itemize}
+				\justifying
+				\onslide<1->{\item We train a classification model and a regression model to address these two questions}
+				\onslide<2->{\item \textcolor<4->{red}{How do we get the ground truth data?}}
+				\onslide<3->{\item What is the objective function used for training?}
+			\end{itemize}
+
+		\end{columns}
+	\end{overlayarea}     
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+
+			\column{0.3\textwidth}
+			\input{modules/Module4/tikz_images/train.tex}
+			\column{0.5\textwidth}
+
+			\begin{itemize}
+				\justifying
+				\only<1-6>{
+				\item<1-> Consider a ground truth object and its corresponding bounding box 
+				\item<2-> Consider the projection of this image onto the conv5 layer
+				%\item<3-> For every cell in the output, we place an anchor box at the center of the region which corresponds to this cell
+				\item<3-> Consider one such cell in the output
+				\item<4-> This cell corresponds to a patch in the original image
+				\item<5-> Consider the center of this patch
+				\item<6-> We consider anchor boxes of different sizes
+				}
+				\only<7-8>{
+				\item<7-> For each of these anchor boxes, we would want the classifier to predict 1 if this anchor box has a reasonable overlap (IoU $>$ 0.7) with the true grounding box
+				\item<8-> Similarly we would want the regression model to predict the true box (red) from the anchor box (pink) 
+				}
+			\end{itemize}
+
+		\end{columns}
+	\end{overlayarea}     
+\end{frame}
+			
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+
+			\column{0.3\textwidth}
+				\input{modules/Module4/tikz_images/train_2.tex}			
+			%\column{0.25\textwidth}
+			%	\input{modules/Module4/tikz_images/anchor_boxes_2.tex}
+			\column{0.5\textwidth}
+
+			\begin{itemize}
+				\justifying
+				\item We train a classification model and a regression model to address these two questions
+				\item How do we get the ground truth data?
+				\item \textcolor<1->{red}{What is the objective function used for training?}
+			\end{itemize}
+
+		\end{columns}
+	\end{overlayarea}     
+\end{frame}
+
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{itemize}
+		\item The full network is trained using the following objective.
+	\end{itemize}
+	\begin{equation*}
+		\onslide<2-> {\mathscr{L}({p_i}, {t_i}) = \frac{1}{N_{cls}} \sum_{i} \mathscr{L}_{cls}(p_i,p_{i}^*)} \onslide<4->{+ \frac{\lambda}{N_{reg}} \sum_{i} p_i^* \mathscr{L}_{reg}(t_i,t_i^*)}
+	\end{equation*}
+	
+	\begin{align*}
+		\onslide<3->{
+			p_i^* & = 1 \text{\quad if anchor box contains ground truth object}        \\
+	& = 0 \text{\quad otherwise}                                          \\
+			p_i   & = \text{predicted probability of anchor box containing an object } \\ 
+			N_{cls}& = \text{batch-size}
+		}    
+		\onslide<5->{                                            \\
+			N_{reg}&= \text{batch-size} \times k						\\
+			k     & = \text{anchor boxes}
+		}                                               
+	\end{align*}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+			
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\input{modules/Module4/tikz_images/net_fast_rcnn.tex}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<2-> So far we have seen a CNN based approach for region proposals instead of using selective search
+				\item<3-> We can now take these region proposals and then add fast RCNN on top of it to predict the class of the object
+				\item <4-> And regress the proposed bounding box
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+						
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+			\input{modules/Module4/tikz_images/net_fast_rcnn_2.tex}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<2-> But the fast RCNN would again use a VGG Net
+				\item<3-> Can't we use a single VGG Net and share the parameters of RPN and RCNN
+				\item <4-> Yes, we can
+				\item <5> In practice, we use a 4 step alternating training process
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+			
+\begin{frame}{}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\input{modules/Module4/tikz_images/net_faster_rcnn.tex}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			{\bf{\onslide<1->Faster RCNN:Training}}
+			\begin{itemize}
+				\justifying
+				\item<2-> Fine-tune RPN using a pre-trained ImageNet network
+				\item<3-> Fine-tune fast RCNN from a pre-trained ImageNet network using bounding boxes from step 1
+				\item<4-> Keeping common convolutional layer parameters fixed from step 2,
+				fine-tune RPN (post conv5 layers)
+				\item <5->Keeping common convolution layer parameters fixed from step 3, fine-tune fc layers of fast RCNN 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+			
+\begin{frame}
+	\begin{block}
+		\onslide<1-> Faster RCNN and RPN are the basis of several 1st place entries in the ILSVRC and COCO tracks on :
+		\begin{itemize}
+			\justifying
+			\item<2-> Imagenet detection 
+			\item<3-> COCO Segmentation
+			\item<4->Imagenet localization
+			\item<5-> COCO detection
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%			
+			
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module4/tikz_images/faster_rcnn.tex}
+			
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\item<2-> \textbf{Region Proposals:} CNN
+				\item<3-> \textbf{Feature Extraction:} CNN
+				\item<4-> \textbf{Classifier:} CNN
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{figure}
+			\includegraphics[scale =0.65]{images/object.JPG}
+			\caption{Object Detection Performance } \hspace{10cm} Source: Ross Girshick
+		\end{figure}
+	\end{overlayarea}
+\end{frame}

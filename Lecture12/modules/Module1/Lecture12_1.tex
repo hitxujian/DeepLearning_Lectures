@@ -1,0 +1,97 @@
+\begin{frame}
+	\myheading{Module 12.1 : Introduction to object detection}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{itemize}
+		\justifying
+		\item So far we have looked at Image Classification
+		\item We will now move on to another Image Processing Task - \textit{Object Detection}
+	\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		
+		\vspace{1cm}
+		\input{modules/Module1/tikz_images/car_bounding_box.tex}
+		
+		% \begin{tabular}{p{1.6cm} p{3.5cm} p{3.5cm} p{3.5cm} }
+		% \onslide<2->{ Task} & \onslide<2->{Image classification} & \onslide<4->{Object Detection} & \onslide<6->{Image Segmentation}\\ 
+		%  \onslide<3->{Output} & \onslide<3->{Car} & \onslide<5->{Car, exact bounding box containg} & \onslide<7->{Roughly at object boundaries} \\  
+		%  \onslide<8->{Annotations} & \onslide<9->{\hspace{+0.1cm}Relatively easier} & \onslide<10->{Relatively easy} & \onslide<11->{Difficult} \\
+		% \end{tabular}
+		
+		\begin{tabular}{p{1.6cm} p{6cm} p{3cm} }
+			\onslide<2->{ \textbf{Task}}  & \onslide<2->{Image classification} & \onslide<4->{Object Detection}                       \\ 
+			\onslide<3->\textbf{{Output}} & \onslide<3->{Car}                  & \onslide<5->{Car, exact bounding box containing car} \\  
+		\end{tabular}
+		
+	\end{overlayarea}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		
+		\input{modules/Module1/tikz_images/region_proposals_1.tex}
+		\begin{itemize}
+			\justifying
+			\only<1-2> {\item<1-> Let us see a typical pipeline for \it{object detection}
+				\item<2-> It starts with a region proposal stage where we identify potential regions which may contain objects
+			}
+			\only<3-4>{
+				\item<3-> We could think of these regions as mini-images
+				\item<4-> We extract features(SIFT, HOG, CNNs) from these mini-images
+			}
+			\only<5->{
+				\item<5-> Pass these through a standard image classifer to determine the class
+			}
+		\end{itemize}
+	\end{overlayarea}     
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\input{modules/Module1/tikz_images/region_proposals_regression.tex}
+		
+		\begin{itemize}
+			\justifying
+			\item<1-> In addition we would also like to correct the proposed bounding boxes
+			\item<2-> This is posed as a regression problem (for example, we would like to predict $w^*$, $h^*$ from the proposed $w$ and $h$)
+		\end{itemize}
+		
+	\end{overlayarea}     
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			
+			\input{modules/Module1/tikz_images/faster_rcnn.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> Let us see how these three components have evolved over time
+				\item<2-> Propose all possible regions in the image of varying sizes (almost brute force)
+				\item<3-> Use handcrafted features (SIFT, HOG)
+				\item<4-> Train a linear classifier using these features
+				\item<5-> We will now see three algorithms that progressively improve these components 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+

@@ -1,0 +1,160 @@
+\begin{frame}
+	\myheading{Module 12.3 : Fast RCNN model for object detection}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\hspace{1cm}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\vspace{0.2cm}
+		
+		\begin{overlayarea}{\textwidth}{\textheight} 
+			\begin{center}
+               	\input{modules/Module3/tikz_images/taj_roi.tex}	
+			\end{center}
+		\end{overlayarea}   
+		\column{0.5\textwidth}
+		\vspace{1cm}
+		\begin{overlayarea}{\textwidth}{\textheight} 
+			\begin{itemize}
+				\justifying
+				\item<1-> Suppose we apply a $3 \times 3$ kernel on an image
+				\item<2-> What is the region of influence of each pixel in the resulting output ?
+				\item<3-> Each pixel contributes to a $5 \times 5$ region
+				\item<4-> Suppose we again apply a $3 \times 3$ kernel on this output? 
+				\item<5-> What is the region of influence of the original pixel from the input ? \onslide<7->{(a $7 \times 7$ region)}
+			\end{itemize}
+		\end{overlayarea}    
+		
+	\end{columns}
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\noindent
+	 \input{modules/Module3/tikz_images/vgg_net.tex}      
+	       
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\vspace{1cm}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}[h!]
+				\begin{overprint}
+					\onslide<1>\centering\includegraphics[scale= 0.45]{images/40}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+					\onslide<2>\centering\includegraphics[scale= 0.45]{images/40}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+					\onslide<3>\centering\includegraphics[scale= 0.45]{images/41}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+					\onslide<4->\centering\includegraphics[scale= 0.45]{images/42_fc}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+				\end{overprint} 
+			\end{figure}
+		\end{overlayarea}     
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+              
+			\begin{itemize}
+				\justifying
+				\item<1-> Using this idea we could get a bounding box's region of influence on any layer in the CNN 
+				\item<2-> The projected Region of Interest (RoI) may be of different sizes
+				\item<3-> Divide them into $k$ equally sized regions of dimension $H \times W$ and do max pooling in each of those regions to construct a $k$ dimensional vector 
+				\item<4-> Connect the $k$ dimensional vector to a fully connected layer
+				\item<5-> This max pooling operation is call RoI pooling 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}              
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\vspace{1cm}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}[h!]
+				\begin{overprint}
+					\onslide<1>\centering\includegraphics[scale= 0.45]{images/42_fc}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+					\onslide<2>\centering\includegraphics[scale= 0.45]{images/42}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+					\onslide<3>\centering\includegraphics[scale= 0.45]{images/43}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+					\onslide<4->\centering\includegraphics[scale= 0.45]{images/44}\caption[Caption]{\hspace{-90pt} Source: \it{Ross Girshick}}
+				\end{overprint} 
+			\end{figure}
+		\end{overlayarea}     
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+              
+			\begin{itemize}
+				\justifying
+				\item<1-> Once we have the FC layer it gives us the representation of this region proposal
+				\item<2-> We can then add a softmax layer on top of it to compute a probability distribution over the possible object classes
+				\item<3-> Similarly we can add a regression layer on top of it to predict the new bounding box $(w^*, h^*, x^*, y^*)$
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}              
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\noindent
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module3/tikz_images/roi_layers.tex}
+		\end{overlayarea}
+		
+		\column{0.5\textwidth}  
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\only<1-5>{
+				\begin{itemize}
+					\justifying
+					\item<1-5> Recall that the last pooling layer of VGGNet-16 results in an output of size $512 \times 7 \times 7$ 
+					\item<2-5> We replace the last max pooling layer by a RoI pooling layer
+					\item<3-5> We set $H=W=7$ and divide each of these RoIs into ($k=49$) regions
+					\item<4-5> We do this for every feature map resulting in an ouput of size $512 \times 49$ 
+					\item<5-> This output is of the same size as the output of the original max pooling layer
+				\end{itemize}
+			}
+			\only<6->{
+				\begin{itemize}
+					\justifying
+					\item<6-> It is thus compatible with the dimensions of the weight matrix connecting the original pooling layer to the first FC layer
+					\item<7-> We can just retain that weight matrix and fine tune it
+					%\item<8->  Further speed up can be obtained by replacing $W$ by its truncated SVD $U \Sigma V^T$
+				\end{itemize}
+			}
+
+			
+		\end{overlayarea}
+	\end{columns}     
+	
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module3/tikz_images/fast_rcnn.tex}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\justifying
+				\item<1-> \textbf{Region Proposals:} Selective Search
+				\item<2-> \textbf{Feature Extraction:} CNN
+				\item<3-> \textbf{Classifier:} CNN
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
