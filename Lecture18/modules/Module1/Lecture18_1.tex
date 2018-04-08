@@ -1,0 +1,314 @@
+\begin{frame}
+	\myheading{Module 18.1: Markov Networks: Motivation}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+	\column{0.5\textwidth}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\onslide<2->{
+		\begin{center}
+				\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, -] (input0) -- (input2);
+				\draw [line width=0.5mm, -] (input0) -- (input3);
+				\draw [line width=0.5mm, -] (input1) -- (input2);
+				\draw [line width=0.5mm, -] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\begin{itemize}\justifying
+			\item<3-> $A,B,C,D$ are four students
+			\item<4-> $A$ and $B$ study together sometimes
+			\item<5-> $B$ and $C$ study together sometimes
+			\item<6-> $C$ and $D$ study together sometimes
+			\item<7-> $A$ and $D$ study together sometimes
+			\item<8-> $A$ and $C$ never study together
+			\item<9-> $B$ and $D$ never study together
+		\end{itemize}
+		}
+	\end{overlayarea}
+	\column{0.5\textwidth}
+	\begin{overlayarea}{\textwidth}{\textheight}
+	\begin{itemize}\justifying
+		\item <1-> To motivate undirected graphical models let us consider a new example
+	\end{itemize}
+	\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+				\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, -] (input0) -- (input2);
+				\draw [line width=0.5mm, -] (input0) -- (input3);
+				\draw [line width=0.5mm, -] (input1) -- (input2);
+				\draw [line width=0.5mm, -] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\begin{itemize}\justifying
+			\item<1-> $A,B,C,D$ are four students
+			\item<1-> $A$ and $B$ study together sometimes
+			\item<1-> $B$ and $C$ study together sometimes
+			\item<1-> $C$ and $D$ study together sometimes
+			\item<1-> $A$ and $D$ study together sometimes
+			\item<1-> $A$ and $C$ never study together
+			\item<1-> $B$ and $D$ never study together
+		\end{itemize}
+	\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item<1-> To motivate undirected graphical models let us consider a new example
+			\item<2-> Now suppose there was some misconception in the lecture due to some error made by the teacher
+			\item<3-> Each one of A, B, C, D could have independently cleared this misconception by thinking about it after 
+			the lecture
+			\item<4-> In subsequent study pairs, each student could then pass on this information to their partner
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+				\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, -] (input0) -- (input2);
+				\draw [line width=0.5mm, -] (input0) -- (input3);
+				\draw [line width=0.5mm, -] (input1) -- (input2);
+				\draw [line width=0.5mm, -] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\begin{itemize}\justifying
+			\item<1-> $A,B,C,D$ are four students
+			\item<1-> $A$ and $B$ study together sometimes
+			\item<1-> $B$ and $C$ study together sometimes
+			\item<1-> $C$ and $D$ study together sometimes
+			\item<1-> $A$ and $D$ study together sometimes
+			\item<1-> $A$ and $C$ never study together
+			\item<1-> $B$ and $D$ never study together
+		\end{itemize}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item<1-> We are now interested in knowing whether a student still has the misconception or not
+			\item<2-> Or we are interested in $P(A, B, C, D)$
+			\item<3-> where A, B, C, D can take values $0$ (no misconception) or $1$ (misconception)
+			\item<4-> How do we model this using a Bayesian Network ?
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+		\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, -] (input0) -- (input2);
+				\draw [line width=0.5mm, -] (input0) -- (input3);
+				\draw [line width=0.5mm, -] (input1) -- (input2);
+				\draw [line width=0.5mm, -] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\begin{itemize}\justifying
+			\item<1-> $A,B,C,D$ are four students
+			\item<1-> $A$ and $B$ study together sometimes
+			\item<1-> $B$ and $C$ study together sometimes
+			\item<1-> $C$ and $D$ study together sometimes
+			\item<1-> $A$ and $D$ study together sometimes
+			\item<1-> $A$ and $C$ never study together
+			\item<1-> $B$ and $D$ never study together
+		\end{itemize}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item<1-> First let us examine the conditional independencies in this problem
+			\item<2-> $A \perp C | \{B,D\}$ (because A \& C never interact)
+			\item<3-> $B \perp D | \{A,C\}$ (because B \& D never interact)
+			\item<4-> There are no other conditional independencies in the problem
+			\item<5-> Now let us try to represent this using a Bayesian Network
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+				\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, ->] (input2) -- (input0);
+				\draw [line width=0.5mm, ->] (input2) -- (input1);
+				\draw [line width=0.5mm, ->] (input0) -- (input3);
+				\draw [line width=0.5mm, ->] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item<1-> How about this one?
+			\item<2-> Indeed, it captures the following independencies relation 
+			\begin{align*}
+			A \perp C | \{B,D\}
+			\end{align*}
+			\item<3-> But, it also implies that 
+			\begin{align*}
+			B \not\perp D | \{A,C\}
+			\end{align*}
+		\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+		\onslide<2->{
+		\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,1.1)  {D};
+				\node [input_neuron] (input1) at (9.5,1.1)  {B};
+				\node [input_neuron] (input2) at (5.5,-1.1) {C};
+				\node [input_neuron] (input3) at (9.5, -1.1) {A};
+
+				\draw [line width=0.5mm, ->] (input0) -- (input2);
+				\draw [line width=0.5mm, ->] (input0) -- (input3);
+				\draw [line width=0.5mm, ->] (input1) -- (input2);
+				\draw [line width=0.5mm, ->] (input1) -- (input3);
+		\end{tikzpicture}}
+		\end{center}
+		\begin{itemize}\justifying
+			\item<7-> \textbf{Perfect Map}: A graph $G$ is a Perfect Map for a distribution
+			$P$ if the independance relations implied by the graph are exactly the same as those
+			implied by the distribution
+		\end{itemize}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item <1-> Let us try a different network
+			\item <3-> Again 
+			\begin{align*}
+			A \perp C | \{B,D\}
+			 \end{align*}
+			\item <4-> But 
+			\begin{align*}
+			B \perp D  (\text{unconditional})
+			\end{align*}
+			\item <5-> You can try other networks 
+			\item <6-> Turns out there is no Bayesian Network which can exactly capture independence relations that we are interested in
+			\item <8-> There is no Perfect Map for the distribution 
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+				\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, ->] (input2) -- (input0);
+				\draw [line width=0.5mm, ->] (input2) -- (input1);
+				\draw [line width=0.5mm, ->] (input0) -- (input3);
+				\draw [line width=0.5mm, ->] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying 
+			\item <1->The problem is that a directed graphical model is not suitable for this example
+			\item <2->A directed edge between two nodes implies some kind of direction in the interaction
+			\item <3->For example $A \rightarrow B$ could indicate that $A$ influences $B$ but not the other way round
+			\item <4->But in our example $A \& B$ are equal partners (they both contribute to the study discussion)
+			\item <5-> We want to capture the strength of this interaction (and there is no direction here)
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\vspace{0.1in}
+		\begin{center}
+				\begin{tikzpicture}
+				\node [input_neuron](input0) at (5.5,-0.1)  {D};
+				\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+				\node [input_neuron] (input2) at (7.5, 1.1) {A};
+				\node [input_neuron] (input3) at (7.5, -1.1) {C};
+
+				\draw [line width=0.5mm, -] (input2) -- (input0);
+				\draw [line width=0.5mm, -] (input2) -- (input1);
+				\draw [line width=0.5mm, -] (input0) -- (input3);
+				\draw [line width=0.5mm, -] (input1) -- (input3);
+		\end{tikzpicture}
+		\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item<1-> We move on from Directed Graphical Models to Undirected Graphical Models
+			\item<2-> Also known as \textbf{Markov Network}
+			\item<3-> The Markov Network on the left exactly captures the interactions inherent in the problem 
+			\item<4-> But how do we parameterize this graph?
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}

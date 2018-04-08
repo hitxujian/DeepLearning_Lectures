@@ -1,0 +1,327 @@
+\PassOptionsToClass{}{beamer}
+\documentclass[serif,aspectratio=169,dvipsnames]{beamer}
+\usepackage[utf8]{inputenc}
+
+%\StartShownPreambleCommands
+\usepackage{amsmath,esint}
+\usepackage{amssymb}
+\usepackage[british]{babel}
+\usepackage{multicol}
+\usetheme{Warsaw}
+\usecolortheme{rose}
+\usepackage[normalem]{ulem}
+%\usetheme{metropolis}
+%\usepackage{appendixnumberbeamer}
+
+%\StopShownPreambleCommands
+\usepackage{pgfplots}
+
+\usepackage{ mathrsfs }
+\usepackage{hyperref}
+
+\usepackage{gensymb}
+\usepackage{color}
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+\usepackage{tkz-fct}  
+\usetikzlibrary{calc}
+\usepackage{ragged2e}
+\usepackage[ruled]{algorithm2e}
+\usepackage{tikz}
+\usepackage{animate}
+\usepackage{adjustbox}
+\usepackage[labelformat=empty]{caption}
+\usepackage{blindtext}
+\usepackage{biblatex}
+
+
+\usetikzlibrary{matrix,chains,positioning,decorations.pathreplacing,arrows} 
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{intersections}
+
+
+\makeatletter
+
+\DeclareMathOperator*{\minimize}{minimize}
+
+\newcommand\myheading[1]{%
+\par\bigskip
+{\Large\bfseries#1}\par\smallskip}
+
+
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \insertframenumber/\inserttotalframenumber
+}
+
+\setbeamertemplate{title page}
+{
+  \vspace{0.3in}
+  \vbox{}
+   %{\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\hfill\inserttitlegraphicii\par}
+  \begin{centering}
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}%\vskip0.5em
+    \begin{beamercolorbox}[sep=8pt,center]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+  \end{centering}
+  %\vfill
+}
+\makeatother
+
+\author{Mitesh M. Khapra}
+\title{CS7015 (Deep Learning) : Lecture 18}
+\subtitle{Markov Networks}
+\institute{Department of Computer Science and Engineering\\ Indian Institute of Technology Madras}
+\date{}
+\titlegraphic{\includegraphics[height=1cm,width=2cm]{images/iitm_logo.png}}
+
+\begin{document}
+
+
+\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=1mm]
+\tikzstyle{hidden_neuron}=[circle,draw=blue!50,fill=blue!10,thick,minimum size=10mm]
+\tikzstyle{output_neuron}=[circle,draw=green!50,fill=green!20,thick,minimum size=4mm]
+
+\tikzstyle{input}=[circle,draw=black!50,fill=black!20,thick,minimum size=.2mm]
+\tikzstyle{neuron}=[circle,draw=blue!50,fill=blue!20,thick,minimum size=10mm]
+\tikzstyle{neuron1}=[circle,draw=blue!50,fill=cyan!10, thick,minimum size=10mm]
+\begin{frame}
+	\myheading{Module 18.3: Local Independencies in a Markov Network}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}[<+->]\justifying
+				\item Let $U$ be the set of all random variables in our joint distribution 
+				\item Let $X,Y,Z$ be some distinct subsets of $U$
+				\item A distribution $P$ over these RVs would imply $X\bot Y|Z$ if and only if we can write 
+				\begin{align*}
+				P(X) = \phi_1(X,Z)\phi_2(Y,Z)
+				\end{align*}
+				\item Let us see this in the context of our original example
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+					\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick]
+					\begin{tikzpicture}
+						\node [input_neuron](input0) at (5.5,-0.1)  {D};
+						\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+						\node [input_neuron] (input2) at (7.5, 1.1) {A};
+						\node [input_neuron] (input3) at (7.5, -1.1) {C};
+						
+						\draw [line width=0.2mm, -] (input0) -- (input2);
+						\draw [line width=0.2mm, -] (input0) -- (input3);
+						\draw [line width=0.2mm, -] (input1) -- (input2);
+						\draw [line width=0.2mm, -] (input1) -- (input3);
+					\end{tikzpicture}
+				\end{center}
+
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}[<+->]\justifying
+				\item In this example
+				\begin{align*}
+					&P(A,B,C,D) =\\
+					&\frac{1}{Z} [ \phi_1(A,B) \phi_2(B,C) \phi_3(C,D) \phi_4(D,A)]
+				\end{align*}
+				\item We can rewrite this as 
+				\begin{align*}
+					&P(A,B,C,D) =\\
+					&\frac{1}{Z} \underbrace{[ \phi_1(A,B) \phi_2(B,C) ]}_{\phi_5(B,\{A,C\})} \underbrace{[\phi_3(C,D) \phi_4(D,A)]}_{\phi_6(D,\{A,C\})}
+				\end{align*}
+				\item We can say that $B \bot D|\{A,C\}$ which is indeed true
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{center}
+					\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick]
+					\begin{tikzpicture}
+						\node [input_neuron](input0) at (5.5,-0.1)  {D};
+						\node [input_neuron] (input1) at (9.5,-0.1)  {B};
+						\node [input_neuron] (input2) at (7.5, 1.1) {A};
+						\node [input_neuron] (input3) at (7.5, -1.1) {C};
+						
+						\draw [line width=0.2mm, -] (input0) -- (input2);
+						\draw [line width=0.2mm, -] (input0) -- (input3);
+						\draw [line width=0.2mm, -] (input1) -- (input2);
+						\draw [line width=0.2mm, -] (input1) -- (input3);
+					\end{tikzpicture}
+				\end{center}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}[<+->]\justifying
+				\item In this example
+				\begin{align*}
+					&P(A,B,C,D) = \\
+					&\frac{1}{Z} [ \phi_1(A,B) \phi_2(B,C) \phi_3(C,D) \phi_4(D,A)]
+				\end{align*}
+				\item Alternatively we can rewrite this as 
+				\begin{align*}
+					&P(A,B,C,D) = \\
+					&\frac{1}{Z} \underbrace{[ \phi_1(A,B) \phi_2(D,A) ]}_{\phi_5(A,\{B,D\})} \underbrace{[\phi_3(C,D) \phi_4(B,C)]}_{\phi_6(C,\{B,D\})}
+				\end{align*}
+				\item We can say that $A \bot C|\{B,D\}$ which is indeed true
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\centering
+			\vspace{1cm}\
+			\tikzset{mystyle/.style={shape=circle,fill=black,scale=0.3}}
+			\tikzset{neigh/.style={shape=circle,fill=blue,scale=0.5}}
+			\tikzset{cent/.style={shape=circle,fill=red,scale=0.5}}
+			\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=3mm]
+			\begin{tikzpicture}[scale=.8]
+            % setup the nodes
+            \foreach \x in {0,...,5}
+            \foreach \y in {0,...,5}
+            {
+            \ifnum\x=3
+                \ifnum\y=2
+                    \node[cent] (\x-\y) at (\x,\y){};
+                \else
+                    \node[mystyle] (\x-\y) at (\x,\y){};
+                \fi
+            \else
+                \node[mystyle] (\x-\y) at (\x,\y){};
+            \fi
+            }
+            % circle selected nodes with letters
+            \foreach \mynode/\mytext in {2-2/A,3-3/B,3-1/C,4-2/D}
+            {
+                \draw[neigh] (\mynode) circle (0.2cm) node {};
+            }
+			\draw [line width=0.2mm, -] (2.1,2) -- (2.9,2);
+			\draw [line width=0.2mm, -] (3,2.9) -- (3,2.1);
+			\draw [line width=0.2mm, -] (3,1.1) -- (3,1.9);
+			\draw [line width=0.2mm, -] (3.9,2) -- (3.1,2);
+	        \end{tikzpicture}
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}[<+->]\justifying
+				\item For a given Markov network $H$ we define Markov Blanket of a RV $X$ to be the neighbors of $X$ in $H$
+				\item Analogous to the case of Bayesian Networks we can define the local independences associated with $H$ to be
+				\begin{align*}
+					\color{red} X \color{black} \bot (U - \{X\} - MB_H) | \color{blue}MB_H(X)\color{black}
+				\end{align*}  
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{0.7\textheight}
+			\begin{center}
+			Bayesian network
+			\end{center}
+			\begin{center}
+				\tikzstyle{input_neuron}=[ellipse,draw=red!50,fill=orange!10,thick,scale=0.7]
+				\begin{tikzpicture}
+					\node [input_neuron](input0) at (7,-0.1)  {Grade};
+					\node [input_neuron] (input1) at (10,-0.1)  {SAT};
+					\node [input_neuron] (input2) at (8.5, 1.1) {Intellligence};
+					\node [input_neuron] (input3) at (7, -1.1) {Letter};
+					\node [input_neuron](input4) at (5.5,1.1)  {Difficulty};
+
+					\draw [line width=0.2mm, ->] (input2) -- (input0);
+					\draw [line width=0.2mm, ->] (input0) -- (input3);
+					\draw [line width=0.2mm, ->] (input2) -- (input1);
+					\draw [line width=0.2mm, ->] (input4) -- (input0);
+				\end{tikzpicture}
+			\end{center}
+	        \vspace{0.4cm}
+			Local Independencies 
+			\begin{align*}
+				X_i \bot NonDescendents_{X_i} | Parent_{X_i}^G
+			\end{align*}
+
+		\end{overlayarea}
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{0.7\textheight}
+			\begin{center}
+			Markov network\\
+			\vspace{0.2cm}
+			\tikzset{mystyle/.style={shape=circle,fill=black,scale=0.3}}
+			\tikzset{neigh/.style={shape=circle,fill=blue,scale=0.5}}
+			\tikzset{cent/.style={shape=circle,fill=red,scale=0.5}}
+			\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=3mm]
+			\onslide<2->{\begin{tikzpicture}[scale=.6]
+            % setup the nodes
+            \foreach \x in {0,...,5}
+            \foreach \y in {0,...,5}
+            {
+            \ifnum\x=3
+                \ifnum\y=2
+                    \node[cent] (\x-\y) at (\x,\y){};
+                \else
+                    \node[mystyle] (\x-\y) at (\x,\y){};
+                \fi
+            \else
+                \node[mystyle] (\x-\y) at (\x,\y){};
+            \fi
+            }
+            % circle selected nodes with letters
+            \foreach \mynode/\mytext in {2-2/A,3-3/B,3-1/C,4-2/D}
+            {
+                \draw[neigh] (\mynode) circle (0.2cm) node {};
+            }
+			\draw [line width=0.2mm, -] (2.1,2) -- (2.9,2);
+			\draw [line width=0.2mm, -] (3,2.9) -- (3,2.1);
+			\draw [line width=0.2mm, -] (3,1.1) -- (3,1.9);
+			\draw [line width=0.2mm, -] (3.9,2) -- (3.1,2);
+	        \end{tikzpicture}\\}
+			\end{center}
+	        \vspace{0.4cm}
+	        \onslide<3->{Local Independencies 
+			\begin{align*}
+				X_i \bot NonNeighbors_{X_i} | Neighbors_{X_i}^G
+			\end{align*}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+\end{document}
