@@ -1,0 +1,108 @@
+\begin{frame}
+	\myheading{Module 19.4: RBMs as Stochastic Neural Networks}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{}
+		\begin{itemize}
+			\item  But what is the connection between this and deep neural networks?
+			\item We will get to it over the next few slides!
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module4/tikz_images/rbm}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{
+				\begin{itemize}\justifying
+					\item<1-> We will start by deriving a formula for $P(V|H)$ and $P(H|V)$
+					\item<2-> In particular, let us take the $l$-th visible unit and derive a formula for $P(v_l=1|H)$
+					\item<3-> We will first define $V_{-l}$ as the state of all the visible units except the $l$-th unit
+					\item<4-> We now define the following quantities
+					\begin{align*}
+						&\alpha_l(H) = -\sum_{i=1}^n w_{il}h_i - b_l\\
+						&\beta(V_{-l}, H) = -\sum_{i=1}^n \sum_{j=1,j\neq l}^m w_{ij} h_i v_j - \sum_{j=1,j\neq l}^m b_i v_i -\sum_{i=1}^n c_i h_i 
+					\end{align*}
+					\item<5-> Notice that
+					\begin{align*}
+						E(V,H) = v_l \alpha(H) + \beta(V_{-l},H)
+					\end{align*} 
+				\end{itemize}
+			}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module4/tikz_images/rbm}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> We can now write $P(v_l =1 | H )$ as
+				\begin{align*}
+					\onslide<2->{p(v_l&=1|H) = P(v_l=1|V_{-l},H) \\}
+					\onslide<3->{&= \frac{p(v_l=1,V_{-l},H)}{p(V_{-l},H)}\\}
+					\onslide<4->{&= \frac{e^{-E(v_l=1,V_{-l},H)}} {e^{-E(v_l=1,V_{-l},H)}+e^{-E(v_l=0,V_{-l},H)}}\\}
+					\onslide<5->{&= \frac{e^{-\beta(V_{-l},H)-1\cdot \alpha_l(H)}} {e^{-\beta(V_{-l},H)-1\cdot \alpha_l(H)}+e^{-\beta(V_{-l},H)-0\cdot \alpha_l(H)}}\\}
+					\onslide<6->{&= \frac{e^{-\beta(V_{-l},H)}\cdot e^{-\alpha_l(H)}} {e^{-\beta(V_{-l},H)}\cdot e^{-\alpha_l(H)}+e^{-\beta(V_{-l},H)}}\\}
+					\onslide<7->{&= \frac{e^{-\alpha_l(H)}}{e^{-\alpha_l(H)}+1} = \frac{1}{1+e^{\alpha_l(H)}}\\}
+					\onslide<8->{&= \sigma(-\alpha_l(H)) = \sigma(\sum_{i=1}^n w_{il}h_i + b_l)}
+				\end{align*}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module4/tikz_images/rbm}
+			\end{overlayarea}
+		\column{0.6\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\footnotesize{
+					\begin{itemize}\justifying
+						\item<1-> Okay, so we arrived at 
+						\begin{align*}
+							p(v_l&=1|H) = \sigma(\sum_{i=1}^n w_{il}h_i + b_l)
+						\end{align*}
+						\item<2-> Similarly, we can show that
+						\begin{align*}
+							p(h_l&=1|V) = \sigma(\sum_{i=1}^m w_{il}v_i + c_l)
+						\end{align*}
+						\item<3-> The RBM can thus be interpreted as a stochastic neural network, where the nodes and edges correspond to neurons and synaptic connections, respectively.
+						\item<4-> The conditional probability of a single (hidden or visible) variable being $1$ can be interpreted as the firing rate of a (stochastic) neuron with sigmoid activation function
+					\end{itemize}
+				}
+			\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module4/tikz_images/rbm}
+			\end{overlayarea}
+		\column{0.6\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}\justifying
+					\item<1-> Given this neural network view of RBMs, can you say something about what $h$ is trying to learn?
+					\item<2-> It is learning an abstract representation of $V$
+					\item<3-> This looks similar to autoencoders but how do we train such an RBM? What is the objective function?
+					\item<4-> We will see this in the next lecture!
+				\end{itemize}
+			\end{overlayarea}
+	\end{columns}
+\end{frame}

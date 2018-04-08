@@ -1,0 +1,716 @@
+\begin{frame}
+	\myheading{Module 19.1: Using joint distributions for classification and sampling}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{}
+		Now that we have some understanding of joint probability distributions and efficient ways of representing them, let us see some more practical examples where we can use these joint distributions
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.42\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\onslide<2->{
+		\tiny{\begin{block}{}
+		\begin{itemize}\justifying
+		% \leftskip-\dimexpr\leftmargin
+		\leftskip=-15pt
+		\item \textbf{M1:} An unexpected and necessary masterpiece
+		\item \textbf{M2:} Delightfully merged information and comedy
+		\item \textbf{M3:} Director's first true masterpiece
+		\item \textbf{M4:} Sci-fi perfection,truly mesmerizing film.
+		\item \textbf{M5:} Waste of time and money
+		\item \textbf{M6:} Best Lame Historical Movie Ever
+		\end{itemize}
+		\end{block}
+		}}
+		\end{overlayarea}
+
+		\column{0.58\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Consider a movie critic who writes reviews for movies
+				\item<2-> For simplicity let us assume that he always writes reviews containing a maximum of 5 words
+				\item<3-> Further, let us assume that there are a total of 50 words in his vocabulary
+				\item<4-> Each of the 5 words in his review can be treated as a random variable which takes one of the 50 values
+				\item<5->  Given many such reviews written by the reviewer we could learn the joint probability distribution
+				\begin{align*}
+					P (X_1, X_2,\dots, X_5)
+				\end{align*}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.42\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\tiny{\begin{block}{}
+		\begin{itemize}\justifying
+		% \leftskip-\dimexpr\leftmargin
+		\leftskip=-15pt
+		\item \textbf{M1:} An unexpected and necessary masterpiece
+		\item \textbf{M2:} Delightfully merged information and comedy
+		\item \textbf{M3:} Director's first true masterpiece
+		\item \textbf{M4:} Sci-fi perfection,truly mesmerizing film.
+		\item \textbf{M5:} Waste of time and money
+		\item \textbf{M6:} Best Lame Historical Movie Ever
+		\end{itemize}
+		\end{block}
+		}
+		\onslide<2->{
+		\begin{tikzpicture}
+		\node [input_neuron] (1) at (5,0.1) {waste};
+		\node [input_neuron] (2) at (7.5,1.1) {of};
+		\node [input_neuron] (3) at (7.5,-1.1) {time};
+		\node [input_neuron] (4) at (10,1.1) {and};
+		\node [input_neuron] (5) at (10,-1.1) {money};	
+
+		\draw [->] (1)	-- (2);
+		\draw [->] (1) -- (3);
+		\draw [->] (2) -- (3);
+		\draw [->] (2) -- (4);
+		\draw [->] (3) -- (4);
+		\draw [->] (3) -- (5);
+		\draw [->] (4) -- (5);
+
+ 		\end{tikzpicture}}
+
+		\end{overlayarea}
+
+		\column{0.58\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{-3mm}
+			\begin{itemize}\justifying
+				\item<1-> In fact, we can even think of a very simple factorization for this model\\
+				% \begin{align*}
+				\begin{center}
+					$ P(X_1, X_2,\dots, X_{5}) = \prod P(X_i| X_{i-1}, X_{i-2}) $
+				\end{center}
+				% \end{align*}
+				\item<2->In other words, we are assuming that the i-th word only depends on the previous 2 words and not anything before that
+				\item<3-> Let us consider one such factor $P(X_i = time| X_{i-2} = waste, X_{i-1} = of)$
+				\item<4-> We can estimate this as
+					\begin{align*}
+						\frac{count(\text{waste of time})}{count(\text{waste of})}
+					\end{align*}
+				\item<5-> And the two counts mentioned above can be computed by going over all the reviews
+				\item<6-> We could similarly compute the probabilities of all such factors	
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\visible<2->
+			{
+				\begin{block}{}
+					\textbf{M7:}
+					More realistic than real life
+				\end{block}
+			}
+			\vspace{-0.5cm}
+			{
+				\renewcommand{\arraystretch}{1.5}
+				\begin{table}[H]
+					\centering
+					\label{my-label}
+					\scalebox{0.65}
+					{
+						\begin{tabular}{|c|c|c|c|c}
+							\hline
+							$w$ 
+									& \begin{tabular}[c]{@{}c@{}}\small \color<3->{red}$P(X_i=w|,$\\ \small \color<3->{red}$X_{i-2}=more,$\\ \small \color<3->{red} $X_{i-1}=realistic)$\end{tabular} 	 
+									& \begin{tabular}[c]{@{}c@{}}\small \color<3->{green}$P(X_i=w|,$\\ \small \color<3->{green}$X_{i-2}=realistic,$\\ \small \color<3->{green} $X_{i-1}=than)$\end{tabular} 
+									& \begin{tabular}[c]{@{}c@{}}\small \color<3->{cyan}$P(X_i=w|$\\ \small \color<3->{cyan}$X_{i-2}=than,$\\ \small \color<3->{cyan} $X_{i-1}=	real)$\end{tabular} 
+										& $\hdots$ \\
+							\hline
+							\hline
+							\color<3->{red} than     & \color<3->{red} 0.61    & 0.01                 & 0.20             & $\hdots$\\
+							\hline
+							as                      & 0.12                   & 0.10                 & 0.16             & $\hdots$\\
+							\hline
+							for                     & 0.14                   & 0.09                 & 0.05             & $\hdots$\\
+							\hline
+							\color<3->{green} real   & 0.01                   & \color<3->{green}0.50 & 0.01             & $\hdots$\\
+							\hline
+							the                     & 0.02                   & 0.12                 & 0.12             & $\hdots$\\
+							\hline
+							\color<3->{cyan}life     & 0.05                   & 0.11                 & \color<3->{cyan}0.33 & $\hdots$\\
+							\hline
+						\end{tabular}
+					}
+				\end{table}
+			}
+			\vspace{-0.5cm}
+
+			\visible<3->
+			{
+				\small
+				\begin{align*}
+					P(M7) &= \color{black}P(X_1=more).\color{blue}P(X_2=realistic|X_1=more).\\
+					         &~~~~\color{red}P(X_3=than|X_1=more,X_2=realistic).\\
+					         &~~~~~~\color{green}P(X_4=real|X_2=realistic,X_3=than).\\
+					         &~~~~~~~~\color{cyan}P(X_5=life|X_3=than,X_4=real)\\
+					      &= 0.2 \times \color{blue} 0.25 \color{black} \times \color{red}0.61 \color{black}\times \color{green}0.50 \color{black}\times \color{cyan}0.33 \color{black}= 0.005
+				\end{align*}
+			}
+		\end{overlayarea}
+
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Okay, so now what can we do with this joint distribution?
+				\item<2-> Given a review, \textit{classify} if this was written by the reviewer 
+				\item<4-> \textit{Generate} new reviews which would look like reviews written by this reviewer 
+				\item<5-> How would you do this? By sampling from this distribution! What does that mean? Let us see!
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}	
+	\begin{columns}
+		\column{0.5\textwidth}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{table}[]
+			\centering
+			\scalebox{0.65}
+			{
+				\begin{tabular}{|l|c|!{\onslide<3->}c!{\onslide<1->}|!{\onslide<4->}c!{\onslide<1->}|!{\onslide<5->}c!{\onslide<1->}}
+					\hline
+					w               & $P(X_1=w)$ 
+											     & \begin{tabular}[c]{@{}c@{}}\small $P(X_2=w|,$\\ \small $X_1=the)$ \end{tabular}
+														           & \begin{tabular}[c]{@{}c@{}}\small $P(X_i=w|,$\\ \small $X_{i-2}=the,$\\ \small $X_{i-1}=movie)$ \end{tabular}
+																	                        & $\hdots$ \\ \hline \hline
+					\alert<2>{the}  & \alert<2>{0.62} & 0.01             &  0.01            & $\hdots$ \\ \hline
+					\alert<3>{movie}& 0.10            & \alert<3>{0.40}  &  0.01            & $\hdots$ \\ \hline
+					amazing         & 0.01            & 0.22             &  0.01            & $\hdots$ \\ \hline 
+					useless         & 0.01            & 0.20             &  0.03            & $\hdots$ \\ \hline 
+					\alert<4>{was}  & 0.01            & 0.00             &  \alert<4>{0.60} & $\hdots$ \\ \hline 
+					$\vdots$        & $\vdots$        & $\vdots$         &  $\vdots$        & $\hdots$ 
+				\end{tabular}
+			}
+
+		\end{table}
+
+		\visible<2->
+		{
+			\begin{block}{}
+				{\alert<2>{The}}
+				\visible<3->{\alert<3>{movie}}
+				\visible<4->{\alert<4>{was}}
+				\visible<5->{really amazing}
+			\end{block}
+		}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> How does the reviewer start his reviews (what is the first word that he chooses)?
+				\item<2-> We could take the word which has the highest probability and put it as the first word in our review 
+				\item<3-> Having selected this what is the most likely second word that the reviewer uses?
+				\item<4-> Having selected the first two words what is the most likely third word that the reviewer uses?
+				\item<5-> and so on...
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\renewcommand{\arraystretch}{1.5}
+		\begin{table}[]
+			\centering
+			\scalebox{0.65}
+			{
+				\begin{tabular}{|l|c|!{\onslide<1->}c!{\onslide<1->}|!{\onslide<1->}c!{\onslide<1->}|!{\onslide<1->}c!{\onslide<1->}}
+					\hline
+					w               & $P(X_1=w)$ 
+											     & \begin{tabular}[c]{@{}c@{}}\small $P(X_2=w|,$\\ \small $X_1=the)$ \end{tabular}
+														           & \begin{tabular}[c]{@{}c@{}}\small $P(X_i=w|,$\\ \small $X_{i-2}=the,$\\ \small $X_{i-1}=movie)$ \end{tabular}
+																	                        & $\hdots$ \\ \hline \hline
+					the       & 0.62 & 0.01  & 0.01 & $\hdots$ \\ \hline
+					movie     & 0.10 & 0.40  & 0.01 & $\hdots$ \\ \hline
+					amazing   & 0.01 & 0.22  & 0.01 & $\hdots$ \\ \hline 
+					useless   & 0.01 & 0.20  & 0.03 & $\hdots$ \\ \hline 
+					was       & 0.01 & 0.00  & 0.60 & $\hdots$ \\ \hline 
+					$\vdots$  & $\vdots$ & $\vdots$ & $\vdots$    & $\hdots$ 
+				\end{tabular}
+			}
+		\end{table}
+
+		\begin{block}{}
+			The movie was really amazing
+		\end{block}
+
+		\column{0.5\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> But there is a catch here!
+				\item<2-> Selecting the most likely word at each time step will only give us the same review again and again!
+				\item<3-> But we would like to generate different reviews 
+				\item<4-> So instead of taking the max value we can sample from this distribution
+				\item<5-> How? \onslide<6-> {Let us see!}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}[shrink=5]
+	\begin{columns}
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			{
+				\renewcommand{\arraystretch}{1.5}
+				\begin{table}[]
+					\centering
+					\scalebox{0.6}
+					{
+						\begin{tabular}{|l|!{\onslide<2->}c!{\onslide<1->}|!{\onslide<4->}c!{\onslide<1->}|!{\onslide<4->}c!{\onslide<1->}|!{\onslide<4->}c!{\onslide<1->}}
+							\hline
+							$w$               & $P(X_1=w)$ 
+													     & \begin{tabular}[c]{@{}c@{}}\small $P(X_2=w|,$\\ \small $X_1=the)$ \end{tabular}
+																           & \begin{tabular}[c]{@{}c@{}}\small $P(X_i=w|,$\\ \small $X_{i-2}=the,$\\ \small $X_{i-1}=movie)$ \end{tabular}
+																			                        & $\hdots$ \\ \hline \hline
+							the         & \alert<2>{0.62} & 0.01  & 0.01 & $\hdots$ \\ \hline
+							movie       & 0.10            & 0.40  & 0.01 & $\hdots$ \\ \hline
+							amazing     & 0.01            & 0.22  & 0.01 & $\hdots$ \\ \hline 
+							useless     & 0.01            & 0.20  & 0.03 & $\hdots$ \\ \hline 
+							was         & 0.01            & 0.00  & 0.60 & $\hdots$ \\ \hline 
+							is          & 0.01            & 0.00  & 0.30 & $\hdots$ \\ \hline 
+							masterpiece & 0.01            & 0.11  & 0.01 & $\hdots$ \\ \hline 
+							I           & 0.21            & 0.00  & 0.01 & $\hdots$ \\ \hline 
+							liked       & 0.01            & 0.01  & 0.01 & $\hdots$ \\ \hline 
+							decent      & 0.01            & 0.02  & 0.01 & $\hdots$ \\ \hline 
+						\end{tabular}
+					}
+				\end{table}
+				% \renewcommand{\arraystretch}{1.2}
+				% \begin{table}[]
+				% 	\centering
+				% 	% \caption{My caption}
+				% 	% \label{my-label}
+				% 	\scalebox{0.65}
+				% 	{
+				% 		\begin{tabular}{|!{\onslide<3->}c|!{\onslide<1->}c<{\onslide<2->}|c<{\onslide<1->}|}
+				% 			\hline
+				% 			\textbf{Index} & \textbf{Word} & \textbf{Probability} \\ \hline
+				% 			\hline
+				% 			0              & amazing       & \alert<4>{0.11}                 \\ \hline
+				% 			1              & worst         & \alert<4>{0.04}                 \\ \hline
+				% 			2              & movie         & \alert<4>{0.20}        	     \\ \hline
+				% 			3              & masterpiece   & \alert<4>{0.08}                 \\ \hline
+				% 			4              & waste         & \alert<4>{0.08}                 \\ \hline
+				% 			5              & cast          & \alert<4>{0.06}                 \\ \hline
+				% 			6              & great         & \alert<4>{0.13}                 \\ \hline
+				% 			7              & performance   & \alert<4>{0.09}                 \\ \hline
+				% 			8              & of            & \alert<4>{0.15}                 \\ \hline
+				% 			9              & unexpected    & \alert<4>{0.06}                 \\ \hline
+				% 		\end{tabular}
+				% 	}
+				% \end{table}
+			}
+			% \begin{center}
+			% 	\only<3-5>{\includegraphics[scale=0.15]{images/dice}}
+			% 	\only<6->{\includegraphics[width=1.15\textwidth]{images/dicesampling}}
+			% \end{center}
+		\end{overlayarea}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Suppose there are $10$ words in the vocabulary 
+				\item<2-> We have computed the probability distribution $P(X_1=word)$
+				\item<3-> $P(X_1=the)$ is the fraction of reviews having \textit{the} as the first word
+				\item<4-> Similarly, we have computed \\
+							$P(X_2=word_2| X_1=word_1)$ and\\
+							$P(X_3=word_3 | X_1=word_1, X_2=word_2)$
+				% \item<2-> We have computed the probabilities of these words
+				% \item<3-> We can think of this as a biased 10 sided dice where each side corresponds to a word
+				% \item<4-> The probability of each side showing up is not uniform but as per the values given in the table
+				% \item<5-> You can write a python program to roll such a biased dice %(actually write this code and run it to generate different samples)
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=15		]
+	\begin{overlayarea}{\textwidth}{\textheight}
+		\begin{columns}
+			\column{0.3\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{block}{}
+					The movie $\hdots$
+				\end{block}
+				{
+					\renewcommand{\arraystretch}{1.1}
+					\begin{table}[]
+						\centering
+						% \caption{My caption}
+						% \label{my-label}
+						\scalebox{0.65}
+						{
+							\begin{tabular}{|!{\onslide<2->}c|!{\onslide<1->}c<{\onslide<3->}|c|c<{\onslide<1->}}
+								\hline
+								\textbf{Index} & \textbf{Word} & \begin{tabular}[c]{@{}c@{}}\small $P(X_i=w|,$\\ \small $X_{i-2}=the,$\\ \small $X_{i-1}=movie)$ \end{tabular}& $\hdots$ \\ \hline
+								\hline
+								0              & the			& \alert<3>{0.01}       & $\hdots$       \\ \hline
+								1              & movie			& \alert<3>{0.01}       & $\hdots$       \\ \hline
+								2              & amazing		& \alert<3>{0.01}       & $\hdots$ 	     \\ \hline
+								3              & useless		& \alert<3>{0.03}       & $\hdots$       \\ \hline
+								4              & was			& \alert<3>{0.60}       & $\hdots$       \\ \hline
+								5              & is				& \alert<3>{0.30}       & $\hdots$       \\ \hline
+								6              & masterpiece	& \alert<3>{0.01}       & $\hdots$       \\ \hline
+								7              & I				& \alert<3>{0.01}       & $\hdots$       \\ \hline
+								8              & liked			& \alert<3>{0.01}       & $\hdots$       \\ \hline
+								9              & decent			& \alert<3>{0.01}       & $\hdots$       \\ \hline
+							\end{tabular}
+						}
+					\end{table}
+				}
+				\begin{center}
+					\only<2->{\vspace{-8mm}\includegraphics[scale=0.15]{images/dice}}
+				\end{center}
+			\end{overlayarea}
+
+			\column{0.6\textwidth}
+				\begin{overlayarea}{\textwidth}{\textheight}
+					\begin{itemize}\justifying
+						\item<1-> Now consider that we want to generate the 3rd word in the review given the first 2 words of the review
+						\item<2-> We can think of the 10 words as forming a 10 sided dice where each side corresponds to a word
+						\item<3-> The probability of each side showing up is not uniform but as per the values given in the table
+						\item<4-> We can select the next word by rolling this dice and picking up the word which shows up
+						\item<5-> You can write a python program to roll such a biased dice
+						% \item<6-> Code from slide 9 (make it bigger and let it span both the columns
+						% \item<7-> Instead of probs can we write probs_x2_given_x0_the_x_1_movie
+					\end{itemize}
+					\begin{center}
+						\only<5->{\includegraphics[width=\textwidth]{images/sampling_1w}}
+					\end{center}
+				\end{overlayarea}
+		\end{columns}
+	\end{overlayarea}
+	% \begin{overlayarea}{\textwidth}{0.25\textheight}
+	% \end{overlayarea}
+\end{frame}
+
+\begin{frame}
+	\begin{overlayarea}{\textwidth}{0.35\textheight}
+	\begin{center}
+		% \only<1> {\includegraphics[width=0.6\textwidth]{images/sampling_1w}}
+		\only<1->{\includegraphics[width=0.6\textwidth]{images/sampling}}
+	\end{center}
+	\end{overlayarea}
+	\begin{overlayarea}{\textwidth}{0.65\textheight}
+		\begin{columns}
+			\column{0.55\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\visible<3->
+				{
+					% \scalebox{0.8}
+					\small{
+						\begin{block}{Generated Reviews}
+							\begin{itemize}
+								\item<3-> the movie is liked decent
+								\item<4-> I liked the amazing movie
+								\item<5-> the movie is masterpiece
+								\item<6-> the movie I liked useless
+								 % the movie amazing useless was is masterpiece I liked decent 
+							\end{itemize}
+						\end{block}
+					}
+				}
+			\end{overlayarea}
+			\column{0.45\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}\justifying
+					\item<1-> Now, at each timestep we do not pick the most likely word but all words are possible depending on their probability (just as rolling a biased dice or tossing a biased coin)
+					\item<2-> Every run will now give us a different review!
+				\end{itemize}
+			\end{overlayarea}
+		\end{columns}
+	\end{overlayarea}
+\end{frame}
+
+
+\begin{frame}
+	\begin{block}{}
+			Returning back to our story....
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.55\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\visible<1->
+			{
+				\begin{block}{}
+					\textbf{M7:}
+					More realistic than real life
+				\end{block}
+			}
+			\vspace{-0.5cm}
+			{
+				\renewcommand{\arraystretch}{1.5}
+				\begin{table}[H]
+					\centering
+					\label{my-label}
+					\scalebox{0.65}
+					{
+						\begin{tabular}{|c|c|c|c|c}
+							\hline
+							$w$ 
+									& \begin{tabular}[c]{@{}c@{}}\small \color<1->{red}$P(X_i=w|,$\\ \small \color<1->{red}$X_{i-2}=more,$\\ \small \color<1->{red} $X_{i-1}=realistic)$\end{tabular} 	 
+									& \begin{tabular}[c]{@{}c@{}}\small \color<1->{green}$P(X_i=w|,$\\ \small \color<1->{green}$X_{i-2}=realistic,$\\ \small \color<1->{green} $X_{i-1}=than)$\end{tabular} 
+									& \begin{tabular}[c]{@{}c@{}}\small \color<1->{cyan}$P(X_i=w|$\\ \small \color<1->{cyan}$X_{i-2}=than,$\\ \small \color<1->{cyan} $X_{i-1}=	real)$\end{tabular} 
+										& $\hdots$ \\
+							\hline
+							\hline
+							\color<1->{red} than     & \color<1->{red} 0.61    & 0.01                 & 0.20             & $\hdots$\\
+							\hline
+							as                      & 0.12                   & 0.10                 & 0.16             & $\hdots$\\
+							\hline
+							for                     & 0.14                   & 0.09                 & 0.05             & $\hdots$\\
+							\hline
+							\color<1->{green} real   & 0.01                   & \color<1->{green}0.50 & 0.01             & $\hdots$\\
+							\hline
+							the                     & 0.02                   & 0.12                 & 0.12             & $\hdots$\\
+							\hline
+							\color<1->{cyan}life     & 0.05                   & 0.11                 & \color<1->{cyan}0.33 & $\hdots$\\
+							\hline
+						\end{tabular}
+					}
+				\end{table}
+			}
+			\vspace{-0.5cm}
+
+			\visible<1->
+			{
+				\small
+				\begin{align*}
+					P(M7) &= \color{black}P(X_1=more).\color{blue}P(X_2=realistic|X_1=more).\\
+					         &~~~~\color{red}P(X_3=than|X_1=more,X_2=realistic).\\
+					         &~~~~~~\color{green}P(X_4=real|X_2=realistic,X_3=than).\\
+					         &~~~~~~~~\color{cyan}P(X_5=life|X_3=than,X_4=real)\\
+					      &= 0.2 \times \color{blue} 0.25 \color{black} \times \color{red}0.61 \color{black}\times \color{green}0.50 \color{black}\times \color{cyan}0.33 \color{black}= 0.005
+				\end{align*}
+			}
+		\end{overlayarea}
+
+		\column{0.45\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Okay, so now what can we do with this joint distribution?
+				\item<1-> Given a review, \textit{classify} if this was written by the reviewer 
+				\item<1-> \textit{Generate} new reviews which would look like reviews written by this reviewer 
+				\item<2-> \textit{Correct noisy reviews} or help in completing incomplete reviews 
+				\begin{align*}
+					\underset{X_5}{argmax}~ P(&X_1=the, X_2=movie,\\
+					               &X_3=was, \\
+					               &X_4=amazingly, \\
+					               &X_5=?)
+				\end{align*}
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{block}{}
+		Let us take an example from another domain
+	\end{block}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{figure}
+				\includegraphics[height=100pt,width=100pt]{images/bedrooms/2}
+			\end{figure}
+			\onslide<4->
+			{
+				\begin{figure}
+					\onslide<5-> {\includegraphics[height=32pt,width=32pt]{images/bedrooms/3}}
+					\onslide<6-> {\includegraphics[height=32pt,width=32pt]{images/bedrooms/4}}
+					\onslide<7-> {\includegraphics[height=32pt,width=32pt]{images/bedrooms/5}}
+					\onslide<8-> {\includegraphics[height=32pt,width=32pt]{images/bedrooms/6}}
+					\onslide<9-> {\includegraphics[height=32pt,width=32pt]{images/bedrooms/7}}
+					\onslide<10->{\includegraphics[height=32pt,width=32pt]{images/bedrooms/8}}
+					\onslide<11->{\includegraphics[height=32pt,width=32pt]{images/bedrooms/9}}
+					\onslide<12->{\includegraphics[height=32pt,width=32pt]{images/bedrooms/2}}
+				\end{figure}
+			}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Consider images which contain $m \times n$ pixels (say $32 \times 32$)
+				\item<2-> Each pixel here is a random variable which can take values from $0$ to $255$ (colors)
+				\item<3-> We thus have a total of $32 \times 32 = 1024$ random variables $(X_1, X_2, ..., X_{1024})$
+				\item<4-> Together these pixels define the image and different combinations of pixel values lead to different images
+				\item<13-> Given many such images we want to learn the joint distribution $P(X_1, X_2, ..., X_{1024})$
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\vspace{1cm}\
+			\only<1>{\tikzset{mystyle/.style={shape=circle,fill=black,scale=0.3}}
+			\tikzset{neigh/.style={shape=circle,fill=blue,scale=0.5}}
+			\tikzset{cent/.style={shape=circle,fill=red,scale=0.5}}
+			\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=3mm]
+			\begin{center}
+			\begin{tikzpicture}[scale=.8]
+            % setup the nodes
+            \node[inner sep=0,opacity=0.3] at (3,3)
+			{\includegraphics[width=150pt,height=150pt]{images/bedrooms/2}};
+            \foreach \x in {0,...,6}
+            \foreach \y in {0,...,6}
+            {
+            \ifnum\x=3
+                \ifnum\y=2
+                    \node[cent] (\x-\y) at (\x,\y){};
+                \else
+                    \node[mystyle] (\x-\y) at (\x,\y){};
+                \fi
+            \else
+                \node[mystyle] (\x-\y) at (\x,\y){};
+            \fi
+            }
+			\draw [line width=0.2mm,blue, -] (2.1,2) -- (2.9,2);
+			\draw [line width=0.2mm, blue,-] (3,2.9) -- (3,2.1);
+
+			\draw [line width=0.2mm,blue, -] (3,1.1) -- (3,1.9);
+			\draw [line width=0.2mm,blue, -] (3.9,2) -- (3.1,2);
+
+			\draw [line width=0.2mm,blue, -] (3,1.1) -- (2.1,2);
+			\draw [line width=0.2mm,blue, -] (3,1.1) -- (3.9,2);
+			\draw [line width=0.2mm, blue,-] (3,2.9) -- (2.1,2);
+			\draw [line width=0.2mm,blue, -] (3,2.9) -- (3.9,2);
+
+
+			% \foreach \x in {2,3,4}
+			% \foreach \y in {1,2,3}
+			% \foreach \a in {2,3,4}
+			% \foreach \b in {1,2,3}
+			% {
+			% 	\draw [line width=0.2mm, -] (\x,\y) -- (\a,\b);
+			% }
+	        \end{tikzpicture}
+	        \end{center}}
+
+	        \only<2->{\tikzset{mystyle/.style={shape=circle,fill=black,scale=0.3}}
+			\tikzset{neigh/.style={shape=circle,fill=blue,scale=0.5}}
+			\tikzset{cent/.style={shape=circle,fill=red,scale=0.5}}
+			\tikzstyle{input_neuron}=[circle,draw=red!50,fill=orange!10,thick,minimum size=3mm]
+			\begin{center}
+			\begin{tikzpicture}[scale=.8]
+            % setup the nodes
+             \node[inner sep=0,opacity=0.3] at (3,3)
+			{\includegraphics[width=150pt,height=150pt]{images/bedrooms/2}};
+            \foreach \x in {0,...,6}
+            \foreach \y in {0,...,6}
+            {
+            \ifnum\x=3
+                \ifnum\y=5
+                    \node[cent] (\x-\y) at (\x,\y){};
+                \else
+                    \node[mystyle] (\x-\y) at (\x,\y){};
+                \fi
+            \else
+                \node[mystyle] (\x-\y) at (\x,\y){};
+            \fi
+            }
+			% \draw [line width=0.2mm, -] (2.1,2) -- (2.9,2);
+			% \draw [line width=0.2mm, -] (3,2.9) -- (3,2.1);
+
+			% \draw [line width=0.2mm, -] (3,1.1) -- (3,1.9);
+			% \draw [line width=0.2mm, -] (3.9,2) -- (3.1,2);
+
+			% \draw [line width=0.2mm, -] (3,1.1) -- (2.1,2);
+			% \draw [line width=0.2mm, -] (3,1.1) -- (3.9,2);
+			% \draw [line width=0.2mm, -] (3,2.9) -- (2.1,2);
+			% \draw [line width=0.2mm, -] (3,2.9) -- (3.9,2);
+
+
+			\foreach \x in {2,3,4}
+			\foreach \y in {4,5,6}
+			\foreach \a in {2,3,4}
+			\foreach \b in {4,5,6}
+			{
+				\draw [line width=0.2mm,blue, -] (\x,\y) -- (\a,\b);
+			}
+	        \end{tikzpicture}
+	        \end{center}}
+
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+			\item<1->We can assume each pixel is dependent only on its neighbors
+			\item<2-> In this case we could factorize the distribution over a Markov network 
+			\begin{align*}
+			\prod \phi(D_i)
+			\end{align*}
+			 where $D_i$ is a set of variables which form a maximal clique (basically, groups of neighboring pixels)
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+		\only<2>{\begin{figure}
+		\includegraphics[height=100pt, width=100pt]{images/sunnysky}
+		\end{figure}
+		\begin{align*}
+		\text{Probability Score} = 0.01
+		\end{align*}}
+		\only<3>{\begin{figure}
+		\includegraphics[scale=0.2]{images/genbedrooms}
+		\end{figure}}
+		\only<4>{\begin{figure}
+		\includegraphics[height=100pt, width=100pt]{images/bedrooms/2noisy}
+		% \includegraphics[height=100pt]{images/bedrooms/2noisy}
+		\end{figure}}
+
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1-> Again, what can we do with this joint distribution?
+				\item<2-> Given a new image, \textit{classify} if is indeed a bedroom
+				\item<3-> \textit{Generate new images} which would look like bedrooms (say, if you are an interior designer)
+				\item<4-> \textit{Correct noisy images} or help in completing incomplete images
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+\begin{block}{}
+\begin{itemize}
+\item Such models which try to estimate the probability $P(X)$ from a large number of samples are called generative models
+\end{itemize}
+\end{block}
+\end{frame}

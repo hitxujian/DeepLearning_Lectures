@@ -1,0 +1,86 @@
+\begin{frame}
+	\myheading{Module 19.5: Unsupervised Learning with RBMs}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\input{modules/Module5/tikz_images/rbm}
+			\end{overlayarea}
+		\column{0.6\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}\justifying
+					\item<1-> So far, we have mainly dealt with supervised learning where we are given $\{x_i, y_i\}_{i=1}^{n}$ for training
+					\item<2-> In other words, for every training example we are given a label (or class) associated with it
+					\item<3-> Our job was then to learn a model which predicts $\hat{y}$ such that the difference between $y$ and $\hat{y}$ is minimized
+				\end{itemize}
+			\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\input{modules/Module5/tikz_images/rbm}
+			\end{overlayarea}
+		\column{0.6\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}\justifying
+					\item<1-> But in the case of RBMs, our training data only contains $x$ (for example, images)
+					\item<2-> There is no explicit label $(y)$ associated with the input
+					\item<3-> Of course, in addition to $x$ we have the latent variable $h$ but we don't know what these h's are
+					\item<4-> We are interested in learning $P(x, h)$ which we have parameterized as
+					\begin{align*}
+						P(V, H) = \frac{1}{Z} e^{-(-\sum_i\sum_j w_{ij} v_i h_j  -\sum_i b_i v_i -\sum_j c_j h_j)}
+					\end{align*} 
+				\end{itemize}
+			\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module5/tikz_images/rbm}
+			\end{overlayarea}
+		\column{0.6\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\footnotesize{\begin{itemize}[<+->]\justifying
+					\item What is the objective function that we should use?
+					\item First note that if we have learnt $P(x,h)$ we can compute $P(x)$
+					\item What would we want $P(X=x)$ to be for any $x$ belonging to our training data? 
+					\item We would want it to be high
+					\item So now can you think of an objective function
+						\onslide<6->{\begin{align*}
+							maximize \prod_{i=1}^{N} P(X=x_i)
+						\end{align*}}
+					\item \onslide<7->{Or, log-likelihood
+					\begin{align*}
+						\ln \mathscr{L}(\theta) = \ln \prod_{i=1}^l p(x_i|\theta)=\sum_{i=1}^l \ln p(x_i|\theta)
+					\end{align*}}
+					\onslide<8->{where $\theta$ are the parameters}
+				\end{itemize}}
+			\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module5/tikz_images/rbm}
+			\end{overlayarea}
+		\column{0.6\textwidth}
+			\begin{overlayarea}{\textwidth}{\textheight}
+				\begin{itemize}\justifying
+					\item<1-> Okay so we have the objective function now! What next?
+					\item<2-> We need a learning algorithm
+					\item<3-> We can just use gradient descent if \onslide{we are able to compute the gradient of the loss function w.r.t. the parameters}
+					\item<4-> Let us see if we can do that
+				\end{itemize}
+			\end{overlayarea}
+	\end{columns}
+\end{frame}

@@ -1,0 +1,124 @@
+%----------------------------------------------------------------
+\begin{frame}
+	\myheading{Module 19.6: Computing the gradient of the log likelihood}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module6/tikz_images/rbm}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{\begin{itemize}
+				\item We will just consider the loss for a single training example
+			\end{itemize}
+			\vspace{-0.5cm}
+			\begin{align*}
+				\ln \mathscr{L}(\theta&) \onslide<2->{= \ln p(V|\theta)} \onslide<3->{= \ln \frac{1}{Z} \sum_H e^{- E(V,H)}} \\
+				\onslide<4->{&= \ln \sum_H e^{- E(V,H)} - \ln \sum_{V,H} e^{- E(V,H)}}  
+			\end{align*}
+			\vspace{-0.5cm}
+			\begin{align*}
+				\onslide<5->{&\frac{\partial \ln \mathscr{L}(\theta)}{\partial \theta}} \onslide<6->{= \frac{\partial}{\partial \theta} \bigg (\ln \sum_H e^{- E(V,H)} - \ln \sum_{V,H} e^{- E(V,H)} \bigg)\\}
+				\onslide<7->{& \hspace{1cm}= -\frac{1}{\sum_H e^{- E(V,H)}} \sum_H e^{- E(V,H)} \frac{\partial E(V,H)}{\partial \theta}\\ 
+				& \hspace{1.5cm}+ \frac{1}{\sum_{V,H} e^{- E(V,H)}} \sum_{V,H} e^{- E(V,H)} \frac{\partial E(V,H)}{\partial \theta}\\}
+				\onslide<8->{& \hspace{1cm}= -\sum_H \frac{e^{- E(V,H)}}{\sum_H e^{- E(V,H)}} \frac{\partial E(V,H)}{\partial \theta}\\ 
+				& \hspace{1.5cm}+ \sum_{V,H} \frac{e^{- E(V,H)}}{\sum_{V,H} e^{- E(V,H)}} \frac{\partial E(V,H)}{\partial \theta}}
+			\end{align*}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module6/tikz_images/rbm}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\footnotesize{\begin{itemize}
+				\item Now,
+			\end{itemize}
+			\begin{align*}
+				\onslide<2->{\frac{e^{-E(V,H)}}{\sum_{V,H} e^{-E(V,H)}} = p(V,H)}
+			\end{align*}
+			\begin{align*}
+				\onslide<3->{\frac{e^{-E(V,H)}}{\sum_{H} e^{-E(V,H)}}} \onslide<4->{&= \frac{\frac{1}{Z} e^{-E(V,H)}}{\frac{1}{Z} \sum_{H} e^{-E(V,H)}} \\}
+				\onslide<5->{&= \frac{p(V,H)}{p(V)}} \onslide<6->{= p(H|V)}
+			\end{align*}
+			\begin{align*}
+				\onslide<7->{&\frac{\partial \ln \mathscr{L}(\theta)}{\partial \theta}} \onslide<8->{= -\sum_H \frac{e^{- E(V,H)}}{\sum_H e^{- E(V,H)}} \frac{\partial E(V,H)}{\partial \theta}\\ 
+				& \hspace{2.5cm}+ \sum_{V,H} \frac{e^{- E(V,H)}}{\sum_{V,H} e^{- E(V,H)}} \frac{\partial E(V,H)}{\partial \theta}\\}
+				\onslide<9->{& = -\sum_H p(H|V) \frac{\partial E(V,H)}{\partial \theta} + \sum_{V,H} p(V,H) \frac{\partial E(V,H)}{\partial \theta}}
+			\end{align*}}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module6/tikz_images/rbm}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}\justifying
+				\item<1->Okay, so we have,	
+					\begin{align*}
+						\frac{\partial \ln \mathscr{L}(\theta)}{\partial \theta} &= -\sum_H p(H|V) \frac{\partial E(V,H)}{\partial \theta} \\
+						&+ \sum_{V,H} p(V,H) \frac{\partial E(V,H)}{\partial \theta}
+					\end{align*}
+				\item<2-> Remember that $\theta$ is a collection of all the parameters in our model, i.e.,
+				$W_{ij}, b_i, c_j \forall i \in \{1,\ldots,m\}$ and $\forall j \in \{1,\ldots,n\}$ 
+				\item<3-> We will follow our usual recipe of computing the partial derivative w.r.t. one weight $w_{ij}$ and then generalize to the gradient w.r.t. the entire weight matrix $W$
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\input{modules/Module6/tikz_images/rbm}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{align*}
+				&\frac{\partial \mathscr{L}(\theta)}{\partial w_{ij}} \\
+				\onslide<2->{&= -\sum_H p(H|V) \frac{\partial E(V,H)}{\partial w_{ij}} + \sum_{V,H} p(V,H) \frac{\partial E(V,H)}{\partial w_{ij}}\\}
+				\onslide<3->{&= \sum_H p(H|V) h_i v_j - \sum_{V,H} p(V,H) h_i v_j\\}
+				\onslide<5->{&= \mathbb{E}_{p(H|V)} [v_i h_j] - \mathbb{E}_{p(V,H)} [v_i h_j]}
+				% \onslide<4->{&= \sum_H p(H|V) h_i v_j - \sum_{V} p(V) \sum_{H} p(H|V) h_i v_j}
+			\end{align*}
+			\begin{itemize}\justifying
+				\item<4-> We can write the above as a sum of two expectations
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\begin{columns}
+		\column{0.4\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{align*}
+				\hspace{-0.5cm}\frac{\partial \mathscr{L}(\theta)}{\partial w_{ij}} = \mathbb{E}_{p(H|V)} [v_i h_j] - \mathbb{E}_{p(V,H)} [v_i h_j]
+			\end{align*}
+		\end{overlayarea}
+		\column{0.6\textwidth}
+		\begin{overlayarea}{\textwidth}{\textheight}
+			\begin{itemize}
+				\item<1-> How do we compute these expectations? 
+				\item<2-> The first summation can actually be simplified (we will come back and simplify it later) 
+				\item<3-> However, the second summation contains an exponential number of terms and hence intractable in practice
+				\item<4-> So how do we deal with this ?
+			\end{itemize}
+		\end{overlayarea}
+	\end{columns}
+\end{frame}
