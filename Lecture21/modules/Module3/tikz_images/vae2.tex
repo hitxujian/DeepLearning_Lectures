@@ -18,31 +18,32 @@
 \node [hidden_neuron] (neuron53) at (9.5,6)  {};
 \node [hidden_neuron] (neuron54) at (10.5,6)  {};
 
-\node [input_neuron] (neuron11) at (6.5,10)  {};
-\node [input_neuron] (neuron12) at (7.5,10)  {};
-\node [input_neuron] (neuron13) at (8.5,10)  {};
-\node [input_neuron] (neuron14) at (9.5,10)  {};
-\node [input_neuron] (neuron15) at (10.5,10)  {};
+\node [input_neuron] (neuron11) at (6.5,11)  {};
+\node [input_neuron] (neuron12) at (7.5,11)  {};
+\node [input_neuron] (neuron13) at (8.5,11)  {};
+\node [input_neuron] (neuron14) at (9.5,11)  {};
+\node [input_neuron] (neuron15) at (10.5,11)  {};
 
-%\node [draw=red!50,fill=red!10,thick] (neuron16) at (8.5,8)  {};
+\only<1-4>{\node [ellipse,draw=red!50,fill=red!10,thick] (neuron16) at (8.5,8)  {Sample};}
+\only<5->{\node [line width= 1mm, ellipse,draw=red!80,fill=red!10] (neuron16) at (8.5,8)  {\textbf{\textcolor{blue}{Sample}}};}
 
 \node [] (neuron17) at (8.3,8.6)  {$z$};
 
-\node[text width=0.01cm] at (8.3,3.3) {$\mathbf{X}$};
+\node[text width=0.01cm] at (8.3,3.3) {$\mathbf{X_i}$};
 % \node[text width=0.007cm] at (7.7,5.25) {$\theta$};
 \node[text width=0.007cm] at (11.2,4.5) {$Q_\theta(z|X)$};
 \node[text width=0.01cm] at (11.2,6) {$\Sigma$};
 \node[text width=0.01cm] at (5.6,6) {$\mu$};
 % \node[text width=0.01cm] at (10.7,6) {$\mathbf{z}$};
 % \node[text width=0.007cm] at (7.7,6.75) {$W^*$};
-\node[text width=0.007cm] at (11.2,10) {$P_\phi(X|z)$};
-\node[text width=0.01cm] at (8.3,11.2) {$\mathbf{\hat{X}}$};
+\node[text width=0.007cm] at (11.2,11) {$P_\phi(X|z)$};
+\node[text width=0.01cm] at (8.3,12.2) {$\mathbf{\hat{X}_i}$};
 
 \draw[red!100,thick,solid,rounded corners=15pt] (6,4) rectangle (11,5);
 % \draw[red!100,thick,solid,rounded corners=15pt] (6.5,5.5) rectangle (10.5,6.5);
 \draw[red!100,thick,solid,rounded corners=15pt] (6,5.5) rectangle (8.2,6.5);
 \draw[red!100,thick,solid,rounded corners=15pt] (8.8,5.5) rectangle (11,6.5);
-\draw[red!100,thick,solid,rounded corners=15pt] (6,9.5) rectangle (11,10.5);
+\draw[red!100,thick,solid,rounded corners=15pt] (6,10.5) rectangle (11,11.5);
 
 
 \draw[thick,->] (8.5,3.5) -- (8.5,4);
@@ -54,10 +55,10 @@
 \draw[thick,->] (7.2,6.5) -- (8.5,7.55);
 
 \draw[thick,->] (9.8,6.5) -- (8.5,7.55);
-\draw[thick,->] (8.5,7.55) -- (8.5,9.5);
-%\draw[thick,->] (8.5,8.45) -- (8.5,10.5);
-\draw[thick,->] (8.5,10.5) -- (8.5,11);
-%\draw[thick,->] (8.5,11.5) -- (8.5,12);
+
+\draw[thick,->] (8.5,8.45) -- (8.5,10.5);
+
+\draw[thick,->] (8.5,11.5) -- (8.5,12);
 
 \end{tikzpicture}}
 \end{center}

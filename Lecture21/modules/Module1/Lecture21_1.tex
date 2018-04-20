@@ -1,4 +1,7 @@
 \begin{frame}
+\end{frame}
+
+\begin{frame}
 	\myheading{Module 21.1: Revisiting Autoencoders}
 \end{frame}
 
@@ -12,8 +15,8 @@
 			\input{modules/Module1/tikz_images/autoencoder.tex}
 			\vspace{-20pt}
 			\begin{align*}
-				\mathbf{h} &= g(W\mathbf{x_i} +\mathbf{b})\\
-				\mathbf{\hat{x}_i} &= f(W^*\mathbf{h} +\mathbf{c})      
+				\mathbf{h} &= g(W\mathbf{X} +\mathbf{b})\\
+				\mathbf{\hat{X}} &= f(W^*\mathbf{h} +\mathbf{c})      
 			\end{align*}
 
 		\end{overlayarea}
@@ -22,11 +25,16 @@
 			\begin{itemize}[<+->]\justifying
 				\item Before we start talking about VAEs, let us quickly revisit autoencoders
 				\item An autoencoder contains an encoder which takes the input X and maps it to a hidden representation
-				\item The decoder then takes this hidden representation and tries to reconstruct the input from it as $\tilde(X)$
+				\item The decoder then takes this hidden representation and tries to reconstruct the input from it as $\hat{X}$
 				\item The training happens using the following objective function
-                \begin{align*}
-                    & \min \limits_{W,W^*,\mathbf{c},\mathbf{b}}\hspace{0.5mm} \frac{1}{m}\sum_{i=1}^{m}\sum_{j=1}^{n} (\hat{x}_{ij}- x_{ij})^2 
-                \end{align*}
+				\vspace{-0.1in}
+				\small {
+					\begin{align*} 
+					& \min \limits_{W,W^*,\mathbf{c},\mathbf{b}}\hspace{0.5mm} \frac{1}{m}\sum_{i=1}^{m}\sum_{j=1}^{n} (\hat{x}_{ij}- x_{ij})^2 
+					\end{align*}
+				}
+                \vspace{-0.1in}
+                \item where $m$ is the number of training instances, $\{x_i\}_{i=1}^{m}$ and each $x_i \in R^n$ ($x_{ij}$ is thus the $j$-th dimension of the $i$-th training instance)
 			\end{itemize}
 		\end{overlayarea}
 	\end{columns}
@@ -42,8 +50,8 @@
 			\input{modules/Module1/tikz_images/autoencoder.tex}
 			\vspace{-20pt}
 			\begin{align*}
-				\mathbf{h} &= g(W\mathbf{x_i} +\mathbf{b})\\
-				\mathbf{\hat{x}_i} &= f(W^*\mathbf{h} +\mathbf{c})      
+				\mathbf{h} &= g(W\mathbf{X} +\mathbf{b})\\
+				\mathbf{\hat{X}} &= f(W^*\mathbf{h} +\mathbf{c})       
 			\end{align*}
 		\end{overlayarea}
 		\column{0.6\textwidth}
@@ -52,8 +60,8 @@
 				\item<1-> But where's the fun in this ?
 				\item<2-> We are taking an input and simply reconstructing it
 				\item<3-> Of course, the fun lies in the fact that we are getting a good \textit{abstraction} of the input 
-				\item<4-> But RBMs were able to do something more besides abstraction \onslide<5->{they were able to do \textit{generation})}
-				\item<6-> Let us revisit \textit{generation} in the context of autoencoders? 
+				\item<4-> But RBMs were able to do something more besides abstraction \onslide<5->{(they were able to do \textit{generation})}
+				\item<6-> Let us revisit \textit{generation} in the context of autoencoders
 			\end{itemize}
 		\end{overlayarea}
 	\end{columns}
@@ -68,17 +76,20 @@
 			\vspace{3pt}
 			\input{modules/Module1/tikz_images/autoencoder2.tex}
 			\vspace{-20pt}
+%			\onslide<1->{\only<1>{\begin{align*}
+%						\mathbf{h} &= g(W\mathbf{x_i} +\mathbf{b})
+%			\end{align*}}}
 			\begin{align*}
-				\mathbf{h} &= g(W\mathbf{x_i} +\mathbf{b})\\
-				\mathbf{\hat{x}_i} &= f(W^*\mathbf{h} +\mathbf{c})      
+				\onslide<1>{\mathbf{h} &= g(W\mathbf{X} +\mathbf{b})\\}
+				\mathbf{\hat{X}} &= f(W^*\mathbf{h} +\mathbf{c})    
 			\end{align*}
 		\end{overlayarea}
 		\column{0.6\textwidth}
 		\begin{overlayarea}{\textwidth}{\textheight}
 			\begin{itemize}[<+->]\justifying
 				\item Can we do generation with autoencoders ?
-				\item In other words, once the autoencoder is trained can I remove the encoder, feed a hidden representation $h$ to the decoder and decode a $\tilde{X}$ from it ?
-				\item In principle, yes, but in practice there is a problem with this approach
+				\item In other words, once the autoencoder is trained can I remove the encoder, feed a hidden representation $h$ to the decoder and decode a $\hat{X}$ from it ?
+				\item In principle, yes! But in practice there is a problem with this approach
 				\item $h$ is a very high dimensional vector and only a few vectors in this space would actually correspond to meaningful latent representations of our input
 				\item So of all the possible value of $h$ which values should I feed to the decoder (we had asked a similar question before: slide 67, bullet 5 of lecture 19)
 			\end{itemize}
@@ -94,10 +105,10 @@
 			% LHS: same as final figure from previous slide
 			\vspace{3pt}
 			\input{modules/Module1/tikz_images/decoder_gen.tex}
-			\vspace{-20pt}
+			%\vspace{-20pt}
+			\vspace{30pt}
 			\begin{align*}
-				\mathbf{h} &= g(W\mathbf{x_i} +\mathbf{b})\\
-				\mathbf{\hat{x}_i} &= f(W^*\mathbf{h} +\mathbf{c})      
+				\mathbf{\hat{X}} &= f(W^*\mathbf{h} +\mathbf{c})      
 			\end{align*}
 		\end{overlayarea}
 		\column{0.6\textwidth}
@@ -105,12 +116,16 @@
 			\begin{itemize}\justifying
 				\item<1-> Ideally, we should only feed those values of $h$ which are highly \textit{likely} 
 				\item<2-> In other words, we are interested in sampling from $P(h|X)$ so that we pick only those $h$'s which have a high probability
-				\item<3-> But unlike RBMS, autoencoders do not have such a probabilistic interpretation
+				\item<3-> But unlike RBMs, autoencoders do not have such a probabilistic interpretation
 				\item<4-> They learn a hidden representation $h$ but not a distribution $P(h|X)$
-				\item<5-> We will now look at variational autoencoders which have the same structure as autoencoders but they learn a distribution over the hidden variables
+				\item<5-> Similarly the decoder is also deterministic and does not learn a distribution over $X$ (given a $h$ we can get a $X$ but not $P(X|h)$ )
 			\end{itemize}
 		\end{overlayarea}
 	\end{columns}
 \end{frame}
 
-
+\begin{frame}
+	\begin{block}{}
+		We will now look at variational autoencoders which have the same structure as autoencoders but they learn a distribution over the hidden variables
+	\end{block}
+\end{frame}
